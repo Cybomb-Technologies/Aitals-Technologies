@@ -24,15 +24,42 @@ const Contact = () => {
     message: ''
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    toast({
-      title: 'Message Sent! ✉️',
-      description:
-        "Thank you for reaching out. We'll get back to you within 24 hours!"
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  
+  try {
+    const response = await fetch('http://localhost:5000/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        message: `Service: ${formData.service}\n\nMessage: ${formData.message}`
+      }),
     });
-    setFormData({ name: '', email: '', service: '', message: '' });
-  };
+
+    const data = await response.json();
+
+    if (response.ok) {
+      toast({
+        title: 'Message Sent! ✉️',
+        description: "Thank you for reaching out. We'll get back to you within 24 hours!"
+      });
+      setFormData({ name: '', email: '', service: '', message: '' });
+    } else {
+      throw new Error(data.message || 'Failed to send message');
+    }
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    toast({
+      title: 'Error',
+      description: 'Failed to send message. Please try again.',
+      variant: 'destructive'
+    });
+  }
+};
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -63,7 +90,7 @@ const Contact = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 gradient-bg text-white" style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}>
+      <section className="pt-32 pb-20 gradient-bg text-white" style={{background: 'linear-gradient(to right, #1A173A, #6666CC)'}}>
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -164,7 +191,7 @@ const Contact = () => {
                   type="submit"
                   size="lg"
                   className="w-full text-white"
-                  style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}
+                  style={{background: 'linear-gradient(to right, #1A173A, #6666CC)'}}
                 >
                   <Send className="mr-2 w-5 h-5" />
                   Send Message
@@ -189,7 +216,7 @@ const Contact = () => {
                   <div className="flex items-start space-x-4">
                     <div 
                       className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}
+                      style={{background: 'linear-gradient(to right, #1A173A, #6666CC)'}}
                     >
                       <MapPin className="w-6 h-6 text-white" />
                     </div>
@@ -209,7 +236,7 @@ const Contact = () => {
                   <div className="flex items-start space-x-4">
                     <div 
                       className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}
+                      style={{background: 'linear-gradient(to right, #1A173A, #6666CC)'}}
                     >
                       <Mail className="w-6 h-6 text-white" />
                     </div>
@@ -224,7 +251,7 @@ const Contact = () => {
                   <div className="flex items-start space-x-4">
                     <div 
                       className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}
+                      style={{background: 'linear-gradient(to right, #1A173A, #6666CC)'}}
                     >
                       <Phone className="w-6 h-6 text-white" />
                     </div>
@@ -248,7 +275,7 @@ const Contact = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-12 h-12 rounded-lg flex items-center justify-center hover:opacity-80 transition-opacity"
-                      style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}
+                      style={{background: 'linear-gradient(to right, #1A173A, #6666CC)'}}
                     >
                       <Icon className="w-6 h-6 text-white" />
                     </a>
@@ -293,7 +320,7 @@ const Contact = () => {
           style={{background: 'linear-gradient(135deg, #EFF6FF, #EDE9FE)'}}
         >
           <div className="text-center max-w-2xl mx-auto px-4">
-            <MapPin className="w-16 h-16 mb-4 mx-auto" style={{color: '#3B82F6'}} />
+            <MapPin className="w-16 h-16 mb-4 mx-auto" style={{color: '#6666CC'}} />
             <h3 className="text-3xl font-bold text-gray-800 mb-4">Visit Our Office</h3>
             <p className="text-gray-600 mb-6 text-lg">
               146, Sterling Rd, Nungambakkam<br />
@@ -303,7 +330,7 @@ const Contact = () => {
               onClick={openGoogleMaps}
               size="lg"
               className="text-white px-8 py-3"
-              style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}
+              style={{background: 'linear-gradient(to right, #1A173A, #6666CC)'}}
             >
               <Navigation className="mr-2 w-5 h-5" />
               Open in Google Maps

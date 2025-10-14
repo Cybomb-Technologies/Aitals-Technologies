@@ -3,14 +3,13 @@ import Contact from '../models/Contact.js';
 // Create new contact
 export const createContact = async (req, res) => {
   try {
-    const { name, email, phone, company, subject, message } = req.body;
+    // 💡 CHANGE: Only destructure and use name, email, and message
+    const { name, email, message } = req.body; 
     
+    // 💡 Removed unused fields (phone, company, subject)
     const contact = new Contact({
       name,
       email,
-      phone,
-      company,
-      subject,
       message
     });
 

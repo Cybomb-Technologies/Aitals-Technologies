@@ -10,7 +10,7 @@ const contactSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    message: {
+    message: { // This will hold the combined 'Service: X\n\nMessage: Y' string
       type: String,
       required: true,
     },

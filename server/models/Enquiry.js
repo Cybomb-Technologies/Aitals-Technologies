@@ -1,3 +1,4 @@
+// Updated Enquiry model (Enquiry.js)
 import mongoose from 'mongoose';
 
 const enquirySchema = mongoose.Schema(
@@ -13,6 +14,14 @@ const enquirySchema = mongoose.Schema(
     message: {
       type: String,
       required: true,
+    },
+    company: {
+      type: String,
+      default: '',
+    },
+    budget: {
+      type: String,
+      default: '',
     },
   },
   {

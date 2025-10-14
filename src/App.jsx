@@ -16,7 +16,7 @@ import { AuthProvider } from '@/context/AuthContext';
 import AdminLogin from '@/pages/Admin/AdminLogin';
 import Blog from './pages/Blogs/Blog';
 import BlogPost from './pages/Blogs/BlogPost';
-
+import ContactPopup from './pages/PopupForm';
 function App() {
   return (
     <AuthProvider>
@@ -40,8 +40,10 @@ function App() {
                       <Route path="/admin-login" element={<AdminLogin />} />
                       <Route path="/blog" element={<Blog />} />
                       <Route path="/blog/:id" element={<BlogPost />} />
+                      
                     </Routes>
                   </main>
+                  <ContactPopup/>
                   <Footer />
                 </>
               }
