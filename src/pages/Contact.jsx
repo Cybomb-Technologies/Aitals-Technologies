@@ -1,8 +1,17 @@
-
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Linkedin, Facebook, Instagram, Twitter } from 'lucide-react';
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Linkedin,
+  Facebook,
+  Instagram,
+  Twitter,
+  Navigation
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 
@@ -18,8 +27,9 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     toast({
-      title: "Message Sent! ✉️",
-      description: "Thank you for reaching out. We'll get back to you within 24 hours!",
+      title: 'Message Sent! ✉️',
+      description:
+        "Thank you for reaching out. We'll get back to you within 24 hours!"
     });
     setFormData({ name: '', email: '', service: '', message: '' });
   };
@@ -38,14 +48,22 @@ const Contact = () => {
     'Other'
   ];
 
+  const openGoogleMaps = () => {
+    window.open('https://maps.google.com/?q=13.008408,80.201841', '_blank');
+  };
+
   return (
     <>
       <Helmet>
         <title>Contact Us - Aitals Technologies | Get In Touch</title>
-        <meta name="description" content="Contact Aitals Technologies for your software development needs. We're here to help transform your ideas into reality." />
+        <meta
+          name="description"
+          content="Contact Aitals Technologies for your software development needs. We're here to help transform your ideas into reality."
+        />
       </Helmet>
 
-      <section className="pt-32 pb-20 gradient-bg text-white">
+      {/* Hero Section */}
+      <section className="pt-32 pb-20 gradient-bg text-white" style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}>
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -55,26 +73,32 @@ const Contact = () => {
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">Get In Touch</h1>
             <p className="text-xl text-gray-100">
-              Ready to start your project? We'd love to hear from you. 
-              Let's discuss how we can help bring your vision to life.
+              Ready to start your project? We'd love to hear from you. Let's
+              discuss how we can help bring your vision to life.
             </p>
           </motion.div>
         </div>
       </section>
 
+      {/* Contact Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold mb-6 gradient-text">Send Us a Message</h2>
-              
+              <h2 className="text-3xl font-bold mb-6 gradient-text">
+                Send Us a Message
+              </h2>
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-gray-700 font-medium mb-2">Your Name</label>
+                  <label className="block text-gray-700 font-medium mb-2">
+                    Your Name
+                  </label>
                   <input
                     type="text"
                     name="name"
@@ -87,7 +111,9 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="block text-gray-700 font-medium mb-2">Email Address</label>
+                  <label className="block text-gray-700 font-medium mb-2">
+                    Email Address
+                  </label>
                   <input
                     type="email"
                     name="email"
@@ -100,7 +126,9 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="block text-gray-700 font-medium mb-2">Service Interest</label>
+                  <label className="block text-gray-700 font-medium mb-2">
+                    Service Interest
+                  </label>
                   <select
                     name="service"
                     value={formData.service}
@@ -110,13 +138,17 @@ const Contact = () => {
                   >
                     <option value="">Select a service</option>
                     {services.map((service) => (
-                      <option key={service} value={service}>{service}</option>
+                      <option key={service} value={service}>
+                        {service}
+                      </option>
                     ))}
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-gray-700 font-medium mb-2">Your Message</label>
+                  <label className="block text-gray-700 font-medium mb-2">
+                    Your Message
+                  </label>
                   <textarea
                     name="message"
                     value={formData.message}
@@ -128,13 +160,19 @@ const Contact = () => {
                   ></textarea>
                 </div>
 
-                <Button type="submit" size="lg" className="w-full gradient-bg text-white">
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="w-full text-white"
+                  style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}
+                >
                   <Send className="mr-2 w-5 h-5" />
                   Send Message
                 </Button>
               </form>
             </motion.div>
 
+            {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -142,25 +180,37 @@ const Contact = () => {
               className="space-y-8"
             >
               <div>
-                <h2 className="text-3xl font-bold mb-6 gradient-text">Contact Information</h2>
-                
+                <h2 className="text-3xl font-bold mb-6 gradient-text">
+                  Contact Information
+                </h2>
+
                 <div className="space-y-6">
+                  {/* Address */}
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div 
+                      className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                      style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}
+                    >
                       <MapPin className="w-6 h-6 text-white" />
                     </div>
                     <div>
                       <h3 className="font-bold text-lg mb-1">Office Address</h3>
                       <p className="text-gray-600">
-                        123 Tech Park, Innovation Street<br />
-                        Bangalore, Karnataka 560001<br />
+                        146, Sterling Rd, Nungambakkam
+                        <br />
+                        Chennai, Tamil Nadu 600034
+                        <br />
                         India
                       </p>
                     </div>
                   </div>
 
+                  {/* Email */}
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div 
+                      className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                      style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}
+                    >
                       <Mail className="w-6 h-6 text-white" />
                     </div>
                     <div>
@@ -170,8 +220,12 @@ const Contact = () => {
                     </div>
                   </div>
 
+                  {/* Phone */}
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div 
+                      className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                      style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}
+                    >
                       <Phone className="w-6 h-6 text-white" />
                     </div>
                     <div>
@@ -183,25 +237,30 @@ const Contact = () => {
                 </div>
               </div>
 
+              {/* Social Links */}
               <div>
                 <h3 className="font-bold text-lg mb-4">Follow Us</h3>
                 <div className="flex space-x-4">
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center hover:opacity-80 transition-opacity">
-                    <Linkedin className="w-6 h-6 text-white" />
-                  </a>
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center hover:opacity-80 transition-opacity">
-                    <Facebook className="w-6 h-6 text-white" />
-                  </a>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center hover:opacity-80 transition-opacity">
-                    <Instagram className="w-6 h-6 text-white" />
-                  </a>
-                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center hover:opacity-80 transition-opacity">
-                    <Twitter className="w-6 h-6 text-white" />
-                  </a>
+                  {[Linkedin, Facebook, Instagram, Twitter].map((Icon, i) => (
+                    <a
+                      key={i}
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 rounded-lg flex items-center justify-center hover:opacity-80 transition-opacity"
+                      style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}
+                    >
+                      <Icon className="w-6 h-6 text-white" />
+                    </a>
+                  ))}
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl">
+              {/* Business Hours */}
+              <div 
+                className="p-8 rounded-2xl"
+                style={{background: 'linear-gradient(135deg, #EFF6FF, #EDE9FE)'}}
+              >
                 <h3 className="font-bold text-xl mb-4">Business Hours</h3>
                 <div className="space-y-2 text-gray-700">
                   <div className="flex justify-between">
@@ -223,38 +282,37 @@ const Contact = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-8"
-          >
-            <h2 className="text-3xl font-bold mb-4 gradient-text">Find Us on the Map</h2>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-2xl overflow-hidden shadow-xl"
-          >
-            <iframe
-              src="https://www.openstreetmap.org/export/embed.html?bbox=77.5946%2C12.9716%2C77.5946%2C12.9716&layer=mapnik&marker=12.9716%2C77.5946"
-              width="100%"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              title="Aitals Technologies Office Location"
-            ></iframe>
-          </motion.div>
-        </div>
+      {/* Interactive Map Section */}
+      <section className="relative w-full h-[500px] bg-gray-100">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="absolute inset-0 flex flex-col items-center justify-center"
+          style={{background: 'linear-gradient(135deg, #EFF6FF, #EDE9FE)'}}
+        >
+          <div className="text-center max-w-2xl mx-auto px-4">
+            <MapPin className="w-16 h-16 mb-4 mx-auto" style={{color: '#3B82F6'}} />
+            <h3 className="text-3xl font-bold text-gray-800 mb-4">Visit Our Office</h3>
+            <p className="text-gray-600 mb-6 text-lg">
+              146, Sterling Rd, Nungambakkam<br />
+              Chennai, Tamil Nadu 600034, India
+            </p>
+            <Button
+              onClick={openGoogleMaps}
+              size="lg"
+              className="text-white px-8 py-3"
+              style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}
+            >
+              <Navigation className="mr-2 w-5 h-5" />
+              Open in Google Maps
+            </Button>
+          </div>
+        </motion.div>
       </section>
     </>
   );
 };
 
 export default Contact;
-  
