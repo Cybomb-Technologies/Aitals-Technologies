@@ -13,11 +13,12 @@ body {
 
 @layer utilities {
   .gradient-text {
-    @apply bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent;
+   @apply bg-gradient-to-r from-[#1A173A] via-[#4B47A3] to-[#6666CC] bg-clip-text text-transparent;
+
   }
   
   .gradient-bg {
-    @apply bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800;
+   @apply bg-gradient-to-r from-[#1A173A] to-[#6666CC];
   }
   
   .glass-effect {

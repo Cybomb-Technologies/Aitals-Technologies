@@ -1,5 +1,3 @@
-
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Code2, Mail, Phone, MapPin, Linkedin, Facebook, Instagram, Twitter } from 'lucide-react';
 
@@ -10,11 +8,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
-                <Code2 className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold">Aitals Technologies</span>
-            </div>
+            {/* Logo */}
+            <img 
+              src="src/assets/logo.png" 
+              alt="Aitals Technologies Logo" 
+              className="h-8 w-auto object-contain"
+            />
+          </div>
+
             <p className="text-gray-400 mb-4">
               Innovating Ideas Into Digital Excellence. Your trusted partner for cutting-edge software solutions.
             </p>

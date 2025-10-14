@@ -6,7 +6,6 @@ import editModeDevPlugin from './plugins/visual-editor/vite-plugin-edit-mode.js'
 import iframeRouteRestorationPlugin from './plugins/vite-plugin-iframe-route-restoration.js';
 
 const isDev = process.env.NODE_ENV !== 'production';
-
 const configHorizonsViteErrorHandler = `
 const observer = new MutationObserver((mutations) => {
 	for (const mutation of mutations) {
@@ -194,41 +193,59 @@ const logger = createLogger()
 const loggerError = logger.error
 
 logger.error = (msg, options) => {
-	if (options?.error?.toString().includes('CssSyntaxError: [postcss]')) {
-		return;
-	}
-
-	loggerError(msg, options);
+  if (options?.error?.toString().includes('CssSyntaxError: [postcss]')) {
+    return;
+  }
+  loggerError(msg, options);
 }
 
 export default defineConfig({
-	customLogger: logger,
-	plugins: [
-		...(isDev ? [inlineEditPlugin(), editModeDevPlugin(), iframeRouteRestorationPlugin()] : []),
-		react(),
-		addTransformIndexHtml
-	],
-	server: {
-		cors: true,
-		headers: {
-			'Cross-Origin-Embedder-Policy': 'credentialless',
-		},
-		allowedHosts: true,
-	},
-	resolve: {
-		extensions: ['.jsx', '.js', '.tsx', '.ts', '.json', ],
-		alias: {
-			'@': path.resolve(__dirname, './src'),
-		},
-	},
-	build: {
-		rollupOptions: {
-			external: [
-				'@babel/parser',
-				'@babel/traverse',
-				'@babel/generator',
-				'@babel/types'
-			]
-		}
-	}
+  customLogger: logger,
+  plugins: [
+    ...(isDev ? [inlineEditPlugin(), editModeDevPlugin(), iframeRouteRestorationPlugin()] : []),
+    react(),
+    addTransformIndexHtml
+  ],
+  server: {
+    cors: true,
+    headers: {
+      'Cross-Origin-Embedder-Policy': 'credentialless',
+    },
+    allowedHosts: true,
+    // ADD PROXY CONFIGURATION HERE
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        secure: false,
+        configure: (proxy, _options) => {
+          proxy.on('error', (err, _req, _res) => {
+            console.log('Proxy error:', err);
+          });
+          proxy.on('proxyReq', (proxyReq, req, _res) => {
+            console.log('Proxying request:', req.method, req.url);
+          });
+          proxy.on('proxyRes', (proxyRes, req, _res) => {
+            console.log('Received proxy response:', proxyRes.statusCode, req.url);
+          });
+        },
+      },
+    },
+  },
+  resolve: {
+    extensions: ['.jsx', '.js', '.tsx', '.ts', '.json'],
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+  build: {
+    rollupOptions: {
+      external: [
+        '@babel/parser',
+        '@babel/traverse',
+        '@babel/generator',
+        '@babel/types'
+      ]
+    }
+  }
 });
