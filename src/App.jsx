@@ -1,44 +1,43 @@
-
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Toaster } from '@/components/ui/toaster';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import Home from '@/pages/Home';
-import About from '@/pages/About';
-import Services from '@/pages/Services';
-import Career from '@/pages/Career';
-import Contact from '@/pages/Contact';
-import Portfolio from '@/pages/Portfolio';
-// 
-// 
-// 
-// 
-// 
-// 
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Toaster } from "@/components/ui/toaster";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Home from "@/pages/Home";
+import About from "@/pages/About";
+import Services from "@/pages/Services";
+import Career from "@/pages/Career";
+import Contact from "@/pages/Contact";
+import Portfolio from "@/pages/Portfolio";
+import WebDev from "./pages/services/Web-Development/Web-dev";
+//
+//
+//
+//
+//
 // dharshini
 // ------------
-// 
-// 
-// 
-// 
-// 
-// 
-// 
+//
+//
+//
+//
+//
+//
+//
 // devashree
 // ----------------
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // santhosh
-//-------------------- 
+//--------------------
 
 function App() {
   return (
@@ -53,22 +52,7 @@ function App() {
             <Route path="/career" element={<Career />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/portfolio" element={<Portfolio />} />
-
-
-            {/* Dharshini
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            */}
+            <Route path="/services/web-development" element={<WebDev />} />;
             {/* devashree
             
             
@@ -94,4 +78,3 @@ function App() {
 }
 
 export default App;
-  

@@ -1,276 +1,449 @@
-
-import React from 'react';
-import { Helmet } from 'react-helmet';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Code, Smartphone, Palette, Cloud, Brain, Shield, Globe, Users, Award, TrendingUp, CheckCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import React, { useEffect, useRef } from "react";
+import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import {
+  ArrowRight,
+  Code,
+  Smartphone,
+  Palette,
+  Cloud,
+  Brain,
+  Shield,
+  Users,
+  Award,
+  TrendingUp,
+} from "lucide-react";
+import "./Home.css";
 
 const Home = () => {
+  const sectionRefs = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      }
+    );
+
+    sectionRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      sectionRefs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, []);
+
+  const addToRefs = (el) => {
+    if (el && !sectionRefs.current.includes(el)) {
+      sectionRefs.current.push(el);
+    }
+  };
+
   const services = [
-    { icon: Code, title: 'Web Development', desc: 'Custom websites built with cutting-edge technologies' },
-    { icon: Smartphone, title: 'Mobile Apps', desc: 'Native iOS & Android applications' },
-    { icon: Palette, title: 'UI/UX Design', desc: 'Beautiful, user-centric design solutions' },
-    { icon: Cloud, title: 'Cloud Integration', desc: 'Scalable cloud infrastructure & DevOps' },
-    { icon: Brain, title: 'AI Solutions', desc: 'Intelligent automation & machine learning' },
-    { icon: Shield, title: 'Quality Assurance', desc: 'Comprehensive testing & maintenance' },
+    {
+      icon: Code,
+      title: "Web Development",
+      desc: "Custom websites built with cutting-edge technologies for optimal performance and user experience",
+    },
+    {
+      icon: Smartphone,
+      title: "Mobile Apps",
+      desc: "Native iOS & Android applications that deliver seamless mobile experiences",
+    },
+    {
+      icon: Palette,
+      title: "UI/UX Design",
+      desc: "Beautiful, user-centric design solutions that drive engagement and conversions",
+    },
+    {
+      icon: Cloud,
+      title: "Cloud Integration",
+      desc: "Scalable cloud infrastructure & DevOps solutions for modern businesses",
+    },
+    {
+      icon: Brain,
+      title: "AI Solutions",
+      desc: "Intelligent automation & machine learning to transform your operations",
+    },
+    {
+      icon: Shield,
+      title: "Quality Assurance",
+      desc: "Comprehensive testing & maintenance ensuring flawless performance",
+    },
   ];
 
   const whyChooseUs = [
-    { icon: Award, title: 'Quality Excellence', desc: 'Industry-leading standards in every project' },
-    { icon: Users, title: 'Expert Team', desc: '50+ skilled developers and designers' },
-    { icon: TrendingUp, title: '24/7 Support', desc: 'Round-the-clock technical assistance' },
+    {
+      icon: Award,
+      title: "Quality Excellence",
+      desc: "Industry-leading standards with rigorous quality assurance processes",
+    },
+    {
+      icon: Users,
+      title: "Expert Team",
+      desc: "50+ skilled developers, designers, and project managers",
+    },
+    {
+      icon: TrendingUp,
+      title: "24/7 Support",
+      desc: "Round-the-clock technical assistance and maintenance services",
+    },
   ];
 
   const projects = [
-    { title: 'E-Commerce Platform', category: 'Web Development', image: 'Modern e-commerce website with shopping cart' },
-    { title: 'Healthcare App', category: 'Mobile Development', image: 'Medical appointment booking mobile application' },
-    { title: 'Finance Dashboard', category: 'UI/UX Design', image: 'Financial analytics dashboard interface' },
-    { title: 'AI Chatbot', category: 'AI Solutions', image: 'Intelligent customer service chatbot interface' },
+    {
+      title: "E-Commerce Platform",
+      category: "Web Development",
+      image:
+        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    },
+    {
+      title: "Healthcare App",
+      category: "Mobile Development",
+      image:
+        "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    },
+    {
+      title: "Finance Dashboard",
+      category: "UI/UX Design",
+      image:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    },
+    {
+      title: "AI Chatbot",
+      category: "AI Solutions",
+      image:
+        "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    },
   ];
+
+  const stats = [
+    {
+      number: "500+",
+      label: "Projects Delivered",
+    },
+    {
+      number: "50+",
+      label: "Countries Served",
+    },
+    {
+      number: "98%",
+      label: "Client Satisfaction",
+    },
+    {
+      number: "24/7",
+      label: "Support Available",
+    },
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
 
   return (
     <>
       <Helmet>
-        <title>Aitals Technologies - Innovating Ideas Into Digital Excellence</title>
-        <meta name="description" content="Leading software and web development company specializing in custom mobile apps, website design, and digital solutions. Transform your ideas into reality." />
+        <title>
+          Aitals Technologies - Innovating Ideas Into Digital Excellence
+        </title>
+        <meta
+          name="description"
+          content="Leading software and web development company specializing in custom mobile apps, website design, and digital solutions. Transform your ideas into reality."
+        />
       </Helmet>
 
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden animated-gradient">
-        <div className="absolute inset-0 bg-black/30"></div>
-        
-        <div className="container mx-auto px-4 relative z-10 pt-20">
+      {/* Hero Section */}
+      <section className="home-hero-section">
+        <div className="home-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center text-white"
+            className="home-hero-content"
           >
             <motion.h1
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+              className="home-hero-title"
             >
-              Innovating Ideas Into<br />
-              <span className="text-yellow-300">Digital Excellence</span>
+              Innovating Ideas Into
+              <span className="home-hero-accent">Digital Excellence</span>
             </motion.h1>
-            
+
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-gray-100"
+              className="home-hero-subtitle"
             >
-              We transform your vision into powerful digital solutions with cutting-edge technology and creative innovation
+              We transform your vision into powerful digital solutions with
+              cutting-edge technology and creative innovation. Your trusted
+              partner for web development, mobile apps, and custom software
+              solutions.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="home-hero-buttons"
             >
               <Link to="/contact">
-                <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-6">
-                  Let's Build Your Project
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
+                <button className="home-primary-button">
+                  Start Your Project
+                  <ArrowRight size={20} />
+                </button>
               </Link>
               <Link to="/portfolio">
-                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 text-lg px-8 py-6">
-                  View Our Work
-                </Button>
+                <button className="home-secondary-button">View Our Work</button>
               </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1 }}
-              className="mt-16"
-            >
-              <img alt="Technology innovation illustration" className="mx-auto max-w-2xl w-full floating" src="https://images.unsplash.com/photo-1666336356089-15855f42ddb3" />
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      {/* Services Section */}
+      <section ref={addToRefs} className="home-section home-services-section">
+        <div className="home-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="home-section-header"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">About Aitals Technologies</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              A global leader in software development, delivering innovative digital solutions to clients worldwide. 
-              We combine technical expertise with creative vision to build products that drive business growth.
+            <h2 className="home-section-title">Our Services</h2>
+            <p className="home-section-description">
+              Comprehensive digital solutions tailored to your business needs.
+              From concept to deployment, we deliver excellence in every
+              project.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div
+            className="home-services-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl card-hover border border-blue-100"
+                variants={itemVariants}
+                className="home-service-card home-scroll-reveal"
               >
-                <div className="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mb-4 pulse-glow">
-                  <service.icon className="w-8 h-8 text-white" />
+                <div className="home-service-icon">
+                  <service.icon className="text-white" size={24} />
                 </div>
-                <h3 className="text-2xl font-bold mb-3 text-gray-900">{service.title}</h3>
-                <p className="text-gray-600">{service.desc}</p>
+                <h3 className="home-service-title">{service.title}</h3>
+                <p className="home-service-description">{service.desc}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-4">
+      {/* Why Choose Us Section */}
+      <section ref={addToRefs} className="home-section home-why-choose-section">
+        <div className="home-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="home-section-header"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">Why Choose Us</h2>
-            <p className="text-xl text-gray-600">Your success is our mission</p>
+            <h2 className="home-section-title">Why Choose Aitals</h2>
+            <p
+              className="home-section-description"
+              style={{ color: "#6b7280" }}
+            >
+              We combine technical expertise with business understanding to
+              deliver solutions that drive real results
+            </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.div
+            className="home-features-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {whyChooseUs.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white p-8 rounded-2xl shadow-xl text-center card-hover"
+                variants={itemVariants}
+                className="home-feature-card home-scroll-reveal"
               >
-                <div className="w-20 h-20 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
-                  <item.icon className="w-10 h-10 text-white" />
+                <div className="home-feature-icon">
+                  <item.icon size={24} />
                 </div>
-                <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
-                <p className="text-gray-600">{item.desc}</p>
+                <h3 className="home-feature-title">{item.title}</h3>
+                <p className="home-feature-description">{item.desc}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      {/* Projects Section */}
+      <section ref={addToRefs} className="home-section home-projects-section">
+        <div className="home-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="home-section-header"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">Recent Projects</h2>
-            <p className="text-xl text-gray-600">Showcasing our latest innovations</p>
+            <h2 className="home-section-title">Featured Projects</h2>
+            <p className="home-section-description">
+              Explore our portfolio of successful projects across various
+              industries and technologies
+            </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <motion.div
+            className="home-projects-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {projects.map((project, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-2xl shadow-lg card-hover"
+                variants={itemVariants}
+                className="home-project-card home-scroll-reveal"
               >
-                <img alt={project.title} className="w-full h-64 object-cover" src="https://images.unsplash.com/photo-1572177812156-58036aae439c" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
-                  <span className="text-blue-300 text-sm mb-2">{project.category}</span>
-                  <h3 className="text-white text-xl font-bold">{project.title}</h3>
+                <img
+                  alt={project.title}
+                  className="home-project-image"
+                  src={project.image}
+                  onError={(e) => {
+                    e.target.src =
+                      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80";
+                    e.target.alt = "Project placeholder image";
+                  }}
+                />
+                <div className="home-project-overlay">
+                  <span className="home-project-category">
+                    {project.category}
+                  </span>
+                  <h3 className="home-project-name">{project.title}</h3>
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="text-center mt-12">
+          <motion.div
+            className="home-view-all"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+          >
             <Link to="/portfolio">
-              <Button size="lg" className="gradient-bg text-white">
+              <button className="home-view-all-button">
                 View All Projects
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
+                <ArrowRight size={20} />
+              </button>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <section className="py-20 gradient-bg text-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      {/* Stats Section */}
+      <section ref={addToRefs} className="home-section home-stats-section">
+        <div className="home-container">
+          <div className="home-stats-content">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Trusted by Global Clients</h2>
-              <p className="text-xl mb-8 text-gray-100">
-                We've delivered successful projects to clients across USA, Europe, Asia, and beyond. 
-                Our commitment to excellence has made us a preferred technology partner worldwide.
+              <h2 className="home-stats-title">Trusted by Global Clients</h2>
+              <p className="home-stats-description">
+                We've delivered successful projects to clients across USA,
+                Europe, Asia, and beyond. Our commitment to excellence has made
+                us a preferred technology partner worldwide.
               </p>
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <div className="text-4xl font-bold mb-2">500+</div>
-                  <div className="text-gray-200">Projects Delivered</div>
-                </div>
-                <div>
-                  <div className="text-4xl font-bold mb-2">50+</div>
-                  <div className="text-gray-200">Countries Served</div>
-                </div>
-                <div>
-                  <div className="text-4xl font-bold mb-2">98%</div>
-                  <div className="text-gray-200">Client Satisfaction</div>
-                </div>
-                <div>
-                  <div className="text-4xl font-bold mb-2">24/7</div>
-                  <div className="text-gray-200">Support Available</div>
-                </div>
-              </div>
-            </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <img alt="Global connectivity" className="w-full rounded-2xl shadow-2xl" src="https://images.unsplash.com/photo-1643101807331-21a4a3f081d5" />
+              <motion.div
+                className="home-stats-grid"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                {stats.map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    variants={itemVariants}
+                    className="home-stat-card home-scroll-reveal"
+                  >
+                    <div className="home-stat-number">{stat.number}</div>
+                    <div className="home-stat-label">{stat.label}</div>
+                  </motion.div>
+                ))}
+              </motion.div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
-        <div className="container mx-auto px-4 text-center">
+      {/* CTA Section */}
+      <section ref={addToRefs} className="home-section home-cta-section">
+        <div className="home-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
+            <h2 className="home-cta-title">
               Ready to Transform Your Idea Into Reality?
             </h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Let's collaborate and build something extraordinary together. Your next big thing starts here.
+            <p className="home-cta-description">
+              Let's collaborate and build something extraordinary together. Your
+              next big thing starts here with Aitals Technologies.
             </p>
             <Link to="/contact">
-              <Button size="lg" className="gradient-bg text-white text-lg px-10 py-6">
-                Work With Aitals – Your Tech Innovation Partner
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
+              <button className="home-cta-button">
+                Start Your Project Today
+                <ArrowRight size={20} />
+              </button>
             </Link>
           </motion.div>
         </div>
@@ -280,4 +453,3 @@ const Home = () => {
 };
 
 export default Home;
-  

@@ -1,0 +1,1111 @@
+/* About.css - Complete styles for About.jsx component */
+
+/* Reset and Base Styles */
+.about-hero-section,
+.about-section,
+.about-cta-section {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hero Section */
+.about-hero-section {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(rgba(13, 25, 51, 0.4), rgba(13, 25, 51, 0.95)),
+    url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80")
+      center/cover no-repeat;
+  width: 100%;
+  padding-top: 80px;
+}
+
+.about-hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 20% 80%,
+      rgba(74, 125, 255, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(58, 109, 240, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(13, 25, 51, 0.2) 0%,
+      transparent 50%
+    );
+  animation: about-float 6s ease-in-out infinite;
+}
+
+@keyframes about-float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.about-hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.about-hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.about-hero-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+  color: #e5e7eb;
+  line-height: 1.6;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  .about-hero-title {
+    font-size: 4rem;
+  }
+
+  .about-hero-subtitle {
+    font-size: 1.5rem;
+  }
+}
+
+/* Section Base Styles */
+.about-section {
+  padding: 5rem 0;
+  width: 100%;
+  position: relative;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.about-section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  width: 100%;
+}
+
+.about-section-main-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #4a7dff, #3a6df0, #4a7dff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.2;
+  position: relative;
+  display: inline-block;
+}
+
+.about-section-main-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, #4a7dff, #3a6df0);
+  border-radius: 2px;
+}
+
+.about-section-main-description {
+  font-size: 1.25rem;
+  color: #d1d5db;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  .about-section-main-title {
+    font-size: 3.5rem;
+  }
+}
+
+/* Vision & Mission Section */
+.about-vision-mission-section {
+  background: #0d1933;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-vision-mission-section::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(74, 125, 255, 0.03) 0%,
+    transparent 70%
+  );
+  animation: about-rotate 20s linear infinite;
+}
+
+@keyframes about-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.about-vision-mission-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 1024px) {
+  .about-vision-mission-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+  }
+}
+
+/* Vision & Mission Cards - Now with white background (from Core Values) */
+.about-vision-content,
+.about-mission-content {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: white; /* Changed from gradient to white */
+  border-radius: 2rem;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+  transition: all 0.4s ease;
+  border: 1px solid #e5e7eb; /* Light border */
+  position: relative;
+  overflow: hidden;
+}
+
+.about-vision-content::before,
+.about-mission-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(74, 125, 255, 0.05),
+    transparent
+  );
+  transition: left 0.6s;
+}
+
+.about-vision-content:hover::before,
+.about-mission-content:hover::before {
+  left: 100%;
+}
+
+.about-vision-content:hover,
+.about-mission-content:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 60px -12px rgba(74, 125, 255, 0.15); /* Lighter shadow */
+  border-color: #4a7dff;
+}
+
+.about-icon-container {
+  width: 5rem;
+  height: 5rem;
+  background: linear-gradient(135deg, #4a7dff, #3a6df0);
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+  animation: about-pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes about-pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(74, 125, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(58, 109, 240, 0.5);
+  }
+}
+
+.about-icon {
+  color: white;
+}
+
+/* Updated text colors for Vision & Mission to work with white background */
+.about-section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1f2937; /* Dark text for white background */
+  font-family: "Poppins", sans-serif;
+}
+
+.about-section-description {
+  font-size: 1.125rem;
+  color: #6b7280; /* Gray text for white background */
+  line-height: 1.7;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+
+/* Values Section */
+.about-values-section {
+  background: #ffffff;
+}
+
+.about-values-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .about-values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-values-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Values Cards - Now with dark gradient background (from Vision & Mission) */
+.about-value-card {
+  background: linear-gradient(135deg, #1a2b4d, #152547); /* Dark gradient */
+  padding: 3rem 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); /* Darker shadow */
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid #2d3b5b; /* Dark border */
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-value-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, #4a7dff, #3a6df0);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.about-value-card:hover::before {
+  transform: scaleX(1);
+}
+
+.about-value-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(74, 125, 255, 0.25);
+  border-color: #4a7dff;
+}
+
+.about-value-icon-container {
+  width: 4rem;
+  height: 4rem;
+  background: linear-gradient(135deg, #4a7dff, #3a6df0);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.about-value-card:hover .about-value-icon-container {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.about-value-icon {
+  color: white;
+}
+
+/* Updated text colors for Values to work with dark background */
+.about-value-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #f3f4f6; /* Light text for dark background */
+  font-family: "Poppins", sans-serif;
+}
+
+.about-value-description {
+  color: #d1d5db; /* Light gray text for dark background */
+  line-height: 1.6;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+
+/* Journey Section */
+.about-journey-section {
+  background: #0d1933;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-journey-section::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(74, 125, 255, 0.03) 0%,
+    transparent 70%
+  );
+  animation: about-rotate 20s linear infinite;
+}
+
+.about-journey-timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.about-journey-timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  background: linear-gradient(to bottom, #4a7dff, #3a6df0);
+  transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+  .about-journey-timeline::before {
+    left: 2rem;
+  }
+}
+
+.about-milestone {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.about-milestone:nth-child(odd) {
+  flex-direction: row;
+}
+
+.about-milestone:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 768px) {
+  .about-milestone {
+    flex-direction: row !important;
+    align-items: flex-start;
+  }
+}
+
+.about-milestone-year {
+  flex: 0 0 auto;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #4a7dff, #3a6df0);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 10px 25px -5px rgba(74, 125, 255, 0.3);
+  position: relative;
+  z-index: 2;
+  margin: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .about-milestone-year {
+    width: 80px;
+    height: 80px;
+    font-size: 1.125rem;
+    margin: 0 1rem 0 0;
+  }
+}
+
+.about-milestone-content {
+  flex: 1;
+  background: linear-gradient(135deg, #1a2b4d, #152547);
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  border: 1px solid #2d3b5b;
+  transition: all 0.3s ease;
+}
+
+.about-milestone:hover .about-milestone-content {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -10px rgba(74, 125, 255, 0.2);
+  border-color: #4a7dff;
+}
+
+.about-milestone-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #f3f4f6;
+  font-family: "Poppins", sans-serif;
+}
+
+.about-milestone-description {
+  color: #d1d5db;
+  line-height: 1.6;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+
+/* Expertise Section */
+.about-expertise-section {
+  background: #ffffff;
+}
+
+.about-expertise-section .about-section-main-title {
+  background: linear-gradient(to right, #4a7dff, #3a6df0, #4a7dff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-expertise-section .about-section-main-description {
+  color: #6b7280;
+}
+
+.about-expertise-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .about-expertise-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-expertise-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Expertise Cards - Now with dark background (from Journey) */
+.about-expertise-card {
+  background: linear-gradient(135deg, #1a2b4d, #152547); /* Dark gradient */
+  padding: 3rem 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); /* Darker shadow */
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid #2d3b5b; /* Dark border */
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-expertise-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(74, 125, 255, 0.05),
+    transparent
+  );
+  transition: left 0.6s;
+}
+
+.about-expertise-card:hover::before {
+  left: 100%;
+}
+
+.about-expertise-card:hover {
+  transform: translateY(-8px);
+  border-color: #4a7dff;
+  box-shadow: 0 20px 40px -10px rgba(74, 125, 255, 0.2);
+}
+
+.about-expertise-icon-container {
+  width: 4rem;
+  height: 4rem;
+  background: linear-gradient(135deg, #4a7dff, #3a6df0);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.about-expertise-card:hover .about-expertise-icon-container {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.about-expertise-icon {
+  color: white;
+}
+
+/* Updated text colors for Expertise to work with dark background */
+.about-expertise-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #f3f4f6; /* Light text for dark background */
+  font-family: "Poppins", sans-serif;
+}
+
+.about-expertise-description {
+  color: #d1d5db; /* Light gray text for dark background */
+  line-height: 1.6;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+
+/* Team Section */
+.about-team-section {
+  background: #0d1933;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-team-section::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(74, 125, 255, 0.03) 0%,
+    transparent 70%
+  );
+  animation: about-rotate 20s linear infinite;
+}
+
+.about-team-section .about-section-main-title,
+.about-team-section .about-section-main-description {
+  color: white;
+}
+
+.about-team-section .about-section-main-title {
+  background: linear-gradient(to right, #4a7dff, #3a6df0, #4a7dff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-team-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 768px) {
+  .about-team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-team-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Team Cards - Now with white background (from Expertise) */
+.about-team-card {
+  background: white; /* White background */
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid #e5e7eb; /* Light border */
+  font-family: "Poppins", sans-serif;
+}
+
+.about-team-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(74, 125, 255, 0.15); /* Lighter shadow */
+  border-color: #4a7dff;
+}
+
+.about-team-image-container {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+}
+
+.about-team-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.about-team-card:hover .about-team-image {
+  transform: scale(1.1);
+}
+
+.about-team-content {
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Updated text colors for Team to work with white background */
+.about-team-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #1f2937; /* Dark text for white background */
+  font-family: "Poppins", sans-serif;
+}
+
+.about-team-role {
+  font-size: 1.125rem;
+  color: #4a7dff;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+}
+
+.about-team-desc {
+  color: #6b7280; /* Gray text for white background */
+  line-height: 1.6;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+
+/* Culture Section */
+.about-culture-section {
+  background: #ffffff;
+}
+
+.about-culture-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .about-culture-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-culture-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Culture Cards - Now with dark gradient background (from Team) */
+.about-culture-card {
+  background: linear-gradient(135deg, #1a2b4d, #152547); /* Dark gradient */
+  padding: 3rem 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); /* Darker shadow */
+  text-align: center;
+  transition: all 0.4s ease;
+  border: 1px solid #2d3b5b; /* Dark border */
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-culture-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(74, 125, 255, 0.05),
+    transparent
+  );
+  transition: left 0.6s;
+}
+
+.about-culture-card:hover::before {
+  left: 100%;
+}
+
+.about-culture-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -10px rgba(74, 125, 255, 0.2);
+  border-color: #4a7dff;
+}
+
+.about-culture-icon-container {
+  width: 4rem;
+  height: 4rem;
+  background: linear-gradient(135deg, #4a7dff, #3a6df0);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.about-culture-card:hover .about-culture-icon-container {
+  transform: scale(1.1);
+}
+
+.about-culture-icon {
+  color: white;
+}
+
+/* Updated text colors for Culture to work with dark background */
+.about-culture-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #f3f4f6; /* Light text for dark background */
+  font-family: "Poppins", sans-serif;
+}
+
+.about-culture-description {
+  color: #d1d5db; /* Light gray text for dark background */
+  line-height: 1.6;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+
+.about-culture-gallery {
+  width: 100%;
+}
+
+.about-gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .about-gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.about-gallery-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 1rem;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.about-gallery-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
+}
+
+/* CTA Section */
+.about-cta-section {
+  background: linear-gradient(135deg, #0d1933, #1a2b4d);
+  padding: 6rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-cta-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80")
+    center/cover no-repeat;
+  opacity: 0.1;
+}
+
+.about-cta-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  z-index: 2;
+}
+
+.about-cta-description {
+  font-size: 1.25rem;
+  margin-bottom: 3rem;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+  color: #e5e7eb;
+  line-height: 1.6;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  position: relative;
+  z-index: 2;
+}
+
+.about-cta-button {
+  background: white;
+  color: #4a7dff;
+  padding: 1rem 2.5rem;
+  border-radius: 3rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 10px 30px -5px rgba(255, 255, 255, 0.2);
+}
+
+.about-cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px -10px rgba(255, 255, 255, 0.3);
+  background: #f8fafc;
+}
+
+@media (min-width: 768px) {
+  .about-cta-title {
+    font-size: 3.5rem;
+  }
+}
+
+/* Scroll Reveal Animations */
+.about-scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.about-scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-hero-section {
+    min-height: 50vh;
+    padding-top: 60px;
+  }
+
+  .about-hero-title {
+    font-size: 2.5rem;
+  }
+
+  .about-hero-subtitle {
+    font-size: 1.125rem;
+  }
+
+  .about-section {
+    padding: 3rem 0;
+  }
+
+  .about-section-main-title {
+    font-size: 2rem;
+  }
+
+  .about-section-main-description {
+    font-size: 1.125rem;
+  }
+
+  .about-vision-content,
+  .about-mission-content {
+    padding: 2rem 1rem;
+  }
+
+  .about-value-card,
+  .about-expertise-card,
+  .about-culture-card {
+    padding: 2rem 1rem;
+  }
+
+  .about-team-image-container {
+    height: 250px;
+  }
+
+  .about-milestone-content {
+    padding: 1.5rem;
+  }
+
+  .about-cta-section {
+    padding: 4rem 0;
+  }
+
+  .about-cta-title {
+    font-size: 2rem;
+  }
+
+  .about-cta-description {
+    font-size: 1.125rem;
+  }
+}
+
+/* Loading States */
+@media (prefers-reduced-motion: reduce) {
+  .about-scroll-reveal,
+  .about-value-card,
+  .about-expertise-card,
+  .about-team-card,
+  .about-culture-card,
+  .about-vision-content,
+  .about-mission-content,
+  .about-milestone-content,
+  .about-cta-button,
+  .about-gallery-image {
+    transition: none;
+  }
+
+  .about-hero-section::before {
+    animation: none;
+  }
+
+  .about-vision-mission-section::before,
+  .about-journey-section::before,
+  .about-team-section::before {
+    animation: none;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .about-value-card,
+  .about-expertise-card,
+  .about-team-card,
+  .about-culture-card,
+  .about-vision-content,
+  .about-mission-content,
+  .about-milestone-content {
+    border: 2px solid #1f2937;
+  }
+
+  .about-icon-container,
+  .about-value-icon-container,
+  .about-expertise-icon-container,
+  .about-culture-icon-container {
+    border: 2px solid white;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .about-hero-section {
+    background: white !important;
+    color: black !important;
+  }
+
+  .about-hero-title {
+    color: black !important;
+    text-shadow: none !important;
+  }
+
+  .about-hero-subtitle {
+    color: #4b5563 !important;
+  }
+
+  .about-cta-section {
+    background: white !important;
+    color: black !important;
+  }
+
+  .about-cta-title {
+    color: black !important;
+  }
+
+  .about-cta-description {
+    color: #4b5563 !important;
+  }
+
+  .about-cta-button {
+    background: white !important;
+    color: black !important;
+    border: 1px solid black !important;
+  }
+}
