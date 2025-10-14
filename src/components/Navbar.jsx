@@ -18,30 +18,42 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // 👇 Add this effect to scroll to top on navigation
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]);
+
+
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Services', path: '/services' },
     { name: 'Portfolio', path: '/portfolio' },
     { name: 'Career', path: '/career' },
-    { name: 'Contact', path: '/contact' },
+    { name: 'Blogs', path: '/blog' },
   ];
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'
-      }`}
-    >
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
-              <Code2 className="w-6 h-6 text-white" />
-            </div>
-            <span className="text-xl font-bold gradient-text">Aitals Technologies</span>
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled 
+            ? 'bg-white shadow-lg' 
+            // Changed from 'bg-transparent' to 'bg-white/95 backdrop-blur-sm'
+            : 'bg-white shadow-lg  backdrop-blur-sm'
+        }`}
+      >
+      <div className="container mx-auto py-2 px-4">
+        <div className="flex items-center justify-between w-full px-4 md:px-8">
+          <Link to="/" className="flex items-center group transition-all duration-300">
+            <img 
+              // Assuming the image path is the same as the original Navbar.jsx file
+              src="src/assets/logo.png" 
+              alt="Aitals Technologies Logo" 
+              // Apply styling to control the image size
+              className="h-12 lg:h-15 w-auto transition-opacity group-hover:opacity-90"
+            />
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">
@@ -54,14 +66,21 @@ const Navbar = () => {
                     ? 'text-blue-600'
                     : isScrolled
                     ? 'text-gray-700 hover:text-blue-600'
-                    : 'text-white hover:text-blue-200'
+                    : 'text-gray-700 hover:text-blue-600'
                 }`}
               >
                 {link.name}
               </Link>
             ))}
             <Link to="/contact">
-              <Button className="gradient-bg text-white hover:opacity-90">
+              <Button 
+                className="text-white px-4 py-2 rounded-full hover:opacity-90 transition-all"
+                style={{
+                  background: 'linear-gradient(to right, #1A173A, #6666CC)', 
+                  border: 'none',
+                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                }}
+              >
                 Get Started
               </Button>
             </Link>
@@ -72,9 +91,9 @@ const Navbar = () => {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
-              <X className={isScrolled ? 'text-gray-900' : 'text-white'} />
+              <X className={isScrolled ? 'text-gray-900' : 'text-black'} />
             ) : (
-              <Menu className={isScrolled ? 'text-gray-900' : 'text-white'} />
+              <Menu className={isScrolled ? 'text-gray-900' : 'text-black'} />
             )}
           </button>
         </div>
