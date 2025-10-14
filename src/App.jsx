@@ -1,44 +1,43 @@
-
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Toaster } from '@/components/ui/toaster';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import Home from '@/pages/Home';
-import About from '@/pages/About';
-import Services from '@/pages/Services';
-import Career from '@/pages/Career';
-import Contact from '@/pages/Contact';
-import Portfolio from '@/pages/Portfolio';
-// 
-// 
-// 
-// 
-// 
-// 
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Toaster } from "@/components/ui/toaster";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Home from "@/pages/Home";
+import About from "@/pages/About";
+import Services from "@/pages/Services";
+import Career from "@/pages/Career";
+import Contact from "@/pages/Contact";
+import Portfolio from "@/pages/Portfolio";
+import WebDev from "./pages/services/Web-Development/Web-dev";
+import MobileApp from "./pages/services/Mobile-App-Development/Mobile-app";
+import UiUx from "./pages/services/UI-UX-Design/Ui-Ux";
+import Ecommerce from "./pages/services/Ecommerce/Ecommerce";
+//
+//
 // dharshini
 // ------------
-// 
-// 
-// 
-// 
-// 
-// 
-// 
+//
+//
+//
+//
+//
+//
+//
 // devashree
 // ----------------
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // santhosh
-//-------------------- 
+//--------------------
 
 function App() {
   return (
@@ -53,37 +52,13 @@ function App() {
             <Route path="/career" element={<Career />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/portfolio" element={<Portfolio />} />
-
-
-            {/* Dharshini
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            */}
-            {/* devashree
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            */}
+            <Route path="/services/web-development" element={<WebDev />} />;
+            <Route
+              path="/services/mobile-development"
+              element={<MobileApp />}
+            />
+            <Route path="/services/ui-ux-design" element={<UiUx />} />
+            <Route path="/services/ecommerce" element={<Ecommerce />} />
           </Routes>
         </main>
         <Footer />
@@ -94,4 +69,3 @@ function App() {
 }
 
 export default App;
-  

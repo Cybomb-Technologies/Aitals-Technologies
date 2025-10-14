@@ -1,262 +1,721 @@
-
-import React from 'react';
-import { Helmet } from 'react-helmet';
-import { motion } from 'framer-motion';
-import { Target, Eye, Heart, Users, Award, TrendingUp, Globe, Zap } from 'lucide-react';
+import React, { useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import {
+  ArrowRight,
+  Target,
+  Eye,
+  Heart,
+  Users,
+  Award,
+  TrendingUp,
+  Globe,
+  Zap,
+  Code,
+  Smartphone,
+  Palette,
+  Cloud,
+  Brain,
+  Shield,
+} from "lucide-react";
 
 const About = () => {
+  const sectionRefs = useRef([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading completion
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 100);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            entry.target.classList.remove("opacity-0", "translate-y-8");
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      }
+    );
+
+    sectionRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      clearTimeout(timer);
+      sectionRefs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, []);
+
+  const addToRefs = (el) => {
+    if (el && !sectionRefs.current.includes(el)) {
+      sectionRefs.current.push(el);
+    }
+  };
+
   const milestones = [
-    { year: '2018', title: 'Company Founded', desc: 'Started with a vision to innovate' },
-    { year: '2019', title: 'First 100 Clients', desc: 'Reached our first major milestone' },
-    { year: '2021', title: 'Global Expansion', desc: 'Opened offices in 5 countries' },
-    { year: '2023', title: 'AI Integration', desc: 'Launched AI-powered solutions' },
-    { year: '2025', title: 'Industry Leader', desc: '500+ successful projects delivered' },
+    {
+      year: "2018",
+      title: "Company Founded",
+      desc: "Started with a vision to innovate digital solutions",
+    },
+    {
+      year: "2019",
+      title: "First 100 Clients",
+      desc: "Reached our first major milestone with global clients",
+    },
+    {
+      year: "2021",
+      title: "Global Expansion",
+      desc: "Opened offices in 5 countries across continents",
+    },
+    {
+      year: "2023",
+      title: "AI Integration",
+      desc: "Launched cutting-edge AI-powered solutions",
+    },
+    {
+      year: "2025",
+      title: "Industry Leader",
+      desc: "500+ successful projects delivered worldwide",
+    },
   ];
 
   const team = [
-    { name: 'Rajesh Kumar', role: 'CEO & Founder', image: 'Professional CEO portrait in modern office' },
-    { name: 'Priya Sharma', role: 'CTO', image: 'Female technology leader portrait' },
-    { name: 'Amit Patel', role: 'Head of Design', image: 'Creative design director portrait' },
-    { name: 'Sarah Johnson', role: 'Project Manager', image: 'Professional project manager portrait' },
+    {
+      name: "Rajesh Kumar",
+      role: "CEO & Founder",
+      image:
+        "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      desc: "Visionary leader with 15+ years in tech innovation",
+    },
+    {
+      name: "Priya Sharma",
+      role: "CTO",
+      image:
+        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      desc: "Tech expert specializing in scalable architectures",
+    },
+    {
+      name: "Amit Patel",
+      role: "Head of Design",
+      image:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      desc: "Creative director with award-winning design portfolio",
+    },
+    {
+      name: "Sarah Johnson",
+      role: "Project Manager",
+      image:
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      desc: "PMP certified with 100+ successful project deliveries",
+    },
   ];
 
   const values = [
-    { icon: Target, title: 'Innovation', desc: 'Pushing boundaries with cutting-edge technology' },
-    { icon: Heart, title: 'Passion', desc: 'Dedicated to excellence in every project' },
-    { icon: Users, title: 'Collaboration', desc: 'Working together to achieve greatness' },
-    { icon: Award, title: 'Quality', desc: 'Delivering world-class solutions' },
+    {
+      icon: Target,
+      title: "Innovation",
+      desc: "Pushing boundaries with cutting-edge technology and creative solutions",
+    },
+    {
+      icon: Heart,
+      title: "Passion",
+      desc: "Dedicated to excellence and outstanding results in every project",
+    },
+    {
+      icon: Users,
+      title: "Collaboration",
+      desc: "Working together as partners to achieve shared success",
+    },
+    {
+      icon: Award,
+      title: "Quality",
+      desc: "Delivering world-class solutions that exceed expectations",
+    },
   ];
 
   const culture = [
-    { icon: Zap, title: 'Innovation-Driven', desc: 'Encouraging creative thinking and experimentation' },
-    { icon: Globe, title: 'Global Exposure', desc: 'Work with international clients and teams' },
-    { icon: TrendingUp, title: 'Growth Opportunities', desc: 'Continuous learning and career advancement' },
-    { icon: Users, title: 'Flexible Work', desc: 'Remote-friendly with work-life balance' },
+    {
+      icon: Zap,
+      title: "Innovation-Driven",
+      desc: "Encouraging creative thinking and continuous experimentation",
+    },
+    {
+      icon: Globe,
+      title: "Global Exposure",
+      desc: "Work with international clients and diverse teams worldwide",
+    },
+    {
+      icon: TrendingUp,
+      title: "Growth Opportunities",
+      desc: "Continuous learning and career advancement programs",
+    },
+    {
+      icon: Users,
+      title: "Flexible Work",
+      desc: "Remote-friendly environment with work-life balance focus",
+    },
   ];
+
+  const expertise = [
+    {
+      icon: Code,
+      title: "Web Development",
+      desc: "React, Next.js, Node.js, Full-stack solutions",
+    },
+    {
+      icon: Smartphone,
+      title: "Mobile Apps",
+      desc: "iOS, Android, React Native, Cross-platform",
+    },
+    {
+      icon: Palette,
+      title: "UI/UX Design",
+      desc: "User-centered design, prototyping, design systems",
+    },
+    {
+      icon: Cloud,
+      title: "Cloud & DevOps",
+      desc: "AWS, Azure, Docker, Kubernetes, CI/CD",
+    },
+    {
+      icon: Brain,
+      title: "AI & ML",
+      desc: "Machine Learning, NLP, Computer Vision, Automation",
+    },
+    {
+      icon: Shield,
+      title: "Quality Assurance",
+      desc: "Testing, Security, Performance optimization",
+    },
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
 
   return (
     <>
       <Helmet>
         <title>About Us - Aitals Technologies | Our Story & Team</title>
-        <meta name="description" content="Learn about Aitals Technologies - our vision, mission, values, and the talented team driving digital innovation worldwide." />
+        <meta
+          name="description"
+          content="Learn about Aitals Technologies - our vision, mission, values, and the talented team driving digital innovation worldwide."
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          {`
+            body {
+              background-color: #0d1933;
+            }
+          `}
+        </style>
       </Helmet>
 
-      <section className="pt-32 pb-20 gradient-bg text-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
+      {/* Loading Overlay */}
+      {isLoading && (
+        <div className="fixed inset-0 bg-[#0d1933] z-50 flex items-center justify-center">
+          <div className="w-16 h-16 border-4 border-[#4a7dff] border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      )}
+
+      {/* Hero Section */}
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-[#0d1933] pt-32 pb-14">
+        {/* Solid Background First */}
+        <div className="absolute inset-0 bg-[#0d1933]"></div>
+
+        {/* Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0d1933] to-[#1a2b4d]"></div>
+
+        {/* Background Image with Overlay */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000"
+          style={{
+            backgroundImage: `linear-gradient(rgba(13, 25, 51, 0.4), rgba(13, 25, 51, 0.95)), url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80")`,
+          }}
+        ></div>
+
+        {/* Animated Gradient Overlays */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(circle at 20% 80%, rgba(74, 125, 255, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(58, 109, 240, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, rgba(13, 25, 51, 0.2) 0%, transparent 50%)
+            `,
+          }}
+        ></div>
+
+        <div className="relative z-10 text-center w-full px-4">
+          <motion.h1
+            className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-white font-['Poppins'] drop-shadow-lg"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">About Aitals Technologies</h1>
-            <p className="text-xl text-gray-100">
-              We are a global software development company committed to transforming ideas into powerful digital solutions. 
-              With innovation at our core, we deliver excellence across web, mobile, and cloud technologies.
-            </p>
-          </motion.div>
+            About Aitals Technologies
+          </motion.h1>
+
+          <motion.p
+            className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto text-gray-200 leading-relaxed font-['Poppins'] font-light"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            We are a global software development company committed to
+            transforming ideas into powerful digital solutions. With innovation
+            at our core, we deliver excellence across web, mobile, and cloud
+            technologies.
+          </motion.p>
         </div>
       </section>
 
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex items-center mb-6">
-                <Eye className="w-12 h-12 text-blue-600 mr-4" />
-                <h2 className="text-4xl font-bold gradient-text">Our Vision</h2>
-              </div>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                To be the world's most trusted technology partner, empowering businesses with innovative digital solutions 
-                that drive growth, efficiency, and transformation in the digital age.
-              </p>
-            </motion.div>
+      {/* Vision & Mission Section */}
+      <section
+        ref={addToRefs}
+        className="py-20 bg-[#0d1933] relative overflow-hidden opacity-0 translate-y-8 transition-all duration-700"
+      >
+        <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-radial-gradient from-[#4a7dff]/3 to-transparent animate-spin-slow"></div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <img alt="Vision illustration" className="w-full rounded-2xl shadow-xl" src="https://images.unsplash.com/photo-1666336356089-15855f42ddb3" />
-            </motion.div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="order-2 md:order-1"
-            >
-              <img alt="Mission illustration" className="w-full rounded-2xl shadow-xl" src="https://images.unsplash.com/photo-1681992894234-6db66a592c29" />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="order-1 md:order-2"
-            >
-              <div className="flex items-center mb-6">
-                <Target className="w-12 h-12 text-purple-600 mr-4" />
-                <h2 className="text-4xl font-bold gradient-text">Our Mission</h2>
-              </div>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                To deliver exceptional software solutions that exceed client expectations through innovation, quality, 
-                and dedication. We strive to build long-term partnerships by understanding unique business needs and 
-                providing tailored technology solutions.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
-        <div className="container mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">Our Core Values</h2>
-            <p className="text-xl text-gray-600">The principles that guide everything we do</p>
+            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
+              Our Vision & Mission
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
+              Guiding principles that drive our innovation and success
+            </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-white p-12 rounded-3xl shadow-xl transition-all duration-400 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/15 border border-gray-200 relative overflow-hidden group text-center"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600"></div>
+
+              <div className="w-20 h-20 bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-blue-500/30 mx-auto animate-pulse-glow">
+                <Eye size={32} color="white" />
+              </div>
+
+              <h2 className="text-3xl font-bold text-gray-800 mb-6 font-['Poppins']">
+                Shaping the Future of Technology
+              </h2>
+
+              <p className="text-gray-600 leading-relaxed font-['Poppins'] text-lg">
+                To be the world's most trusted technology partner, empowering
+                businesses with innovative digital solutions that drive growth,
+                efficiency, and transformation in the digital age.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-white p-12 rounded-3xl shadow-xl transition-all duration-400 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/15 border border-gray-200 relative overflow-hidden group text-center"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600"></div>
+
+              <div className="w-20 h-20 bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-blue-500/30 mx-auto animate-pulse-glow">
+                <Target size={32} color="white" />
+              </div>
+
+              <h2 className="text-3xl font-bold text-gray-800 mb-6 font-['Poppins']">
+                Delivering Excellence in Every Project
+              </h2>
+
+              <p className="text-gray-600 leading-relaxed font-['Poppins'] text-lg">
+                To deliver exceptional software solutions that exceed client
+                expectations through innovation, quality, and dedication. We
+                build long-term partnerships by understanding unique business
+                needs and providing tailored technology solutions.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <section
+        ref={addToRefs}
+        className="py-20 bg-white relative opacity-0 translate-y-8 transition-all duration-700"
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
+              Our Core Values
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
+              The principles that guide everything we do
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {values.map((value, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white p-8 rounded-2xl shadow-lg text-center card-hover"
+                variants={itemVariants}
+                className="bg-gradient-to-br from-[#1a2b4d] to-[#152547] p-8 rounded-2xl border border-[#2d3b5b] shadow-xl transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] relative overflow-hidden group text-center"
               >
-                <div className="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
-                  <value.icon className="w-8 h-8 text-white" />
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left"></div>
+
+                <div className="w-16 h-16 bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30 mx-auto group-hover:scale-110 group-hover:rotate-5 transition-transform duration-300">
+                  <value.icon size={28} color="white" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">{value.title}</h3>
-                <p className="text-gray-600">{value.desc}</p>
+
+                <h3 className="text-2xl font-bold text-gray-100 mb-4 font-['Poppins']">
+                  {value.title}
+                </h3>
+
+                <p className="text-gray-300 leading-relaxed font-['Poppins']">
+                  {value.desc}
+                </p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      {/* Journey Section */}
+      <section
+        ref={addToRefs}
+        className="py-20 bg-[#0d1933] relative overflow-hidden opacity-0 translate-y-8 transition-all duration-700"
+      >
+        <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-radial-gradient from-[#4a7dff]/3 to-transparent animate-spin-slow"></div>
+
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">Our Journey</h2>
-            <p className="text-xl text-gray-600">Milestones that shaped our success</p>
+            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
+              Our Journey
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
+              Milestones that shaped our success story
+            </p>
           </motion.div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="relative">
+            <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#4a7dff] to-[#3a6df0] transform -translate-x-1/2 md:block hidden"></div>
+
             {milestones.map((milestone, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="flex items-center mb-12 last:mb-0"
-              >
-                <div className="flex-shrink-0 w-24 text-right mr-8">
-                  <div className="text-3xl font-bold gradient-text">{milestone.year}</div>
-                </div>
-                <div className="flex-shrink-0 w-4 h-4 gradient-bg rounded-full"></div>
-                <div className="flex-grow ml-8 bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl">
-                  <h3 className="text-xl font-bold mb-2">{milestone.title}</h3>
-                  <p className="text-gray-600">{milestone.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">Meet Our Team</h2>
-            <p className="text-xl text-gray-600">The brilliant minds behind our success</p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg card-hover"
-              >
-                <img alt={member.name} className="w-full h-64 object-cover" src="https://images.unsplash.com/photo-1595872018818-97555653a011" />
-                <div className="p-6 text-center">
-                  <h3 className="text-xl font-bold mb-2">{member.name}</h3>
-                  <p className="text-blue-600 font-medium">{member.role}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">Life at Aitals</h2>
-            <p className="text-xl text-gray-600">A culture of innovation, growth, and collaboration</p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-            {culture.map((item, index) => (
-              <motion.div
-                key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-xl text-center"
+                className={`flex items-center mb-16 relative ${
+                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                } flex-col md:flex-row`}
               >
-                <div className="w-14 h-14 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-7 h-7 text-white" />
+                <div className="w-32 h-32 bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] rounded-full flex items-center justify-center text-white text-2xl font-bold font-['Poppins'] shadow-lg shadow-blue-500/30 relative z-10 mx-8 md:mx-4 mb-4 md:mb-0">
+                  {milestone.year}
                 </div>
-                <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-                <p className="text-gray-600 text-sm">{item.desc}</p>
+
+                <div className="flex-1 bg-gradient-to-br from-[#1a2b4d] to-[#152547] p-8 rounded-2xl border border-[#2d3b5b] shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/20 hover:border-[#4a7dff]">
+                  <h3 className="text-2xl font-bold text-gray-100 mb-3 font-['Poppins']">
+                    {milestone.title}
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed font-['Poppins']">
+                    {milestone.desc}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Expertise Section */}
+      <section
+        ref={addToRefs}
+        className="py-20 bg-white relative opacity-0 translate-y-8 transition-all duration-700"
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
+              Our Expertise
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
+              Comprehensive technology solutions across all domains
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {expertise.map((skill, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="bg-gradient-to-br from-[#1a2b4d] to-[#152547] p-8 rounded-2xl border border-[#2d3b5b] shadow-xl transition-all duration-400 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] relative overflow-hidden group text-center"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600"></div>
+
+                <div className="w-16 h-16 bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30 mx-auto group-hover:scale-110 group-hover:rotate-5 transition-transform duration-300">
+                  <skill.icon size={28} color="white" />
+                </div>
+
+                <h3 className="text-2xl font-bold text-gray-100 mb-4 font-['Poppins']">
+                  {skill.title}
+                </h3>
+
+                <p className="text-gray-300 leading-relaxed font-['Poppins']">
+                  {skill.desc}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section
+        ref={addToRefs}
+        className="py-20 bg-[#0d1933] relative overflow-hidden opacity-0 translate-y-8 transition-all duration-700"
+      >
+        <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-radial-gradient from-[#4a7dff]/3 to-transparent animate-spin-slow"></div>
+
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
+              Meet Our Team
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
+              The brilliant minds behind our success and innovation
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {team.map((member, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="bg-white rounded-2xl overflow-hidden shadow-xl transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/15 border border-gray-200 font-['Poppins']"
+              >
+                <div className="w-full h-80 overflow-hidden">
+                  <img
+                    alt={member.name}
+                    className="w-full h-full object-cover transition-transform duration-400 group-hover:scale-110"
+                    src={member.image}
+                    onError={(e) => {
+                      e.target.src =
+                        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80";
+                      e.target.alt = "Team member placeholder";
+                    }}
+                  />
+                </div>
+
+                <div className="p-8 text-center">
+                  <h3 className="text-2xl font-bold text-gray-800 mb-2 font-['Poppins']">
+                    {member.name}
+                  </h3>
+                  <p className="text-lg text-[#4a7dff] mb-4 font-semibold font-['Poppins']">
+                    {member.role}
+                  </p>
+                  <p className="text-gray-600 leading-relaxed font-['Poppins']">
+                    {member.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Culture Section */}
+      <section
+        ref={addToRefs}
+        className="py-20 bg-white relative opacity-0 translate-y-8 transition-all duration-700"
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
+              Life at Aitals
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
+              A culture of innovation, growth, and collaboration
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {culture.map((item, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="bg-gradient-to-br from-[#1a2b4d] to-[#152547] p-8 rounded-2xl border border-[#2d3b5b] shadow-xl transition-all duration-400 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] relative overflow-hidden group text-center"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600"></div>
+
+                <div className="w-16 h-16 bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30 mx-auto group-hover:scale-110 transition-transform duration-300">
+                  <item.icon size={28} color="white" />
+                </div>
+
+                <h3 className="text-2xl font-bold text-gray-100 mb-4 font-['Poppins']">
+                  {item.title}
+                </h3>
+
+                <p className="text-gray-300 leading-relaxed font-['Poppins']">
+                  {item.desc}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            className="w-full"
           >
-            <img alt="Team collaboration" className="w-full h-64 object-cover rounded-xl shadow-lg" src="https://images.unsplash.com/photo-1651009188116-bb5f80eaf6aa" />
-            <img alt="Innovation workspace" className="w-full h-64 object-cover rounded-xl shadow-lg" src="https://images.unsplash.com/photo-1565841327798-694bc2074762" />
-            <img alt="Team celebration" className="w-full h-64 object-cover rounded-xl shadow-lg" src="https://images.unsplash.com/photo-1604398094327-cb34d258d473" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <img
+                alt="Team collaboration"
+                className="w-full h-64 object-cover rounded-2xl shadow-lg transition-all duration-400 hover:scale-105 hover:shadow-2xl"
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+              />
+              <img
+                alt="Innovation workspace"
+                className="w-full h-64 object-cover rounded-2xl shadow-lg transition-all duration-400 hover:scale-105 hover:shadow-2xl"
+                src="https://images.unsplash.com/photo-1565841327798-694bc2074762?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+              />
+              <img
+                alt="Team celebration"
+                className="w-full h-64 object-cover rounded-2xl shadow-lg transition-all duration-400 hover:scale-105 hover:shadow-2xl"
+                src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+              />
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section
+        ref={addToRefs}
+        className="py-24 bg-gradient-to-br from-[#0d1933] to-[#1a2b4d] relative overflow-hidden opacity-0 translate-y-8 transition-all duration-700"
+      >
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
+          style={{
+            backgroundImage: `url("https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80")`,
+          }}
+        ></div>
+
+        <div className="max-w-7xl mx-auto px-4 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl md:text-6xl font-extrabold mb-6 text-white font-['Poppins'] leading-tight">
+              Ready to Join Our Success Story?
+            </h2>
+
+            <p className="text-xl text-gray-200 max-w-4xl mx-auto mb-12 leading-relaxed font-['Poppins']">
+              Let's collaborate and build something extraordinary together. Your
+              next big project starts here with Aitals Technologies.
+            </p>
+
+            <Link to="/contact">
+              <button className="bg-white text-[#4a7dff] text-lg px-10 py-6 rounded-full font-semibold transition-all duration-300 hover:bg-gray-100 hover:scale-105 hover:shadow-2xl hover:shadow-white/20 shadow-lg border border-transparent hover:border-white/20 font-['Poppins'] inline-flex items-center gap-3">
+                Get Started Today
+                <ArrowRight size={24} />
+              </button>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -265,4 +724,3 @@ const About = () => {
 };
 
 export default About;
-  
