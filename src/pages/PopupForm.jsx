@@ -1,69 +1,81 @@
 import React, { useState, useEffect } from 'react';
-// 1. Import the country codes list library
 import * as countryCodes from 'country-codes-list'; 
 
-// Function to generate the required country list format
-const getCountryDialCodes = () => {
-    // This creates an object where:
-    // key is the dial code (e.g., '+1')
-    // value is the label (e.g., '+1 (United States)')
-    const list = countryCodes.customList(
-        // Key: countryCallingCode (the phone code)
-        'countryCallingCode', 
-        // Value format: {countryCallingCode} ({countryNameEn})
-        '{countryCallingCode} ({countryNameEn})'
-    );
 
-    // Convert the object to an array of objects for easier rendering
-    // and filtering out duplicate codes (e.g., US/Canada are both +1)
+// Fixed helper function to generate a clean, unique list of official dial codes
+const getCountryDialCodes = () => {
+    // Use a map to store unique codes, keying by the countryCallingCode
     const uniqueCodes = {};
-    Object.keys(list).forEach(code => {
-        // Group by the actual dial code to avoid duplicates in the <select>
-        const dialCode = code; // The key already is the dial code in this custom list
-        const label = list[code];
-        
-        // This logic simplifies the list by keeping only the first country found for a given dial code.
-        // For example, if both US and Canada are '+1', only the first one found in the object keys will be kept.
-        if (!uniqueCodes[dialCode]) {
-            uniqueCodes[dialCode] = {
-                code: dialCode,
-                label: label.replace(` (${countryCodes.findOne(dialCode).countryNameEn})`, ''), // Keep just the code for the value
-                name: label // Full label for display
+
+    // Use the built-in all() method which provides an array of all country objects
+    countryCodes.all().forEach(country => {
+        const dialCode = country.countryCallingCode;
+        const countryName = country.countryNameEn;
+
+        // Skip entries without a dial code
+        if (!dialCode) {
+            return;
+        }
+
+        // Ensure the dial code starts with '+' for consistency
+        const formattedDialCode = dialCode.startsWith('+') ? dialCode : `+${dialCode}`;
+
+        // Only add if we haven't seen this exact dial code yet
+        if (!uniqueCodes[formattedDialCode]) {
+            // Construct a clear name: '+91 (India)'
+            const name = `${formattedDialCode} (${countryName})`;
+
+            uniqueCodes[formattedDialCode] = {
+                code: formattedDialCode,
+                name: name,
             };
         }
     });
 
-    // Final array for React rendering
-    return Object.values(uniqueCodes).sort((a, b) => a.code.localeCompare(b.code));
+    // Convert the map values to an array
+    const codesArray = Object.values(uniqueCodes);
+    
+    // Sort with India (+91) first, then others numerically
+    return codesArray.sort((a, b) => {
+        // Always put India first
+        if (a.code === '+91') return -1;
+        if (b.code === '+91') return 1;
+        
+        // For other codes, sort numerically
+        const codeA = parseInt(a.code.replace('+', ''), 10);
+        const codeB = parseInt(b.code.replace('+', ''), 10);
+        return codeA - codeB;
+    });
 };
 
 
 const ContactPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // 2. Add state for the full list of codes
+
   const [countryCodeList, setCountryCodeList] = useState([]); 
   const [formData, setFormData] = useState({
     firstName: '',
     email: '',
     phone: '',
-    countryCode: '+91', // Default to a common code
+    countryCode: '+91', // Default set to India
     source: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
 
-  // Show popup after 3 seconds (3000ms) and load country codes
-  useEffect(() => {
-    // Load the country codes once
-    setCountryCodeList(getCountryDialCodes());
+// Simplified useEffect - just load the codes
+useEffect(() => {
+  const codes = getCountryDialCodes();
+  setCountryCodeList(codes);
 
-    const timer = setTimeout(() => {
-      setIsOpen(true);
-    }, 3000);
+  const timer = setTimeout(() => {
+    setIsOpen(true);
+  }, 10000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  return () => clearTimeout(timer);
+}, []);
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -231,7 +243,7 @@ const ContactPopup = () => {
       value={formData.countryCode}
       onChange={handleInputChange}
       className="px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-l-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow bg-gray-50"
-      style={{ width: '30%', minWidth: '90px' }}
+      style={{ width: '20%', minWidth: '80px' }}
     >
       {countryCodeList.map((country) => (
         <option key={country.code} value={country.code}>
