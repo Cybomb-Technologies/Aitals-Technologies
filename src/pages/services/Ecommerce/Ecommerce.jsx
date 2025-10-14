@@ -18,11 +18,15 @@ import {
   BarChart,
   MessageCircle,
   Palette,
+  CreditCard,
+  Truck,
+  HeadphonesIcon,
+  ShieldCheck,
 } from "lucide-react";
 
-const WebDev = () => {
+const Ecommerce = () => {
   const sectionRefs = useRef([]);
-  const [selectedTechCategory, setSelectedTechCategory] = useState("Frontend");
+  const [selectedTechCategory, setSelectedTechCategory] = useState("Platforms");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -59,124 +63,144 @@ const WebDev = () => {
 
   const features = [
     {
-      icon: Globe,
-      title: "Responsive Design",
-      desc: "Perfectly optimized for all devices - desktop, tablet, and mobile",
+      icon: ShoppingCart,
+      title: "Complete E-commerce Solutions",
+      desc: "End-to-end online store development with seamless shopping experience",
     },
     {
-      icon: Zap,
-      title: "High Performance",
-      desc: "Lightning-fast load times and optimized user experience",
+      icon: CreditCard,
+      title: "Secure Payment Integration",
+      desc: "Multiple payment gateway options with PCI compliance and fraud protection",
     },
     {
-      icon: Shield,
-      title: "Secure & Reliable",
-      desc: "Enterprise-grade security with regular updates and maintenance",
+      icon: ShieldCheck,
+      title: "Enterprise Security",
+      desc: "SSL encryption, secure checkout, and regular security updates",
     },
     {
-      icon: Database,
-      title: "Scalable Architecture",
-      desc: "Built to grow with your business and handle increasing traffic",
+      icon: Truck,
+      title: "Inventory & Order Management",
+      desc: "Real-time inventory tracking and automated order processing",
     },
     {
-      icon: Smartphone,
-      title: "Progressive Web Apps",
-      desc: "Native app-like experience with web technology",
+      icon: BarChart,
+      title: "Sales Analytics",
+      desc: "Comprehensive dashboard with sales reports and customer insights",
     },
     {
-      icon: Users,
-      title: "User-Centric Approach",
-      desc: "Intuitive interfaces designed with your users in mind",
+      icon: HeadphonesIcon,
+      title: "24/7 Customer Support",
+      desc: "Round-the-clock technical support and maintenance services",
     },
   ];
 
   const technologies = {
-    Frontend: [
+    Platforms: [
       {
-        name: "React.js",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+        name: "Shopify",
+        logo: "https://cdn.worldvectorlogo.com/logos/shopify.svg",
+        url: "/services/shopify",
       },
       {
-        name: "Next.js",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+        name: "WooCommerce",
+        logo: "https://cdn.worldvectorlogo.com/logos/woocommerce-1.svg",
+        url: "/services/woo-commerce",
+      },
+      {
+        name: "Magento",
+        logo: "https://www.svgrepo.com/show/303592/magento-2-logo.svg",
+        url: "/services/magento",
+      },
+      {
+        name: "BigCommerce",
+        logo: "https://www.vectorlogo.zone/logos/bigcommerce/bigcommerce-icon.svg",
+        url: "/services/big-commerce",
+      },
+      {
+        name: "Custom Solutions",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+        url: "/services/custom-ecommerce",
+      },
+    ],
+    Frontend: [
+      {
+        name: "React",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+        url: "/services/react-development-service",
       },
       {
         name: "Vue.js",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
+        url: "/services/vuejs-development",
       },
       {
         name: "Angular",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
+        url: "/services/angular-development-service",
       },
       {
         name: "TypeScript",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+        url: "/services/typescript-development",
+      },
+      {
+        name: "Next.js",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+        url: "/services/nextjs-development",
       },
     ],
     Backend: [
       {
         name: "Node.js",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-      },
-      {
-        name: "Python",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+        url: "/services/nodejs-development-service",
       },
       {
         name: "PHP",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
+        url: "/services/php-development-service",
+      },
+      {
+        name: "Python",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+        url: "/services/python-development-service",
       },
       {
         name: "Java",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+        url: "/services/java-development-service",
       },
       {
         name: ".NET",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg",
+        url: "/services/dotnet-development-service",
       },
     ],
-    Database: [
+    "Payment & Security": [
       {
-        name: "MongoDB",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+        name: "Stripe",
+        logo: "https://cdn.worldvectorlogo.com/logos/stripe-4.svg",
+        url: "/services/payment-integration",
       },
       {
-        name: "PostgreSQL",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+        name: "PayPal",
+        logo: "https://www.vectorlogo.zone/logos/paypal/paypal-icon.svg",
+        url: "/services/payment-integration",
       },
       {
-        name: "MySQL",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+        name: "Razorpay",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq7XQpw0VPRRyLLR9iM-nrpdTWrmOyBl2bnA&s",
+        url: "/services/payment-integration",
       },
       {
-        name: "Redis",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",
+        name: "Google Pay",
+        logo: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/google-pay-icon.png",
+        url: "/services/payment-integration",
       },
       {
-        name: "Firebase",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
-      },
-    ],
-    "Cloud & DevOps": [
-      {
-        name: "AWS",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/768px-Amazon_Web_Services_Logo.svg.png",
-      },
-      {
-        name: "Azure",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg",
-      },
-      {
-        name: "Docker",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-      },
-      {
-        name: "Kubernetes",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
-      },
-      {
-        name: "CI/CD",
-        logo: "https://icon.icepanel.io/Technology/svg/GitHub-Actions.svg",
+        name: "SSL Security",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg",
+        url: "/services/security",
       },
     ],
   };
@@ -184,68 +208,88 @@ const WebDev = () => {
   const process = [
     {
       number: "01",
-      title: "Discovery & Planning",
-      desc: "We analyze your requirements and create a detailed project roadmap",
+      title: "Strategy & Planning",
+      desc: "Market research, competitor analysis, and e-commerce strategy development",
     },
     {
       number: "02",
-      title: "Design & Prototyping",
-      desc: "Create stunning UI/UX designs and interactive prototypes",
+      title: "UI/UX Design",
+      desc: "Customer-centric design with optimized user journey and conversion paths",
     },
     {
       number: "03",
       title: "Development",
-      desc: "Agile development with regular updates and testing",
+      desc: "Agile development with feature-rich e-commerce functionality",
     },
     {
       number: "04",
-      title: "Testing & QA",
-      desc: "Comprehensive testing across all devices and browsers",
+      title: "Payment Integration",
+      desc: "Secure payment gateway setup and transaction testing",
     },
     {
       number: "05",
-      title: "Deployment",
-      desc: "Smooth deployment with zero downtime and full support",
+      title: "Testing & Launch",
+      desc: "Comprehensive testing across devices and smooth store launch",
     },
     {
       number: "06",
-      title: "Maintenance",
-      desc: "Ongoing support, updates, and performance optimization",
+      title: "Support & Growth",
+      desc: "Ongoing maintenance, updates, and sales optimization",
     },
   ];
 
   const solutions = [
     {
       icon: ShoppingCart,
-      title: "E-Commerce Solutions",
-      desc: "Complete online store development with payment integration",
-      features: ["Payment Gateway", "Inventory Management", "Order Tracking"],
+      title: "Online Store Development",
+      desc: "Complete e-commerce websites with product catalogs and shopping carts",
+      features: [
+        "Product Management",
+        "Shopping Cart",
+        "Wishlist",
+        "Reviews & Ratings",
+      ],
     },
     {
       icon: BarChart,
-      title: "Business Applications",
-      desc: "Custom web applications to streamline your business operations",
-      features: ["Dashboard Analytics", "CRM Integration", "Real-time Data"],
+      title: "Multi-vendor Marketplace",
+      desc: "Platforms connecting multiple sellers with buyers in one marketplace",
+      features: [
+        "Vendor Dashboard",
+        "Commission System",
+        "Order Management",
+        "Revenue Tracking",
+      ],
     },
     {
-      icon: MessageCircle,
-      title: "Web Portals",
-      desc: "Feature-rich portals for customers, employees, and partners",
-      features: ["User Management", "Content Management", "Multi-language"],
+      icon: CreditCard,
+      title: "Payment Solutions",
+      desc: "Secure payment processing with multiple gateway integrations",
+      features: [
+        "Multiple Payment Options",
+        "PCI Compliance",
+        "Fraud Detection",
+        "Refund Management",
+      ],
     },
     {
-      icon: Palette,
-      title: "Custom Websites",
-      desc: "Unique, brand-focused websites that drive engagement",
-      features: ["SEO Optimized", "Fast Loading", "Mobile Responsive"],
+      icon: Database,
+      title: "Inventory Management",
+      desc: "Real-time inventory tracking and automated stock management",
+      features: [
+        "Stock Alerts",
+        "Barcode Integration",
+        "Supplier Management",
+        "Warehouse Sync",
+      ],
     },
   ];
 
   const stats = [
-    { number: "200+", label: "Projects Completed" },
-    { number: "99%", label: "Client Satisfaction" },
-    { number: "50+", label: "Team Members" },
-    { number: "24/7", label: "Support Available" },
+    { number: "150+", label: "E-commerce Stores Built" },
+    { number: "98%", label: "Client Satisfaction" },
+    { number: "5M+", label: "Monthly Visitors" },
+    { number: "24/7", label: "Store Monitoring" },
   ];
 
   const techCategories = Object.keys(technologies);
@@ -253,10 +297,10 @@ const WebDev = () => {
   return (
     <>
       <Helmet>
-        <title>Web Development Services | Modern Web Solutions</title>
+        <title>E-commerce Development Services | Online Store Solutions</title>
         <meta
           name="description"
-          content="Professional web development services with cutting-edge technologies. Responsive, secure, and scalable web solutions for your business."
+          content="Professional e-commerce development services with secure payment integration, inventory management, and scalable online store solutions."
         />
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
@@ -270,7 +314,7 @@ const WebDev = () => {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `linear-gradient(rgba(13, 25, 51, 0.4), rgba(13, 25, 51, 0.95)), url("https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80")`,
+            backgroundImage: `linear-gradient(rgba(13, 25, 51, 0.4), rgba(13, 25, 51, 0.95)), url("https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80")`,
           }}
         ></div>
 
@@ -293,7 +337,7 @@ const WebDev = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Modern Web
+            Modern E-commerce
             <span className="block mt-2 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent bg-[length:200%_200%] animate-gradient-shift">
               Development
             </span>
@@ -306,8 +350,9 @@ const WebDev = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            We build cutting-edge web applications that drive business growth
-            and deliver exceptional user experiences
+            Build powerful online stores that drive sales, enhance customer
+            experience, and grow your business with our comprehensive e-commerce
+            development services
           </motion.p>
 
           <motion.div
@@ -350,8 +395,8 @@ const WebDev = () => {
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              We combine technical expertise with creative design to deliver web
-              solutions that exceed expectations
+              We combine technical expertise with creative design to deliver
+              e-commerce solutions that exceed expectations
             </p>
           </div>
 
@@ -397,7 +442,7 @@ const WebDev = () => {
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
               We leverage the latest technologies and frameworks to build robust
-              and scalable web applications
+              and scalable e-commerce applications
             </p>
           </div>
 
@@ -505,8 +550,8 @@ const WebDev = () => {
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              Comprehensive web development services tailored to your specific
-              business needs
+              Comprehensive e-commerce development services tailored to your
+              specific business needs
             </p>
           </div>
 
@@ -612,8 +657,8 @@ const WebDev = () => {
             </h2>
 
             <p className="text-xl text-white/90 max-w-4xl mx-auto mb-12 leading-relaxed font-['Poppins']">
-              Let's discuss your web development needs and create something
-              amazing together
+              Let's discuss your e-commerce development needs and create
+              something amazing together
             </p>
 
             <Link
@@ -699,4 +744,4 @@ const WebDev = () => {
   );
 };
 
-export default WebDev;
+export default Ecommerce;

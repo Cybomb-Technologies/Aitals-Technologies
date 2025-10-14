@@ -4,10 +4,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  Code,
-  Globe,
   Smartphone,
-  Database,
+  Globe,
   Shield,
   Zap,
   Users,
@@ -20,9 +18,9 @@ import {
   Palette,
 } from "lucide-react";
 
-const WebDev = () => {
+const MobileApp = () => {
   const sectionRefs = useRef([]);
-  const [selectedTechCategory, setSelectedTechCategory] = useState("Frontend");
+  const [selectedTechCategory, setSelectedTechCategory] = useState("Platforms");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -59,58 +57,103 @@ const WebDev = () => {
 
   const features = [
     {
-      icon: Globe,
-      title: "Responsive Design",
-      desc: "Perfectly optimized for all devices - desktop, tablet, and mobile",
+      icon: Smartphone,
+      title: "Cross-Platform Development",
+      desc: "Build once, deploy everywhere with seamless performance across iOS and Android",
     },
     {
       icon: Zap,
       title: "High Performance",
-      desc: "Lightning-fast load times and optimized user experience",
+      desc: "Optimized apps with fast load times and smooth user interactions",
     },
     {
       icon: Shield,
-      title: "Secure & Reliable",
-      desc: "Enterprise-grade security with regular updates and maintenance",
+      title: "Secure & Compliant",
+      desc: "Enterprise-grade security with industry compliance standards",
     },
     {
-      icon: Database,
-      title: "Scalable Architecture",
-      desc: "Built to grow with your business and handle increasing traffic",
-    },
-    {
-      icon: Smartphone,
-      title: "Progressive Web Apps",
-      desc: "Native app-like experience with web technology",
+      icon: Globe,
+      title: "Offline Capability",
+      desc: "Functionality that works even without internet connection",
     },
     {
       icon: Users,
-      title: "User-Centric Approach",
-      desc: "Intuitive interfaces designed with your users in mind",
+      title: "User-Centric Design",
+      desc: "Intuitive interfaces designed for optimal mobile experience",
+    },
+    {
+      icon: Award,
+      title: "App Store Ready",
+      desc: "Fully compliant with Apple App Store and Google Play Store guidelines",
     },
   ];
 
+  // Updated technologies data - 5 items per category like Web-dev.jsx
   const technologies = {
-    Frontend: [
+    Platforms: [
       {
-        name: "React.js",
+        name: "Android",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg",
+      },
+      {
+        name: "iOS",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg",
+      },
+      {
+        name: "Flutter",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+      },
+      {
+        name: "React Native",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
       },
       {
-        name: "Next.js",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+        name: "SwiftUI",
+        logo: "https://developer.apple.com/assets/elements/icons/swiftui/swiftui-96x96_2x.png",
+      },
+    ],
+    Languages: [
+      {
+        name: "Swift",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg",
       },
       {
-        name: "Vue.js",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
+        name: "Kotlin",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
       },
       {
-        name: "Angular",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
+        name: "Dart",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
+      },
+      {
+        name: "JavaScript",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
       },
       {
         name: "TypeScript",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      },
+    ],
+    Frameworks: [
+      {
+        name: "Flutter",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+      },
+      {
+        name: "React Native",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "SwiftUI",
+        logo: "https://developer.apple.com/assets/elements/icons/swiftui/swiftui-96x96_2x.png",
+      },
+      {
+        name: "Jetpack Compose",
+        logo: "https://logo.svgcdn.com/d/jetpackcompose-original.svg",
+      },
+      {
+        name: "Ionic",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg",
       },
     ],
     Backend: [
@@ -119,64 +162,42 @@ const WebDev = () => {
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
       },
       {
-        name: "Python",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+        name: "Firebase",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
       },
-      {
-        name: "PHP",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
-      },
-      {
-        name: "Java",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-      },
-      {
-        name: ".NET",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg",
-      },
-    ],
-    Database: [
       {
         name: "MongoDB",
         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
       },
       {
-        name: "PostgreSQL",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+        name: "Express.js",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
       },
       {
-        name: "MySQL",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-      },
-      {
-        name: "Redis",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",
-      },
-      {
-        name: "Firebase",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
+        name: "GraphQL",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg",
       },
     ],
-    "Cloud & DevOps": [
+    Tools: [
       {
-        name: "AWS",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/768px-Amazon_Web_Services_Logo.svg.png",
+        name: "Figma",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
       },
       {
-        name: "Azure",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg",
+        name: "GitHub",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
       },
       {
-        name: "Docker",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+        name: "Postman",
+        logo: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/postman-icon.svg",
       },
       {
-        name: "Kubernetes",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
+        name: "Android Studio",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg",
       },
       {
-        name: "CI/CD",
-        logo: "https://icon.icepanel.io/Technology/svg/GitHub-Actions.svg",
+        name: "Xcode",
+        logo: "https://developer.apple.com/assets/elements/icons/xcode/xcode-96x96_2x.png",
       },
     ],
   };
@@ -184,67 +205,67 @@ const WebDev = () => {
   const process = [
     {
       number: "01",
-      title: "Discovery & Planning",
-      desc: "We analyze your requirements and create a detailed project roadmap",
+      title: "Strategy & Planning",
+      desc: "Define app objectives, target audience, and technical requirements",
     },
     {
       number: "02",
-      title: "Design & Prototyping",
-      desc: "Create stunning UI/UX designs and interactive prototypes",
+      title: "UI/UX Design",
+      desc: "Create intuitive mobile-first designs and interactive prototypes",
     },
     {
       number: "03",
       title: "Development",
-      desc: "Agile development with regular updates and testing",
+      desc: "Agile development with cross-platform or native technologies",
     },
     {
       number: "04",
       title: "Testing & QA",
-      desc: "Comprehensive testing across all devices and browsers",
+      desc: "Comprehensive testing across devices, OS versions, and networks",
     },
     {
       number: "05",
-      title: "Deployment",
-      desc: "Smooth deployment with zero downtime and full support",
+      title: "App Store Deployment",
+      desc: "Seamless submission to Apple App Store and Google Play Store",
     },
     {
       number: "06",
-      title: "Maintenance",
-      desc: "Ongoing support, updates, and performance optimization",
+      title: "Maintenance & Updates",
+      desc: "Ongoing support, performance monitoring, and feature updates",
     },
   ];
 
   const solutions = [
     {
       icon: ShoppingCart,
-      title: "E-Commerce Solutions",
-      desc: "Complete online store development with payment integration",
-      features: ["Payment Gateway", "Inventory Management", "Order Tracking"],
+      title: "E-Commerce Apps",
+      desc: "Mobile shopping experiences with secure payment integration",
+      features: ["Payment Gateway", "Push Notifications", "Order Tracking"],
     },
     {
       icon: BarChart,
-      title: "Business Applications",
-      desc: "Custom web applications to streamline your business operations",
-      features: ["Dashboard Analytics", "CRM Integration", "Real-time Data"],
+      title: "Business Apps",
+      desc: "Enterprise solutions for internal operations and customer engagement",
+      features: ["Offline Sync", "Real-time Data", "CRM Integration"],
     },
     {
       icon: MessageCircle,
-      title: "Web Portals",
-      desc: "Feature-rich portals for customers, employees, and partners",
-      features: ["User Management", "Content Management", "Multi-language"],
+      title: "Social & Communication",
+      desc: "Engaging social platforms and messaging applications",
+      features: ["Real-time Chat", "Media Sharing", "User Profiles"],
     },
     {
       icon: Palette,
-      title: "Custom Websites",
-      desc: "Unique, brand-focused websites that drive engagement",
-      features: ["SEO Optimized", "Fast Loading", "Mobile Responsive"],
+      title: "Lifestyle & Utility",
+      desc: "Apps that enhance daily life with innovative features",
+      features: ["Location Services", "Camera Integration", "Health Tracking"],
     },
   ];
 
   const stats = [
-    { number: "200+", label: "Projects Completed" },
-    { number: "99%", label: "Client Satisfaction" },
-    { number: "50+", label: "Team Members" },
+    { number: "150+", label: "Mobile Apps Developed" },
+    { number: "4.8★", label: "Average App Store Rating" },
+    { number: "10M+", label: "App Downloads" },
     { number: "24/7", label: "Support Available" },
   ];
 
@@ -253,10 +274,12 @@ const WebDev = () => {
   return (
     <>
       <Helmet>
-        <title>Web Development Services | Modern Web Solutions</title>
+        <title>
+          Mobile App Development Services | Cross-Platform Solutions
+        </title>
         <meta
           name="description"
-          content="Professional web development services with cutting-edge technologies. Responsive, secure, and scalable web solutions for your business."
+          content="Professional mobile app development services for iOS and Android. Cross-platform and native apps with cutting-edge security and performance."
         />
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
@@ -270,7 +293,7 @@ const WebDev = () => {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `linear-gradient(rgba(13, 25, 51, 0.4), rgba(13, 25, 51, 0.95)), url("https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80")`,
+            backgroundImage: `linear-gradient(rgba(13, 25, 51, 0.4), rgba(13, 25, 51, 0.95)), url("https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80")`,
           }}
         ></div>
 
@@ -293,7 +316,7 @@ const WebDev = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Modern Web
+            Mobile App
             <span className="block mt-2 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent bg-[length:200%_200%] animate-gradient-shift">
               Development
             </span>
@@ -306,8 +329,8 @@ const WebDev = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            We build cutting-edge web applications that drive business growth
-            and deliver exceptional user experiences
+            We create powerful, secure, and engaging mobile applications that
+            drive user engagement and business growth across all platforms
           </motion.p>
 
           <motion.div
@@ -346,12 +369,12 @@ const WebDev = () => {
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Why Choose Our Services
+              Why Choose Our Mobile Services
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              We combine technical expertise with creative design to deliver web
-              solutions that exceed expectations
+              We combine cutting-edge mobile technologies with user-centric
+              design to create apps that users love and businesses rely on
             </p>
           </div>
 
@@ -396,8 +419,8 @@ const WebDev = () => {
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              We leverage the latest technologies and frameworks to build robust
-              and scalable web applications
+              We leverage the latest mobile technologies and frameworks to build
+              robust and scalable mobile applications
             </p>
           </div>
 
@@ -427,20 +450,18 @@ const WebDev = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Link to={tech.url} className="block">
-                  <div className="bg-gradient-to-br from-[#1a2b4d] to-[#152547] p-6 rounded-2xl border border-[#2d3b5b] transition-all duration-400 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] text-center group h-full flex flex-col items-center justify-center">
-                    <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mb-4 p-2 group-hover:scale-110 transition-transform duration-300">
-                      <img
-                        src={tech.logo}
-                        alt={`${tech.name} logo`}
-                        className="w-10 h-10 object-contain"
-                      />
-                    </div>
-                    <span className="text-gray-100 font-semibold font-['Poppins'] group-hover:text-[#4a7dff] transition-colors duration-300">
-                      {tech.name}
-                    </span>
+                <div className="bg-gradient-to-br from-[#1a2b4d] to-[#152547] p-6 rounded-2xl border border-[#2d3b5b] transition-all duration-400 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] text-center group h-full flex flex-col items-center justify-center">
+                  <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mb-4 p-2 group-hover:scale-110 transition-transform duration-300">
+                    <img
+                      src={tech.logo}
+                      alt={`${tech.name} logo`}
+                      className="w-10 h-10 object-contain"
+                    />
                   </div>
-                </Link>
+                  <span className="text-gray-100 font-semibold font-['Poppins'] group-hover:text-[#4a7dff] transition-colors duration-300">
+                    {tech.name}
+                  </span>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -455,12 +476,12 @@ const WebDev = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Our Development Process
+              Our Mobile Development Process
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              A structured approach that ensures quality, transparency, and
-              timely delivery of your project
+              A comprehensive approach that ensures quality, security, and
+              exceptional user experience for your mobile application
             </p>
           </div>
 
@@ -501,12 +522,12 @@ const WebDev = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Our Solutions
+              Our Mobile Solutions
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              Comprehensive web development services tailored to your specific
-              business needs
+              Comprehensive mobile app development services tailored to your
+              specific business needs and target audience
             </p>
           </div>
 
@@ -562,13 +583,13 @@ const WebDev = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Our Achievements
+              Our Mobile Achievements
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
 
             <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-16 leading-relaxed font-['Poppins']">
-              Numbers that speak about our commitment to excellence and client
-              satisfaction
+              Proven track record of delivering successful mobile applications
+              that users love and businesses trust
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
@@ -608,12 +629,12 @@ const WebDev = () => {
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="text-center">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-6 text-white font-['Poppins'] leading-tight">
-              Ready to Start Your Project?
+              Ready to Build Your Mobile App?
             </h2>
 
             <p className="text-xl text-white/90 max-w-4xl mx-auto mb-12 leading-relaxed font-['Poppins']">
-              Let's discuss your web development needs and create something
-              amazing together
+              Let's discuss your mobile app vision and create an engaging
+              experience that users will love
             </p>
 
             <Link
@@ -699,4 +720,4 @@ const WebDev = () => {
   );
 };
 
-export default WebDev;
+export default MobileApp;

@@ -10,9 +10,9 @@ import Career from "@/pages/Career";
 import Contact from "@/pages/Contact";
 import Portfolio from "@/pages/Portfolio";
 import WebDev from "./pages/services/Web-Development/Web-dev";
-//
-//
-//
+import MobileApp from "./pages/services/Mobile-App-Development/Mobile-app";
+import UiUx from "./pages/services/UI-UX-Design/Ui-Ux";
+import Ecommerce from "./pages/services/Ecommerce/Ecommerce";
 //
 //
 // dharshini
@@ -53,21 +53,12 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/services/web-development" element={<WebDev />} />;
-            {/* devashree
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            */}
+            <Route
+              path="/services/mobile-development"
+              element={<MobileApp />}
+            />
+            <Route path="/services/ui-ux-design" element={<UiUx />} />
+            <Route path="/services/ecommerce" element={<Ecommerce />} />
           </Routes>
         </main>
         <Footer />

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -14,17 +14,23 @@ import {
   Award,
   TrendingUp,
 } from "lucide-react";
-import "./Home.css";
 
 const Home = () => {
   const sectionRefs = useRef([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Simulate loading completion
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 100);
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("revealed");
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            entry.target.classList.remove("opacity-0", "translate-y-12");
           }
         });
       },
@@ -39,6 +45,7 @@ const Home = () => {
     });
 
     return () => {
+      clearTimeout(timer);
       sectionRefs.current.forEach((ref) => {
         if (ref) observer.unobserve(ref);
       });
@@ -180,71 +187,125 @@ const Home = () => {
           name="description"
           content="Leading software and web development company specializing in custom mobile apps, website design, and digital solutions. Transform your ideas into reality."
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          {`
+            body {
+              background-color: #0d1933;
+            }
+          `}
+        </style>
       </Helmet>
 
+      {/* Loading Overlay */}
+      {isLoading && (
+        <div className="fixed inset-0 bg-[#0d1933] z-50 flex items-center justify-center">
+          <div className="w-16 h-16 border-4 border-[#4a7dff] border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      )}
+
       {/* Hero Section */}
-      <section className="home-hero-section">
-        <div className="home-container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="home-hero-content"
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0d1933]">
+        {/* Solid Background First */}
+        <div className="absolute inset-0 bg-[#0d1933]"></div>
+
+        {/* Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0d1933] via-[#0d1933] to-[#1a2b4d]"></div>
+
+        {/* Background Image with Overlay */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000"
+          style={{
+            backgroundImage: `linear-gradient(rgba(13, 25, 51, 0.4), rgba(13, 25, 51, 0.95)), url("https://images.pexels.com/photos/16323581/pexels-photo-16323581.jpeg?_gl=1*f2b7lv*_ga*MTUzMTEwMTY5NS4xNzU0MjA1MjMx*_ga_8JE65Q40S6*czE3NjAzNDQwNDAkbzEzJGcxJHQxNzYwMzQ0MDgyJGoxOCRsMCRoMA..")`,
+          }}
+        ></div>
+
+        {/* Animated Gradient Overlays */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(circle at 20% 80%, rgba(74, 125, 255, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(58, 109, 240, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, rgba(13, 25, 51, 0.2) 0%, transparent 50%)
+            `,
+          }}
+        ></div>
+
+        <div className="relative z-10 pt-20 text-center w-full px-4">
+          <motion.h1
+            className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-white font-['Poppins'] drop-shadow-lg"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <motion.h1
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="home-hero-title"
-            >
-              Innovating Ideas Into
-              <span className="home-hero-accent">Digital Excellence</span>
-            </motion.h1>
+            Innovating Ideas Into
+            <span className="block mt-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent bg-[length:200%_200%] animate-gradient-shift">
+              Digital Excellence
+            </span>
+          </motion.h1>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="home-hero-subtitle"
-            >
-              We transform your vision into powerful digital solutions with
-              cutting-edge technology and creative innovation. Your trusted
-              partner for web development, mobile apps, and custom software
-              solutions.
-            </motion.p>
+          <motion.p
+            className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto text-gray-200 leading-relaxed font-['Poppins'] font-light"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            We transform your vision into powerful digital solutions with
+            cutting-edge technology and creative innovation. Your trusted
+            partner for web development, mobile apps, and custom software
+            solutions.
+          </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="home-hero-buttons"
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <Link
+              to="/contact"
+              className="relative bg-[#4a7dff] text-white text-lg px-8 py-6 rounded-xl font-semibold flex items-center gap-2 min-w-[220px] justify-center overflow-hidden transition-all duration-300 hover:bg-[#3a6df0] hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/30 group"
             >
-              <Link to="/contact">
-                <button className="home-primary-button">
-                  Start Your Project
-                  <ArrowRight size={20} />
-                </button>
-              </Link>
-              <Link to="/portfolio">
-                <button className="home-secondary-button">View Our Work</button>
-              </Link>
-            </motion.div>
+              <span className="relative z-10">Start Your Project</span>
+              <ArrowRight size={20} className="relative z-10" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
+            </Link>
+
+            <Link
+              to="/portfolio"
+              className="relative bg-transparent text-white text-lg px-8 py-6 rounded-xl font-semibold border-2 border-[#4a7dff] flex items-center gap-2 min-w-[180px] justify-center overflow-hidden transition-all duration-300 hover:bg-[#4a7dff]/10 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/20 group"
+            >
+              <span className="relative z-10">View Our Work</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
+            </Link>
           </motion.div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section ref={addToRefs} className="home-section home-services-section">
-        <div className="home-container">
+      <section
+        ref={addToRefs}
+        className="py-20 bg-[#0d1933] relative overflow-hidden opacity-0 translate-y-12 transition-all duration-700"
+      >
+        <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-radial-gradient from-[#4a7dff]/3 to-transparent animate-spin-slow"></div>
+
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="home-section-header"
+            className="text-center mb-16"
           >
-            <h2 className="home-section-title">Our Services</h2>
-            <p className="home-section-description">
+            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
+              Our Services
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
               Comprehensive digital solutions tailored to your business needs.
               From concept to deployment, we deliver excellence in every
               project.
@@ -252,7 +313,7 @@ const Home = () => {
           </motion.div>
 
           <motion.div
-            className="home-services-grid"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -262,13 +323,21 @@ const Home = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="home-service-card home-scroll-reveal"
+                className="bg-white p-10 rounded-2xl border border-gray-200 transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] relative overflow-hidden group flex flex-col h-full"
               >
-                <div className="home-service-icon">
-                  <service.icon className="text-white" size={24} />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600"></div>
+
+                <div className="w-20 h-20 bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 animate-pulse-glow">
+                  <service.icon size={24} color="white" />
                 </div>
-                <h3 className="home-service-title">{service.title}</h3>
-                <p className="home-service-description">{service.desc}</p>
+
+                <h3 className="text-2xl font-bold text-gray-800 mb-4 font-['Poppins'] group-hover:text-[#4a7dff] transition-colors duration-300">
+                  {service.title}
+                </h3>
+
+                <p className="text-gray-600 leading-relaxed font-['Poppins']">
+                  {service.desc}
+                </p>
               </motion.div>
             ))}
           </motion.div>
@@ -276,26 +345,29 @@ const Home = () => {
       </section>
 
       {/* Why Choose Us Section */}
-      <section ref={addToRefs} className="home-section home-why-choose-section">
-        <div className="home-container">
+      <section
+        ref={addToRefs}
+        className="py-20 bg-white relative opacity-0 translate-y-12 transition-all duration-700"
+      >
+        <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="home-section-header"
+            className="text-center mb-16"
           >
-            <h2 className="home-section-title">Why Choose Aitals</h2>
-            <p
-              className="home-section-description"
-              style={{ color: "#6b7280" }}
-            >
+            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
+              Why Choose Aitals
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
               We combine technical expertise with business understanding to
               deliver solutions that drive real results
             </p>
           </motion.div>
 
           <motion.div
-            className="home-features-grid"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -305,13 +377,21 @@ const Home = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="home-feature-card home-scroll-reveal"
+                className="bg-gradient-to-br from-[#1a2b4d] to-[#152547] p-12 rounded-2xl text-center shadow-xl transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] border border-[#2d3b5b] relative overflow-hidden group"
               >
-                <div className="home-feature-icon">
-                  <item.icon size={24} />
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left"></div>
+
+                <div className="w-20 h-20 bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] rounded-full flex items-center justify-center mb-6 mx-auto shadow-lg shadow-blue-500/30 group-hover:scale-110 group-hover:rotate-360 transition-all duration-300">
+                  <item.icon size={24} color="white" />
                 </div>
-                <h3 className="home-feature-title">{item.title}</h3>
-                <p className="home-feature-description">{item.desc}</p>
+
+                <h3 className="text-2xl font-bold text-gray-100 mb-4 font-['Poppins']">
+                  {item.title}
+                </h3>
+
+                <p className="text-gray-300 leading-relaxed font-['Poppins']">
+                  {item.desc}
+                </p>
               </motion.div>
             ))}
           </motion.div>
@@ -319,23 +399,29 @@ const Home = () => {
       </section>
 
       {/* Projects Section */}
-      <section ref={addToRefs} className="home-section home-projects-section">
-        <div className="home-container">
+      <section
+        ref={addToRefs}
+        className="py-20 bg-[#0d1933] relative opacity-0 translate-y-12 transition-all duration-700"
+      >
+        <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="home-section-header"
+            className="text-center mb-16"
           >
-            <h2 className="home-section-title">Featured Projects</h2>
-            <p className="home-section-description">
+            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
+              Featured Projects
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
               Explore our portfolio of successful projects across various
               industries and technologies
             </p>
           </motion.div>
 
           <motion.div
-            className="home-projects-grid"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -345,11 +431,11 @@ const Home = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="home-project-card home-scroll-reveal"
+                className="relative overflow-hidden rounded-2xl shadow-2xl transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/40 aspect-[3/4] w-full group"
               >
                 <img
                   alt={project.title}
-                  className="home-project-image"
+                  className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-110"
                   src={project.image}
                   onError={(e) => {
                     e.target.src =
@@ -357,51 +443,61 @@ const Home = () => {
                     e.target.alt = "Project placeholder image";
                   }}
                 />
-                <div className="home-project-overlay">
-                  <span className="home-project-category">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0d1933]/95 to-transparent flex flex-col justify-end p-8 opacity-100 group-hover:from-[#0d1933]/98 group-hover:to-transparent group-hover:to-60%">
+                  <span className="text-[#4a7dff] text-sm font-semibold mb-2 uppercase tracking-wider font-['Poppins'] opacity-100">
                     {project.category}
                   </span>
-                  <h3 className="home-project-name">{project.title}</h3>
+                  <h3 className="text-xl font-bold text-white leading-tight font-['Poppins'] opacity-100">
+                    {project.title}
+                  </h3>
                 </div>
               </motion.div>
             ))}
           </motion.div>
 
           <motion.div
-            className="home-view-all"
+            className="text-center mt-12"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
           >
-            <Link to="/portfolio">
-              <button className="home-view-all-button">
-                View All Projects
-                <ArrowRight size={20} />
-              </button>
+            <Link
+              to="/portfolio"
+              className="relative bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] text-white text-lg px-10 py-5 rounded-xl font-semibold inline-flex items-center gap-2 overflow-hidden transition-all duration-400 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/40 group"
+            >
+              <span className="relative z-10">View All Projects</span>
+              <ArrowRight size={20} className="relative z-10" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
             </Link>
           </motion.div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section ref={addToRefs} className="home-section home-stats-section">
-        <div className="home-container">
-          <div className="home-stats-content">
+      <section
+        ref={addToRefs}
+        className="py-20 bg-white relative opacity-0 translate-y-12 transition-all duration-700"
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="home-stats-title">Trusted by Global Clients</h2>
-              <p className="home-stats-description">
+              <h2 className="text-4xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
+                Trusted by Global Clients
+                <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-16 leading-relaxed font-['Poppins']">
                 We've delivered successful projects to clients across USA,
                 Europe, Asia, and beyond. Our commitment to excellence has made
                 us a preferred technology partner worldwide.
               </p>
 
               <motion.div
-                className="home-stats-grid"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -411,10 +507,18 @@ const Home = () => {
                   <motion.div
                     key={index}
                     variants={itemVariants}
-                    className="home-stat-card home-scroll-reveal"
+                    className="bg-white p-12 rounded-2xl border border-gray-100 shadow-xl transition-all duration-400 hover:-translate-y-2 hover:scale-105 hover:border-[#4a7dff] hover:shadow-2xl hover:shadow-blue-500/15 min-h-[200px] flex flex-col justify-center items-center relative overflow-hidden group"
                   >
-                    <div className="home-stat-number">{stat.number}</div>
-                    <div className="home-stat-label">{stat.label}</div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#4a7dff]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+
+                    <div className="relative z-10 w-full text-center">
+                      <span className="text-5xl md:text-6xl font-extrabold mb-4 bg-gradient-to-br from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] block leading-none group-hover:scale-110 transition-transform duration-300">
+                        {stat.number}
+                      </span>
+                      <span className="text-xl text-gray-600 font-semibold font-['Poppins'] block leading-relaxed group-hover:text-[#4a7dff] transition-colors duration-300">
+                        {stat.label}
+                      </span>
+                    </div>
                   </motion.div>
                 ))}
               </motion.div>
@@ -424,30 +528,100 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section ref={addToRefs} className="home-section home-cta-section">
-        <div className="home-container">
+      <section
+        ref={addToRefs}
+        className="py-20 bg-gradient-to-br from-[#0d1933] to-[#1a2b4d] relative overflow-hidden opacity-0 translate-y-12 transition-all duration-700"
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(circle at 20% 80%, rgba(74, 125, 255, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(58, 109, 240, 0.1) 0%, transparent 50%)
+            `,
+          }}
+        ></div>
+
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="text-center"
           >
-            <h2 className="home-cta-title">
+            <h2 className="text-4xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] leading-tight">
               Ready to Transform Your Idea Into Reality?
             </h2>
-            <p className="home-cta-description">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed font-['Poppins']">
               Let's collaborate and build something extraordinary together. Your
               next big thing starts here with Aitals Technologies.
             </p>
-            <Link to="/contact">
-              <button className="home-cta-button">
-                Start Your Project Today
-                <ArrowRight size={20} />
-              </button>
+            <Link
+              to="/contact"
+              className="relative bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] text-white text-lg px-10 py-6 rounded-xl font-bold inline-flex items-center gap-2 overflow-hidden transition-all duration-400 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/50 group"
+            >
+              <span className="relative z-10">Start Your Project Today</span>
+              <ArrowRight size={20} className="relative z-10" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
             </Link>
           </motion.div>
         </div>
       </section>
+
+      {/* Custom Styles */}
+      <style jsx>{`
+        @keyframes gradient-shift {
+          0%,
+          100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+        @keyframes fade-in-up {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes pulse-glow {
+          0%,
+          100% {
+            box-shadow: 0 0 20px rgba(74, 125, 255, 0.3);
+          }
+          50% {
+            box-shadow: 0 0 30px rgba(58, 109, 240, 0.5);
+          }
+        }
+        @keyframes spin-slow {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        .animate-gradient-shift {
+          animation: gradient-shift 3s ease-in-out infinite;
+        }
+        .animate-pulse-glow {
+          animation: pulse-glow 2s ease-in-out infinite;
+        }
+        .animate-spin-slow {
+          animation: spin-slow 20s linear infinite;
+        }
+
+        .bg-radial-gradient {
+          background: radial-gradient(
+            circle,
+            var(--tw-gradient-from) 0%,
+            var(--tw-gradient-to) 70%
+          );
+        }
+      `}</style>
     </>
   );
 };
