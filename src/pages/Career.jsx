@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
@@ -88,7 +87,7 @@ const Career = () => {
         <meta name="description" content="Join our innovative team at Aitals Technologies. Explore career opportunities in software development, design, and technology." />
       </Helmet>
 
-      <section className="pt-32 pb-20 gradient-bg text-white">
+      <section className="pt-32 pb-20 text-white" style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}>
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -125,9 +124,13 @@ const Career = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl text-center card-hover"
+                className="p-8 rounded-2xl text-center card-hover"
+                style={{background: 'linear-gradient(135deg, #EFF6FF, #EDE9FE)'}}
               >
-                <div className="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+                <div 
+                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+                  style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}
+                >
                   <benefit.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
@@ -138,7 +141,7 @@ const Career = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section className="py-20" style={{background: 'linear-gradient(135deg, #F9FAFB, #EFF6FF)'}}>
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -156,9 +159,10 @@ const Career = () => {
                   onClick={() => setSelectedDepartment(dept)}
                   className={`px-6 py-2 rounded-full font-medium transition-all ${
                     selectedDepartment === dept
-                      ? 'gradient-bg text-white shadow-lg'
+                      ? 'text-white shadow-lg'
                       : 'bg-white text-gray-700 hover:shadow-md'
                   }`}
+                  style={selectedDepartment === dept ? {background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'} : {}}
                 >
                   {dept}
                 </button>
@@ -204,7 +208,8 @@ const Career = () => {
                 </div>
 
                 <Button 
-                  className="w-full gradient-bg text-white"
+                  className="w-full text-white"
+                  style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}
                   onClick={() => handleApply(job.title)}
                 >
                   Apply Now
@@ -226,13 +231,19 @@ const Career = () => {
               <h2 className="text-4xl font-bold mb-6 gradient-text">Employee Testimonials</h2>
               
               <div className="space-y-6">
-                <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-xl">
+                <div 
+                  className="p-6 rounded-xl"
+                  style={{background: 'linear-gradient(135deg, #EFF6FF, #EDE9FE)'}}
+                >
                   <p className="text-gray-700 italic mb-4">
                     "Working at Aitals has been transformative. The culture of innovation and the opportunity 
                     to work on cutting-edge projects has accelerated my career growth tremendously."
                   </p>
                   <div className="flex items-center">
-                    <div className="w-12 h-12 gradient-bg rounded-full mr-4"></div>
+                    <div 
+                      className="w-12 h-12 rounded-full mr-4"
+                      style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}
+                    ></div>
                     <div>
                       <div className="font-bold">Ananya Reddy</div>
                       <div className="text-sm text-gray-600">Senior Developer</div>
@@ -240,13 +251,19 @@ const Career = () => {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-xl">
+                <div 
+                  className="p-6 rounded-xl"
+                  style={{background: 'linear-gradient(135deg, #EFF6FF, #EDE9FE)'}}
+                >
                   <p className="text-gray-700 italic mb-4">
                     "The work-life balance and flexible remote options make Aitals stand out. 
                     Plus, the team is incredibly supportive and collaborative."
                   </p>
                   <div className="flex items-center">
-                    <div className="w-12 h-12 gradient-bg rounded-full mr-4"></div>
+                    <div 
+                      className="w-12 h-12 rounded-full mr-4"
+                      style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}
+                    ></div>
                     <div>
                       <div className="font-bold">Michael Chen</div>
                       <div className="text-sm text-gray-600">UX Designer</div>
@@ -261,13 +278,13 @@ const Career = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <img alt="Team collaboration" className="w-full rounded-2xl shadow-2xl" src="https://images.unsplash.com/photo-1681184025442-1517cb9319c1" />
+              <img alt="Team collaboration" className="w-full rounded-2xl shadow-2xl" style={{height:'25rem' }} src="https://ap-southeast-2-seek-apac.graphassets.com/AEzBCRO50TYyqbV6XzRDQz/rM0PCe8OR2w85ySYZfAg" />
             </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="py-20 gradient-bg text-white">
+      <section className="py-20 text-white" style={{background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)'}}>
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -294,4 +311,3 @@ const Career = () => {
 };
 
 export default Career;
-  
