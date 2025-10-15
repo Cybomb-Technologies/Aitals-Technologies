@@ -257,8 +257,8 @@ const handleSubmit = async (e) => {
                     </div>
                     <div>
                       <h3 className="font-bold text-lg mb-1">Call Us</h3>
-                      <p className="text-gray-600">+91 1234567890</p>
-                      <p className="text-gray-600">+91 0987654321</p>
+                      <p className="text-gray-600">+91 9715092104</p>
+                      {/* <p className="text-gray-600">+91 0987654321</p> */}
                     </div>
                   </div>
                 </div>

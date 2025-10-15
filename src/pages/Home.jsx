@@ -271,10 +271,10 @@ const Home = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <Link
-              to="/contact"
-              className="relative bg-[#4a7dff] text-white text-lg px-8 py-6 rounded-xl font-semibold flex items-center gap-2 min-w-[220px] justify-center overflow-hidden transition-all duration-300 hover:bg-[#3a6df0] hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/30 group font-['Poppins']"
+              to="/services"
+              className="relative bg-[#4a7dff] text-white text-lg px-8 py-6 rounded-xl font-semibold flex items-center gap-2 min-w-[220px] justify-center overflow-hidden transition-all duration-300 hover:bg-[#3a6df0] hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/30 group"
             >
-              <span className="relative z-10">Start Your Project</span>
+              <span className="relative z-10">Our Services</span>
               <ArrowRight size={20} className="relative z-10" />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
             </Link>

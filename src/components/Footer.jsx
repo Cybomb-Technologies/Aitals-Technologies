@@ -17,12 +17,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              {/* Logo */}
-              <img
-                src="src/assets/logo.png"
-                alt="Aitals Technologies Logo"
-                className="h-8 w-auto object-contain"
-              />
+              <Link to="/">
+                <img
+                  src="src/assets/logo.png"
+                  alt="Aitals Technologies Logo"
+                  className="h-8 w-auto object-contain"
+                />
+              </Link>
             </div>
 
             <p className="text-gray-400 mb-4">
@@ -142,15 +143,15 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/services/cloud-devops"
+                  to="/services/ecommerce"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Cloud Solutions
+                  Ecommerce
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/services/ai-automation"
+                  to="/services/web-development"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   AI Integration
@@ -167,7 +168,8 @@ const Footer = () => {
               <li className="flex items-start space-x-2">
                 <MapPin className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
                 <span className="text-gray-400">
-                  123 Tech Park, Innovation Street, Chennai, India
+                  146, Sterling Rd, Nungambakkam, Chennai, Tamil Nadu, India -
+                  600034
                 </span>
               </li>
               <li className="flex items-center space-x-2">
@@ -181,12 +183,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                <a
-                  href="tel:+919715092104"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  +91 9715092104
-                </a>
+                <span className="text-gray-400">+91 9715092104</span>
               </li>
             </ul>
           </div>

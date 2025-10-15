@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import {
   Calendar, User, Clock, Share2, ArrowLeft, Heart, Eye,
   BookOpen, Tag, MessageCircle, Bookmark, ExternalLink,
-  Facebook, Twitter, Linkedin, Link2, Copy
+  Facebook, Twitter, Linkedin, Link2, Copy, Send, Check
 } from 'lucide-react';
 
 const BlogPost = () => {
@@ -20,6 +20,12 @@ const BlogPost = () => {
   const [isBookmarked,   setIsBookmarked]   = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
   const [copied,         setCopied]         = useState(false);
+
+  // Newsletter states
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [subscribeMessage, setSubscribeMessage] = useState('');
+  const [subscribeError, setSubscribeError] = useState('');
 
   // --- Memoized Fetch Functions ---
   const fetchBlogPost = useCallback(async () => {
@@ -240,6 +246,52 @@ const BlogPost = () => {
       }
     } catch (err) {
       console.error('Error bookmarking blog:', err);
+    }
+  };
+
+  // Newsletter subscription
+  const handleNewsletterSubscribe = async (e) => {
+    e.preventDefault();
+    
+    if (!newsletterEmail) {
+      setSubscribeError('Please enter your email address');
+      return;
+    }
+
+    if (!/\S+@\S+\.\S+/.test(newsletterEmail)) {
+      setSubscribeError('Please enter a valid email address');
+      return;
+    }
+
+    setIsSubscribing(true);
+    setSubscribeError('');
+    setSubscribeMessage('');
+
+    try {
+      const response = await fetch('/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          email: newsletterEmail,
+          source: 'blog'
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubscribeMessage(data.message || 'Successfully subscribed to our newsletter!');
+        setNewsletterEmail('');
+      } else {
+        setSubscribeError(data.message || 'Subscription failed. Please try again.');
+      }
+    } catch (err) {
+      console.error('Newsletter subscription error:', err);
+      setSubscribeError('Network error. Please try again.');
+    } finally {
+      setIsSubscribing(false);
     }
   };
 
@@ -637,16 +689,53 @@ const BlogPost = () => {
           <p className="text-xl text-gray-300 mb-8">
             Subscribe to get notified when we publish new content. No spam, unsubscribe anytime.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          
+          <form onSubmit={handleNewsletterSubscribe} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input
               type="email"
               placeholder="Enter your email"
+              value={newsletterEmail}
+              onChange={(e) => {
+                setNewsletterEmail(e.target.value);
+                setSubscribeError('');
+                setSubscribeMessage('');
+              }}
               className="flex-1 px-6 py-3 rounded-xl border border-gray-600 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              disabled={isSubscribing}
             />
-            <button className="px-8 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-colors duration-200 shadow-lg">
-              Subscribe
+            <button 
+              type="submit"
+              disabled={isSubscribing}
+              className="px-8 py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-colors duration-200 shadow-lg disabled:opacity-50 flex items-center justify-center gap-2"
+            >
+              {isSubscribing ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  Subscribing...
+                </>
+              ) : (
+                <>
+                  <Send className="w-5 h-5" />
+                  Subscribe
+                </>
+              )}
             </button>
-          </div>
+          </form>
+
+          {/* Success/Error Messages */}
+          {subscribeMessage && (
+            <div className="mt-4 p-4 bg-green-500/20 border border-green-400 rounded-2xl text-green-300 flex items-center justify-center gap-2">
+              <Check className="w-5 h-5" />
+              {subscribeMessage}
+            </div>
+          )}
+
+          {subscribeError && (
+            <div className="mt-4 p-4 bg-red-500/20 border border-red-400 rounded-2xl text-red-300">
+              {subscribeError}
+            </div>
+          )}
+
           <p className="text-sm text-gray-400 mt-4">
             Join 10,000+ readers getting insights every week
           </p>

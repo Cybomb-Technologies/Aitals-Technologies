@@ -1,49 +1,69 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Calendar, User, ArrowRight, Clock, Share2, BookOpen, Search, Filter, TrendingUp, Eye, Heart } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import {
+  Calendar,
+  User,
+  ArrowRight,
+  Clock,
+  Share2,
+  BookOpen,
+  Search,
+  Filter,
+  TrendingUp,
+  Eye,
+  Heart,
+  Send,
+  Check,
+} from "lucide-react";
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
   const [filteredBlogs, setFilteredBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [sortBy, setSortBy] = useState('newest');
+  const [error, setError] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [sortBy, setSortBy] = useState("newest");
   const [currentPage, setCurrentPage] = useState(1);
   const [blogsPerPage] = useState(9);
-  const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
+  const [viewMode, setViewMode] = useState("grid"); // 'grid' or 'list'
+
+  // Newsletter states
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [subscribeMessage, setSubscribeMessage] = useState("");
+  const [subscribeError, setSubscribeError] = useState("");
 
   // Fetch blogs from backend
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/api/blog');
-        
+        const response = await fetch("/api/blog");
+
         if (!response.ok) {
-          throw new Error('Failed to fetch blogs');
+          throw new Error("Failed to fetch blogs");
         }
-        
+
         const data = await response.json();
-        
+
         if (data.success) {
-          const blogsWithImages = data.data.map(blog => ({
+          const blogsWithImages = data.data.map((blog) => ({
             ...blog,
-            image: blog.image 
-              ? blog.image.startsWith('http') 
-                ? blog.image 
+            image: blog.image
+              ? blog.image.startsWith("http")
+                ? blog.image
                 : `${window.location.origin}${blog.image}`
-              : `https://picsum.photos/600/400?random=${blog._id}`
+              : `https://picsum.photos/600/400?random=${blog._id}`,
           }));
           setBlogs(blogsWithImages);
           setFilteredBlogs(blogsWithImages);
         } else {
-          throw new Error(data.message || 'Failed to load blogs');
+          throw new Error(data.message || "Failed to load blogs");
         }
       } catch (err) {
-        console.error('Error fetching blogs:', err);
-        setError('Failed to load blog posts. Please try again later.');
+        console.error("Error fetching blogs:", err);
+        setError("Failed to load blog posts. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -58,34 +78,38 @@ const Blog = () => {
 
     // Search filter
     if (searchTerm) {
-      filtered = filtered.filter(blog =>
-        blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        blog.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        blog.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (blog.tags && blog.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase())))
+      filtered = filtered.filter(
+        (blog) =>
+          blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          blog.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          blog.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (blog.tags &&
+            blog.tags.some((tag) =>
+              tag.toLowerCase().includes(searchTerm.toLowerCase())
+            ))
       );
     }
 
     // Category filter
-    if (selectedCategory !== 'all') {
-      filtered = filtered.filter(blog =>
-        blog.tags && blog.tags.includes(selectedCategory)
+    if (selectedCategory !== "all") {
+      filtered = filtered.filter(
+        (blog) => blog.tags && blog.tags.includes(selectedCategory)
       );
     }
 
     // Sort blogs
     switch (sortBy) {
-      case 'newest':
+      case "newest":
         filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         break;
-      case 'oldest':
+      case "oldest":
         filtered.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
         break;
-      case 'popular':
+      case "popular":
         // Assuming you have viewCount field in your blog data
         filtered.sort((a, b) => (b.viewCount || 0) - (a.viewCount || 0));
         break;
-      case 'trending':
+      case "trending":
         // Assuming you have likeCount field in your blog data
         filtered.sort((a, b) => (b.likeCount || 0) - (a.likeCount || 0));
         break;
@@ -98,15 +122,18 @@ const Blog = () => {
   }, [searchTerm, selectedCategory, sortBy, blogs]);
 
   // Extract unique categories from tags
-  const categories = ['all', ...new Set(blogs.flatMap(blog => blog.tags || []))];
+  const categories = [
+    "all",
+    ...new Set(blogs.flatMap((blog) => blog.tags || [])),
+  ];
 
   // Format date
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
     });
   };
 
@@ -128,9 +155,9 @@ const Blog = () => {
   const handleShare = async (blog, e) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     const shareUrl = `${window.location.origin}/blog/${blog.slug || blog._id}`;
-    
+
     if (navigator.share) {
       try {
         await navigator.share({
@@ -139,18 +166,110 @@ const Blog = () => {
           url: shareUrl,
         });
       } catch (err) {
-        console.log('Error sharing:', err);
+        console.log("Error sharing:", err);
       }
     } else {
       try {
         await navigator.clipboard.writeText(shareUrl);
-        alert('Link copied to clipboard!');
+        alert("Link copied to clipboard!");
       } catch (err) {
-        console.error('Failed to copy:', err);
+        console.error("Failed to copy:", err);
       }
     }
   };
 
+  // Newsletter subscription
+  const handleNewsletterSubscribe = async (e) => {
+    e.preventDefault();
+
+    if (!newsletterEmail) {
+      setSubscribeError("Please enter your email address");
+      return;
+    }
+
+    if (!/\S+@\S+\.\S+/.test(newsletterEmail)) {
+      setSubscribeError("Please enter a valid email address");
+      return;
+    }
+
+    setIsSubscribing(true);
+    setSubscribeError("");
+    setSubscribeMessage("");
+
+    try {
+      const response = await fetch("/api/newsletter/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: newsletterEmail,
+          source: "blog",
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubscribeMessage(
+          data.message || "Successfully subscribed to our newsletter!"
+        );
+        setNewsletterEmail("");
+      } else {
+        setSubscribeError(
+          data.message || "Subscription failed. Please try again."
+        );
+      }
+    } catch (err) {
+      console.error("Newsletter subscription error:", err);
+      setSubscribeError("Network error. Please try again.");
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
+
+  // Like functionality
+  const handleLike = async (blogId, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    try {
+      const response = await fetch(`/api/blog/${blogId}/like`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        // Update the local state to reflect the like
+        setBlogs((prevBlogs) =>
+          prevBlogs.map((blog) =>
+            blog._id === blogId
+              ? {
+                  ...blog,
+                  likeCount: (blog.likeCount || 0) + 1,
+                  liked: true,
+                }
+              : blog
+          )
+        );
+        setFilteredBlogs((prevBlogs) =>
+          prevBlogs.map((blog) =>
+            blog._id === blogId
+              ? {
+                  ...blog,
+                  likeCount: (blog.likeCount || 0) + 1,
+                  liked: true,
+                }
+              : blog
+          )
+        );
+      }
+    } catch (err) {
+      console.error("Error liking blog:", err);
+    }
+  };
 
   if (loading) {
     return (
@@ -171,7 +290,7 @@ const Blog = () => {
       <section className="relative bg-gradient-to-r from-gray-900 to-indigo-900 text-white py-24 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-indigo-600/20 to-purple-600/20"></div>
-        
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-white/10 rounded-2xl backdrop-blur-sm mb-8">
@@ -181,8 +300,8 @@ const Blog = () => {
               Aitals Blog
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Discover insights, tutorials, and cutting-edge technology updates from our expert team. 
-              Stay ahead in the digital landscape.
+              Discover insights, tutorials, and cutting-edge technology updates
+              from our expert team. Stay ahead in the digital landscape.
             </p>
           </div>
         </div>
@@ -209,11 +328,11 @@ const Blog = () => {
               {/* View Toggle */}
               <div className="flex bg-gray-100 rounded-xl p-1">
                 <button
-                  onClick={() => setViewMode('grid')}
+                  onClick={() => setViewMode("grid")}
                   className={`p-2 rounded-lg transition-all duration-200 ${
-                    viewMode === 'grid' 
-                      ? 'bg-white text-indigo-600 shadow-sm' 
-                      : 'text-gray-600 hover:text-gray-900'
+                    viewMode === "grid"
+                      ? "bg-white text-indigo-600 shadow-sm"
+                      : "text-gray-600 hover:text-gray-900"
                   }`}
                 >
                   <div className="w-5 h-5 grid grid-cols-2 gap-0.5">
@@ -224,11 +343,11 @@ const Blog = () => {
                   </div>
                 </button>
                 <button
-                  onClick={() => setViewMode('list')}
+                  onClick={() => setViewMode("list")}
                   className={`p-2 rounded-lg transition-all duration-200 ${
-                    viewMode === 'list' 
-                      ? 'bg-white text-indigo-600 shadow-sm' 
-                      : 'text-gray-600 hover:text-gray-900'
+                    viewMode === "list"
+                      ? "bg-white text-indigo-600 shadow-sm"
+                      : "text-gray-600 hover:text-gray-900"
                   }`}
                 >
                   <div className="w-5 h-5 flex flex-col justify-between">
@@ -256,30 +375,31 @@ const Blog = () => {
           {/* Category Filters */}
           <div className="flex flex-wrap gap-3 mt-6">
             <button
-              onClick={() => setSelectedCategory('all')}
+              onClick={() => setSelectedCategory("all")}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
-                selectedCategory === 'all'
-                  ? 'bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-500/25'
-                  : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-gray-400'
+                selectedCategory === "all"
+                  ? "bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-500/25"
+                  : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-gray-400"
               }`}
             >
               All Topics
             </button>
-            {categories.slice(0, 8).map(category => (
-              category !== 'all' && (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
-                    selectedCategory === category
-                      ? 'bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-500/25'
-                      : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-gray-400'
-                  }`}
-                >
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </button>
-              )
-            ))}
+            {categories.slice(0, 8).map(
+              (category) =>
+                category !== "all" && (
+                  <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
+                      selectedCategory === category
+                        ? "bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-500/25"
+                        : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 hover:border-gray-400"
+                    }`}
+                  >
+                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                  </button>
+                )
+            )}
             {categories.length > 8 && (
               <button className="px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-300 hover:bg-gray-50">
                 +{categories.length - 8} More
@@ -310,16 +430,19 @@ const Blog = () => {
                 Latest Articles
               </h2>
               <p className="text-gray-600">
-                {filteredBlogs.length} {filteredBlogs.length === 1 ? 'article' : 'articles'} found
+                {filteredBlogs.length}{" "}
+                {filteredBlogs.length === 1 ? "article" : "articles"} found
                 {searchTerm && ` for "${searchTerm}"`}
-                {selectedCategory !== 'all' && ` in ${selectedCategory}`}
+                {selectedCategory !== "all" && ` in ${selectedCategory}`}
               </p>
             </div>
-            
+
             {filteredBlogs.length > 0 && (
               <div className="flex items-center gap-2 text-sm text-gray-500">
                 <Filter className="w-4 h-4" />
-                <span>Page {currentPage} of {totalPages}</span>
+                <span>
+                  Page {currentPage} of {totalPages}
+                </span>
               </div>
             )}
           </div>
@@ -333,16 +456,15 @@ const Blog = () => {
                 No articles found
               </h3>
               <p className="text-gray-600 max-w-md mx-auto mb-8">
-                {searchTerm || selectedCategory !== 'all' 
-                  ? 'Try adjusting your search terms or browse different categories.'
-                  : 'Our team is working on new content. Check back soon!'
-                }
+                {searchTerm || selectedCategory !== "all"
+                  ? "Try adjusting your search terms or browse different categories."
+                  : "Our team is working on new content. Check back soon!"}
               </p>
-              {(searchTerm || selectedCategory !== 'all') && (
+              {(searchTerm || selectedCategory !== "all") && (
                 <button
                   onClick={() => {
-                    setSearchTerm('');
-                    setSelectedCategory('all');
+                    setSearchTerm("");
+                    setSelectedCategory("all");
                   }}
                   className="px-6 py-3 bg-indigo-600 text-white font-medium rounded-xl hover:bg-indigo-700 transition-colors duration-200 shadow-lg shadow-indigo-500/25"
                 >
@@ -353,29 +475,40 @@ const Blog = () => {
           ) : (
             <>
               {/* Blog Grid/List */}
-              <div className={
-                viewMode === 'grid' 
-                  ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                  : "grid grid-cols-1 gap-6"
-              }>
-                {currentBlogs.map(blog => (
-                <Link
+              <div
+                className={
+                  viewMode === "grid"
+                    ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                    : "grid grid-cols-1 gap-6"
+                }
+              >
+                {currentBlogs.map((blog) => (
+                  <Link
                     key={blog._id}
                     to={`/blog/${blog.slug || blog._id}`}
                     className="group block"
                   >
-                    <article className={`
+                    <article
+                      className={`
                       bg-white rounded-2xl overflow-hidden transition-all duration-300 border border-gray-200 hover:border-indigo-300
-                      ${viewMode === 'grid' 
-                        ? 'shadow-sm hover:shadow-2xl h-full flex flex-col' 
-                        : 'shadow-xs hover:shadow-lg flex flex-col sm:flex-row'
+                      ${
+                        viewMode === "grid"
+                          ? "shadow-sm hover:shadow-2xl h-full flex flex-col"
+                          : "shadow-xs hover:shadow-lg flex flex-col sm:flex-row"
                       }
-                    `}>
+                    `}
+                    >
                       {/* Blog Image */}
-                      <div className={`
+                      <div
+                        className={`
                         relative overflow-hidden bg-gray-200
-                        ${viewMode === 'grid' ? 'h-48' : 'sm:w-48 sm:h-48 h-48 sm:h-auto'}
-                      `}>
+                        ${
+                          viewMode === "grid"
+                            ? "h-48"
+                            : "sm:w-48 sm:h-48 h-48 sm:h-auto"
+                        }
+                      `}
+                      >
                         <img
                           src={blog.image}
                           alt={blog.title}
@@ -386,7 +519,7 @@ const Blog = () => {
                         />
                         <div className="absolute top-4 left-4">
                           <span className="bg-indigo-600 text-white px-3 py-1.5 rounded-full text-xs font-medium shadow-lg">
-                            {blog.tags?.[0] || 'General'}
+                            {blog.tags?.[0] || "General"}
                           </span>
                         </div>
                         <div className="absolute bottom-4 right-4 flex gap-2">
@@ -399,7 +532,11 @@ const Blog = () => {
                       </div>
 
                       {/* Blog Content */}
-                      <div className={`flex-1 p-6 ${viewMode === 'list' ? 'sm:flex-1' : ''}`}>
+                      <div
+                        className={`flex-1 p-6 ${
+                          viewMode === "list" ? "sm:flex-1" : ""
+                        }`}
+                      >
                         <div className="flex items-center text-sm text-gray-500 mb-3 flex-wrap gap-2">
                           <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-1" />
@@ -408,7 +545,9 @@ const Blog = () => {
                           <span>•</span>
                           <div className="flex items-center">
                             <Clock className="w-4 h-4 mr-1" />
-                            <span>{blog.readTime || calculateReadTime(blog.content)}</span>
+                            <span>
+                              {blog.readTime || calculateReadTime(blog.content)}
+                            </span>
                           </div>
                           {(blog.viewCount > 0 || blog.likeCount > 0) && (
                             <>
@@ -442,34 +581,40 @@ const Blog = () => {
                         <div className="flex items-center justify-between mt-6">
                           <div className="flex items-center">
                             <div className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3">
-                              {blog.author?.charAt(0) || 'A'}
+                              {blog.author?.charAt(0) || "A"}
                             </div>
                             <div>
                               <span className="text-sm font-medium text-gray-900 block">
-                                {blog.author || 'Anonymous'}
+                                {blog.author || "Anonymous"}
                               </span>
                               {blog.authorRole && (
-                                <span className="text-xs text-gray-500">{blog.authorRole}</span>
+                                <span className="text-xs text-gray-500">
+                                  {blog.authorRole}
+                                </span>
                               )}
                             </div>
                           </div>
 
                           <div className="flex items-center space-x-3">
-                            <button 
+                            <button
                               className="text-gray-400 hover:text-indigo-600 transition-colors duration-200 p-2 rounded-lg hover:bg-gray-100"
                               onClick={(e) => handleShare(blog, e)}
                             >
                               <Share2 className="w-4 h-4" />
                             </button>
-                            <button 
+                            <button
                               className={`p-2 rounded-lg transition-colors duration-200 ${
-                                blog.liked 
-                                  ? 'text-red-500 hover:text-red-600 hover:bg-red-50' 
-                                  : 'text-gray-400 hover:text-gray-600 hover:bg-gray-100'
+                                blog.liked
+                                  ? "text-red-500 hover:text-red-600 hover:bg-red-50"
+                                  : "text-gray-400 hover:text-gray-600 hover:bg-gray-100"
                               }`}
                               onClick={(e) => handleLike(blog._id, e)}
                             >
-                              <Heart className={`w-4 h-4 ${blog.liked ? 'fill-current' : ''}`} />
+                              <Heart
+                                className={`w-4 h-4 ${
+                                  blog.liked ? "fill-current" : ""
+                                }`}
+                              />
                             </button>
                           </div>
                         </div>
@@ -477,7 +622,7 @@ const Blog = () => {
                         {/* Tags */}
                         {blog.tags && blog.tags.length > 0 && (
                           <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-100">
-                            {blog.tags.slice(0, 3).map(tag => (
+                            {blog.tags.slice(0, 3).map((tag) => (
                               <span
                                 key={tag}
                                 className="px-2.5 py-1 bg-gray-100 text-gray-600 rounded-lg text-xs font-medium hover:bg-gray-200 transition-colors duration-200"
@@ -502,13 +647,15 @@ const Blog = () => {
               {totalPages > 1 && (
                 <div className="flex justify-center items-center gap-2 mt-16">
                   <button
-                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                    onClick={() =>
+                      setCurrentPage((prev) => Math.max(prev - 1, 1))
+                    }
                     disabled={currentPage === 1}
                     className="p-3 rounded-xl border border-gray-300 text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                   >
                     <ArrowRight className="w-5 h-5 rotate-180" />
                   </button>
-                  
+
                   {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
                     let pageNum;
                     if (totalPages <= 5) {
@@ -520,24 +667,26 @@ const Blog = () => {
                     } else {
                       pageNum = currentPage - 2 + i;
                     }
-                    
+
                     return (
                       <button
                         key={pageNum}
                         onClick={() => setCurrentPage(pageNum)}
                         className={`w-12 h-12 rounded-xl font-medium transition-all duration-200 ${
                           currentPage === pageNum
-                            ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/25'
-                            : 'border border-gray-300 text-gray-600 hover:bg-gray-50'
+                            ? "bg-indigo-600 text-white shadow-lg shadow-indigo-500/25"
+                            : "border border-gray-300 text-gray-600 hover:bg-gray-50"
                         }`}
                       >
                         {pageNum}
                       </button>
                     );
                   })}
-                  
+
                   <button
-                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                    onClick={() =>
+                      setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                    }
                     disabled={currentPage === totalPages}
                     className="p-3 rounded-xl border border-gray-300 text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                   >
@@ -556,26 +705,70 @@ const Blog = () => {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 rounded-2xl backdrop-blur-sm mb-6">
             <TrendingUp className="w-8 h-8 text-white" />
           </div>
-          <h2 className="text-4xl font-bold mb-4">
-            Stay Ahead of the Curve
-          </h2>
+          <h2 className="text-4xl font-bold mb-4">Stay Ahead of the Curve</h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Get exclusive access to our latest research, industry insights, and expert analysis. 
-            Join thousands of professionals who read our newsletter.
+            Get exclusive access to our latest research, industry insights, and
+            expert analysis. Join thousands of professionals who read our
+            newsletter.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+
+          <form
+            onSubmit={handleNewsletterSubscribe}
+            className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
+          >
             <input
               type="email"
               placeholder="Enter your work email"
+              value={newsletterEmail}
+              onChange={(e) => {
+                setNewsletterEmail(e.target.value);
+                setSubscribeError("");
+                setSubscribeMessage("");
+              }}
               className="flex-1 px-6 py-4 rounded-2xl border border-gray-600 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-3 focus:ring-indigo-500/30 backdrop-blur-sm"
+              disabled={isSubscribing}
             />
-            <button className="px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-2xl hover:from-indigo-600 hover:to-purple-700 transition-all duration-200 shadow-lg shadow-indigo-500/25">
-              Subscribe
+            <button
+              type="submit"
+              disabled={isSubscribing}
+              className="px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-2xl hover:from-indigo-600 hover:to-purple-700 transition-all duration-200 shadow-lg shadow-indigo-500/25 disabled:opacity-50 flex items-center justify-center gap-2"
+            >
+              {isSubscribing ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  Subscribing...
+                </>
+              ) : (
+                <>
+                  <Send className="w-5 h-5" />
+                  Subscribe
+                </>
+              )}
             </button>
-          </div>
+          </form>
+
+          {/* Success/Error Messages */}
+          {subscribeMessage && (
+            <div className="mt-4 p-4 bg-green-500/20 border border-green-400 rounded-2xl text-green-300 flex items-center justify-center gap-2">
+              <Check className="w-5 h-5" />
+              {subscribeMessage}
+            </div>
+          )}
+
+          {subscribeError && (
+            <div className="mt-4 p-4 bg-red-500/20 border border-red-400 rounded-2xl text-red-300">
+              {subscribeError}
+            </div>
+          )}
+
           <p className="text-sm text-gray-400 mt-4">
-            No spam, unsubscribe at any time. Read our{' '}
-            <a href="/privacy" className="text-indigo-300 hover:text-white underline">Privacy Policy</a>
+            No spam, unsubscribe at any time. Read our{" "}
+            <a
+              href="/privacy-policy"
+              className="text-indigo-300 hover:text-white underline"
+            >
+              Privacy Policy
+            </a>
           </p>
         </div>
       </section>
