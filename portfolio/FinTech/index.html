@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cybomb— FinTech Solutions</title>
+
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  
+  <!-- Site Styles -->
+  <style>
+    :root {
+      --primary: #0b2545;
+      --secondary: #00d4ff;
+      --accent: #ffc107;
+      --light-bg: #f8f9fa;
+      --dark-bg: #112b4a;
+      --text-light: #f8f9fa;
+      --text-dark: #333;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    img {
+      max-width: 100%;
+      display: block;
+    }
+    
+    /* ===== NAVBAR ===== */
+    .navbar {
+      background-color: var(--primary) !important;
+      padding: 0.8rem 0;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .navbar-brand {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-light) !important;
+    }
+    
+    .navbar-brand .logo {
+      height: 40px;
+      width: auto;
+    }
+    
+    .navbar-nav .nav-link {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #e0e6ed !important;
+      padding: 0.5rem 1rem;
+      transition: color 0.3s ease, background-color 0.3s ease;
+      border-radius: 5px;
+    }
+    
+    .navbar-nav .nav-link:hover {
+      color: var(--secondary) !important;
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    .navbar-nav .nav-link.active {
+      color: var(--secondary) !important;
+      font-weight: 600;
+    }
+    
+    .navbar-toggler {
+      border: none;
+      outline: none;
+      
+    }
+    
+    .navbar-toggler-icon {
+      filter: invert(100%);
+    }
+    
+    /* ===== HERO SECTION ===== */
+    .hero {
+      background:
+                  url('images/cryptocurency-distribution-concept.jpg') center/cover no-repeat;
+      color: var(--text-light);
+      text-align: center;
+      padding: 150px 20px;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .btn {
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary-custom {
+      background-color: var(--secondary);
+      color: var(--primary);
+      border: none;
+    }
+    
+    .btn-primary-custom:hover {
+      background-color: #00b3d6;
+      transform: translateY(-2px);
+    }
+    
+    .btn-outline-light-custom {
+      background: transparent;
+      border: 2px solid var(--text-light);
+      color: var(--text-light);
+    }
+    
+    .btn-outline-light-custom:hover {
+      background: var(--text-light);
+      color: var(--primary);
+    }
+    
+    /* ===== SECTION STYLES ===== */
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .section-title h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+    
+    .section-title h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background-color: var(--secondary);
+      border-radius: 2px;
+    }
+    
+    .section-title p {
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    /* ===== SERVICES ===== */
+    .services {
+      padding: 100px 0;
+    }
+    
+    .service-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 30px 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+      text-align: center;
+      border: 1px solid rgba(0,0,0,0.03);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .service-card:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--secondary), var(--accent));
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+    
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2rem;
+      color: white;
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+    }
+    
+    .service-card h5 {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    
+    .service-card p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+    
+    /* ===== STATS ===== */
+    .stats {
+      background-color: var(--primary);
+      padding: 80px 0;
+    }
+    
+    .stat-item {
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .stat-icon {
+      font-size: 3rem;
+      color: var(--secondary);
+      margin-bottom: 15px;
+    }
+    
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--text-light);
+      margin-bottom: 10px;
+    }
+    
+    .stat-text {
+      color: rgba(255,255,255,0.8);
+      font-size: 1.1rem;
+    }
+    
+    /* ===== CONSULTATION ===== */
+    .consultation {
+      padding: 100px 0;
+      background-color: var(--light-bg);
+    }
+    
+    .consultation-content h3 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    
+    .consultation-content p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 30px;
+    }
+    
+    .consultation-list {
+      margin-bottom: 30px;
+    }
+    
+    .consultation-list li {
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .consultation-list i {
+      color: var(--secondary);
+      margin-right: 10px;
+      margin-top: 5px;
+    }
+    
+    .consultation-form {
+      background: #fff;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    
+    .form-control {
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .form-control:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 0.2rem rgba(0, 212, 255, 0.25);
+    }
+    
+    .btn-submit {
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      color: var(--primary);
+      border: none;
+      padding: 15px;
+      font-weight: 600;
+      border-radius: 8px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    /* ===== TECHNOLOGIES ===== */
+    .technologies {
+      background-color: var(--dark-bg);
+      padding: 100px 0;
+    }
+    
+    .tech-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      padding: 30px 25px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .tech-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      background: rgba(255,255,255,0.08);
+    }
+    
+    .tech-icon {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    
+    .tech-card h5 {
+      color: var(--text-light);
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    
+    .tech-card p {
+      color: rgba(255,255,255,0.7);
+    }
+    
+    /* ===== WHY US ===== */
+    .why-us {
+      padding: 100px 0;
+    }
+    
+    .advantage-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .advantage-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .advantage-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+    
+    .advantage-content h6 {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+    
+    /* ===== HIRING MODELS ===== */
+    .hiring-models {
+      background-color: var(--primary);
+      padding: 100px 0;
+    }
+    
+    .hiring-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+    }
+    
+    .hiring-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+    
+    .hiring-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+    
+    .hiring-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .hiring-card h4 {
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .hiring-card p {
+      color: #666;
+      margin-bottom: 20px;
+    }
+    
+    .hiring-link {
+      color: var(--secondary);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .hiring-link:hover {
+      color: #00b3d6;
+    }
+    
+    /* ===== TRUSTED BY ===== */
+    .trusted-by {
+      padding: 80px 0;
+      background-color: #fff;
+    }
+    
+    .trusted-title {
+      font-size: 2rem;
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 50px;
+      font-weight: 700;
+    }
+    
+    .partner-logo {
+      height: 60px;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease;
+    }
+    
+    .partner-logo:hover {
+      filter: grayscale(0%);
+    }
+    
+    .partner-name {
+      font-weight: 600;
+      color: #666;
+      margin-top: 10px;
+    }
+    
+    /* ===== CLIENT BADGES ===== */
+    .client-badges {
+      padding: 80px 0;
+    }
+    
+    .badge-tile {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px 15px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    .badge-tile:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    /* ===== CTA ===== */
+    .cta {
+      background: linear-gradient(135deg, var(--primary), var(--dark-bg));
+      padding: 100px 0;
+      text-align: center;
+      color: var(--text-light);
+    }
+    
+    .cta h3 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    
+    .cta p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .btn-cta {
+      background: var(--accent);
+      color: var(--primary);
+      border: none;
+      padding: 15px 30px;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-cta:hover {
+      background: #e6ac00;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    /* ===== FAQ ===== */
+    .faq {
+      padding: 100px 0;
+      background-color: var(--light-bg);
+    }
+    
+    .faq-accordion .accordion-item {
+      border: none;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .faq-accordion .accordion-button {
+      background: #fff;
+      border: none;
+      padding: 20px 25px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    .faq-accordion .accordion-button:not(.collapsed) {
+      background: rgba(0, 212, 255, 0.1);
+      color: var(--primary);
+      box-shadow: none;
+    }
+    
+    .faq-accordion .accordion-button:focus {
+      box-shadow: none;
+      border: none;
+    }
+    
+    .faq-accordion .accordion-body {
+      padding: 20px 25px;
+      color: #666;
+    }
+    
+    .faq-icon {
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+    
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--primary);
+      color: var(--text-light);
+      padding: 80px 0 30px;
+    }
+    
+    .footer-brand {
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+    
+    .footer-about {
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 30px;
+    }
+    
+    .footer-social {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .footer-social a {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-social a:hover {
+      color: var(--secondary);
+    }
+    
+    .footer-heading {
+      color: var(--secondary);
+      font-weight: 600;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+    
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-links a {
+      color: rgba(255,255,255,0.7);
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--secondary);
+    }
+    
+    .footer-contact {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-contact li {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .footer-contact i {
+      color: var(--secondary);
+      margin-right: 10px;
+      margin-top: 5px;
+    }
+    
+    .footer-contact a {
+      color: rgba(255,255,255,0.7);
+      transition: color 0.3s ease;
+    }
+    
+    .footer-contact a:hover {
+      color: var(--secondary);
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 30px;
+      margin-top: 50px;
+      text-align: center;
+      color: rgba(255,255,255,0.5);
+    }
+    
+    .footer-bottom a {
+      color: rgba(255,255,255,0.7);
+      transition: color 0.3s ease;
+    }
+    
+    .footer-bottom a:hover {
+      color: var(--secondary);
+    }
+    
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 991px) {
+      .navbar-nav {
+        background-color: white; /* Changed from black to white */
+        padding: 1rem;
+        border-radius: 5px;
+      }
+
+      .navbar-nav .nav-link {
+        padding: 0.5rem 0.8rem;
+        color: var(--primary) !important; /* Changed text color for better contrast */
+      }
+
+      .navbar-nav .nav-link:hover {
+        color: var(--secondary) !important;
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      .navbar-nav .nav-link.active {
+        color: var(--secondary) !important;
+        font-weight: 600;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .section-title h2,
+      .consultation-content h3,
+      .cta h3 {
+        font-size: 2rem;
+      }
+    }
+
+    /* =============================
+   MOBILE VIEW OPTIMIZATION
+   ============================= */
+
+@media (max-width: 768px) {
+
+/* Navbar */
+.navbar {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.navbar-brand {
+  margin-bottom: 0.75rem;
+}
+
+.navbar-nav {
+  width: 100%;
+  background-color: var(--primary);
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.navbar-nav .nav-link {
+  display: block;
+  padding: 0.6rem 0;
+  text-align: center;
+}
+
+/* Hero Section */
+.hero {
+  padding: 100px 20px 80px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  line-height: 1.3;
+}
+
+.hero p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.button-group,
+.mt-4 {
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.button-group .btn,
+.mt-4 .btn {
+  width: 100%;
+  max-width: 280px;
+  text-align: center;
+}
+
+/* Sections */
+.section-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-title h2 {
+  font-size: 1.75rem;
+}
+
+/* Service / Tech / Advantage / Hiring Cards */
+.service-card,
+.tech-card,
+.advantage-card,
+.hiring-card {
+  width: 100%;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* Consultation Form */
+.consultation-content {
+  text-align: center;
+}
+
+.consultation-form {
+  width: 100%;
+  padding: 1rem;
+}
+
+/* CTA Section */
+.cta {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.cta h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.cta p {
+  font-size: 1rem;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 30px 15px;
+}
+
+footer .footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+footer .footer-links a {
+  font-size: 0.95rem;
+}
+
+/* General fixes */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+}
+
+    
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="images/Original(1).png" alt="Cybomb" class="logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div id="navMenu" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Solutions</a></li>
+          <li class="nav-item"><a class="nav-link" href="#consult">Consultation</a></li>
+          <li class="nav-item"><a class="nav-link" href="#frameworks">Tech</a></li>
+          <li class="nav-item"><a class="nav-link" href="#why-us">Why Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#process">Process</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <div class="container hero-content">
+      <h1>Empowering your financial future with cutting-edge fintech solutions</h1>
+      <p>Secure, seamless, and intelligent solutions for your money — anytime, anywhere.</p>
+      <div class="mt-4">
+        <a href="#consult" class="btn btn-primary-custom btn-lg me-2">Get Started Now</a>
+        <a href="#services" class="btn btn-outline-light-custom btn-lg">Explore Solutions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>End-to-End Cybomb Solutions</h2>
+        <p>We blend security, innovation, and simplicity to help you grow with confidence.</p>
+      </div>
+  
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="bi bi-bank"></i>
+            </div>
+            <h5>Digital Banking Solutions</h5>
+            <p>Enhance CX, streamline ops, and ensure secure transactions tailored to modern banking.</p>
+          </div>
+        </div>
+  
+        <div class="col-md-6 col-lg-4">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="bi bi-credit-card-2-front"></i>
+            </div>
+            <h5>Seamless Payment Gateway Integration</h5>
+            <p>Integrate secure and efficient gateways to enable instant, global transactions.</p>
+          </div>
+        </div>
+  
+        <div class="col-md-6 col-lg-4">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="bi bi-currency-exchange"></i>
+            </div>
+            <h5>Cross-Border Payment Solutions</h5>
+            <p>Global money movement across borders with compliance and transparency.</p>
+          </div>
+        </div>
+  
+        <div class="col-md-6 col-lg-4">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="bi bi-plug"></i>
+            </div>
+            <h5>Open Banking Expertise</h5>
+            <p>Secure APIs and integrations to bring all your finances into one experience.</p>
+          </div>
+        </div>
+  
+        <div class="col-md-6 col-lg-4">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="bi bi-wallet2"></i>
+            </div>
+            <h5>Advanced Digital Wallets</h5>
+            <p>Feature-rich wallets with KYC, spending controls, cards, and loyalty.</p>
+          </div>
+        </div>
+  
+        <div class="col-md-6 col-lg-4">
+          <div class="service-card">
+            <div class="service-icon">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <h5>Innovative RegTech Solutions</h5>
+            <p>Automated compliance checks, risk management, and regulatory reporting.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="container">
+      <div class="row text-center g-4">
+        <div class="col-md-4">
+          <div class="stat-item">
+            <div class="stat-icon">
+              <i class="bi bi-people-fill"></i>
+            </div>
+            <div class="stat-number">600+</div>
+            <div class="stat-text">In-House Web/App Developers</div>
+          </div>
+        </div>
+  
+        <div class="col-md-4">
+          <div class="stat-item">
+            <div class="stat-icon">
+              <i class="bi bi-graph-up-arrow"></i>
+            </div>
+            <div class="stat-number">70%</div>
+            <div class="stat-text">Average Savings on Dev Costs</div>
+          </div>
+        </div>
+  
+        <div class="col-md-4">
+          <div class="stat-item">
+            <div class="stat-icon">
+              <i class="bi bi-globe2"></i>
+            </div>
+            <div class="stat-number">14K+</div>
+            <div class="stat-text">Websites in the Last 2 Decades</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSULTATION FORM -->
+  <section id="consult" class="consultation">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+          <div class="consultation-content">
+            <h3>Book Free Consultation</h3>
+            <p>Fill out the form and our experts will contact you within 24 hours.</p>
+            <ul class="consultation-list">
+              <li><i class="bi bi-check2-circle"></i> Partnered with Startups & Fortune 500 Companies</li>
+              <li><i class="bi bi-check2-circle"></i> Secure, scalable, high-performance solutions</li>
+              <li><i class="bi bi-check2-circle"></i> Flexible engagement models</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="consultation-form">
+            <form>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Full Name*</label>
+                  <input type="text" class="form-control" required />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Email*</label>
+                  <input type="email" class="form-control" required />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Phone Number*</label>
+                  <input type="tel" class="form-control" required />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Company Name</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Your Requirement*</label>
+                  <textarea class="form-control" rows="4" required></textarea>
+                </div>
+              </div>
+              <div class="d-grid mt-4">
+                <button class="btn btn-submit" type="submit">Request Callback</button>
+              </div>
+              <small class="text-muted d-block mt-2 text-center">We respect your privacy. No spam—ever.</small>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRAMEWORKS / TECH -->
+  <section id="frameworks" class="technologies">
+    <div class="container">
+      <div class="section-title text-white">
+        <h2 style="color: white;">Leading Fintech Technologies We Excel In</h2>
+<p style="color: white;">We leverage cutting-edge stacks to build dynamic, high-performance finance apps.</p>
+
+      </div>
+  
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="tech-card">
+            <div class="tech-icon">
+              <i class="bi bi-link-45deg"></i>
+            </div>
+            <h5>Blockchain Technology</h5>
+            <p>Secure and transparent transaction processing.</p>
+          </div>
+        </div>
+  
+        <div class="col-md-6 col-lg-3">
+          <div class="tech-card">
+            <div class="tech-icon">
+              <i class="bi bi-cash-coin"></i>
+            </div>
+            <h5>Cryptocurrency</h5>
+            <p>Digital currency development & integrations.</p>
+          </div>
+        </div>
+  
+        <div class="col-md-6 col-lg-3">
+          <div class="tech-card">
+            <div class="tech-icon">
+              <i class="bi bi-cpu"></i>
+            </div>
+            <h5>Artificial Intelligence</h5>
+            <p>Advanced analytics and decision-making.</p>
+          </div>
+        </div>
+  
+        <div class="col-md-6 col-lg-3">
+          <div class="tech-card">
+            <div class="tech-icon">
+              <i class="bi bi-diagram-3"></i>
+            </div>
+            <h5>APIs & Integrations</h5>
+            <p>Seamless connectivity with financial systems.</p>
+          </div>
+        </div>
+  
+        <div class="col-md-6 col-lg-3">
+          <div class="tech-card">
+            <div class="tech-icon">
+              <i class="bi bi-cloud-arrow-up"></i>
+            </div>
+            <h5>Cloud Computing</h5>
+            <p>Scalable and flexible infrastructure.</p>
+          </div>
+        </div>
+  
+        <div class="col-md-6 col-lg-3">
+          <div class="tech-card">
+            <div class="tech-icon">
+              <i class="bi bi-phone"></i>
+            </div>
+            <h5>Mobile Payments</h5>
+            <p>Convenient and secure transactions.</p>
+          </div>
+        </div>
+  
+        <div class="col-md-6 col-lg-3">
+          <div class="tech-card">
+            <div class="tech-icon">
+              <i class="bi bi-shield-lock"></i>
+            </div>
+            <h5>Cybersecurity</h5>
+            <p>Robust protection against fraud & breaches.</p>
+          </div>
+        </div>
+  
+        <div class="col-md-6 col-lg-3">
+          <div class="tech-card">
+            <div class="tech-icon">
+              <i class="bi bi-journal-check"></i>
+            </div>
+            <h5>RegTech</h5>
+            <p>Compliance management & reporting.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section id="why-us" class="why-us">
+    <div class="container">
+      <div class="section-title">
+        <h2>The Advantages of Working with Cybomb</h2>
+        <p>We don't just build products—we craft solutions that transform your business.</p>
+      </div>
+  
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="advantage-card">
+            <div class="advantage-icon bg-light-blue">
+              <i class="bi bi-currency-exchange"></i>
+            </div>
+            <div class="advantage-content">
+              <h6>Competitive Rates</h6>
+              <p class="mb-0">Premium results without inflated costs.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="advantage-card">
+            <div class="advantage-icon bg-light-green">
+              <i class="bi bi-megaphone"></i>
+            </div>
+            <div class="advantage-content">
+              <h6>Clear Communication</h6>
+              <p class="mb-0">Transparent updates and full ownership of IP.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="advantage-card">
+            <div class="advantage-icon bg-light-purple">
+              <i class="bi bi-people"></i>
+            </div>
+            <div class="advantage-content">
+              <h6>Expert Team</h6>
+              <p class="mb-0">Seasoned engineers, designers, and PMs.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="advantage-card">
+            <div class="advantage-icon bg-light-orange">
+              <i class="bi bi-clock-history"></i>
+            </div>
+            <div class="advantage-content">
+              <h6>On-Time Delivery</h6>
+              <p class="mb-0">Agile execution with predictable milestones.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="advantage-card">
+            <div class="advantage-icon bg-light-pink">
+              <i class="bi bi-sliders"></i>
+            </div>
+            <div class="advantage-content">
+              <h6>Solutions Built for Your Needs</h6>
+              <p class="mb-0">Custom or optimization—aligned to your goals.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="advantage-card">
+            <div class="advantage-icon bg-light-teal">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <div class="advantage-content">
+              <h6>Security-First Approach</h6>
+              <p class="mb-0">Built-in compliance and robust protection.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIRING MODELS -->
+  <section id="process" class="hiring-models">
+    <div class="container">
+      <div class="section-title text-white">
+        <h2 style="color: white;">Leading Fintech Technologies We Excel In</h2>
+<p style="color: white;">We leverage cutting-edge stacks to build dynamic, high-performance finance apps.</p>
+
+  
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="hiring-card">
+            <div class="hiring-header">
+              <img src="images/team.jpg" alt="Dedicated Team" class="hiring-img">
+              <h4>Dedicated Team</h4>
+            </div>
+            <p>Hire a team of fintech experts who integrate with your workflow and deliver as per your requirements.</p>
+            <a href="#" class="hiring-link">Learn More <i class="bi bi-arrow-right ms-1"></i></a>
+          </div>
+        </div>
+  
+        <div class="col-md-6 col-lg-4">
+          <div class="hiring-card">
+            <div class="hiring-header">
+              <img src="images/project.jpg" alt="Project-Based" class="hiring-img">
+              <h4>Project-Based</h4>
+            </div>
+            <p>We take full ownership of your project from concept to launch, delivering on time and within budget.</p>
+            <a href="#" class="hiring-link">Learn More <i class="bi bi-arrow-right ms-1"></i></a>
+          </div>
+        </div>
+  
+        <div class="col-md-6 col-lg-4">
+          <div class="hiring-card">
+            <div class="hiring-header">
+              <img src="images/hourly.jpg" alt="Hourly" class="hiring-img">
+              <h4>Hourly</h4>
+            </div>
+            <p>Pay only for the time you use. Ideal for short-term tasks, maintenance, or specific feature additions.</p>
+            <a href="#" class="hiring-link">Learn More <i class="bi bi-arrow-right ms-1"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUSTED BY -->
+  <section class="trusted-by">
+    <div class="container">
+      <h3 class="trusted-title">Trusted by Industry Leaders</h3>
+      <div class="row g-4 align-items-center">
+        <div class="col-6 col-md-4 col-lg-2 text-center">
+          <img src="images/partner1.png" alt="Partner 1" class="partner-logo mx-auto">
+          <div class="partner-name">FinTech Corp</div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2 text-center">
+          <img src="images/partner2.png" alt="Partner 2" class="partner-logo mx-auto">
+          <div class="partner-name">BankSecure</div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2 text-center">
+          <img src="images/partner3.png" alt="Partner 3" class="partner-logo mx-auto">
+          <div class="partner-name">PayGlobal</div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2 text-center">
+          <img src="images/partner4.png" alt="Partner 4" class="partner-logo mx-auto">
+          <div class="partner-name">WealthTech</div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2 text-center">
+          <img src="images/partner5.png" alt="Partner 5" class="partner-logo mx-auto">
+          <div class="partner-name">InsureTech</div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2 text-center">
+          <img src="images/partner6.png" alt="Partner 6" class="partner-logo mx-auto">
+          <div class="partner-name">CryptoBank</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENT BADGES -->
+  <section class="client-badges">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-3 col-6">
+          <div class="badge-tile">
+            <div>Top Rated</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="badge-tile">
+            <div>Fintech Experts</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="badge-tile">
+            <div>On-Time Delivery</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="badge-tile">
+            <div>Client Recommended</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h3>Ready to Transform Your Fintech Vision?</h3>
+      <p>Let's build something amazing together. Our team is ready to discuss your project and provide a tailored solution.</p>
+      <a href="#consult" class="btn btn-cta btn-lg">Start Your Project Today</a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+        <p>Find answers to common questions about our fintech development services.</p>
+      </div>
+  
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="faq-accordion accordion" id="faqAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                  <i class="bi bi-question-circle faq-icon"></i> What types of fintech solutions do you build?
+                </button>
+              </h2>
+              <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  We build a wide range of fintech solutions including digital banking platforms, payment gateways, digital wallets, blockchain applications, RegTech solutions, and more.
+                </div>
+              </div>
+            </div>
+  
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                  <i class="bi bi-question-circle faq-icon"></i> How do you ensure security in fintech applications?
+                </button>
+              </h2>
+              <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  We implement multiple layers of security including encryption, secure APIs, compliance with financial regulations, regular security audits, and advanced authentication methods.
+                </div>
+              </div>
+            </div>
+  
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                  <i class="bi bi-question-circle faq-icon"></i> What is your typical project timeline?
+                </button>
+              </h2>
+              <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Project timelines vary based on complexity, but we follow agile methodologies to deliver in iterative sprints. A minimum viable product (MVP) typically takes 2-4 months.
+                </div>
+              </div>
+            </div>
+  
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                  <i class="bi bi-question-circle faq-icon"></i> Do you provide ongoing support and maintenance?
+                </button>
+              </h2>
+              <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Yes, we offer comprehensive support and maintenance packages to ensure your fintech solution remains secure, up-to-date, and performs optimally.
+                </div>
+              </div>
+            </div>
+  
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                  <i class="bi bi-question-circle faq-icon"></i> Can you integrate with existing banking systems?
+                </button>
+              </h2>
+              <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Absolutely. We have extensive experience integrating with core banking systems, payment processors, financial data providers, and regulatory systems.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <a href="#" class="footer-brand">Cybomb FinTech Solutions</a>
+          <p class="footer-about">We build secure, innovative fintech solutions that empower businesses and transform financial experiences worldwide.</p>
+          <div class="footer-social">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-twitter"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+  
+        <div class="col-lg-2 col-md-4">
+          <h5 class="footer-heading">Solutions</h5>
+          <ul class="footer-links">
+            <li><a href="#">Digital Banking</a></li>
+            <li><a href="#">Payment Gateways</a></li>
+            <li><a href="#">Digital Wallets</a></li>
+            <li><a href="#">Blockchain</a></li>
+            <li><a href="#">RegTech</a></li>
+          </ul>
+        </div>
+  
+        <div class="col-lg-2 col-md-4">
+          <h5 class="footer-heading">Company</h5>
+          <ul class="footer-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Team</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+  
+        <div class="col-lg-4 col-md-4">
+          <h5 class="footer-heading">Contact Us</h5>
+          <ul class="footer-contact">
+            <li>
+              <i class="bi bi-geo-alt"></i>
+              <span>123 Finance District, Tech City, TC 10101</span>
+            </li>
+            <li>
+              <i class="bi bi-telephone"></i>
+              <a href="tel:+11234567890">+1 (123) 456-7890</a>
+            </li>
+            <li>
+              <i class="bi bi-envelope"></i>
+              <a href="mailto:info@cybomb.com">info@cybomb.com</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      <div class="footer-bottom">
+        <div class="row">
+          <div class="col-md-6">
+            <p>&copy; 2023 Cybomb FinTech Solutions. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <a href="#" class="me-3">Privacy Policy</a>
+            <a href="#" class="me-3">Terms of Service</a>
+            <a href="#">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JS -->
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('shadow');
+      } else {
+        navbar.classList.remove('shadow');
+      }
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 70,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
