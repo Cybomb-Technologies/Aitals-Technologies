@@ -4,23 +4,25 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  Smartphone,
-  Globe,
-  Shield,
+  Cloud,
   Zap,
-  Users,
-  Award,
-  Clock,
+  Shield,
+  Database,
+  Cpu,
+  Server,
+  Workflow,
   CheckCircle,
-  ShoppingCart,
+  Users,
+  Globe,
   BarChart,
   MessageCircle,
   Palette,
 } from "lucide-react";
 
-const MobileApp = () => {
+const CloudDevops = () => {
   const sectionRefs = useRef([]);
-  const [selectedTechCategory, setSelectedTechCategory] = useState("Platforms");
+  const [selectedTechCategory, setSelectedTechCategory] =
+    useState("Cloud Platforms");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -57,147 +59,146 @@ const MobileApp = () => {
 
   const features = [
     {
-      icon: Smartphone,
-      title: "Cross-Platform Development",
-      desc: "Build once, deploy everywhere with seamless performance across iOS and Android",
+      icon: Cloud,
+      title: "Cloud Infrastructure",
+      desc: "Scalable and secure cloud infrastructure designed for high availability and performance",
     },
     {
       icon: Zap,
-      title: "High Performance",
-      desc: "Optimized apps with fast load times and smooth user interactions",
+      title: "CI/CD Pipelines",
+      desc: "Automated deployment pipelines for faster, more reliable software delivery",
     },
     {
       icon: Shield,
-      title: "Secure & Compliant",
-      desc: "Enterprise-grade security with industry compliance standards",
+      title: "Security & Compliance",
+      desc: "Enterprise-grade security with compliance monitoring and automated threat detection",
     },
     {
-      icon: Globe,
-      title: "Offline Capability",
-      desc: "Functionality that works even without internet connection",
+      icon: Database,
+      title: "Database Management",
+      desc: "Managed database services with automated backups, scaling, and performance optimization",
     },
     {
-      icon: Users,
-      title: "User-Centric Design",
-      desc: "Intuitive interfaces designed for optimal mobile experience",
+      icon: Server,
+      title: "Container Orchestration",
+      desc: "Kubernetes and Docker management for scalable microservices architecture",
     },
     {
-      icon: Award,
-      title: "App Store Ready",
-      desc: "Fully compliant with Apple App Store and Google Play Store guidelines",
+      icon: Workflow,
+      title: "Infrastructure as Code",
+      desc: "Automated infrastructure provisioning and management using Terraform and CloudFormation",
     },
   ];
 
-  // Updated technologies data - 5 items per category like Web-dev.jsx
   const technologies = {
-    Platforms: [
+    "Cloud Platforms": [
       {
-        name: "Android",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg",
+        name: "AWS",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/768px-Amazon_Web_Services_Logo.svg.png",
       },
       {
-        name: "iOS",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg",
+        name: "Azure",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg",
       },
       {
-        name: "Flutter",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+        name: "Google Cloud",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
       },
       {
-        name: "React Native",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+        name: "DigitalOcean",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/digitalocean/digitalocean-original.svg",
       },
       {
-        name: "SwiftUI",
-        logo: "https://developer.apple.com/assets/elements/icons/swiftui/swiftui-96x96_2x.png",
-      },
-    ],
-    Languages: [
-      {
-        name: "Swift",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg",
-      },
-      {
-        name: "Kotlin",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
-      },
-      {
-        name: "Dart",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
-      },
-      {
-        name: "JavaScript",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-      },
-      {
-        name: "TypeScript",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+        name: "Heroku",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-original.svg",
       },
     ],
-    Frameworks: [
+    Containerization: [
       {
-        name: "Flutter",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+        name: "Docker",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
       },
       {
-        name: "React Native",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+        name: "Kubernetes",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
       },
       {
-        name: "SwiftUI",
-        logo: "https://developer.apple.com/assets/elements/icons/swiftui/swiftui-96x96_2x.png",
+        name: "Podman",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/podman/podman-original.svg",
       },
       {
-        name: "Jetpack Compose",
-        logo: "https://logo.svgcdn.com/d/jetpackcompose-original.svg",
+        name: "Helm",
+        logo: "https://helm.sh/img/helm.svg",
       },
       {
-        name: "Ionic",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg",
-      },
-    ],
-    Backend: [
-      {
-        name: "Node.js",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-      },
-      {
-        name: "Firebase",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
-      },
-      {
-        name: "MongoDB",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-      },
-      {
-        name: "Express.js",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
-      },
-      {
-        name: "GraphQL",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg",
+        name: "Rancher",
+        logo: "https://images.seeklogo.com/logo-png/27/2/rancher-logo-png_seeklogo-273842.png",
       },
     ],
-    Tools: [
+    "CI/CD Tools": [
       {
-        name: "Figma",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+        name: "GitHub Actions",
+        logo: "https://icon.icepanel.io/Technology/svg/GitHub-Actions.svg",
       },
       {
-        name: "GitHub",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+        name: "Jenkins",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg",
       },
       {
-        name: "Postman",
-        logo: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/postman-icon.svg",
+        name: "GitLab CI",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg",
       },
       {
-        name: "Android Studio",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg",
+        name: "CircleCI",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/circleci/circleci-plain.svg",
       },
       {
-        name: "Xcode",
-        logo: "https://developer.apple.com/assets/elements/icons/xcode/xcode-96x96_2x.png",
+        name: "Travis CI",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/travis/travis-plain.svg",
+      },
+    ],
+    "Infrastructure as Code": [
+      {
+        name: "Terraform",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg",
+      },
+      {
+        name: "Ansible",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original.svg",
+      },
+      {
+        name: "Puppet",
+        logo: "https://ds0xrsm6llh5h.cloudfront.net/frontend/media/devops/logo/infrastructure/puppet.png",
+      },
+      {
+        name: "Chef",
+        logo: "https://cdn.prod.website-files.com/62a8969da1ab56329dc8c41e/643ccf55b8f65176b8927b44_637c6f908e6c817352497d0e_chef-software-vector-logo.png",
+      },
+      {
+        name: "CloudFormation",
+        logo: "https://cdn.freebiesupply.com/logos/large/2x/aws-cloudformation-logo-svg-vector.svg",
+      },
+    ],
+    "Monitoring & Logging": [
+      {
+        name: "Prometheus",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg",
+      },
+      {
+        name: "Grafana",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg",
+      },
+      {
+        name: "Datadog",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/datadog/datadog-original.svg",
+      },
+      {
+        name: "ELK Stack",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elasticsearch/elasticsearch-original.svg",
+      },
+      {
+        name: "New Relic",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/newrelic/newrelic-original.svg",
       },
     ],
   };
@@ -205,68 +206,88 @@ const MobileApp = () => {
   const process = [
     {
       number: "01",
-      title: "Strategy & Planning",
-      desc: "Define app objectives, target audience, and technical requirements",
+      title: "Assessment & Planning",
+      desc: "Comprehensive analysis of your current infrastructure and development of cloud migration strategy",
     },
     {
       number: "02",
-      title: "UI/UX Design",
-      desc: "Create intuitive mobile-first designs and interactive prototypes",
+      title: "Architecture Design",
+      desc: "Design scalable and secure cloud architecture tailored to your business requirements",
     },
     {
       number: "03",
-      title: "Development",
-      desc: "Agile development with cross-platform or native technologies",
+      title: "Infrastructure Setup",
+      desc: "Automated provisioning of cloud resources using Infrastructure as Code principles",
     },
     {
       number: "04",
-      title: "Testing & QA",
-      desc: "Comprehensive testing across devices, OS versions, and networks",
+      title: "CI/CD Implementation",
+      desc: "Setup automated build, test, and deployment pipelines for continuous delivery",
     },
     {
       number: "05",
-      title: "App Store Deployment",
-      desc: "Seamless submission to Apple App Store and Google Play Store",
+      title: "Security & Monitoring",
+      desc: "Implement security best practices and comprehensive monitoring solutions",
     },
     {
       number: "06",
-      title: "Maintenance & Updates",
-      desc: "Ongoing support, performance monitoring, and feature updates",
+      title: "Optimization & Support",
+      desc: "Continuous optimization, performance tuning, and 24/7 operational support",
     },
   ];
 
   const solutions = [
     {
-      icon: ShoppingCart,
-      title: "E-Commerce Apps",
-      desc: "Mobile shopping experiences with secure payment integration",
-      features: ["Payment Gateway", "Push Notifications", "Order Tracking"],
+      icon: Cloud,
+      title: "Cloud Migration",
+      desc: "Seamless migration of your applications and infrastructure to cloud platforms with minimal downtime",
+      features: [
+        "Lift & Shift",
+        "Replatforming",
+        "Refactoring",
+        "Hybrid Cloud",
+      ],
     },
     {
-      icon: BarChart,
-      title: "Business Apps",
-      desc: "Enterprise solutions for internal operations and customer engagement",
-      features: ["Offline Sync", "Real-time Data", "CRM Integration"],
+      icon: Workflow,
+      title: "DevOps Implementation",
+      desc: "Complete DevOps transformation with automated pipelines, infrastructure as code, and monitoring",
+      features: [
+        "CI/CD Pipelines",
+        "Infrastructure as Code",
+        "Automated Testing",
+        "Monitoring",
+      ],
     },
     {
-      icon: MessageCircle,
-      title: "Social & Communication",
-      desc: "Engaging social platforms and messaging applications",
-      features: ["Real-time Chat", "Media Sharing", "User Profiles"],
+      icon: Server,
+      title: "Container Services",
+      desc: "Kubernetes and Docker container orchestration for scalable and resilient applications",
+      features: [
+        "Kubernetes Clusters",
+        "Docker Management",
+        "Service Mesh",
+        "Auto-scaling",
+      ],
     },
     {
-      icon: Palette,
-      title: "Lifestyle & Utility",
-      desc: "Apps that enhance daily life with innovative features",
-      features: ["Location Services", "Camera Integration", "Health Tracking"],
+      icon: Shield,
+      title: "Security & Compliance",
+      desc: "Cloud security implementation with compliance monitoring and automated threat detection",
+      features: [
+        "Security Audits",
+        "Compliance",
+        "Threat Detection",
+        "Access Control",
+      ],
     },
   ];
 
   const stats = [
-    { number: "150+", label: "Mobile Apps Developed" },
-    { number: "4.8★", label: "Average App Store Rating" },
-    { number: "10M+", label: "App Downloads" },
-    { number: "24/7", label: "Support Available" },
+    { number: "300+", label: "Cloud Projects" },
+    { number: "99.9%", label: "Uptime Guarantee" },
+    { number: "60%", label: "Cost Reduction" },
+    { number: "24/7", label: "Monitoring" },
   ];
 
   const techCategories = Object.keys(technologies);
@@ -275,11 +296,11 @@ const MobileApp = () => {
     <>
       <Helmet>
         <title>
-          Mobile App Development Services | Cross-Platform Solutions
+          Cloud & DevOps Services | Scalable Infrastructure Solutions
         </title>
         <meta
           name="description"
-          content="Professional mobile app development services for iOS and Android. Cross-platform and native apps with cutting-edge security and performance."
+          content="Professional Cloud and DevOps services. Scalable infrastructure, automated deployments, and secure cloud solutions for modern applications."
         />
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
@@ -289,11 +310,11 @@ const MobileApp = () => {
 
       {/* Hero Section - Blue */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image with Overlay */}
+        {/* Background Image with Overlay - Lightened for better content visibility */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `linear-gradient(rgba(13, 25, 51, 0.4), rgba(13, 25, 51, 0.95)), url("https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80")`,
+            backgroundImage: `linear-gradient(rgba(13, 25, 51, 0.3), rgba(13, 25, 51, 0.85)), url("https://plus.unsplash.com/premium_photo-1683120968693-9af51578770e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1200")`,
           }}
         ></div>
 
@@ -316,9 +337,9 @@ const MobileApp = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Mobile App
+            Cloud & DevOps
             <span className="block mt-2 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent bg-[length:200%_200%] animate-gradient-shift">
-              Development
+              Services
             </span>
             Solutions
           </motion.h1>
@@ -329,8 +350,9 @@ const MobileApp = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            We create powerful, secure, and engaging mobile applications that
-            drive user engagement and business growth across all platforms
+            Scalable cloud infrastructure and automated DevOps solutions that
+            accelerate development, enhance reliability, and reduce operational
+            costs
           </motion.p>
 
           <motion.div
@@ -343,7 +365,7 @@ const MobileApp = () => {
               to="/contact"
               className="relative bg-[#4a7dff] text-white text-lg px-8 py-6 rounded-xl font-semibold flex items-center gap-2 min-w-[220px] justify-center overflow-hidden transition-all duration-300 hover:bg-[#3a6df0] hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/30 group"
             >
-              <span className="relative z-10">Start Your Project</span>
+              <span className="relative z-10">Start Cloud Migration</span>
               <ArrowRight size={20} className="relative z-10" />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
             </Link>
@@ -352,7 +374,7 @@ const MobileApp = () => {
               to="/portfolio"
               className="relative bg-transparent text-white text-lg px-8 py-6 rounded-xl font-semibold border-2 border-[#4a7dff] flex items-center gap-2 min-w-[180px] justify-center overflow-hidden transition-all duration-300 hover:bg-[#4a7dff]/10 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/20 group"
             >
-              <span className="relative z-10">View Our Work</span>
+              <span className="relative z-10">View Case Studies</span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
             </Link>
           </motion.div>
@@ -369,12 +391,13 @@ const MobileApp = () => {
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Why Choose Our Mobile Services
+              Why Choose Our Cloud & DevOps Services
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              We combine cutting-edge mobile technologies with user-centric
-              design to create apps that users love and businesses rely on
+              We deliver robust, scalable, and secure cloud infrastructure with
+              automated DevOps practices that transform your development and
+              operations
             </p>
           </div>
 
@@ -419,8 +442,8 @@ const MobileApp = () => {
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              We leverage the latest mobile technologies and frameworks to build
-              robust and scalable mobile applications
+              We leverage industry-leading cloud platforms and DevOps tools to
+              build scalable, secure, and efficient infrastructure solutions
             </p>
           </div>
 
@@ -476,12 +499,12 @@ const MobileApp = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Our Mobile Development Process
+              Our Cloud & DevOps Process
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              A comprehensive approach that ensures quality, security, and
-              exceptional user experience for your mobile application
+              A comprehensive methodology for implementing cloud infrastructure
+              and DevOps practices that ensure reliability and scalability
             </p>
           </div>
 
@@ -522,12 +545,13 @@ const MobileApp = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Our Mobile Solutions
+              Our Cloud & DevOps Solutions
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              Comprehensive mobile app development services tailored to your
-              specific business needs and target audience
+              Comprehensive cloud and DevOps services designed to optimize your
+              infrastructure, accelerate development, and ensure operational
+              excellence
             </p>
           </div>
 
@@ -583,20 +607,21 @@ const MobileApp = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Our Mobile Achievements
+              Our Cloud Achievements
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
 
             <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-16 leading-relaxed font-['Poppins']">
-              Proven track record of delivering successful mobile applications
-              that users love and businesses trust
+              Proven results in delivering scalable cloud infrastructure and
+              DevOps solutions that drive business growth and operational
+              efficiency
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
-                  className="bg-gradient-to-br from-[#1a2b4d] to-[#152547] text-center p-9 rounded-2xl border border-[#2d3b5b] transition-all duration-400 hover:-translate-y-2 hover:scale-105 hover:border-[#4a7dff] hover:shadow-2xl hover:shadow-blue-500/15 min-h-[200px] flex flex-col justify-center items-center relative overflow-hidden group"
+                  className="bg-gradient-to-br from-[#1a2b4d] to-[#152547] text-center p-5 rounded-2xl border border-[#2d3b5b] transition-all duration-400 hover:-translate-y-2 hover:scale-105 hover:border-[#4a7dff] hover:shadow-2xl hover:shadow-blue-500/15 min-h-[200px] flex flex-col justify-center items-center relative overflow-hidden group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -629,19 +654,19 @@ const MobileApp = () => {
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="text-center">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-6 text-white font-['Poppins'] leading-tight">
-              Ready to Build Your Mobile App?
+              Ready to Transform Your Infrastructure?
             </h2>
 
             <p className="text-xl text-white/90 max-w-4xl mx-auto mb-12 leading-relaxed font-['Poppins']">
-              Let's discuss your mobile app vision and create an engaging
-              experience that users will love
+              Let's discuss how cloud and DevOps solutions can accelerate your
+              development, enhance reliability, and reduce operational costs
             </p>
 
             <Link
               to="/contact"
               className="relative bg-white text-[#4a7dff] text-lg px-10 py-6 rounded-xl font-semibold inline-flex items-center gap-2 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl group mx-auto"
             >
-              <span className="relative z-10">Get Started Today</span>
+              <span className="relative z-10">Start Cloud Transformation</span>
               <ArrowRight size={20} className="relative z-10" />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
             </Link>
@@ -720,4 +745,4 @@ const MobileApp = () => {
   );
 };
 
-export default MobileApp;
+export default CloudDevops;

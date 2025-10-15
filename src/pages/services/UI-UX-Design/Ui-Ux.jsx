@@ -537,7 +537,7 @@ const UiUx = () => {
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
-                  className="bg-gradient-to-br from-[#1a2b4d] to-[#152547] text-center p-12 rounded-2xl border border-[#2d3b5b] transition-all duration-400 hover:-translate-y-2 hover:scale-105 hover:border-[#4a7dff] hover:shadow-2xl hover:shadow-blue-500/15 min-h-[200px] flex flex-col justify-center items-center relative overflow-hidden group"
+                  className="bg-gradient-to-br from-[#1a2b4d] to-[#152547] text-center p-9 rounded-2xl border border-[#2d3b5b] transition-all duration-400 hover:-translate-y-2 hover:scale-105 hover:border-[#4a7dff] hover:shadow-2xl hover:shadow-blue-500/15 min-h-[200px] flex flex-col justify-center items-center relative overflow-hidden group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
