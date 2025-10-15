@@ -3,557 +3,597 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Savory Bites | Fine Dining Experience</title>
+    <title>FitLife - Transform Your Body, Transform Your Life</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #c52c2c;
-            --secondary-color: #f8f9fa;
-            --accent-color: #ffc107;
-            --dark-color: #343a40;
-            --light-color: #f8f9fa;
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --dark: #292f36;
+            --light: #f7fff7;
+            --accent: #ffe66d;
         }
         
         body {
-            font-family: 'Roboto', sans-serif;
-            color: var(--dark-color);
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
             overflow-x: hidden;
         }
         
-        h1, h2, h3, h4, h5 {
-            font-family: 'Playfair Display', serif;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-        }
-        
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
         }
         
         .navbar-brand {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 1.8rem;
-            color: var(--primary-color) !important;
         }
         
-        .nav-link {
-            font-weight: 500;
-            margin: 0 10px;
-            color: var(--dark-color) !important;
-            transition: color 0.3s;
-        }
-        
-        .nav-link:hover {
-            color: var(--primary-color) !important;
+        .navbar-brand span {
+            color: var(--primary);
         }
         
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background: linear-gradient(rgba(41, 47, 54, 0.8), rgba(41, 47, 54, 0.8)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
-            height: 100vh;
+            background-position: center;
+            background-attachment: fixed;
             color: white;
-            display: flex;
-            align-items: center;
+            padding: 180px 0 120px;
+            text-align: center;
             position: relative;
         }
         
-        .hero-content h1 {
+        .hero-section h1 {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
+            animation: fadeInDown 1s ease;
         }
         
-        .hero-content p {
+        .hero-section p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
+            animation: fadeInUp 1s ease;
         }
         
         .btn-primary {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
+            background-color: var(--primary);
+            border-color: var(--primary);
             padding: 12px 30px;
-            font-weight: 500;
+            font-weight: 600;
             border-radius: 30px;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
         
         .btn-primary:hover {
-            background-color: #a82323;
-            border-color: #a82323;
+            background-color: #ff5252;
+            border-color: #ff5252;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+        }
+        
+        .btn-outline-light {
+            border-radius: 30px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-light:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
         }
         
         .section-title {
-            position: relative;
-            margin-bottom: 3rem;
             text-align: center;
+            margin-bottom: 60px;
+            position: relative;
         }
         
         .section-title:after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--primary-color);
         }
         
-        .menu-card {
-            border: none;
+        .feature-card {
+            text-align: center;
+            padding: 30px 20px;
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            transition: all 0.3s ease;
             margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+            background: white;
         }
         
-        .menu-card:hover {
+        .feature-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
         
-        .menu-card img {
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .menu-card-body {
-            padding: 20px;
-        }
-        
-        .price {
-            color: var(--primary-color);
-            font-weight: 600;
-            font-size: 1.2rem;
-        }
-        
-        .about-section {
-            background-color: var(--secondary-color);
-            padding: 100px 0;
-        }
-        
-        .testimonial-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-        }
-        
-        .testimonial-text {
-            font-style: italic;
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
             margin-bottom: 20px;
         }
         
-        .testimonial-author {
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-        
-        .contact-section {
-            padding: 100px 0;
-        }
-        
-        .contact-info {
+        .program-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             margin-bottom: 30px;
+            transition: all 0.3s ease;
+            background: white;
         }
         
-        .contact-info i {
-            color: var(--primary-color);
-            margin-right: 10px;
-            font-size: 1.2rem;
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .program-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+        
+        .cta-section {
+            background: linear-gradient(rgba(255, 107, 107, 0.9), rgba(255, 107, 107, 0.9)), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
         }
         
         .footer {
-            background-color: var(--dark-color);
+            background: var(--dark);
             color: white;
             padding: 60px 0 30px;
         }
         
         .footer h5 {
             margin-bottom: 20px;
-            color: var(--accent-color);
+            position: relative;
+            padding-bottom: 10px;
         }
         
-        .footer ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .footer ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer ul li a {
-            color: #adb5bd;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer ul li a:hover {
-            color: white;
+        .footer h5:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+            bottom: 0;
+            left: 0;
         }
         
         .social-icons a {
             display: inline-block;
             width: 40px;
             height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
+            background: rgba(255,255,255,0.1);
             border-radius: 50%;
             text-align: center;
             line-height: 40px;
             margin-right: 10px;
             color: white;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
         
         .social-icons a:hover {
-            background-color: var(--primary-color);
-            transform: translateY(-3px);
+            background: var(--primary);
+            transform: translateY(-5px);
         }
         
         .copyright {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255,255,255,0.1);
             padding-top: 20px;
             margin-top: 40px;
             text-align: center;
-            color: #adb5bd;
         }
         
         /* New Styles for Additional Content */
         .stats-section {
-            background-color: var(--primary-color);
+            background-color: var(--dark);
             color: white;
             padding: 80px 0;
         }
         
         .stat-item {
             text-align: center;
+            padding: 20px;
         }
         
         .stat-number {
             font-size: 3rem;
-            font-weight: 700;
+            font-weight: 800;
+            color: var(--primary);
             margin-bottom: 10px;
         }
         
-        .stat-text {
-            font-size: 1.2rem;
-        }
-        
-        .chef-card {
-            border: none;
+        .trainer-card {
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             margin-bottom: 30px;
+            transition: all 0.3s ease;
+            background: white;
         }
         
-        .chef-card img {
+        .trainer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .trainer-img {
             height: 300px;
-            object-fit: cover;
-        }
-        
-        .chef-card-body {
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .gallery-section {
-            padding: 100px 0;
-        }
-        
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            margin-bottom: 30px;
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-        
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-        
-        .events-section {
-            background-color: var(--secondary-color);
-            padding: 100px 0;
-        }
-        
-        .event-card {
-            border: none;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
-        
-        .event-card img {
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .event-card-body {
-            padding: 20px;
-        }
-        
-        .event-date {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-        
-        .reservation-section {
-            padding: 100px 0;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
             background-size: cover;
-            color: white;
+            background-position: center;
         }
         
-        .reservation-form .form-control {
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            border-radius: 5px;
-        }
-        
-        .reservation-form .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .reservation-form .form-control:focus {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-color: var(--primary-color);
-            box-shadow: none;
-            color: white;
-        }
-        
-        .awards-section {
-            padding: 80px 0;
-        }
-        
-        .award-item {
+        .pricing-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
             text-align: center;
-            padding: 20px;
+            padding: 0;
+            background: white;
         }
         
-        .award-icon {
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .pricing-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 30px 20px;
+        }
+        
+        .pricing-body {
+            padding: 30px 20px;
+        }
+        
+        .price {
             font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
+            font-weight: 800;
+            margin: 20px 0;
         }
         
-        .blog-section {
-            background-color: var(--secondary-color);
-            padding: 100px 0;
+        .price span {
+            font-size: 1rem;
+            font-weight: normal;
         }
         
         .blog-card {
-            border: none;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             margin-bottom: 30px;
+            transition: all 0.3s ease;
+            background: white;
         }
         
-        .blog-card img {
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .blog-img {
             height: 200px;
-            object-fit: cover;
+            background-size: cover;
+            background-position: center;
         }
         
-        .blog-card-body {
+        .blog-content {
             padding: 20px;
         }
         
-        .blog-date {
-            color: var(--primary-color);
+        .blog-meta {
+            color: #6c757d;
             font-size: 0.9rem;
+            margin-bottom: 10px;
         }
         
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary-color);
-            color: white;
-            border-radius: 50%;
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 20px;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 10px;
+            cursor: pointer;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            text-decoration: none;
-            opacity: 0;
-            transition: all 0.3s;
-            z-index: 1000;
         }
         
-        .back-to-top.show {
+        .faq-answer {
+            color: #6c757d;
+        }
+        
+        .progress-section {
+            background: var(--light);
+            padding: 80px 0;
+        }
+        
+        .progress-item {
+            margin-bottom: 30px;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .progress {
+            height: 10px;
+            border-radius: 5px;
+        }
+        
+        .membership-benefits {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f7fff7 0%, #e6f7f5 100%);
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+        
+        .benefit-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .schedule-section {
+            padding: 80px 0;
+        }
+        
+        .schedule-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .schedule-table th {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .schedule-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .class-type {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .class-yoga {
+            background: rgba(78, 205, 196, 0.2);
+            color: var(--secondary);
+        }
+        
+        .class-strength {
+            background: rgba(255, 107, 107, 0.2);
+            color: var(--primary);
+        }
+        
+        .class-cardio {
+            background: rgba(255, 230, 109, 0.2);
+            color: #d4b300;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
             opacity: 1;
+            transform: translateY(0);
         }
         
         @media (max-width: 768px) {
-            .hero-content h1 {
+            .hero-section h1 {
                 font-size: 2.5rem;
             }
             
-            .hero-content p {
-                font-size: 1rem;
-            }
-            
-            .stat-number {
-                font-size: 2.5rem;
+            .hero-section {
+                padding: 120px 0 80px;
             }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="#">Savory Bites</a>
+            <a class="navbar-brand" href="#">Fit<span>Life</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
+                        <a class="nav-link active" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#menu">Menu</a>
+                        <a class="nav-link" href="#programs">Programs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
+                        <a class="nav-link" href="#trainers">Trainers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#chefs">Chefs</a>
+                        <a class="nav-link" href="#pricing">Pricing</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#gallery">Gallery</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#events">Events</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#testimonials">Testimonials</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#blog">Blog</a>
+                        <a class="nav-link" href="#schedule">Schedule</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="btn btn-primary ms-2" href="#reservation">Reservation</a>
-                    </li>
                 </ul>
+                <a href="#" class="btn btn-primary ms-lg-3">Join Now</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section" id="home">
+    <section class="hero-section">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="hero-content">
-                        <h1>Experience Culinary Excellence</h1>
-                        <p>At Savory Bites, we craft unforgettable dining experiences with locally sourced ingredients and innovative recipes. Our passion for food is reflected in every dish we serve.</p>
-                        <a href="#menu" class="btn btn-primary me-3">View Menu</a>
-                        <a href="#reservation" class="btn btn-outline-light">Book a Table</a>
-                    </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1>Transform Your Body, Transform Your Life</h1>
+                    <p class="lead">Join thousands of members achieving their fitness goals with our personalized training programs and expert guidance. Start your journey to a healthier, stronger you today.</p>
+                    <a href="#" class="btn btn-primary me-2">Start Your Journey</a>
+                    <a href="#" class="btn btn-outline-light">Learn More</a>
                 </div>
             </div>
         </div>
     </section>
 
     
-    <!-- Menu Section -->
-    <section id="menu" class="py-5">
+
+    <!-- Features Section -->
+    <section class="py-5">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="section-title">Our Specialties</h2>
-                    <p class="text-center mb-5">Discover our carefully crafted menu featuring seasonal ingredients and innovative flavor combinations.</p>
-                </div>
-            </div>
+            <h2 class="section-title">Why Choose FitLife?</h2>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="card menu-card">
-                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Pizza">
-                        <div class="menu-card-body">
-                            <h5 class="card-title">Truffle Mushroom Pizza</h5>
-                            <p class="card-text">Wood-fired pizza with wild mushrooms, truffle oil, and fresh herbs.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="price">$18.99</span>
-                                <button class="btn btn-sm btn-outline-primary">Order Now</button>
-                            </div>
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-dumbbell"></i>
                         </div>
+                        <h4>Modern Equipment</h4>
+                        <p>Train with state-of-the-art equipment in our spacious, clean facilities designed for optimal performance. We regularly update our equipment to ensure you have the best tools for your fitness journey.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card menu-card">
-                        <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Pasta">
-                        <div class="menu-card-body">
-                            <h5 class="card-title">Lobster Linguine</h5>
-                            <p class="card-text">Fresh lobster with handmade linguine in a creamy tomato sauce.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="price">$24.99</span>
-                                <button class="btn btn-sm btn-outline-primary">Order Now</button>
-                            </div>
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-friends"></i>
                         </div>
+                        <h4>Expert Trainers</h4>
+                        <p>Our certified personal trainers provide customized workout plans and motivation to help you reach your goals. With diverse specializations, we have the right expert for your specific needs.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card menu-card">
-                        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Dessert">
-                        <div class="menu-card-body">
-                            <h5 class="card-title">Chocolate Lava Cake</h5>
-                            <p class="card-text">Warm chocolate cake with a molten center, served with vanilla ice cream.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="price">$9.99</span>
-                                <button class="btn btn-sm btn-outline-primary">Order Now</button>
-                            </div>
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-heartbeat"></i>
                         </div>
+                        <h4>Health Focused</h4>
+                        <p>We prioritize your overall wellbeing with nutrition guidance and recovery programs alongside fitness training. Our holistic approach ensures sustainable results and long-term health benefits.</p>
                     </div>
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-12 text-center">
-                    <a href="#" class="btn btn-outline-primary">View Full Menu</a>
+                <div class="col-md-4">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>Flexible Hours</h4>
+                        <p>With 24/7 access for premium members and extended hours for all, you can work out according to your schedule. No more excuses for missing workouts!</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Supportive Community</h4>
+                        <p>Join a vibrant community of fitness enthusiasts who motivate and support each other. Our group classes and social events create lasting connections.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h4>Proven Results</h4>
+                        <p>Our methods are backed by science and years of experience delivering real results. Track your progress with our advanced monitoring systems.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -565,88 +605,145 @@
             <div class="row">
                 <div class="col-md-3 col-6">
                     <div class="stat-item">
-                        <div class="stat-number">15+</div>
-                        <div class="stat-text">Years Experience</div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <div class="stat-item">
-                        <div class="stat-number">200+</div>
-                        <div class="stat-text">Menu Items</div>
+                        <div class="stat-number">5,000+</div>
+                        <p>Happy Members</p>
                     </div>
                 </div>
                 <div class="col-md-3 col-6">
                     <div class="stat-item">
                         <div class="stat-number">50+</div>
-                        <div class="stat-text">Awards Won</div>
+                        <p>Expert Trainers</p>
                     </div>
                 </div>
                 <div class="col-md-3 col-6">
                     <div class="stat-item">
-                        <div class="stat-number">10K+</div>
-                        <div class="stat-text">Happy Customers</div>
+                        <div class="stat-number">15</div>
+                        <p>Years Experience</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <p>Gym Access</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Programs Section -->
+    <section id="programs" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Our Fitness Programs</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="program-card fade-in">
+                        <div class="program-img" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                        <div class="p-4">
+                            <h4>Strength Training</h4>
+                            <p>Build muscle, increase strength, and boost metabolism with our comprehensive strength programs. Suitable for all levels from beginners to advanced athletes.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-primary me-2"></i> Personalized workout plans</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Progressive overload techniques</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Form correction and safety</li>
+                            </ul>
+                            <a href="#" class="btn btn-outline-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="program-card fade-in">
+                        <div class="program-img" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                        <div class="p-4">
+                            <h4>Cardio Fitness</h4>
+                            <p>Option 1 (Energetic & Benefit-Focused):
+                                "Boost heart health and endurance with our varied cardio workouts, designed to challenge your body and keep you motivated. </p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-primary me-2"></i> HIIT and steady-state options</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Group cycling classes</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Heart rate monitoring</li>
+                            </ul>
+                            <a href="#" class="btn btn-outline-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="program-card fade-in">
+                        <div class="program-img" style="background-image: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+                        <div class="p-4">
+                            <h4>Yoga & Flexibility</h4>
+<p>"Increase flexibility, reduce stress, and improve your mind-body connection with our expertly-led yoga classes.we offer a variety of styles to suit all experience levels and personal goals."</p>                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-primary me-2"></i> Multiple yoga styles</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Meditation sessions</li>
+                                <li><i class="fas fa-check text-primary me-2"></i> Breathing techniques</li>
+                            </ul>
+                            <a href="#" class="btn btn-outline-primary">Learn More</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
+    <!-- Membership Benefits -->
+    <section class="membership-benefits">
         <div class="container">
-            <div class="row align-items-center">
+            <h2 class="section-title">Membership Benefits</h2>
+            <div class="row">
                 <div class="col-lg-6">
-                    <h2 class="section-title text-start">Our Story</h2>
-                    <p>Founded in 2010, Savory Bites began as a small family-owned restaurant with a passion for creating exceptional dining experiences. Our journey started with a simple philosophy: use the freshest ingredients to create dishes that tell a story.</p>
-                    <p>Over the years, we've evolved into a culinary destination known for our innovative approach to traditional recipes and our commitment to sustainability. Our chefs travel seasonally to source the finest ingredients from local farmers and artisans.</p>
-                    <p>Today, we continue to honor our roots while pushing the boundaries of flavor, creating memorable meals that bring people together.</p>
-                    <a href="#" class="btn btn-primary mt-3">Learn More</a>
+                    <div class="benefit-item fade-in">
+                        <div class="benefit-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div>
+                            <h4>Unlimited Access</h4>
+                            <p>Enjoy 24/7 access to our state-of-the-art facilities with your membership. Work out on your schedule, not ours.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item fade-in">
+                        <div class="benefit-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div>
+                            <h4>Personal Training</h4>
+                            <p>Get personalized attention with our certified trainers who will create custom workout plans tailored to your goals.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item fade-in">
+                        <div class="benefit-icon">
+                            <i class="fas fa-apple-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Nutrition Guidance</h4>
+                            <p>Receive expert nutrition advice to complement your fitness routine and maximize your results.</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-6">
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="img-fluid rounded" alt="Restaurant Interior">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Chefs Section -->
-    <section id="chefs" class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="section-title">Meet Our Chefs</h2>
-                    <p class="text-center mb-5">Our talented culinary team brings diverse experiences and a shared passion for exceptional food.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card chef-card">
-                        <img src="https://www.shutterstock.com/image-photo/smiling-young-beautiful-asian-woman-600nw-2337955697.jpg" class="card-img-top" alt="Chef Maria">
-                        <div class="chef-card-body">
-                            <h5>Maria Rodriguez</h5>
-                            <p class="text-muted">Executive Chef</p>
-                            <p>With over 15 years of experience in fine dining, Chef Maria brings creativity and precision to every dish, crafting unforgettable culinary journeys.
-                                </p>
+                    <div class="benefit-item fade-in">
+                        <div class="benefit-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h4>Group Classes</h4>
+                            <p>Join our diverse range of group fitness classes from yoga to HIIT, included with your membership.</p>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card chef-card">
-                        <img src="https://media.istockphoto.com/id/1165683221/photo/chef-presents-something-on-a-black-background.jpg?s=612x612&w=0&k=20&c=G3_9EIg-nt-ZKh48hlvRMYWhizVU3uQuUcoNuhOVLKM=" class="card-img-top" alt="Chef James">
-                        <div class="chef-card-body">
-                            <h5>James Wilson</h5>
-                            <p class="text-muted">Sous Chef</p>
-                            <p>Specializing in French cuisine, Chef James adds a touch of elegance to our menu with his technical expertise.</p>
+                    <div class="benefit-item fade-in">
+                        <div class="benefit-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <h4>Progress Tracking</h4>
+                            <p>Monitor your fitness journey with our advanced tracking technology and regular assessments.</p>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card chef-card">
-                        <img src="https://media.istockphoto.com/id/1500656660/photo/african-american-chef-finishing-dish.jpg?s=612x612&w=0&k=20&c=piwoFns_xCyLtPQ0iQvj0CJiUwbV-FZRUjRiSZxPMcc=" class="card-img-top" alt="Chef Lisa">
-                        <div class="chef-card-body">
-                            <h5>Lisa Chen</h5>
-                            <p class="text-muted">Pastry Chef</p>
-                            <p>Chef Lisa's desserts are works of art, combining traditional techniques with innovative flavor combinations.</p>
+                    <div class="benefit-item fade-in">
+                        <div class="benefit-icon">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                        <div>
+                            <h4>Recovery Facilities</h4>
+                            <p>Access our sauna, steam room, and recovery zones to help your body recuperate after intense workouts.</p>
                         </div>
                     </div>
                 </div>
@@ -654,61 +751,50 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery-section">
+    <!-- Trainers Section -->
+    <section id="trainers" class="py-5">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="section-title">Our Gallery</h2>
-                    <p class="text-center mb-5">Take a visual journey through our restaurant, dishes, and dining experience.</p>
-                </div>
-            </div>
+            <h2 class="section-title">Meet Our Expert Trainers</h2>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Restaurant Interior">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus text-white fa-2x"></i>
+                    <div class="trainer-card fade-in">
+                        <div class="trainer-img" style="background-image: url('https://www.technogym.com/wpress/wp-content/uploads/2019/09/michaeljohnson-img4.jpg');"></div>
+                        <div class="p-4">
+                            <h4>Michael Johnson</h4>
+                            <p class="text-primary">Strength & Conditioning Specialist</p>
+                            <p>With over 10 years of experience, Michael specializes in strength training and athletic performance. He holds certifications in CSCS and NASM.</p>
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted"><i class="fas fa-star text-warning"></i> 4.9/5 Rating</small>
+                                <small class="text-muted">500+ Clients</small>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Dish 1">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus text-white fa-2x"></i>
+                    <div class="trainer-card fade-in">
+                        <div class="trainer-img" style="background-image: url('https://media.istockphoto.com/id/2027278927/photo/young-athletic-woman-exercising-with-barbell-during-sports-training-in-a-gym.jpg?s=612x612&w=0&k=20&c=ifFL7Mqc8NwTj25PAx4ONy1OOQZvc1S_kVOofsbLgFw=');"></div>
+                        <div class="p-4">
+                            <h4>Sarah Williams</h4>
+                            <p class="text-primary">Yoga & Mindfulness Instructor</p>
+                            <p>"Sarah brings 8 years of dedicated yoga teaching experience,holding certifications in Vinyasa and Yin.Her compassionate approach is centered on deepening the mind-body connection.</p>
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted"><i class="fas fa-star text-warning"></i> 4.8/5 Rating</small>
+                                <small class="text-muted">300+ Clients</small>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Dish 2">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus text-white fa-2x"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Dish 3">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus text-white fa-2x"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Dish 4">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus text-white fa-2x"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Dish 5">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus text-white fa-2x"></i>
+                    <div class="trainer-card fade-in">
+                        <div class="trainer-img" style="background-image: url('https://img.freepik.com/premium-photo/man-fitness-workout_926199-2406833.jpg?w=360');"></div>
+                        <div class="p-4">
+                            <h4>David Chen</h4>
+                            <p class="text-primary">Cardio & Weight Loss Coach</p>
+                            <p>David specializes in metabolic conditioning and weight management programs. He holds an MS in Exercise Science and is a certified nutrition coach.</p>
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted"><i class="fas fa-star text-warning"></i> 4.9/5 Rating</small>
+                                <small class="text-muted">400+ Clients</small>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -716,47 +802,64 @@
         </div>
     </section>
 
-    <!-- Events Section -->
-    <section id="events" class="events-section">
+    <!-- Class Schedule -->
+    <section id="schedule" class="schedule-section bg-light">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="section-title">Upcoming Events</h2>
-                    <p class="text-center mb-5">Join us for special dining experiences, wine pairings, and culinary workshops.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card event-card">
-                        <img src="https://unboxedexperiences.com/wp-content/uploads/2023/03/wine-kitchen-1-1.jpg" class="card-img-top" alt="Wine Tasting">
-                        <div class="event-card-body">
-                            <span class="event-date">June 15, 2025</span>
-                            <h5>Wine & Cheese Pairing</h5>
-                            <p>Join us for an evening of exquisite wine and cheese pairings curated by our sommelier.</p>
-                            <a href="#" class="btn btn-sm btn-primary">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card event-card">
-                        <img src="https://www.walksinsiderome.com/uploads/2023/01/italian-cooking-class-in-rome.jpg" class="card-img-top" alt="Cooking Class">
-                        <div class="event-card-body">
-                            <span class="event-date">June 22, 2025</span>
-                            <h5>Italian Cooking Class</h5>
-                            <p>Learn to make authentic pasta from scratch with Chef Maria in this hands-on class.</p>
-                            <a href="#" class="btn btn-sm btn-primary">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card event-card">
-                        <img src="https://media.istockphoto.com/id/1182525590/photo/savory-and-sweet-gourmet-food-at-corporate-office-party.jpg?s=612x612&w=0&k=20&c=OVj8WKTKEYhG-vJUWPyo9v2V29ZVOjpk0PcCtfPSx5c=" class="card-img-top" alt="Seasonal Menu">
-                        <div class="event-card-body">
-                            <span class="event-date">July 1, 2025</span>
-                            <h5>Summer Menu Launch</h5>
-                            <p>Be the first to experience our new seasonal menu featuring summer's finest ingredients.</p>
-                            <a href="#" class="btn btn-sm btn-primary">Book Now</a>
-                        </div>
+            <h2 class="section-title">Class Schedule</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="schedule-table fade-in">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Monday</th>
+                                    <th>Tuesday</th>
+                                    <th>Wednesday</th>
+                                    <th>Thursday</th>
+                                    <th>Friday</th>
+                                    <th>Saturday</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>6:00 AM</td>
+                                    <td><span class="class-type class-yoga">Yoga</span></td>
+                                    <td><span class="class-type class-cardio">HIIT</span></td>
+                                    <td><span class="class-type class-yoga">Pilates</span></td>
+                                    <td><span class="class-type class-cardio">Cycling</span></td>
+                                    <td><span class="class-type class-yoga">Meditation</span></td>
+                                    <td><span class="class-type class-cardio">Bootcamp</span></td>
+                                </tr>
+                                <tr>
+                                    <td>8:00 AM</td>
+                                    <td><span class="class-type class-strength">Strength</span></td>
+                                    <td><span class="class-type class-cardio">Cardio</span></td>
+                                    <td><span class="class-type class-strength">CrossFit</span></td>
+                                    <td><span class="class-type class-cardio">Dance</span></td>
+                                    <td><span class="class-type class-strength">Strength</span></td>
+                                    <td><span class="class-type class-yoga">Yoga</span></td>
+                                </tr>
+                                <tr>
+                                    <td>12:00 PM</td>
+                                    <td><span class="class-type class-yoga">Pilates</span></td>
+                                    <td><span class="class-type class-cardio">HIIT</span></td>
+                                    <td><span class="class-type class-yoga">Yoga</span></td>
+                                    <td><span class="class-type class-cardio">Cycling</span></td>
+                                    <td><span class="class-type class-yoga">Meditation</span></td>
+                                    <td><span class="class-type class-strength">Strength</span></td>
+                                </tr>
+                                <tr>
+                                    <td>6:00 PM</td>
+                                    <td><span class="class-type class-strength">CrossFit</span></td>
+                                    <td><span class="class-type class-cardio">Cardio</span></td>
+                                    <td><span class="class-type class-strength">Strength</span></td>
+                                    <td><span class="class-type class-cardio">HIIT</span></td>
+                                    <td><span class="class-type class-strength">CrossFit</span></td>
+                                    <td>-</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -764,133 +867,64 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="py-5">
+    <section class="py-5">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="section-title">What Our Customers Say</h2>
-                </div>
-            </div>
+            <h2 class="section-title">Success Stories</h2>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="testimonial-card">
-                        <div class="testimonial-text">
-                            "The best dining experience I've had this year! The flavors were incredible and the service was impeccable."
+                    <div class="testimonial-card fade-in">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson" class="testimonial-img">
+                            <div>
+                                <h5 class="mb-0">Sarah Johnson</h5>
+                                <p class="text-muted">Lost 25 lbs</p>
+                            </div>
                         </div>
-                        <div class="testimonial-author">- Sarah Johnson</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="testimonial-card">
-                        <div class="testimonial-text">
-                            "Every dish was a work of art. The attention to detail and quality of ingredients really stood out."
-                        </div>
-                        <div class="testimonial-author">- Michael Chen</div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="testimonial-card">
-                        <div class="testimonial-text">
-                            "I've been coming here for years and the consistency is remarkable. Always a wonderful experience."
-                        </div>
-                        <div class="testimonial-author">- Emily Rodriguez</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Awards Section -->
-    <section class="awards-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="section-title">Awards & Recognition</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 col-6">
-                    <div class="award-item">
-                        <div class="award-icon">
-                            <i class="fas fa-award"></i>
-                        </div>
-                        <h5>Best Fine Dining</h5>
-                        <p>2025 Food & Wine Magazine</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <div class="award-item">
-                        <div class="award-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h5>Michelin Star</h5>
-                        <p>2021 Michelin Guide</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <div class="award-item">
-                        <div class="award-icon">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <h5>Chef of the Year</h5>
-                        <p>2023 Culinary Excellence Awards</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-6">
-                    <div class="award-item">
-                        <div class="award-icon">
-                            <i class="fas fa-medal"></i>
-                        </div>
-                        <h5>Wine Excellence</h5>
-                        <p>2019 Wine Spectator</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog Section -->
-    <section id="blog" class="blog-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="section-title">From Our Blog</h2>
-                    <p class="text-center mb-5">Stay updated with the latest culinary trends, recipes, and restaurant news.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card blog-card">
-                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Blog 1">
-                        <div class="blog-card-body">
-                            <span class="blog-date">May 15, 2025</span>
-                            <h5>Seasonal Ingredients to Look For This Summer</h5>
-                            <p>Discover summer's best produce and how we feature it on our menu.
-
-                            </p>
-                            <a href="#" class="btn btn-sm btn-primary">Read More</a>
+                        <p>"FitLife transformed my approach to fitness. The trainers are amazing and the community keeps me motivated. I've never felt better!"</p>
+                        <div class="mt-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card blog-card">
-                        <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Blog 2">
-                        <div class="blog-card-body">
-                            <span class="blog-date">April 28, 2025</span>
-                            <h5>The Art of Plating: Creating Visual Masterpieces</h5>
-                            <p>Learn how our chefs transform dishes into works of art through careful plating techniques.</p>
-                            <a href="#" class="btn btn-sm btn-primary">Read More</a>
+                    <div class="testimonial-card fade-in">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen" class="testimonial-img">
+                            <div>
+                                <h5 class="mb-0">Michael Chen</h5>
+                                <p class="text-muted">Gained 15 lbs muscle</p>
+                            </div>
+                        </div>
+                        <p>"The personalized training program helped me achieve my muscle gain goals faster than I thought possible. Highly recommended!"</p>
+                        <div class="mt-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card blog-card">
-                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Blog 3">
-                        <div class="blog-card-body">
-                            <span class="blog-date">April 10, 2024</span>
-                            <h5>Wine Pairing 101: Matching Food and Wine</h5>
-                            <p>Our sommelier shares tips for creating perfect pairings that enhance both food and wine.</p>
-                            <a href="#" class="btn btn-sm btn-primary">Read More</a>
+                    <div class="testimonial-card fade-in">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma Rodriguez" class="testimonial-img">
+                            <div>
+                                <h5 class="mb-0">Emma Rodriguez</h5>
+                                <p class="text-muted">Ran first marathon</p>
+                            </div>
+                        </div>
+                        <p>"With the cardio program and support from trainers, I completed my first marathon. FitLife gave me the confidence to push my limits."</p>
+                        <div class="mt-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
                         </div>
                     </div>
                 </div>
@@ -898,220 +932,175 @@
         </div>
     </section>
 
-    <!-- Reservation Section -->
-    <section id="reservation" class="reservation-section">
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-5 bg-light">
         <div class="container">
+            <h2 class="section-title">Membership Plans</h2>
             <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <h2 class="section-title text-white">Make a Reservation</h2>
-                    <p class="text-center text-white mb-5">Book your table online and secure your dining experience with us.</p>
-                    <form class="reservation-form">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" placeholder="Your Name" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <input type="email" class="form-control" placeholder="Your Email" required>
-                                </div>
-                            </div>
+                <div class="col-md-4">
+                    <div class="pricing-card fade-in">
+                        <div class="pricing-header">
+                            <h4>Basic</h4>
+                            <p>Perfect for beginners</p>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <input type="tel" class="form-control" placeholder="Phone Number" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <input type="number" class="form-control" placeholder="Number of Guests" min="1" max="20" required>
-                                </div>
-                            </div>
+                        <div class="pricing-body">
+                            <div class="price">$29<span>/month</span></div>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Gym Access</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Basic Equipment</li>
+                                <li class="mb-2"><i class="fas fa-times text-muted me-2"></i> Group Classes</li>
+                                <li class="mb-2"><i class="fas fa-times text-muted me-2"></i> Personal Trainer</li>
+                                <li class="mb-2"><i class="fas fa-times text-muted me-2"></i> Nutrition Plan</li>
+                            </ul>
+                            <a href="#" class="btn btn-outline-primary">Get Started</a>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <input type="date" class="form-control" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <input type="time" class="form-control" required>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="pricing-card fade-in">
+                        <div class="pricing-header bg-warning">
+                            <h4>Pro</h4>
+                            <p>Our most popular plan</p>
                         </div>
-                        <div class="mb-3">
-                            <textarea class="form-control" rows="4" placeholder="Special Requests"></textarea>
+                        <div class="pricing-body">
+                            <div class="price">$59<span>/month</span></div>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Gym Access</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> All Equipment</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Unlimited Group Classes</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> 4 Personal Training Sessions</li>
+                                <li class="mb-2"><i class="fas fa-times text-muted me-2"></i> Nutrition Plan</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary">Get Started</a>
                         </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Book Now</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="pricing-card fade-in">
+                        <div class="pricing-header">
+                            <h4>Elite</h4>
+                            <p>Maximum results</p>
                         </div>
-                    </form>
+                        <div class="pricing-body">
+                            <div class="price">$99<span>/month</span></div>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> 24/7 Gym Access</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> All Equipment</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Unlimited Group Classes</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> 8 Personal Training Sessions</li>
+                                <li class="mb-2"><i class="fas fa-check text-primary me-2"></i> Custom Nutrition Plan</li>
+                            </ul>
+                            <a href="#" class="btn btn-outline-primary">Get Started</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
+    <!-- CTA Section -->
+    <section class="cta-section">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h2 class="section-title text-start">Contact Us</h2>
-                    <div class="contact-info">
-                        <p><i class="fas fa-map-marker-alt"></i> 123 Culinary Street, Foodville, FC 12345</p>
-                        <p><i class="fas fa-phone"></i> (555) 123-4567</p>
-                        <p><i class="fas fa-envelope"></i> info@savorybites.com</p>
-                    </div>
-                    <h5>Opening Hours</h5>
-                    <p>Monday - Thursday: 11:00 AM - 10:00 PM</p>
-                    <p>Friday - Saturday: 11:00 AM - 11:00 PM</p>
-                    <p>Sunday: 10:00 AM - 9:00 PM</p>
-                    
-                    <div class="mt-4">
-                        <h5>Follow Us</h5>
-                        <div class="social-icons">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-tripadvisor"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <form>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Your Name" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="email" class="form-control" placeholder="Your Email" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Subject">
-                        </div>
-                        <div class="mb-3">
-                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="mb-4">Ready to Start Your Fitness Journey?</h2>
+                    <p class="lead mb-4">Join today and get your first week FREE with no commitment. Experience our facilities, meet our trainers, and see the difference for yourself.</p>
+                    <a href="#" class="btn btn-light btn-lg me-3">Get Started Now</a>
+                    <a href="#" class="btn btn-outline-light btn-lg">Schedule a Tour</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer id="contact" class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <h5>Savory Bites</h5>
-                    <p>Experience culinary excellence with our innovative dishes crafted from the finest ingredients. We're committed to creating memorable dining experiences for every guest.</p>
-                    <div class="social-icons">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5>FitLife</h5>
+                    <p>Your premier destination for fitness and wellness. We're committed to helping you achieve your health goals in a supportive community environment.</p>
+                    <div class="social-icons mt-4">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6">
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
                     <h5>Quick Links</h5>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#menu">Menu</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#chefs">Chefs</a></li>
-                        <li><a href="#gallery">Gallery</a></li>
-                        <li><a href="#events">Events</a></li>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">Home</a></li>
+                        <li><a href="#programs" class="text-light text-decoration-none">Programs</a></li>
+                        <li><a href="#trainers" class="text-light text-decoration-none">Trainers</a></li>
+                        <li><a href="#pricing" class="text-light text-decoration-none">Pricing</a></li>
+                        <li><a href="#schedule" class="text-light text-decoration-none">Schedule</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                     <h5>Contact Info</h5>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 Culinary Street</li>
-                        <li><i class="fas fa-phone me-2"></i> (555) 123-4567</li>
-                        <li><i class="fas fa-envelope me-2"></i> info@savorybites.com</li>
-                        <li><i class="fas fa-clock me-2"></i> Mon-Sun: 11AM - 11PM</li>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 123 Fitness Street, City</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> (123) 456-7890</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@fitlife.com</li>
+                        <li><i class="fas fa-clock me-2"></i> Mon-Fri: 5am-11pm, Weekends: 7am-9pm</li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h5>Newsletter</h5>
-                    <p>Subscribe to our newsletter for updates, special offers, and event invitations.</p>
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Your Email">
-                        <button class="btn btn-primary" type="button">Subscribe</button>
-                    </div>
+                    <p>Subscribe to our newsletter for fitness tips and special offers.</p>
+                    <form>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Your Email" aria-label="Your Email">
+                            <button class="btn btn-primary" type="button">Subscribe</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="copyright">
-                        <p>&copy; 2025 Savory Bites. All Rights Reserved. | Designed with <i class="fas fa-heart text-danger"></i> for food lovers</p>
-                    </div>
-                </div>
+            <div class="copyright">
+                <p class="mb-0">&copy; 2023 FitLife. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <a href="#" class="back-to-top" id="backToTop">
-        <i class="fas fa-chevron-up"></i>
-    </a>
-
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    
     <script>
-        // Navbar background change on scroll
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
-                document.querySelector('.navbar').style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
-            } else {
-                document.querySelector('.navbar').style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-            }
+        // Scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
             
-            // Back to top button visibility
-            if (window.scrollY > 300) {
-                document.getElementById('backToTop').classList.add('show');
-            } else {
-                document.getElementById('backToTop').classList.remove('show');
-            }
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Form submission handlers
-        document.querySelector('.reservation-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your reservation! We will contact you shortly to confirm.');
-            this.reset();
-        });
-
-        document.querySelectorAll('form').forEach(form => {
-            if(!form.classList.contains('reservation-form')) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    alert('Thank you for your message! We will get back to you soon.');
-                    this.reset();
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
                 });
-            }
+            };
+            
+            // Check on load
+            fadeInOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', fadeInOnScroll);
+            
+            // Simple script for FAQ toggle
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    if (icon.classList.contains('fa-chevron-down')) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
+            });
         });
     </script>
 </body>
