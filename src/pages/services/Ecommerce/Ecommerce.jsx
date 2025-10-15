@@ -314,7 +314,7 @@ const Ecommerce = () => {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `linear-gradient(rgba(13, 25, 51, 0.4), rgba(13, 25, 51, 0.95)), url("https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80")`,
+            backgroundImage: `linear-gradient(rgba(13, 25, 51, 0.4), rgba(13, 25, 51, 0.95)), url("https://images.pexels.com/photos/6721907/pexels-photo-6721907.jpeg")`,
           }}
         ></div>
 
@@ -620,7 +620,7 @@ const Ecommerce = () => {
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
-                  className="bg-gradient-to-br from-[#1a2b4d] to-[#152547] text-center p-12 rounded-2xl border border-[#2d3b5b] transition-all duration-400 hover:-translate-y-2 hover:scale-105 hover:border-[#4a7dff] hover:shadow-2xl hover:shadow-blue-500/15 min-h-[200px] flex flex-col justify-center items-center relative overflow-hidden group"
+                  className="bg-gradient-to-br from-[#1a2b4d] to-[#152547] text-center p-9 rounded-2xl border border-[#2d3b5b] transition-all duration-400 hover:-translate-y-2 hover:scale-105 hover:border-[#4a7dff] hover:shadow-2xl hover:shadow-blue-500/15 min-h-[200px] flex flex-col justify-center items-center relative overflow-hidden group"
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}

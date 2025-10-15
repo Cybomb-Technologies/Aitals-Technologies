@@ -4,23 +4,26 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  Smartphone,
-  Globe,
-  Shield,
+  Brain,
   Zap,
+  Shield,
+  Database,
+  Cpu,
+  Bot,
+  Workflow,
+  CheckCircle,
   Users,
   Award,
   Clock,
-  CheckCircle,
-  ShoppingCart,
   BarChart,
   MessageCircle,
   Palette,
 } from "lucide-react";
 
-const MobileApp = () => {
+const AiAutomation = () => {
   const sectionRefs = useRef([]);
-  const [selectedTechCategory, setSelectedTechCategory] = useState("Platforms");
+  const [selectedTechCategory, setSelectedTechCategory] =
+    useState("LLMs & NLP");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -57,147 +60,146 @@ const MobileApp = () => {
 
   const features = [
     {
-      icon: Smartphone,
-      title: "Cross-Platform Development",
-      desc: "Build once, deploy everywhere with seamless performance across iOS and Android",
+      icon: Brain,
+      title: "AI-Powered Insights",
+      desc: "Leverage machine learning to uncover patterns and make data-driven decisions",
     },
     {
       icon: Zap,
-      title: "High Performance",
-      desc: "Optimized apps with fast load times and smooth user interactions",
+      title: "Intelligent Automation",
+      desc: "Automate complex workflows and business processes with AI-driven solutions",
     },
     {
       icon: Shield,
-      title: "Secure & Compliant",
-      desc: "Enterprise-grade security with industry compliance standards",
+      title: "Secure AI Integration",
+      desc: "Enterprise-grade security for all AI models and automation workflows",
     },
     {
-      icon: Globe,
-      title: "Offline Capability",
-      desc: "Functionality that works even without internet connection",
+      icon: Database,
+      title: "Data Intelligence",
+      desc: "Transform raw data into actionable intelligence with advanced analytics",
     },
     {
-      icon: Users,
-      title: "User-Centric Design",
-      desc: "Intuitive interfaces designed for optimal mobile experience",
+      icon: Bot,
+      title: "Smart Chatbots",
+      desc: "AI-powered conversational agents that provide 24/7 customer support",
     },
     {
-      icon: Award,
-      title: "App Store Ready",
-      desc: "Fully compliant with Apple App Store and Google Play Store guidelines",
+      icon: Workflow,
+      title: "Process Optimization",
+      desc: "Streamline operations and reduce costs through intelligent automation",
     },
   ];
 
-  // Updated technologies data - 5 items per category like Web-dev.jsx
   const technologies = {
-    Platforms: [
+    "LLMs & NLP": [
       {
-        name: "Android",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg",
+        name: "OpenAI GPT-4",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/OpenAI_logo_2025_%28symbol%29.svg/250px-OpenAI_logo_2025_%28symbol%29.svg.png",
       },
       {
-        name: "iOS",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg",
+        name: "Claude",
+        logo: "https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/claude-color.png",
       },
       {
-        name: "Flutter",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+        name: "Mistral",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Mistral_AI_logo_%282025%E2%80%93%29.svg/768px-Mistral_AI_logo_%282025%E2%80%93%29.svg.png?20250207103322",
       },
       {
-        name: "React Native",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+        name: "Cohere",
+        logo: "https://cdn.brandfetch.io/idfDTLvPCK/theme/dark/symbol.svg?c=1dxbfHSJFAPEGdCLU4o5B",
       },
       {
-        name: "SwiftUI",
-        logo: "https://developer.apple.com/assets/elements/icons/swiftui/swiftui-96x96_2x.png",
-      },
-    ],
-    Languages: [
-      {
-        name: "Swift",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg",
-      },
-      {
-        name: "Kotlin",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
-      },
-      {
-        name: "Dart",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
-      },
-      {
-        name: "JavaScript",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-      },
-      {
-        name: "TypeScript",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+        name: "Google Gemini",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Google-gemini-icon.svg/2048px-Google-gemini-icon.svg.png",
       },
     ],
-    Frameworks: [
+    "ML Platforms": [
       {
-        name: "Flutter",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+        name: "TensorFlow",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
       },
       {
-        name: "React Native",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+        name: "PyTorch",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg",
       },
       {
-        name: "SwiftUI",
-        logo: "https://developer.apple.com/assets/elements/icons/swiftui/swiftui-96x96_2x.png",
+        name: "Vertex AI",
+        logo: "https://images.seeklogo.com/logo-png/52/2/vertex-ai-logo-png_seeklogo-523075.png",
       },
       {
-        name: "Jetpack Compose",
-        logo: "https://logo.svgcdn.com/d/jetpackcompose-original.svg",
+        name: "Azure ML",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg",
       },
       {
-        name: "Ionic",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg",
-      },
-    ],
-    Backend: [
-      {
-        name: "Node.js",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-      },
-      {
-        name: "Firebase",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
-      },
-      {
-        name: "MongoDB",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-      },
-      {
-        name: "Express.js",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
-      },
-      {
-        name: "GraphQL",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg",
+        name: "Hugging Face",
+        logo: "https://huggingface.co/front/assets/huggingface_logo.svg",
       },
     ],
-    Tools: [
+    Automation: [
       {
-        name: "Figma",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+        name: "Zapier",
+        logo: "https://img.icons8.com/color/512/zapier.png",
       },
       {
-        name: "GitHub",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+        name: "Make",
+        logo: "https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/make-color.png",
       },
       {
-        name: "Postman",
-        logo: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/postman-icon.svg",
+        name: "LangChain",
+        logo: "https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/logos/langchain-ipuhh4qo1jz5ssl4x0g2a.png/langchain-dp1uxj2zn3752pntqnpfu2.png?_a=DATAg1AAZAA0",
       },
       {
-        name: "Android Studio",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg",
+        name: "AutoGPT",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/8/80/Auto_GPT_Logo.png",
       },
       {
-        name: "Xcode",
-        logo: "https://developer.apple.com/assets/elements/icons/xcode/xcode-96x96_2x.png",
+        name: "Airflow",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apacheairflow/apacheairflow-original.svg",
+      },
+    ],
+    "Vision & Voice": [
+      {
+        name: "Google Vision",
+        logo: "https://www.svgrepo.com/show/375395/cloud-vision-api.svg",
+      },
+      {
+        name: "AWS Rekognition",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/768px-Amazon_Web_Services_Logo.svg.png",
+      },
+      {
+        name: "ElevenLabs",
+        logo: "https://cdn.brandfetch.io/idl_sWY35e/w/400/h/400/theme/dark/icon.jpeg?c=1dxbfHSJFAPEGdCLU4o5B",
+      },
+      {
+        name: "Speechly",
+        logo: "https://dreamy-cori-a02de1.netlify.app/logo512.png",
+      },
+      {
+        name: "Twilio",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twilio/twilio-original.svg",
+      },
+    ],
+    Deployment: [
+      {
+        name: "Docker",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+      },
+      {
+        name: "FastAPI",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
+      },
+      {
+        name: "Flask",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg",
+      },
+      {
+        name: "Streamlit",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/streamlit/streamlit-original.svg",
+      },
+      {
+        name: "Kubernetes",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
       },
     ],
   };
@@ -205,68 +207,80 @@ const MobileApp = () => {
   const process = [
     {
       number: "01",
-      title: "Strategy & Planning",
-      desc: "Define app objectives, target audience, and technical requirements",
+      title: "AI Strategy & Discovery",
+      desc: "Analyze your business processes and identify AI automation opportunities",
     },
     {
       number: "02",
-      title: "UI/UX Design",
-      desc: "Create intuitive mobile-first designs and interactive prototypes",
+      title: "Data Preparation",
+      desc: "Clean, structure, and prepare your data for AI model training",
     },
     {
       number: "03",
-      title: "Development",
-      desc: "Agile development with cross-platform or native technologies",
+      title: "Model Development",
+      desc: "Build and train custom AI models tailored to your specific needs",
     },
     {
       number: "04",
-      title: "Testing & QA",
-      desc: "Comprehensive testing across devices, OS versions, and networks",
+      title: "Integration & Testing",
+      desc: "Seamlessly integrate AI solutions into your existing workflows",
     },
     {
       number: "05",
-      title: "App Store Deployment",
-      desc: "Seamless submission to Apple App Store and Google Play Store",
+      title: "Deployment & Monitoring",
+      desc: "Deploy AI models with continuous performance monitoring",
     },
     {
       number: "06",
-      title: "Maintenance & Updates",
-      desc: "Ongoing support, performance monitoring, and feature updates",
+      title: "Optimization & Scaling",
+      desc: "Continuously improve and scale your AI capabilities",
     },
   ];
 
   const solutions = [
     {
-      icon: ShoppingCart,
-      title: "E-Commerce Apps",
-      desc: "Mobile shopping experiences with secure payment integration",
-      features: ["Payment Gateway", "Push Notifications", "Order Tracking"],
+      icon: Bot,
+      title: "Intelligent Chatbots",
+      desc: "AI-powered conversational agents that provide 24/7 customer support and lead generation",
+      features: [
+        "Natural Language Processing",
+        "Multi-language Support",
+        "Sentiment Analysis",
+      ],
+    },
+    {
+      icon: Workflow,
+      title: "Process Automation",
+      desc: "Automate complex business workflows with AI-driven decision making and robotic process automation",
+      features: [
+        "Workflow Automation",
+        "Decision Intelligence",
+        "Process Mining",
+      ],
     },
     {
       icon: BarChart,
-      title: "Business Apps",
-      desc: "Enterprise solutions for internal operations and customer engagement",
-      features: ["Offline Sync", "Real-time Data", "CRM Integration"],
+      title: "Predictive Analytics",
+      desc: "Leverage machine learning to forecast trends, identify opportunities, and mitigate risks",
+      features: [
+        "Forecasting Models",
+        "Anomaly Detection",
+        "Pattern Recognition",
+      ],
     },
     {
-      icon: MessageCircle,
-      title: "Social & Communication",
-      desc: "Engaging social platforms and messaging applications",
-      features: ["Real-time Chat", "Media Sharing", "User Profiles"],
-    },
-    {
-      icon: Palette,
-      title: "Lifestyle & Utility",
-      desc: "Apps that enhance daily life with innovative features",
-      features: ["Location Services", "Camera Integration", "Health Tracking"],
+      icon: Cpu,
+      title: "Computer Vision",
+      desc: "Implement image and video analysis for quality control, security, and automation",
+      features: ["Object Detection", "Image Classification", "OCR Processing"],
     },
   ];
 
   const stats = [
-    { number: "150+", label: "Mobile Apps Developed" },
-    { number: "4.8★", label: "Average App Store Rating" },
-    { number: "10M+", label: "App Downloads" },
-    { number: "24/7", label: "Support Available" },
+    { number: "150+", label: "AI Projects Deployed" },
+    { number: "95%", label: "Process Efficiency Gain" },
+    { number: "40+", label: "AI Experts" },
+    { number: "24/7", label: "AI Monitoring" },
   ];
 
   const techCategories = Object.keys(technologies);
@@ -275,11 +289,11 @@ const MobileApp = () => {
     <>
       <Helmet>
         <title>
-          Mobile App Development Services | Cross-Platform Solutions
+          AI & Automation Integration Services | Intelligent Solutions
         </title>
         <meta
           name="description"
-          content="Professional mobile app development services for iOS and Android. Cross-platform and native apps with cutting-edge security and performance."
+          content="Professional AI and automation integration services. Machine learning, intelligent automation, and AI-powered solutions for your business transformation."
         />
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
@@ -293,7 +307,7 @@ const MobileApp = () => {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `linear-gradient(rgba(13, 25, 51, 0.4), rgba(13, 25, 51, 0.95)), url("https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80")`,
+            backgroundImage: `linear-gradient(rgba(13, 25, 51, 0.4), rgba(13, 25, 51, 0.95)), url("https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80")`,
           }}
         ></div>
 
@@ -316,9 +330,9 @@ const MobileApp = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Mobile App
+            AI & Automation
             <span className="block mt-2 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent bg-[length:200%_200%] animate-gradient-shift">
-              Development
+              Integration
             </span>
             Solutions
           </motion.h1>
@@ -329,8 +343,8 @@ const MobileApp = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            We create powerful, secure, and engaging mobile applications that
-            drive user engagement and business growth across all platforms
+            Transform your business with intelligent automation and AI-powered
+            solutions that drive efficiency, innovation, and growth
           </motion.p>
 
           <motion.div
@@ -343,7 +357,7 @@ const MobileApp = () => {
               to="/contact"
               className="relative bg-[#4a7dff] text-white text-lg px-8 py-6 rounded-xl font-semibold flex items-center gap-2 min-w-[220px] justify-center overflow-hidden transition-all duration-300 hover:bg-[#3a6df0] hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/30 group"
             >
-              <span className="relative z-10">Start Your Project</span>
+              <span className="relative z-10">Start AI Project</span>
               <ArrowRight size={20} className="relative z-10" />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
             </Link>
@@ -352,7 +366,7 @@ const MobileApp = () => {
               to="/portfolio"
               className="relative bg-transparent text-white text-lg px-8 py-6 rounded-xl font-semibold border-2 border-[#4a7dff] flex items-center gap-2 min-w-[180px] justify-center overflow-hidden transition-all duration-300 hover:bg-[#4a7dff]/10 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/20 group"
             >
-              <span className="relative z-10">View Our Work</span>
+              <span className="relative z-10">View AI Projects</span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
             </Link>
           </motion.div>
@@ -369,12 +383,13 @@ const MobileApp = () => {
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Why Choose Our Mobile Services
+              Why Choose Our AI Services
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              We combine cutting-edge mobile technologies with user-centric
-              design to create apps that users love and businesses rely on
+              We combine cutting-edge AI technologies with deep industry
+              expertise to deliver intelligent solutions that transform
+              businesses
             </p>
           </div>
 
@@ -419,8 +434,8 @@ const MobileApp = () => {
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              We leverage the latest mobile technologies and frameworks to build
-              robust and scalable mobile applications
+              We leverage the latest AI and automation technologies to build
+              intelligent, scalable solutions
             </p>
           </div>
 
@@ -476,12 +491,12 @@ const MobileApp = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Our Mobile Development Process
+              Our AI Development Process
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              A comprehensive approach that ensures quality, security, and
-              exceptional user experience for your mobile application
+              A structured methodology for developing and deploying AI solutions
+              that deliver measurable business value
             </p>
           </div>
 
@@ -522,12 +537,12 @@ const MobileApp = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Our Mobile Solutions
+              Our AI Solutions
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              Comprehensive mobile app development services tailored to your
-              specific business needs and target audience
+              Comprehensive AI and automation services tailored to transform
+              your business operations
             </p>
           </div>
 
@@ -583,13 +598,13 @@ const MobileApp = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Our Mobile Achievements
+              Our AI Achievements
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
 
             <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-16 leading-relaxed font-['Poppins']">
-              Proven track record of delivering successful mobile applications
-              that users love and businesses trust
+              Proven results in delivering AI solutions that drive business
+              transformation and innovation
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
@@ -629,19 +644,19 @@ const MobileApp = () => {
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="text-center">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-6 text-white font-['Poppins'] leading-tight">
-              Ready to Build Your Mobile App?
+              Ready to Transform with AI?
             </h2>
 
             <p className="text-xl text-white/90 max-w-4xl mx-auto mb-12 leading-relaxed font-['Poppins']">
-              Let's discuss your mobile app vision and create an engaging
-              experience that users will love
+              Let's discuss how AI and automation can revolutionize your
+              business operations and drive growth
             </p>
 
             <Link
               to="/contact"
               className="relative bg-white text-[#4a7dff] text-lg px-10 py-6 rounded-xl font-semibold inline-flex items-center gap-2 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl group mx-auto"
             >
-              <span className="relative z-10">Get Started Today</span>
+              <span className="relative z-10">Start AI Transformation</span>
               <ArrowRight size={20} className="relative z-10" />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
             </Link>
@@ -720,4 +735,4 @@ const MobileApp = () => {
   );
 };
 
-export default MobileApp;
+export default AiAutomation;

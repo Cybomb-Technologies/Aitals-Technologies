@@ -4,23 +4,27 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  Smartphone,
-  Globe,
+  TestTube,
   Shield,
   Zap,
-  Users,
-  Award,
   Clock,
+  Users,
   CheckCircle,
-  ShoppingCart,
+  Bug,
+  Monitor,
+  Server,
+  Database,
+  Cloud,
+  Award,
   BarChart,
   MessageCircle,
   Palette,
 } from "lucide-react";
 
-const MobileApp = () => {
+const SoftwareTesting = () => {
   const sectionRefs = useRef([]);
-  const [selectedTechCategory, setSelectedTechCategory] = useState("Platforms");
+  const [selectedTechCategory, setSelectedTechCategory] =
+    useState("Testing Tools");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -57,147 +61,102 @@ const MobileApp = () => {
 
   const features = [
     {
-      icon: Smartphone,
-      title: "Cross-Platform Development",
-      desc: "Build once, deploy everywhere with seamless performance across iOS and Android",
+      icon: Shield,
+      title: "Quality Assurance",
+      desc: "Comprehensive testing to ensure your software meets the highest quality standards",
     },
     {
       icon: Zap,
-      title: "High Performance",
-      desc: "Optimized apps with fast load times and smooth user interactions",
+      title: "Performance Testing",
+      desc: "Identify bottlenecks and optimize your application for maximum speed",
     },
     {
-      icon: Shield,
-      title: "Secure & Compliant",
-      desc: "Enterprise-grade security with industry compliance standards",
+      icon: Bug,
+      title: "Bug Detection",
+      desc: "Thorough testing to identify and resolve issues before deployment",
     },
     {
-      icon: Globe,
-      title: "Offline Capability",
-      desc: "Functionality that works even without internet connection",
+      icon: Monitor,
+      title: "Cross-Platform Testing",
+      desc: "Ensure consistent performance across all devices and browsers",
+    },
+    {
+      icon: Server,
+      title: "Load Testing",
+      desc: "Test your application under heavy traffic conditions to ensure stability",
     },
     {
       icon: Users,
-      title: "User-Centric Design",
-      desc: "Intuitive interfaces designed for optimal mobile experience",
-    },
-    {
-      icon: Award,
-      title: "App Store Ready",
-      desc: "Fully compliant with Apple App Store and Google Play Store guidelines",
+      title: "User Experience Testing",
+      desc: "Validate user workflows and ensure intuitive application behavior",
     },
   ];
 
-  // Updated technologies data - 5 items per category like Web-dev.jsx
   const technologies = {
-    Platforms: [
+    "Testing Tools": [
       {
-        name: "Android",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg",
+        name: "Selenium",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg",
       },
       {
-        name: "iOS",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg",
+        name: "Jest",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg",
       },
       {
-        name: "Flutter",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+        name: "Cypress",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cypressio/cypressio-original.svg",
       },
       {
-        name: "React Native",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-      },
-      {
-        name: "SwiftUI",
-        logo: "https://developer.apple.com/assets/elements/icons/swiftui/swiftui-96x96_2x.png",
-      },
-    ],
-    Languages: [
-      {
-        name: "Swift",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg",
-      },
-      {
-        name: "Kotlin",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
-      },
-      {
-        name: "Dart",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
-      },
-      {
-        name: "JavaScript",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-      },
-      {
-        name: "TypeScript",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-      },
-    ],
-    Frameworks: [
-      {
-        name: "Flutter",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
-      },
-      {
-        name: "React Native",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-      },
-      {
-        name: "SwiftUI",
-        logo: "https://developer.apple.com/assets/elements/icons/swiftui/swiftui-96x96_2x.png",
-      },
-      {
-        name: "Jetpack Compose",
-        logo: "https://logo.svgcdn.com/d/jetpackcompose-original.svg",
-      },
-      {
-        name: "Ionic",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg",
-      },
-    ],
-    Backend: [
-      {
-        name: "Node.js",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-      },
-      {
-        name: "Firebase",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
-      },
-      {
-        name: "MongoDB",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-      },
-      {
-        name: "Express.js",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
-      },
-      {
-        name: "GraphQL",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg",
-      },
-    ],
-    Tools: [
-      {
-        name: "Figma",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
-      },
-      {
-        name: "GitHub",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+        name: "JUnit",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/junit/junit-original.svg",
       },
       {
         name: "Postman",
-        logo: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/postman-icon.svg",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg",
+      },
+    ],
+    Automation: [
+      {
+        name: "Jenkins",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg",
       },
       {
-        name: "Android Studio",
-        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg",
+        name: "Docker",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
       },
       {
-        name: "Xcode",
-        logo: "https://developer.apple.com/assets/elements/icons/xcode/xcode-96x96_2x.png",
+        name: "GitHub Actions",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg",
+      },
+      {
+        name: "Appium",
+        logo: "https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_4db5713c991f58ae5a2241277f06cd2e/appium.png",
+      },
+      {
+        name: "Playwright",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/playwright/playwright-original.svg",
+      },
+    ],
+    Monitoring: [
+      {
+        name: "Grafana",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg",
+      },
+      {
+        name: "Prometheus",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg",
+      },
+      {
+        name: "New Relic",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/newrelic/newrelic-original.svg",
+      },
+      {
+        name: "Datadog",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/datadog/datadog-original.svg",
+      },
+      {
+        name: "Splunk",
+        logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeq4ALF8XsOGUaY3SCjkSQY1MVTakii5Z2Sw&s",
       },
     ],
   };
@@ -205,68 +164,88 @@ const MobileApp = () => {
   const process = [
     {
       number: "01",
-      title: "Strategy & Planning",
-      desc: "Define app objectives, target audience, and technical requirements",
+      title: "Requirement Analysis",
+      desc: "Understand your software requirements and define testing objectives",
     },
     {
       number: "02",
-      title: "UI/UX Design",
-      desc: "Create intuitive mobile-first designs and interactive prototypes",
+      title: "Test Planning",
+      desc: "Create comprehensive test strategies and detailed test cases",
     },
     {
       number: "03",
-      title: "Development",
-      desc: "Agile development with cross-platform or native technologies",
+      title: "Test Development",
+      desc: "Develop automated test scripts and manual test scenarios",
     },
     {
       number: "04",
-      title: "Testing & QA",
-      desc: "Comprehensive testing across devices, OS versions, and networks",
+      title: "Test Execution",
+      desc: "Execute tests across multiple environments and platforms",
     },
     {
       number: "05",
-      title: "App Store Deployment",
-      desc: "Seamless submission to Apple App Store and Google Play Store",
+      title: "Defect Tracking",
+      desc: "Identify, log, and track defects through resolution",
     },
     {
       number: "06",
-      title: "Maintenance & Updates",
-      desc: "Ongoing support, performance monitoring, and feature updates",
+      title: "Reporting & Maintenance",
+      desc: "Provide detailed reports and ongoing maintenance support",
     },
   ];
 
   const solutions = [
     {
-      icon: ShoppingCart,
-      title: "E-Commerce Apps",
-      desc: "Mobile shopping experiences with secure payment integration",
-      features: ["Payment Gateway", "Push Notifications", "Order Tracking"],
+      icon: Monitor,
+      title: "Functional Testing",
+      desc: "Comprehensive testing of all software functions and features",
+      features: [
+        "Unit Testing",
+        "Integration Testing",
+        "System Testing",
+        "User Acceptance Testing",
+      ],
     },
     {
-      icon: BarChart,
-      title: "Business Apps",
-      desc: "Enterprise solutions for internal operations and customer engagement",
-      features: ["Offline Sync", "Real-time Data", "CRM Integration"],
+      icon: Zap,
+      title: "Performance Testing",
+      desc: "Ensure optimal performance under various load conditions",
+      features: [
+        "Load Testing",
+        "Stress Testing",
+        "Endurance Testing",
+        "Spike Testing",
+      ],
     },
     {
-      icon: MessageCircle,
-      title: "Social & Communication",
-      desc: "Engaging social platforms and messaging applications",
-      features: ["Real-time Chat", "Media Sharing", "User Profiles"],
+      icon: Shield,
+      title: "Security Testing",
+      desc: "Identify vulnerabilities and ensure robust security measures",
+      features: [
+        "Penetration Testing",
+        "Vulnerability Assessment",
+        "Security Scanning",
+        "Risk Assessment",
+      ],
     },
     {
-      icon: Palette,
-      title: "Lifestyle & Utility",
-      desc: "Apps that enhance daily life with innovative features",
-      features: ["Location Services", "Camera Integration", "Health Tracking"],
+      icon: Cloud,
+      title: "API Testing",
+      desc: "Thorough testing of APIs for functionality and performance",
+      features: [
+        "REST API Testing",
+        "SOAP Testing",
+        "Performance Testing",
+        "Security Testing",
+      ],
     },
   ];
 
   const stats = [
-    { number: "150+", label: "Mobile Apps Developed" },
-    { number: "4.8★", label: "Average App Store Rating" },
-    { number: "10M+", label: "App Downloads" },
-    { number: "24/7", label: "Support Available" },
+    { number: "1K+", label: "Bugs Identified" },
+    { number: "99%", label: "Test Coverage" },
+    { number: "50+", label: "Testing Experts" },
+    { number: "24/7", label: "Monitoring" },
   ];
 
   const techCategories = Object.keys(technologies);
@@ -275,11 +254,11 @@ const MobileApp = () => {
     <>
       <Helmet>
         <title>
-          Mobile App Development Services | Cross-Platform Solutions
+          Software Testing & Maintenance Services | Quality Assurance Experts
         </title>
         <meta
           name="description"
-          content="Professional mobile app development services for iOS and Android. Cross-platform and native apps with cutting-edge security and performance."
+          content="Comprehensive software testing and maintenance services. Quality assurance, performance testing, security testing, and ongoing support for your applications."
         />
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
@@ -293,7 +272,7 @@ const MobileApp = () => {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `linear-gradient(rgba(13, 25, 51, 0.4), rgba(13, 25, 51, 0.95)), url("https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80")`,
+            backgroundImage: `linear-gradient(rgba(13, 25, 51, 0.4), rgba(13, 25, 51, 0.85)), url("https://images.unsplash.com/photo-1542831371-29b0f74f9713")`,
           }}
         ></div>
 
@@ -316,11 +295,10 @@ const MobileApp = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Mobile App
+            Software
             <span className="block mt-2 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent bg-[length:200%_200%] animate-gradient-shift">
-              Development
+              Testing & Maintenance
             </span>
-            Solutions
           </motion.h1>
 
           <motion.p
@@ -329,8 +307,8 @@ const MobileApp = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            We create powerful, secure, and engaging mobile applications that
-            drive user engagement and business growth across all platforms
+            Comprehensive quality assurance and ongoing support to ensure your
+            software runs flawlessly with our rigorous testing protocols
           </motion.p>
 
           <motion.div
@@ -352,7 +330,7 @@ const MobileApp = () => {
               to="/portfolio"
               className="relative bg-transparent text-white text-lg px-8 py-6 rounded-xl font-semibold border-2 border-[#4a7dff] flex items-center gap-2 min-w-[180px] justify-center overflow-hidden transition-all duration-300 hover:bg-[#4a7dff]/10 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/20 group"
             >
-              <span className="relative z-10">View Our Work</span>
+              <span className="relative z-10">View Case Studies</span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
             </Link>
           </motion.div>
@@ -369,12 +347,12 @@ const MobileApp = () => {
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Why Choose Our Mobile Services
+              Our Testing Services
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              We combine cutting-edge mobile technologies with user-centric
-              design to create apps that users love and businesses rely on
+              Comprehensive testing solutions to ensure your software meets the
+              highest standards of quality and performance
             </p>
           </div>
 
@@ -415,12 +393,12 @@ const MobileApp = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Technologies We Use
+              Testing Technologies
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              We leverage the latest mobile technologies and frameworks to build
-              robust and scalable mobile applications
+              We leverage industry-leading testing tools and frameworks to
+              deliver comprehensive quality assurance
             </p>
           </div>
 
@@ -476,12 +454,12 @@ const MobileApp = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Our Mobile Development Process
+              Our Testing Process
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              A comprehensive approach that ensures quality, security, and
-              exceptional user experience for your mobile application
+              A structured methodology that ensures comprehensive testing
+              coverage and timely delivery
             </p>
           </div>
 
@@ -522,12 +500,12 @@ const MobileApp = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Our Mobile Solutions
+              Testing Solutions
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              Comprehensive mobile app development services tailored to your
-              specific business needs and target audience
+              Comprehensive testing services tailored to your specific software
+              requirements
             </p>
           </div>
 
@@ -583,13 +561,13 @@ const MobileApp = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Our Mobile Achievements
+              Our Testing Excellence
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
 
             <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-16 leading-relaxed font-['Poppins']">
-              Proven track record of delivering successful mobile applications
-              that users love and businesses trust
+              Delivering exceptional quality assurance results through rigorous
+              testing methodologies
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
@@ -629,19 +607,19 @@ const MobileApp = () => {
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="text-center">
             <h2 className="text-4xl md:text-6xl font-extrabold mb-6 text-white font-['Poppins'] leading-tight">
-              Ready to Build Your Mobile App?
+              Ensure Your Software Quality
             </h2>
 
             <p className="text-xl text-white/90 max-w-4xl mx-auto mb-12 leading-relaxed font-['Poppins']">
-              Let's discuss your mobile app vision and create an engaging
-              experience that users will love
+              Let's work together to deliver flawless software that exceeds user
+              expectations
             </p>
 
             <Link
               to="/contact"
               className="relative bg-white text-[#4a7dff] text-lg px-10 py-6 rounded-xl font-semibold inline-flex items-center gap-2 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl group mx-auto"
             >
-              <span className="relative z-10">Get Started Today</span>
+              <span className="relative z-10">Start Testing Today</span>
               <ArrowRight size={20} className="relative z-10" />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
             </Link>
@@ -720,4 +698,4 @@ const MobileApp = () => {
   );
 };
 
-export default MobileApp;
+export default SoftwareTesting;

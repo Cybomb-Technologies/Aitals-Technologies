@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -22,40 +22,6 @@ import {
 
 const About = () => {
   const sectionRefs = useRef([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate loading completion
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 100);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("opacity-100", "translate-y-0");
-            entry.target.classList.remove("opacity-0", "translate-y-8");
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      }
-    );
-
-    sectionRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
-
-    return () => {
-      clearTimeout(timer);
-      sectionRefs.current.forEach((ref) => {
-        if (ref) observer.unobserve(ref);
-      });
-    };
-  }, []);
 
   const addToRefs = (el) => {
     if (el && !sectionRefs.current.includes(el)) {
@@ -235,24 +201,10 @@ const About = () => {
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
-        <style>
-          {`
-            body {
-              background-color: #0d1933;
-            }
-          `}
-        </style>
       </Helmet>
 
-      {/* Loading Overlay */}
-      {isLoading && (
-        <div className="fixed inset-0 bg-[#0d1933] z-50 flex items-center justify-center">
-          <div className="w-16 h-16 border-4 border-[#4a7dff] border-t-transparent rounded-full animate-spin"></div>
-        </div>
-      )}
-
-      {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-[#0d1933] pt-32 pb-14">
+      {/* Hero Section - Immediate display */}
+      <section className="relative min-h-[60vh] flex items-center justify-center bg-[#0d1933] pt-32 pb-14">
         {/* Solid Background First */}
         <div className="absolute inset-0 bg-[#0d1933]"></div>
 
@@ -261,7 +213,7 @@ const About = () => {
 
         {/* Background Image with Overlay */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `linear-gradient(rgba(13, 25, 51, 0.4), rgba(13, 25, 51, 0.95)), url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80")`,
           }}
@@ -284,7 +236,7 @@ const About = () => {
             className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-white font-['Poppins'] drop-shadow-lg"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
           >
             About Aitals Technologies
           </motion.h1>
@@ -293,7 +245,7 @@ const About = () => {
             className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto text-gray-200 leading-relaxed font-['Poppins'] font-light"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             We are a global software development company committed to
             transforming ideas into powerful digital solutions. With innovation
@@ -306,7 +258,7 @@ const About = () => {
       {/* Vision & Mission Section */}
       <section
         ref={addToRefs}
-        className="py-20 bg-[#0d1933] relative overflow-hidden opacity-0 translate-y-8 transition-all duration-700"
+        className="py-20 bg-[#0d1933] relative overflow-hidden"
       >
         <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-radial-gradient from-[#4a7dff]/3 to-transparent animate-spin-slow"></div>
 
@@ -378,10 +330,7 @@ const About = () => {
       </section>
 
       {/* Values Section */}
-      <section
-        ref={addToRefs}
-        className="py-20 bg-white relative opacity-0 translate-y-8 transition-all duration-700"
-      >
+      <section ref={addToRefs} className="py-20 bg-white relative">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -433,7 +382,7 @@ const About = () => {
       {/* Journey Section */}
       <section
         ref={addToRefs}
-        className="py-20 bg-[#0d1933] relative overflow-hidden opacity-0 translate-y-8 transition-all duration-700"
+        className="py-20 bg-[#0d1933] relative overflow-hidden"
       >
         <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-radial-gradient from-[#4a7dff]/3 to-transparent animate-spin-slow"></div>
 
@@ -486,10 +435,7 @@ const About = () => {
       </section>
 
       {/* Expertise Section */}
-      <section
-        ref={addToRefs}
-        className="py-20 bg-white relative opacity-0 translate-y-8 transition-all duration-700"
-      >
+      <section ref={addToRefs} className="py-20 bg-white relative">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -541,7 +487,7 @@ const About = () => {
       {/* Team Section */}
       <section
         ref={addToRefs}
-        className="py-20 bg-[#0d1933] relative overflow-hidden opacity-0 translate-y-8 transition-all duration-700"
+        className="py-20 bg-[#0d1933] relative overflow-hidden"
       >
         <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-radial-gradient from-[#4a7dff]/3 to-transparent animate-spin-slow"></div>
 
@@ -605,10 +551,7 @@ const About = () => {
       </section>
 
       {/* Culture Section */}
-      <section
-        ref={addToRefs}
-        className="py-20 bg-white relative opacity-0 translate-y-8 transition-all duration-700"
-      >
+      <section ref={addToRefs} className="py-20 bg-white relative">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -685,7 +628,7 @@ const About = () => {
       {/* CTA Section */}
       <section
         ref={addToRefs}
-        className="py-24 bg-gradient-to-br from-[#0d1933] to-[#1a2b4d] relative overflow-hidden opacity-0 translate-y-8 transition-all duration-700"
+        className="py-24 bg-gradient-to-br from-[#0d1933] to-[#1a2b4d] relative overflow-hidden"
       >
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"

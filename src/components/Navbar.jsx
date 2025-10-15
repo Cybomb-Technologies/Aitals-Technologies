@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -11,101 +11,102 @@ const Navbar = () => {
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false); // 👈 NEW STATE
   const location = useLocation();
-  
-  const servicesDropdownRef = useRef(null); 
+
+  const servicesDropdownRef = useRef(null);
   const timeoutRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location.pathname]);
 
   // Close desktop dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (servicesDropdownRef.current && !servicesDropdownRef.current.contains(event.target)) {
+      if (
+        servicesDropdownRef.current &&
+        !servicesDropdownRef.current.contains(event.target)
+      ) {
         setIsServicesDropdownOpen(false);
         setActiveDropdown(null);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   // Close mobile menu logic and added mobile services dropdown reset
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         setIsMobileMenuOpen(false);
       }
     };
 
     if (isMobileMenuOpen) {
-      document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden';
+      document.addEventListener("keydown", handleEscape);
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
       // Reset dropdowns when closing mobile menu
       if (isMobileServicesOpen) setIsMobileServicesOpen(false);
       if (isServicesDropdownOpen) setIsServicesDropdownOpen(false);
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'unset';
+      document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = "unset";
     };
   }, [isMobileMenuOpen, isMobileServicesOpen]);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { 
-      name: 'Services', 
-      path: '/services',
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    {
+      name: "Services",
+      path: "/services",
       dropdown: [
-        { 
-          name: 'Web Development', 
-          path: '/services/web-development',
-          description: 'Custom web applications and solutions'
+        {
+          name: "Web Development",
+          path: "/services/web-development",
         },
-        { 
-          name: 'Mobile App Development', 
-          path: '/services/mobile-development',
-          description: 'iOS & Android native and cross-platform apps'
+        {
+          name: "Mobile App Development",
+          path: "/services/mobile-development",
         },
-        { 
-          name: 'UI/UX Design', 
-          path: '/services/ui-ux-design',
-          description: 'User-centered design and prototyping'
+        {
+          name: "UI/UX Design",
+          path: "/services/ui-ux-design",
         },
-                { 
-          name: 'Ecommerce', 
-          path: '/services/ecommerce',
-          description: 'Modern E-commerce Development Solutions'
+        {
+          name: "Ecommerce",
+          path: "/services/ecommerce",
         },
-        { 
-          name: 'Cloud Solutions', 
-          path: '/services/cloud-solutions',
-          description: 'Scalable cloud infrastructure and deployment'
+        {
+          name: "Software Testing",
+          path: "/services/software-testing",
         },
-        { 
-          name: 'AI Integration', 
-          path: '/services/ai-integration',
-          description: 'AI-powered solutions and automation'
-        }
-      ]
+        {
+          name: "Cloud Solutions",
+          path: "/services/cloud-devops",
+        },
+        {
+          name: "AI Integration",
+          path: "/services/ai-automation",
+        },
+      ],
     },
-    { name: 'Portfolio', path: '/portfolio' },
-    { name: 'Career', path: '/career' },
-    { name: 'Blogs', path: '/blog' },
+    { name: "Portfolio", path: "/portfolio" },
+    { name: "Career", path: "/career" },
+    { name: "Blogs", path: "/blog" },
   ];
 
   const handleMouseEnter = (linkName) => {
@@ -113,7 +114,7 @@ const Navbar = () => {
       clearTimeout(timeoutRef.current);
     }
     setActiveDropdown(linkName);
-    if (linkName === 'Services') {
+    if (linkName === "Services") {
       setIsServicesDropdownOpen(true);
     }
   };
@@ -122,7 +123,7 @@ const Navbar = () => {
     timeoutRef.current = setTimeout(() => {
       setIsServicesDropdownOpen(false);
       setActiveDropdown(null);
-    }, 300); 
+    }, 300);
   };
 
   const handleDropdownMouseEnter = () => {
@@ -135,10 +136,10 @@ const Navbar = () => {
     timeoutRef.current = setTimeout(() => {
       setIsServicesDropdownOpen(false);
       setActiveDropdown(null);
-    }, 300); 
+    }, 300);
   };
 
-  const isServicesActive = location.pathname.startsWith('/services');
+  const isServicesActive = location.pathname.startsWith("/services");
 
   return (
     <motion.nav
@@ -146,18 +147,21 @@ const Navbar = () => {
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full`}
     >
-      <div 
+      <div
         className={`py-2 px-4 transition-all duration-300 ${
-            isScrolled 
-                ? 'bg-white shadow-lg' 
-                : 'bg-white shadow-lg backdrop-blur-sm'
+          isScrolled
+            ? "bg-white shadow-lg"
+            : "bg-white shadow-lg backdrop-blur-sm"
         }`}
       >
         <div className="flex items-center justify-between w-full px-4 md:px-8">
-          <Link to="/" className="flex items-center group transition-all duration-300">
-            <img 
-              src="src\assets\logo.png" 
-              alt="Aitals Technologies Logo" 
+          <Link
+            to="/"
+            className="flex items-center group transition-all duration-300"
+          >
+            <img
+              src="src\assets\logo.png"
+              alt="Aitals Technologies Logo"
               className="h-12 lg:h-15 w-auto transition-opacity group-hover:opacity-90"
             />
           </Link>
@@ -168,7 +172,7 @@ const Navbar = () => {
               <div
                 key={link.path}
                 className="relative"
-                ref={link.name === 'Services' ? servicesDropdownRef : null}
+                ref={link.name === "Services" ? servicesDropdownRef : null}
                 onMouseEnter={() => handleMouseEnter(link.name)}
                 onMouseLeave={handleMouseLeave}
               >
@@ -177,56 +181,61 @@ const Navbar = () => {
                     <button
                       className={`font-medium transition-colors flex items-center ${
                         isServicesActive
-                          ? 'text-blue-600'
+                          ? "text-blue-600"
                           : isScrolled
-                          ? 'text-gray-700 hover:text-blue-600'
-                          : 'text-gray-700 hover:text-blue-600'
+                          ? "text-gray-700 hover:text-blue-600"
+                          : "text-gray-700 hover:text-blue-600"
                       }`}
                     >
                       {link.name}
-                      <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${
-                        isServicesDropdownOpen ? 'rotate-180' : ''
-                      }`} />
+                      <ChevronDown
+                        className={`ml-1 h-4 w-4 transition-transform ${
+                          isServicesDropdownOpen ? "rotate-180" : ""
+                        }`}
+                      />
                     </button>
-                    
+
                     {/* Desktop Dropdown */}
                     <AnimatePresence>
-                      {isServicesDropdownOpen && activeDropdown === 'Services' && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                          transition={{ duration: 0.2 }}
-                          className="absolute top-full left-0 mt-2 w-80 bg-white rounded-xl shadow-xl border border-gray-100 py-3 z-50"
-                          onMouseEnter={handleDropdownMouseEnter}
-                          onMouseLeave={handleDropdownMouseLeave}
-                        >
-                          {link.dropdown.map((dropdownItem, index) => (
-                            <motion.div
-                              key={dropdownItem.path}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: index * 0.05 }}
-                            >
-                              <Link
-                                to={dropdownItem.path}
-                                className="flex flex-col px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 rounded-lg mx-2 group/item"
-                                onClick={() => setIsServicesDropdownOpen(false)}
+                      {isServicesDropdownOpen &&
+                        activeDropdown === "Services" && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                            transition={{ duration: 0.2 }}
+                            className="absolute top-full left-0 mt-2 w-80 bg-white rounded-xl shadow-xl border border-gray-100 py-3 z-50"
+                            onMouseEnter={handleDropdownMouseEnter}
+                            onMouseLeave={handleDropdownMouseLeave}
+                          >
+                            {link.dropdown.map((dropdownItem, index) => (
+                              <motion.div
+                                key={dropdownItem.path}
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: index * 0.05 }}
                               >
-                                <span className="font-medium group-hover/item:translate-x-1 transition-transform">
-                                  {dropdownItem.name}
-                                </span>
-                                <span className="text-sm text-gray-500 group-hover/item:text-blue-500 mt-1">
-                                  {dropdownItem.description}
-                                </span>
-                              </Link>
-                              {index < link.dropdown.length - 1 && (
-                                <div className="h-px bg-gray-100 mx-4 my-1" />
-                              )}
-                            </motion.div>
-                          ))}
-                        </motion.div>
-                      )}
+                                <Link
+                                  to={dropdownItem.path}
+                                  className="flex flex-col px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 rounded-lg mx-2 group/item"
+                                  onClick={() =>
+                                    setIsServicesDropdownOpen(false)
+                                  }
+                                >
+                                  <span className="font-medium group-hover/item:translate-x-1 transition-transform">
+                                    {dropdownItem.name}
+                                  </span>
+                                  <span className="text-sm text-gray-500 group-hover/item:text-blue-500 mt-1">
+                                    {dropdownItem.description}
+                                  </span>
+                                </Link>
+                                {index < link.dropdown.length - 1 && (
+                                  <div className="h-px bg-gray-100 mx-4 my-1" />
+                                )}
+                              </motion.div>
+                            ))}
+                          </motion.div>
+                        )}
                     </AnimatePresence>
                   </div>
                 ) : (
@@ -234,10 +243,10 @@ const Navbar = () => {
                     to={link.path}
                     className={`font-medium transition-colors ${
                       location.pathname === link.path
-                        ? 'text-blue-600'
+                        ? "text-blue-600"
                         : isScrolled
-                        ? 'text-gray-700 hover:text-blue-600'
-                        : 'text-gray-700 hover:text-blue-600'
+                        ? "text-gray-700 hover:text-blue-600"
+                        : "text-gray-700 hover:text-blue-600"
                     }`}
                   >
                     {link.name}
@@ -246,12 +255,12 @@ const Navbar = () => {
               </div>
             ))}
             <Link to="/contact">
-              <Button 
+              <Button
                 className="text-white px-4 py-2 rounded-full hover:opacity-90 transition-all"
                 style={{
-                  background: 'linear-gradient(to right, #1A173A, #6666CC)', 
-                  border: 'none',
-                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                  background: "linear-gradient(to right, #1A173A, #6666CC)",
+                  border: "none",
+                  boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
                 }}
               >
                 Get Started
@@ -261,18 +270,24 @@ const Navbar = () => {
 
           {/* Menu Button */}
           <button
-            className="xl:hidden" 
+            className="xl:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
-              <X className={isScrolled ? 'text-gray-900' : 'text-black'} size={24} />
+              <X
+                className={isScrolled ? "text-gray-900" : "text-black"}
+                size={24}
+              />
             ) : (
-              <Menu className={isScrolled ? 'text-gray-900' : 'text-black'} size={24} />
+              <Menu
+                className={isScrolled ? "text-gray-900" : "text-black"}
+                size={24}
+              />
             )}
           </button>
         </div>
       </div>
-      
+
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
@@ -285,10 +300,10 @@ const Navbar = () => {
             />
 
             <motion.div
-              initial={{ opacity: 0, x: '100%' }}
+              initial={{ opacity: 0, x: "100%" }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: '100%' }}
-              transition={{ type: 'tween', duration: 0.3 }}
+              exit={{ opacity: 0, x: "100%" }}
+              transition={{ type: "tween", duration: 0.3 }}
               className="fixed top-0 right-0 h-screen w-full md:w-1/2 bg-white shadow-xl z-50 md:rounded-l-xl overflow-y-auto"
             >
               <div className="p-6">
@@ -307,24 +322,28 @@ const Navbar = () => {
                       {link.dropdown ? (
                         <div className="py-2">
                           <button
-                            onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                            onClick={() =>
+                              setIsMobileServicesOpen(!isMobileServicesOpen)
+                            }
                             className={`flex items-center justify-between w-full text-left font-medium py-3 px-4 rounded-lg ${
                               isServicesActive || isMobileServicesOpen
-                                ? 'text-blue-600 bg-blue-50'
-                                : 'text-gray-700 hover:bg-gray-50'
+                                ? "text-blue-600 bg-blue-50"
+                                : "text-gray-700 hover:bg-gray-50"
                             }`}
                           >
                             {link.name}
-                            <ChevronDown className={`h-4 w-4 transition-transform ${
-                              isMobileServicesOpen ? 'rotate-180' : ''
-                            }`} />
+                            <ChevronDown
+                              className={`h-4 w-4 transition-transform ${
+                                isMobileServicesOpen ? "rotate-180" : ""
+                              }`}
+                            />
                           </button>
-                          
+
                           <AnimatePresence>
                             {isMobileServicesOpen && (
                               <motion.div
                                 initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: 'auto' }}
+                                animate={{ opacity: 1, height: "auto" }}
                                 exit={{ opacity: 0, height: 0 }}
                                 className="ml-4 mt-1 border-l-2 border-gray-200 pl-4 space-y-1 overflow-hidden"
                               >
@@ -335,8 +354,8 @@ const Navbar = () => {
                                     onClick={() => setIsMobileMenuOpen(false)}
                                     className={`block py-2 px-4 rounded-lg font-medium ${
                                       location.pathname === dropdownItem.path
-                                        ? 'text-blue-600 bg-blue-50'
-                                        : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
+                                        ? "text-blue-600 bg-blue-50"
+                                        : "text-gray-600 hover:text-blue-600 hover:bg-gray-50"
                                     }`}
                                   >
                                     {dropdownItem.name}
@@ -352,8 +371,8 @@ const Navbar = () => {
                           onClick={() => setIsMobileMenuOpen(false)}
                           className={`block py-3 px-4 rounded-lg font-medium ${
                             location.pathname === link.path
-                              ? 'text-blue-600 bg-blue-50'
-                              : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+                              ? "text-blue-600 bg-blue-50"
+                              : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                           }`}
                         >
                           {link.name}
@@ -361,19 +380,20 @@ const Navbar = () => {
                       )}
                     </div>
                   ))}
-                  
+
                   <div className="pt-4">
-                    <Link 
-                      to="/contact" 
+                    <Link
+                      to="/contact"
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="block"
                     >
-                      <Button 
+                      <Button
                         className="w-full text-white"
                         style={{
-                          background: 'linear-gradient(to right, #1A173A, #6666CC)', 
-                          border: 'none',
-                          boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                          background:
+                            "linear-gradient(to right, #1A173A, #6666CC)",
+                          border: "none",
+                          boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
                         }}
                       >
                         Get Started

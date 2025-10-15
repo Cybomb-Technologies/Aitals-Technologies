@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -17,14 +17,8 @@ import {
 
 const Home = () => {
   const sectionRefs = useRef([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading completion
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 100);
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -45,11 +39,21 @@ const Home = () => {
     });
 
     return () => {
-      clearTimeout(timer);
       sectionRefs.current.forEach((ref) => {
         if (ref) observer.unobserve(ref);
       });
     };
+  }, []);
+
+  // Preload hero image
+  useEffect(() => {
+    const preloadHeroImage = () => {
+      const img = new Image();
+      img.src =
+        "https://images.pexels.com/photos/16323581/pexels-photo-16323581.jpeg?_gl=1*f2b7lv*_ga*MTUzMTEwMTY5NS4xNzU0MjA1MjMx*_ga_8JE65Q40S6*czE3NjAzNDQwNDAkbzEzJGcxJHQxNzYwMzQ0MDgyJGoxOCRsMCRoMA..";
+    };
+
+    preloadHeroImage();
   }, []);
 
   const addToRefs = (el) => {
@@ -191,33 +195,33 @@ const Home = () => {
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
+        {/* Preload hero image */}
+        <link
+          rel="preload"
+          href="https://images.pexels.com/photos/16323581/pexels-photo-16323581.jpeg?_gl=1*f2b7lv*_ga*MTUzMTEwMTY5NS4xNzU0MjA1MjMx*_ga_8JE65Q40S6*czE3NjAzNDQwNDAkbzEzJGcxJHQxNzYwMzQ0MDgyJGoxOCRsMCRoMA.."
+          as="image"
+        />
         <style>
           {`
             body {
               background-color: #0d1933;
+              font-family: 'Poppins', sans-serif;
             }
           `}
         </style>
       </Helmet>
 
-      {/* Loading Overlay */}
-      {isLoading && (
-        <div className="fixed inset-0 bg-[#0d1933] z-50 flex items-center justify-center">
-          <div className="w-16 h-16 border-4 border-[#4a7dff] border-t-transparent rounded-full animate-spin"></div>
-        </div>
-      )}
-
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0d1933]">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0d1933] pt-32 pb-20">
         {/* Solid Background First */}
         <div className="absolute inset-0 bg-[#0d1933]"></div>
 
         {/* Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0d1933] via-[#0d1933] to-[#1a2b4d]"></div>
 
-        {/* Background Image with Overlay */}
+        {/* Background Image with Overlay - Preloaded and immediately visible */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `linear-gradient(rgba(13, 25, 51, 0.4), rgba(13, 25, 51, 0.95)), url("https://images.pexels.com/photos/16323581/pexels-photo-16323581.jpeg?_gl=1*f2b7lv*_ga*MTUzMTEwMTY5NS4xNzU0MjA1MjMx*_ga_8JE65Q40S6*czE3NjAzNDQwNDAkbzEzJGcxJHQxNzYwMzQ0MDgyJGoxOCRsMCRoMA..")`,
           }}
@@ -235,7 +239,7 @@ const Home = () => {
           }}
         ></div>
 
-        <div className="relative z-10 pt-20 text-center w-full px-4">
+        <div className="relative z-10 text-center w-full px-4">
           <motion.h1
             className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-white font-['Poppins'] drop-shadow-lg"
             initial={{ opacity: 0, scale: 0.9 }}
@@ -243,7 +247,7 @@ const Home = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             Innovating Ideas Into
-            <span className="block mt-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent bg-[length:200%_200%] animate-gradient-shift">
+            <span className="block mt-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent bg-[length:200%_200%] animate-gradient-shift font-['Poppins']">
               Digital Excellence
             </span>
           </motion.h1>
@@ -277,7 +281,7 @@ const Home = () => {
 
             <Link
               to="/portfolio"
-              className="relative bg-transparent text-white text-lg px-8 py-6 rounded-xl font-semibold border-2 border-[#4a7dff] flex items-center gap-2 min-w-[180px] justify-center overflow-hidden transition-all duration-300 hover:bg-[#4a7dff]/10 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/20 group"
+              className="relative bg-transparent text-white text-lg px-8 py-6 rounded-xl font-semibold border-2 border-[#4a7dff] flex items-center gap-2 min-w-[180px] justify-center overflow-hidden transition-all duration-300 hover:bg-[#4a7dff]/10 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/20 group font-['Poppins']"
             >
               <span className="relative z-10">View Our Work</span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
@@ -323,7 +327,7 @@ const Home = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="bg-white p-10 rounded-2xl border border-gray-200 transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] relative overflow-hidden group flex flex-col h-full"
+                className="bg-white p-10 rounded-2xl border border-gray-200 transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] relative overflow-hidden group flex flex-col h-full font-['Poppins']"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600"></div>
 
@@ -377,7 +381,7 @@ const Home = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="bg-gradient-to-br from-[#1a2b4d] to-[#152547] p-12 rounded-2xl text-center shadow-xl transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] border border-[#2d3b5b] relative overflow-hidden group"
+                className="bg-gradient-to-br from-[#1a2b4d] to-[#152547] p-12 rounded-2xl text-center shadow-xl transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] border border-[#2d3b5b] relative overflow-hidden group font-['Poppins']"
               >
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left"></div>
 
@@ -464,7 +468,7 @@ const Home = () => {
           >
             <Link
               to="/portfolio"
-              className="relative bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] text-white text-lg px-10 py-5 rounded-xl font-semibold inline-flex items-center gap-2 overflow-hidden transition-all duration-400 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/40 group"
+              className="relative bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] text-white text-lg px-10 py-5 rounded-xl font-semibold inline-flex items-center gap-2 overflow-hidden transition-all duration-400 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/40 group font-['Poppins']"
             >
               <span className="relative z-10">View All Projects</span>
               <ArrowRight size={20} className="relative z-10" />
@@ -474,7 +478,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats Section - UPDATED FOR BETTER RESPONSIVENESS */}
       <section
         ref={addToRefs}
         className="py-20 bg-white relative opacity-0 translate-y-12 transition-all duration-700"
@@ -497,7 +501,7 @@ const Home = () => {
               </p>
 
               <motion.div
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -507,15 +511,15 @@ const Home = () => {
                   <motion.div
                     key={index}
                     variants={itemVariants}
-                    className="bg-white p-12 rounded-2xl border border-gray-100 shadow-xl transition-all duration-400 hover:-translate-y-2 hover:scale-105 hover:border-[#4a7dff] hover:shadow-2xl hover:shadow-blue-500/15 min-h-[200px] flex flex-col justify-center items-center relative overflow-hidden group"
+                    className="bg-white p-8 rounded-2xl border border-gray-100 shadow-xl transition-all duration-400 hover:-translate-y-2 hover:border-[#4a7dff] hover:shadow-2xl hover:shadow-blue-500/15 min-h-[180px] flex flex-col justify-center items-center relative overflow-hidden group font-['Poppins']"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-[#4a7dff]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
 
-                    <div className="relative z-10 w-full text-center">
-                      <span className="text-5xl md:text-6xl font-extrabold mb-4 bg-gradient-to-br from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] block leading-none group-hover:scale-110 transition-transform duration-300">
+                    <div className="relative z-10 w-full text-center space-y-3">
+                      <span className="text-4xl md:text-5xl font-extrabold mb-2 bg-gradient-to-br from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] block leading-none group-hover:scale-110 transition-transform duration-300">
                         {stat.number}
                       </span>
-                      <span className="text-xl text-gray-600 font-semibold font-['Poppins'] block leading-relaxed group-hover:text-[#4a7dff] transition-colors duration-300">
+                      <span className="text-lg md:text-xl text-gray-600 font-semibold font-['Poppins'] block leading-tight group-hover:text-[#4a7dff] transition-colors duration-300 px-2 break-words">
                         {stat.label}
                       </span>
                     </div>
@@ -559,7 +563,7 @@ const Home = () => {
             </p>
             <Link
               to="/contact"
-              className="relative bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] text-white text-lg px-10 py-6 rounded-xl font-bold inline-flex items-center gap-2 overflow-hidden transition-all duration-400 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/50 group"
+              className="relative bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] text-white text-lg px-10 py-6 rounded-xl font-bold inline-flex items-center gap-2 overflow-hidden transition-all duration-400 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/50 group font-['Poppins']"
             >
               <span className="relative z-10">Start Your Project Today</span>
               <ArrowRight size={20} className="relative z-10" />
