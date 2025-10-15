@@ -78,13 +78,18 @@ const Navbar = () => {
         },
         { 
           name: 'Mobile App Development', 
-          path: '/services/mobile-app-development',
+          path: '/services/mobile-development',
           description: 'iOS & Android native and cross-platform apps'
         },
         { 
           name: 'UI/UX Design', 
           path: '/services/ui-ux-design',
           description: 'User-centered design and prototyping'
+        },
+                { 
+          name: 'Ecommerce', 
+          path: '/services/ecommerce',
+          description: 'Modern E-commerce Development Solutions'
         },
         { 
           name: 'Cloud Solutions', 
