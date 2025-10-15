@@ -14,6 +14,7 @@ import applicationRoutes from './routes/applicationRoutes.js';
 import blogRoutes from './routes/blogRoutes.js';
 import applicationManagerRoutes from './routes/applicationManagerRoutes.js';
 import { setupOverviewRoutes } from './routes/overviewRoutes.js';
+import newsletterRoutes from './routes/newsletterRoutes.js';
 // Load environment variables from .env file
 dotenv.config();
 
@@ -45,7 +46,7 @@ app.use('/api/enquiry', enquiryRoutes);
 app.use('/api/application', applicationRoutes);
 app.use('/api/blog', blogRoutes);
 app.use('/api/applications', applicationManagerRoutes);
-
+app.use('/api/newsletter', newsletterRoutes);
 // Root endpoint
 app.get('/', (req, res) => {
   res.json({

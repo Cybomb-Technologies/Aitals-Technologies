@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, User, ArrowRight, Clock, Share2, BookOpen, Search, Filter, TrendingUp, Eye, Heart } from 'lucide-react';
+import { Calendar, User, ArrowRight, Clock, Share2, BookOpen, Search, Filter, TrendingUp, Eye, Heart, Send, Check } from 'lucide-react';
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -13,6 +13,12 @@ const Blog = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [blogsPerPage] = useState(9);
   const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
+
+  // Newsletter states
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [subscribeMessage, setSubscribeMessage] = useState('');
+  const [subscribeError, setSubscribeError] = useState('');
 
   // Fetch blogs from backend
   useEffect(() => {
@@ -151,6 +157,94 @@ const Blog = () => {
     }
   };
 
+  // Newsletter subscription
+  const handleNewsletterSubscribe = async (e) => {
+    e.preventDefault();
+    
+    if (!newsletterEmail) {
+      setSubscribeError('Please enter your email address');
+      return;
+    }
+
+    if (!/\S+@\S+\.\S+/.test(newsletterEmail)) {
+      setSubscribeError('Please enter a valid email address');
+      return;
+    }
+
+    setIsSubscribing(true);
+    setSubscribeError('');
+    setSubscribeMessage('');
+
+    try {
+      const response = await fetch('/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          email: newsletterEmail,
+          source: 'blog'
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubscribeMessage(data.message || 'Successfully subscribed to our newsletter!');
+        setNewsletterEmail('');
+      } else {
+        setSubscribeError(data.message || 'Subscription failed. Please try again.');
+      }
+    } catch (err) {
+      console.error('Newsletter subscription error:', err);
+      setSubscribeError('Network error. Please try again.');
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
+
+  // Like functionality
+  const handleLike = async (blogId, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    try {
+      const response = await fetch(`/api/blog/${blogId}/like`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        // Update the local state to reflect the like
+        setBlogs(prevBlogs => 
+          prevBlogs.map(blog => 
+            blog._id === blogId 
+              ? { 
+                  ...blog, 
+                  likeCount: (blog.likeCount || 0) + 1,
+                  liked: true 
+                }
+              : blog
+          )
+        );
+        setFilteredBlogs(prevBlogs => 
+          prevBlogs.map(blog => 
+            blog._id === blogId 
+              ? { 
+                  ...blog, 
+                  likeCount: (blog.likeCount || 0) + 1,
+                  liked: true 
+                }
+              : blog
+          )
+        );
+      }
+    } catch (err) {
+      console.error('Error liking blog:', err);
+    }
+  };
 
   if (loading) {
     return (
@@ -563,16 +657,53 @@ const Blog = () => {
             Get exclusive access to our latest research, industry insights, and expert analysis. 
             Join thousands of professionals who read our newsletter.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          
+          <form onSubmit={handleNewsletterSubscribe} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input
               type="email"
               placeholder="Enter your work email"
+              value={newsletterEmail}
+              onChange={(e) => {
+                setNewsletterEmail(e.target.value);
+                setSubscribeError('');
+                setSubscribeMessage('');
+              }}
               className="flex-1 px-6 py-4 rounded-2xl border border-gray-600 bg-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-3 focus:ring-indigo-500/30 backdrop-blur-sm"
+              disabled={isSubscribing}
             />
-            <button className="px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-2xl hover:from-indigo-600 hover:to-purple-700 transition-all duration-200 shadow-lg shadow-indigo-500/25">
-              Subscribe
+            <button 
+              type="submit"
+              disabled={isSubscribing}
+              className="px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-2xl hover:from-indigo-600 hover:to-purple-700 transition-all duration-200 shadow-lg shadow-indigo-500/25 disabled:opacity-50 flex items-center justify-center gap-2"
+            >
+              {isSubscribing ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  Subscribing...
+                </>
+              ) : (
+                <>
+                  <Send className="w-5 h-5" />
+                  Subscribe
+                </>
+              )}
             </button>
-          </div>
+          </form>
+
+          {/* Success/Error Messages */}
+          {subscribeMessage && (
+            <div className="mt-4 p-4 bg-green-500/20 border border-green-400 rounded-2xl text-green-300 flex items-center justify-center gap-2">
+              <Check className="w-5 h-5" />
+              {subscribeMessage}
+            </div>
+          )}
+
+          {subscribeError && (
+            <div className="mt-4 p-4 bg-red-500/20 border border-red-400 rounded-2xl text-red-300">
+              {subscribeError}
+            </div>
+          )}
+
           <p className="text-sm text-gray-400 mt-4">
             No spam, unsubscribe at any time. Read our{' '}
             <a href="/privacy" className="text-indigo-300 hover:text-white underline">Privacy Policy</a>

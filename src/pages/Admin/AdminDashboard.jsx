@@ -7,13 +7,13 @@ import ContactManager from './ContactManager';
 import ApplicationManager from './ApplicationManager';
 import JobOpeningManager from './JobOpeningManager';
 import BlogManager from './BlogManager';
-
+import NewsletterManager from './NewsletterManager';
 const useAuth = () => ({
   user: { email: 'admin@aitals.com', uid: 'mock_admin_id' },
   logout: () => {
     console.log("Mock Logout triggered.");
     localStorage.removeItem('adminToken');
-    window.location.href = '/login';
+    window.location.href = '/admin-login';
   }
 });
 
@@ -39,6 +39,7 @@ const AdminDashboard = () => {
     { id: 'Application', label: 'Applications', icon: Menu },
     { id: 'JobOpenings', label: 'Job Openings', icon: Menu },
     { id: 'Blogs', label: 'Blog Manager', icon: Menu },
+    { id: 'Newsletter', label: 'Newsletter Subscribers', icon: Menu },
   ];
   
   // NEW: Function to change the active tab
@@ -123,45 +124,7 @@ const AdminDashboard = () => {
     }
   };
 
-  // Stats for Overview (MOCK DATA REMOVED, BUT STATS CALCULATED LOCALLY ARE NOT USED BY OVERVIEW.JSX)
-  // These local stats are now only for potential local use. Overview.jsx uses the API data.
-  const stats = {
-    enquiries: enquiries.length,
-    contacts: contacts.length,
-    applications: applications.length,
-    blogs: blogs.length,
-    jobOpenings: jobOpenings.length,
-    total: enquiries.length + contacts.length + applications.length,
-   
-  };
 
-  const recentActivities = [
-    // This mock data is unnecessary and should be removed if not used by Overview
-    {
-      type: 'enquiry',
-      title: 'New enquiry from John Doe',
-      description: 'Interested in web development services',
-      time: '2 hours ago'
-    },
-    {
-      type: 'application',
-      title: 'New job application received',
-      description: 'Senior Developer position',
-      time: '4 hours ago'
-    },
-    {
-      type: 'contact',
-      title: 'Contact form submitted',
-      description: 'General inquiry about services',
-      time: '6 hours ago'
-    },
-    {
-      type: 'blog',
-      title: 'New blog post published',
-      description: 'React Best Practices 2024',
-      time: '1 day ago'
-    }
-  ];
 
   const renderContent = () => {
     if (loadingData) {
@@ -187,6 +150,8 @@ const AdminDashboard = () => {
         return <EnquiryManager enquiries={enquiries} onDelete={handleDelete} />;
       case 'Blogs':
         return <BlogManager blogs={blogs} onBlogsUpdate={fetchData} />;
+      case 'Newsletter': 
+        return <NewsletterManager />;
       default:
         return <Overview onNavigateToTab={handleTabChange} />;
     }
@@ -234,7 +199,7 @@ const AdminDashboard = () => {
                   : 'text-gray-300 hover:bg-[#6666CC]/20 hover:text-white'
               }`}
             >
-              <Icon className="w-5 h-5 mr-3" />
+              {/* <Icon className="w-5 h-5 mr-3" /> */}
               {label}
             </button>
           ))}
