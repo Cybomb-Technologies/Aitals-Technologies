@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare - Your Health, Our Priority</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0d6efd;
+            --secondary: #6c757d;
+            --success: #198754;
+            --info: #0dcaf0;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --health-blue: #1a76d2;
+            --health-light: #e8f4fd;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        
+        .navbar-brand i {
+            color: var(--health-blue);
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(26, 118, 210, 0.85), rgba(26, 118, 210, 0.9)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0 100px;
+        }
+        
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        .bg-light-blue {
+            background-color: var(--health-light);
+        }
+        
+        .service-card {
+            transition: transform 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--health-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--health-blue);
+            font-size: 1.8rem;
+        }
+        
+        .doctor-card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .doctor-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .doctor-img {
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .testimonial-card {
+            border-left: 4px solid var(--health-blue);
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .btn-health {
+            background-color: var(--health-blue);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        
+        .btn-health:hover {
+            background-color: #1565c0;
+            color: white;
+        }
+        
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer h5 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer h5:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--health-blue);
+        }
+        
+        .footer a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer a:hover {
+            color: white;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--health-blue);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            margin-top: 40px;
+        }
+        
+        .appointment-form {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        
+        @media (max-width: 991.98px) {
+            .hero-section .row {
+                text-align: center;
+            }
+            
+            .hero-section .d-flex {
+                justify-content: center;
+            }
+            
+            .hero-section img {
+                margin-top: 40px;
+            }
+        }
+        
+        /* Additional styling for better appearance */
+        h1.display-4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .lead {
+            font-size: 1.25rem;
+            font-weight: 400;
+        }
+        
+        .img-fluid {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+         .about-section-mobile-center {
+                text-align: left;
+            }
+            
+            .about-section-mobile-center .d-flex {
+                justify-content: flex-start;
+            }
+            
+            .image-grid-mobile-center {
+                justify-content: start;
+            }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-heartbeat me-2"></i>MediCare</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#doctors">Doctors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <a href="#appointment" class="btn btn-health ms-lg-3 mt-3 mt-lg-0">Book Appointment</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Your Health Is Our Top Priority</h1>
+                    <p class="lead mb-4">We provide comprehensive healthcare services with compassion and excellence. Our team of specialists is dedicated to your well-being.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#appointment" class="btn btn-health btn-lg">Book Appointment</a>
+                        <a href="#services" class="btn btn-outline-light btn-lg">Our Services</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center mt-5 mt-lg-0">
+                    <img src="https://media.istockphoto.com/id/1477437269/photo/women-doctors-and-tablet-for-night-medical-research-surgery-planning-and-teamwork-in-hospital.jpg?s=612x612&w=0&k=20&c=deq962Sj4i3h8EBi4exYK_tSamdo5PaWDAe7SgZ0C5w=" alt="Healthcare professionals" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-8 mx-auto text-center">
+                    <h2 class="section-title mb-3">Our Medical Services</h2>
+                    <p class="text-muted">We offer a wide range of healthcare services to meet all your medical needs.</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card service-card p-4">
+                        <div class="service-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h4 class="text-center mb-3">Cardiology</h4>
+                        <p class="text-center text-muted">Comprehensive heart care with state-of-the-art diagnostic and treatment facilities.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card service-card p-4">
+                        <div class="service-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4 class="text-center mb-3">Neurology</h4>
+                        <p class="text-center text-muted">Expert care for disorders of the nervous system with advanced treatment options.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card service-card p-4">
+                        <div class="service-icon">
+                            <i class="fas fa-baby"></i>
+                        </div>
+                        <h4 class="text-center mb-3">Pediatrics</h4>
+                        <p class="text-center text-muted">Compassionate care for children of all ages, from newborns to adolescents.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card service-card p-4">
+                        <div class="service-icon">
+                            <i class="fas fa-bone"></i>
+                        </div>
+                        <h4 class="text-center mb-3">Orthopedics</h4>
+                        <p class="text-center text-muted">Treatment for musculoskeletal conditions with surgical and non-surgical approaches.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card service-card p-4">
+                        <div class="service-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h4 class="text-center mb-3">Ophthalmology</h4>
+                        <p class="text-center text-muted">Complete eye care services including vision correction and treatment of eye diseases.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card service-card p-4">
+                        <div class="service-icon">
+                            <i class="fas fa-teeth"></i>
+                        </div>
+                        <h4 class="text-center mb-3">Dentistry</h4>
+                        <p class="text-center text-muted">Comprehensive dental care for the whole family with modern techniques.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+     <!-- About Section -->
+     <section id="about" class="section-padding bg-light-blue">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0 about-section-mobile-center">
+                    <h2 class="mb-4">Why Choose MediCare?</h2>
+                    <p class="mb-4">At MediCare, we combine medical expertise with compassionate care to provide the best possible outcomes for our patients.</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Board-certified physicians and specialists</li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> State-of-the-art medical technology</li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Patient-centered approach to care</li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Multiple locations for your convenience</li>
+                        <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Accepting most insurance plans</li>
+                    </ul>
+                    <div class="d-flex">
+                        <a href="#contact" class="btn btn-health mt-3">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-3 image-grid-mobile-center">
+                        <div class="col-6">
+                            <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Medical facility" class="img-fluid rounded shadow">
+                        </div>
+                        <div class="col-6">
+                            <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Medical equipment" class="img-fluid rounded shadow mt-5">
+                        </div>
+                        <div class="col-6">
+                            <img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Doctor with patient" class="img-fluid rounded shadow">
+                        </div>
+                        <div class="col-6">
+                            <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Medical team" class="img-fluid rounded shadow mt-5">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Doctors Section -->
+    <section id="doctors" class="section-padding">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-8 mx-auto text-center">
+                    <h2 class="section-title mb-3">Meet Our Specialists</h2>
+                    <p class="text-muted">Our team of experienced doctors is dedicated to providing you with the best medical care.</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card doctor-card">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top doctor-img" alt="Dr. Sarah Johnson">
+                        <div class="card-body text-center p-4">
+                            <h5 class="card-title">Dr. Sarah Johnson</h5>
+                            <p class="text-muted">Cardiologist</p>
+                            <p class="card-text">Dr. Johnson: 15+ years in cardiology, specializing in preventive heart care.
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card doctor-card">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top doctor-img" alt="Dr. Michael Chen">
+                        <div class="card-body text-center p-4">
+                            <h5 class="card-title">Dr. Michael Chen</h5>
+                            <p class="text-muted">Neurologist</p>
+                            <p class="card-text">A leading neurology expert, Dr. Chen has numerous research publications.
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card doctor-card">
+                        <img src="https://drgautamnaik.com/wp-content/uploads/2025/03/02.jpg" class="card-img-top doctor-img" alt="Dr. Emily Rodriguez">
+                        <div class="card-body text-center p-4">
+                            <h5 class="card-title">Dr. Emily Rodriguez</h5>
+                            <p class="text-muted">Pediatrician</p>
+                            <p class="card-text">Dr. Rodriguez has a special interest in childhood development and preventive care.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card doctor-card">
+                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top doctor-img" alt="Dr. James Wilson">
+                        <div class="card-body text-center p-4">
+                            <h5 class="card-title">Dr. James Wilson</h5>
+                            <p class="text-muted">Orthopedic Surgeon</p>
+                            <p class="card-text">Dr. Wilson specializes in minimally invasive joint replacement and sports injuries.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section-padding bg-light-blue">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-8 mx-auto text-center">
+                    <h2 class="section-title mb-3">What Our Patients Say</h2>
+                    <p class="text-muted">Read about experiences from our valued patients.</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-card p-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://media.istockphoto.com/id/1289220545/photo/beautiful-woman-smiling-with-crossed-arms.jpg?s=612x612&w=0&k=20&c=qmOTkGstKj1qN0zPVWj-n28oRA6_BHQN8uVLIXg0TF8=" alt="Patient" class="rounded-circle me-3" width="60">
+                            <div>
+                                <h5 class="mb-0">Jennifer Parker</h5>
+                                <p class="text-muted mb-0">Cardiology Patient</p>
+                            </div>
+                        </div>
+                        <p class="mb-0">"The care I received at MediCare was exceptional. Dr. Johnson took the time to explain everything and made me feel comfortable throughout my treatment."</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-card p-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://img.freepik.com/free-photo/cheerful-indian-businessman-smiling-closeup-portrait-jobs-career-campaign_53876-129416.jpg?semt=ais_hybrid&w=740&q=80" alt="Patient" class="rounded-circle me-3" width="60">
+                            <div>
+                                <h5 class="mb-0">Robert Davis</h5>
+                                <p class="text-muted mb-0">Orthopedics Patient</p>
+                            </div>
+                        </div>
+                        <p class="mb-0">"After my knee surgery, I was back to my active lifestyle in no time. Dr. Wilson and his team provided excellent care and follow-up."</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="testimonial-card p-4 h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="Patient" class="rounded-circle me-3" width="60">
+                            <div>
+                                <h5 class="mb-0">Maria Gonzalez</h5>
+                                <p class="text-muted mb-0">Pediatrics Patient</p>
+                            </div>
+                        </div>
+                        <p class="mb-0">"Dr. Rodriguez is amazing with children. My daughter actually looks forward to her check-ups now. The entire staff is friendly and professional."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment Section -->
+    <section id="appointment" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="appointment-form">
+                        <h2 class="text-center mb-4">Book an Appointment</h2>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="firstName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="department" class="form-label">Department</label>
+                                    <select class="form-select" id="department" required>
+                                        <option selected disabled value="">Choose...</option>
+                                        <option>Cardiology</option>
+                                        <option>Neurology</option>
+                                        <option>Pediatrics</option>
+                                        <option>Orthopedics</option>
+                                        <option>Ophthalmology</option>
+                                        <option>Dentistry</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="doctor" class="form-label">Preferred Doctor</label>
+                                    <select class="form-select" id="doctor">
+                                        <option selected value="">Any Available</option>
+                                        <option>Dr. Sarah Johnson</option>
+                                        <option>Dr. Michael Chen</option>
+                                        <option>Dr. Emily Rodriguez</option>
+                                        <option>Dr. James Wilson</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="date" class="form-label">Preferred Date</label>
+                                    <input type="date" class="form-control" id="date" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="time" class="form-label">Preferred Time</label>
+                                    <select class="form-select" id="time" required>
+                                        <option selected disabled value="">Choose...</option>
+                                        <option>9:00 AM</option>
+                                        <option>10:00 AM</option>
+                                        <option>11:00 AM</option>
+                                        <option>12:00 PM</option>
+                                        <option>2:00 PM</option>
+                                        <option>3:00 PM</option>
+                                        <option>4:00 PM</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="message" class="form-label">Additional Message</label>
+                                    <textarea class="form-control" id="message" rows="4"></textarea>
+                                </div>
+                                <div class="col-12 text-center mt-4">
+                                    <button type="submit" class="btn btn-health btn-lg">Book Appointment</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <h5><i class="fas fa-heartbeat me-2"></i>MediCare</h5>
+                    <p>Providing comprehensive healthcare services with compassion and excellence. Your health is our top priority.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">Home</a></li>
+                        <li class="mb-2"><a href="#services">Services</a></li>
+                        <li class="mb-2"><a href="#doctors">Doctors</a></li>
+                        <li class="mb-2"><a href="#about">About Us</a></li>
+                        <li class="mb-2"><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Our Services</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">Cardiology</a></li>
+                        <li class="mb-2"><a href="#">Neurology</a></li>
+                        <li class="mb-2"><a href="#">Pediatrics</a></li>
+                        <li class="mb-2"><a href="#">Orthopedics</a></li>
+                        <li class="mb-2"><a href="#">Ophthalmology</a></li>
+                    </ul>
+                </div>
+                <div id="contact" class="col-lg-3 col-md-6">
+                    <h5>Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            123 Health Street, Medical City
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-phone me-2"></i>
+                            (555) 123-4567
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-envelope me-2"></i>
+                            info@medicare.com
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-clock me-2"></i>
+                            Mon - Fri: 8:00 AM - 6:00 PM
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright text-center">
+                <p class="mb-0">&copy; 2025 Aitals. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
