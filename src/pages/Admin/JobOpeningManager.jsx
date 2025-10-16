@@ -1,82 +1,131 @@
-import React, { useState } from 'react';
-import { 
-  Briefcase, PlusCircle, Edit, Trash2, Clock, 
-  Users, MapPin, DollarSign, Loader, CheckCircle 
-} from 'lucide-react';
+import React, { useState } from "react";
+import {
+  Briefcase,
+  PlusCircle,
+  Edit,
+  Trash2,
+  Clock,
+  Users,
+  MapPin,
+  DollarSign,
+  Loader,
+  CheckCircle,
+} from "lucide-react";
+const API_BASE_URL1 = import.meta.env.VITE_API_BASE_URL;
 
 const ApplicationForm = ({ applicationToEdit, onSubmit, onCancel }) => {
   const [formData, setFormData] = useState({
-    title: applicationToEdit?.title || '',
-    department: applicationToEdit?.department || 'Engineering',
-    location: applicationToEdit?.location || '',
-    type: applicationToEdit?.type || 'Full-time',
-    salary: applicationToEdit?.salary || '',
-    description: applicationToEdit?.description || '',
-    requirements: applicationToEdit?.requirements?.join(', ') || '',
-    responsibilities: applicationToEdit?.responsibilities?.join(', ') || '',
-    benefits: applicationToEdit?.benefits?.join(', ') || '',
-    experienceLevel: applicationToEdit?.experienceLevel || 'Mid',
-    isActive: applicationToEdit?.isActive ?? true
+    title: applicationToEdit?.title || "",
+    department: applicationToEdit?.department || "Engineering",
+    location: applicationToEdit?.location || "",
+    type: applicationToEdit?.type || "Full-time",
+    salary: applicationToEdit?.salary || "",
+    description: applicationToEdit?.description || "",
+    requirements: applicationToEdit?.requirements?.join(", ") || "",
+    responsibilities: applicationToEdit?.responsibilities?.join(", ") || "",
+    benefits: applicationToEdit?.benefits?.join(", ") || "",
+    experienceLevel: applicationToEdit?.experienceLevel || "Mid",
+    isActive: applicationToEdit?.isActive ?? true,
   });
-  
-  const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState('');
 
-  const departments = ['Engineering', 'Design', 'Product', 'Quality', 'Marketing', 'Sales', 'Operations'];
-  const jobTypes = ['Full-time', 'Part-time', 'Contract', 'Internship', 'Remote'];
-  const experienceLevels = ['Entry', 'Mid', 'Senior', 'Lead', 'Executive'];
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const departments = [
+    "Engineering",
+    "Design",
+    "Product",
+    "Quality",
+    "Marketing",
+    "Sales",
+    "Operations",
+  ];
+  const jobTypes = [
+    "Full-time",
+    "Part-time",
+    "Contract",
+    "Internship",
+    "Remote",
+  ];
+  const experienceLevels = ["Entry", "Mid", "Senior", "Lead", "Executive"];
 
   const isEditMode = !!applicationToEdit;
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.title || !formData.department || !formData.location || !formData.type || !formData.salary || !formData.description) {
-      setMessage('Please fill in all required fields.');
+    if (
+      !formData.title ||
+      !formData.department ||
+      !formData.location ||
+      !formData.type ||
+      !formData.salary ||
+      !formData.description
+    ) {
+      setMessage("Please fill in all required fields.");
       return;
     }
 
     setIsLoading(true);
-    setMessage('');
+    setMessage("");
 
     try {
-      const API_BASE_URL = 'http://localhost:5000';
-      const url = isEditMode 
+      const API_BASE_URL = `${API_BASE_URL1}`;
+      const url = isEditMode
         ? `${API_BASE_URL}/api/applications/${applicationToEdit._id}`
         : `${API_BASE_URL}/api/applications`;
-      
-      const method = isEditMode ? 'PUT' : 'POST';
+
+      const method = isEditMode ? "PUT" : "POST";
 
       const response = await fetch(url, {
         method,
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
         },
         body: JSON.stringify({
           ...formData,
-          requirements: formData.requirements ? formData.requirements.split(',').map(req => req.trim()).filter(req => req) : [],
-          responsibilities: formData.responsibilities ? formData.responsibilities.split(',').map(resp => resp.trim()).filter(resp => resp) : [],
-          benefits: formData.benefits ? formData.benefits.split(',').map(benefit => benefit.trim()).filter(benefit => benefit) : []
+          requirements: formData.requirements
+            ? formData.requirements
+                .split(",")
+                .map((req) => req.trim())
+                .filter((req) => req)
+            : [],
+          responsibilities: formData.responsibilities
+            ? formData.responsibilities
+                .split(",")
+                .map((resp) => resp.trim())
+                .filter((resp) => resp)
+            : [],
+          benefits: formData.benefits
+            ? formData.benefits
+                .split(",")
+                .map((benefit) => benefit.trim())
+                .filter((benefit) => benefit)
+            : [],
         }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        setMessage(isEditMode ? 'Job opening updated successfully!' : 'Job opening created successfully!');
+        setMessage(
+          isEditMode
+            ? "Job opening updated successfully!"
+            : "Job opening created successfully!"
+        );
         setTimeout(() => {
           onSubmit();
         }, 1500);
       } else {
-        throw new Error(data.message || 'Failed to save job opening');
+        throw new Error(data.message || "Failed to save job opening");
       }
     } catch (error) {
       console.error("Error submitting job opening:", error);
@@ -89,7 +138,7 @@ const ApplicationForm = ({ applicationToEdit, onSubmit, onCancel }) => {
   return (
     <div className="p-6 bg-white rounded-xl shadow-2xl border border-gray-200">
       <h3 className="text-xl font-semibold mb-4 text-gray-900">
-        {isEditMode ? 'Edit Job Opening' : 'Create New Job Opening'}
+        {isEditMode ? "Edit Job Opening" : "Create New Job Opening"}
       </h3>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -119,8 +168,10 @@ const ApplicationForm = ({ applicationToEdit, onSubmit, onCancel }) => {
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6666CC] focus:border-transparent transition duration-150"
               required
             >
-              {departments.map(dept => (
-                <option key={dept} value={dept}>{dept}</option>
+              {departments.map((dept) => (
+                <option key={dept} value={dept}>
+                  {dept}
+                </option>
               ))}
             </select>
           </div>
@@ -153,8 +204,10 @@ const ApplicationForm = ({ applicationToEdit, onSubmit, onCancel }) => {
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6666CC] focus:border-transparent transition duration-150"
               required
             >
-              {jobTypes.map(type => (
-                <option key={type} value={type}>{type}</option>
+              {jobTypes.map((type) => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
               ))}
             </select>
           </div>
@@ -186,8 +239,10 @@ const ApplicationForm = ({ applicationToEdit, onSubmit, onCancel }) => {
               onChange={handleChange}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6666CC] focus:border-transparent transition duration-150"
             >
-              {experienceLevels.map(level => (
-                <option key={level} value={level}>{level}</option>
+              {experienceLevels.map((level) => (
+                <option key={level} value={level}>
+                  {level}
+                </option>
               ))}
             </select>
           </div>
@@ -220,7 +275,9 @@ const ApplicationForm = ({ applicationToEdit, onSubmit, onCancel }) => {
             rows="3"
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6666CC] focus:border-transparent transition duration-150"
           ></textarea>
-          <p className="text-xs text-gray-500 mt-1">Separate requirements with commas</p>
+          <p className="text-xs text-gray-500 mt-1">
+            Separate requirements with commas
+          </p>
         </div>
 
         <div>
@@ -235,7 +292,9 @@ const ApplicationForm = ({ applicationToEdit, onSubmit, onCancel }) => {
             rows="3"
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6666CC] focus:border-transparent transition duration-150"
           ></textarea>
-          <p className="text-xs text-gray-500 mt-1">Separate responsibilities with commas</p>
+          <p className="text-xs text-gray-500 mt-1">
+            Separate responsibilities with commas
+          </p>
         </div>
 
         <div>
@@ -250,7 +309,9 @@ const ApplicationForm = ({ applicationToEdit, onSubmit, onCancel }) => {
             rows="3"
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6666CC] focus:border-transparent transition duration-150"
           ></textarea>
-          <p className="text-xs text-gray-500 mt-1">Separate benefits with commas</p>
+          <p className="text-xs text-gray-500 mt-1">
+            Separate benefits with commas
+          </p>
         </div>
 
         <div className="flex items-center space-x-3">
@@ -262,7 +323,10 @@ const ApplicationForm = ({ applicationToEdit, onSubmit, onCancel }) => {
             onChange={handleChange}
             className="w-4 h-4 text-[#6666CC] border-gray-300 rounded focus:ring-[#6666CC]"
           />
-          <label htmlFor="isActive" className="flex items-center text-sm font-medium text-gray-700">
+          <label
+            htmlFor="isActive"
+            className="flex items-center text-sm font-medium text-gray-700"
+          >
             Active Job Opening
           </label>
         </div>
@@ -287,12 +351,24 @@ const ApplicationForm = ({ applicationToEdit, onSubmit, onCancel }) => {
             ) : (
               <PlusCircle className="w-5 h-5 mr-2" />
             )}
-            {isEditMode ? 'Update Opening' : 'Create Opening'}
+            {isEditMode ? "Update Opening" : "Create Opening"}
           </button>
         </div>
         {message && (
-          <p className={`mt-3 text-center p-3 rounded-lg ${message.includes('Error') ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700 flex items-center justify-center'}`}>
-            {message.includes('Error') ? message : <><CheckCircle className="w-4 h-4 mr-2"/> {message}</>}
+          <p
+            className={`mt-3 text-center p-3 rounded-lg ${
+              message.includes("Error")
+                ? "bg-red-100 text-red-700"
+                : "bg-green-100 text-green-700 flex items-center justify-center"
+            }`}
+          >
+            {message.includes("Error") ? (
+              message
+            ) : (
+              <>
+                <CheckCircle className="w-4 h-4 mr-2" /> {message}
+              </>
+            )}
           </p>
         )}
       </form>
@@ -303,7 +379,7 @@ const ApplicationForm = ({ applicationToEdit, onSubmit, onCancel }) => {
 const JobOpeningManager = ({ applications, onApplicationsUpdate }) => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [applicationToEdit, setApplicationToEdit] = useState(null);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const handleEdit = (application) => {
     setApplicationToEdit(application);
@@ -313,7 +389,7 @@ const JobOpeningManager = ({ applications, onApplicationsUpdate }) => {
   const handleCreateNew = () => {
     setApplicationToEdit(null);
     setIsFormVisible(true);
-    setMessage('');
+    setMessage("");
   };
 
   const handleCancel = () => {
@@ -323,23 +399,27 @@ const JobOpeningManager = ({ applications, onApplicationsUpdate }) => {
   };
 
   const handleDelete = async (applicationId) => {
-    if (!window.confirm('Are you sure you want to delete this job opening?')) return;
+    if (!window.confirm("Are you sure you want to delete this job opening?"))
+      return;
 
     try {
-      const API_BASE_URL = 'http://localhost:5000';
-      const response = await fetch(`${API_BASE_URL}/api/applications/${applicationId}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
-        },
-      });
+      const API_BASE_URL = `${API_BASE_URL1}`;
+      const response = await fetch(
+        `${API_BASE_URL}/api/applications/${applicationId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
+          },
+        }
+      );
 
       if (response.ok) {
-        setMessage('Job opening deleted successfully!');
+        setMessage("Job opening deleted successfully!");
         onApplicationsUpdate();
-        setTimeout(() => setMessage(''), 3000);
+        setTimeout(() => setMessage(""), 3000);
       } else {
-        throw new Error('Failed to delete job opening');
+        throw new Error("Failed to delete job opening");
       }
     } catch (error) {
       console.error("Error deleting job opening:", error);
@@ -349,20 +429,27 @@ const JobOpeningManager = ({ applications, onApplicationsUpdate }) => {
 
   const toggleStatus = async (applicationId, currentStatus) => {
     try {
-      const API_BASE_URL = 'http://localhost:5000';
-      const response = await fetch(`${API_BASE_URL}/api/applications/${applicationId}/status`, {
-        method: 'PATCH',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
-        },
-      });
+      const API_BASE_URL = `${API_BASE_URL1}`;
+      const response = await fetch(
+        `${API_BASE_URL}/api/applications/${applicationId}/status`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
+          },
+        }
+      );
 
       if (response.ok) {
-        setMessage(`Job opening ${!currentStatus ? 'activated' : 'deactivated'} successfully!`);
+        setMessage(
+          `Job opening ${
+            !currentStatus ? "activated" : "deactivated"
+          } successfully!`
+        );
         onApplicationsUpdate();
-        setTimeout(() => setMessage(''), 3000);
+        setTimeout(() => setMessage(""), 3000);
       } else {
-        throw new Error('Failed to update job status');
+        throw new Error("Failed to update job status");
       }
     } catch (error) {
       console.error("Error toggling job status:", error);
@@ -371,7 +458,13 @@ const JobOpeningManager = ({ applications, onApplicationsUpdate }) => {
   };
 
   if (isFormVisible) {
-    return <ApplicationForm applicationToEdit={applicationToEdit} onSubmit={handleCancel} onCancel={handleCancel} />;
+    return (
+      <ApplicationForm
+        applicationToEdit={applicationToEdit}
+        onSubmit={handleCancel}
+        onCancel={handleCancel}
+      />
+    );
   }
 
   return (
@@ -389,19 +482,29 @@ const JobOpeningManager = ({ applications, onApplicationsUpdate }) => {
           New Opening
         </button>
       </div>
-      
+
       {message && (
-        <p className={`p-3 rounded-lg text-sm ${message.includes('Error') ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}>
+        <p
+          className={`p-3 rounded-lg text-sm ${
+            message.includes("Error")
+              ? "bg-red-100 text-red-700"
+              : "bg-green-100 text-green-700"
+          }`}
+        >
           {message}
         </p>
       )}
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {applications.length === 0 ? (
           <div className="col-span-full text-center py-12">
             <Briefcase className="w-16 h-16 mx-auto mb-4 text-gray-400" />
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No job openings yet</h3>
-            <p className="text-gray-600 mb-6">Get started by creating your first job opening!</p>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              No job openings yet
+            </h3>
+            <p className="text-gray-600 mb-6">
+              Get started by creating your first job opening!
+            </p>
             <button
               onClick={handleCreateNew}
               className="px-6 py-3 bg-[#6666CC] text-white font-semibold rounded-lg hover:bg-[#1A173A] transition duration-200"
@@ -411,15 +514,20 @@ const JobOpeningManager = ({ applications, onApplicationsUpdate }) => {
           </div>
         ) : (
           applications.map((application) => (
-            <div key={application._id} className="bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-xl transition duration-300 overflow-hidden group">
+            <div
+              key={application._id}
+              className="bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-xl transition duration-300 overflow-hidden group"
+            >
               <div className="p-5">
                 <div className="flex items-center justify-between mb-3">
-                  <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                    application.isActive 
-                      ? 'bg-green-100 text-green-800' 
-                      : 'bg-red-100 text-red-800'
-                  }`}>
-                    {application.isActive ? 'Active' : 'Inactive'}
+                  <span
+                    className={`px-2 py-1 text-xs font-medium rounded-full ${
+                      application.isActive
+                        ? "bg-green-100 text-green-800"
+                        : "bg-red-100 text-red-800"
+                    }`}
+                  >
+                    {application.isActive ? "Active" : "Inactive"}
                   </span>
                   <span className="flex items-center text-sm text-gray-500">
                     <Clock className="w-3 h-3 mr-1" />
@@ -430,7 +538,7 @@ const JobOpeningManager = ({ applications, onApplicationsUpdate }) => {
                 <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-[#6666CC] transition-colors duration-200">
                   {application.title}
                 </h3>
-                
+
                 <div className="space-y-2 mb-4">
                   <div className="flex items-center text-sm text-gray-600">
                     <MapPin className="w-4 h-4 mr-2" />
@@ -458,14 +566,16 @@ const JobOpeningManager = ({ applications, onApplicationsUpdate }) => {
                     <Edit className="w-4 h-4 mr-1" /> Edit
                   </button>
                   <button
-                    onClick={() => toggleStatus(application._id, application.isActive)}
+                    onClick={() =>
+                      toggleStatus(application._id, application.isActive)
+                    }
                     className={`flex items-center justify-center p-2 text-sm rounded-lg transition duration-150 ${
                       application.isActive
-                        ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200'
-                        : 'bg-green-100 text-green-800 hover:bg-green-200'
+                        ? "bg-yellow-100 text-yellow-800 hover:bg-yellow-200"
+                        : "bg-green-100 text-green-800 hover:bg-green-200"
                     }`}
                   >
-                    {application.isActive ? 'Deactivate' : 'Activate'}
+                    {application.isActive ? "Deactivate" : "Activate"}
                   </button>
                   <button
                     onClick={() => handleDelete(application._id)}

@@ -25,9 +25,10 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+const API_BASE_URL1 = import.meta.env.VITE_API_BASE_URL;
 
 // Define API base URL (consistent with other files)
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL = `${API_BASE_URL1}/api`;
 
 // --- Custom/Mock Toast Notification ---
 const useMockToast = () => {

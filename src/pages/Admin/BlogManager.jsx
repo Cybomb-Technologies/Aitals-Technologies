@@ -1,52 +1,68 @@
-import React, { useState } from 'react';
-import { 
-  BookOpen, PlusCircle, Edit, Trash2, Clock, 
-  Star, Image, Tag, Loader, CheckCircle 
-} from 'lucide-react';
+import React, { useState } from "react";
+import {
+  BookOpen,
+  PlusCircle,
+  Edit,
+  Trash2,
+  Clock,
+  Star,
+  Image,
+  Tag,
+  Loader,
+  CheckCircle,
+} from "lucide-react";
+const API_BASE_URL1 = import.meta.env.VITE_API_BASE_URL;
 
 const BlogForm = ({ blogToEdit, onSubmit, onCancel }) => {
-  const [title, setTitle] = useState(blogToEdit?.title || '');
-  const [content, setContent] = useState(blogToEdit?.content || '');
-  const [author, setAuthor] = useState(blogToEdit?.author || '');
-  const [image, setImage] = useState(blogToEdit?.image || '');
-  const [tags, setTags] = useState(blogToEdit?.tags?.join(', ') || '');
-  const [readTime, setReadTime] = useState(blogToEdit?.readTime || '');
+  const [title, setTitle] = useState(blogToEdit?.title || "");
+  const [content, setContent] = useState(blogToEdit?.content || "");
+  const [author, setAuthor] = useState(blogToEdit?.author || "");
+  const [image, setImage] = useState(blogToEdit?.image || "");
+  const [tags, setTags] = useState(blogToEdit?.tags?.join(", ") || "");
+  const [readTime, setReadTime] = useState(blogToEdit?.readTime || "");
   const [featured, setFeatured] = useState(blogToEdit?.featured || false);
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const isEditMode = !!blogToEdit;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title || !content || !author) {
-      setMessage('Please fill in all required fields.');
+      setMessage("Please fill in all required fields.");
       return;
     }
 
     setIsLoading(true);
-    setMessage('');
+    setMessage("");
 
     const blogData = {
       title,
       content,
       author,
-      image: image || '',
-      tags: tags ? tags.split(',').map(tag => tag.trim()).filter(tag => tag) : [],
-      readTime: readTime || '',
-      featured
+      image: image || "",
+      tags: tags
+        ? tags
+            .split(",")
+            .map((tag) => tag.trim())
+            .filter((tag) => tag)
+        : [],
+      readTime: readTime || "",
+      featured,
     };
 
     try {
-      const API_BASE_URL = 'http://localhost:5000';
-      const url = isEditMode ? `${API_BASE_URL}/api/blog/${blogToEdit._id}` : `${API_BASE_URL}/api/blog`;
-      const method = isEditMode ? 'PUT' : 'POST';
+      const API_BASE_URL = `${API_BASE_URL1}`;
+      const url = isEditMode
+        ? `${API_BASE_URL}/api/blog/${blogToEdit._id}`
+        : `${API_BASE_URL}/api/blog`;
+      const method = isEditMode ? "PUT" : "POST";
 
       const response = await fetch(url, {
         method,
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
         },
         body: JSON.stringify(blogData),
       });
@@ -54,21 +70,25 @@ const BlogForm = ({ blogToEdit, onSubmit, onCancel }) => {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage(isEditMode ? 'Blog post updated successfully!' : 'Blog post created successfully!');
+        setMessage(
+          isEditMode
+            ? "Blog post updated successfully!"
+            : "Blog post created successfully!"
+        );
         if (!isEditMode) {
-          setTitle('');
-          setContent('');
-          setAuthor('');
-          setImage('');
-          setTags('');
-          setReadTime('');
+          setTitle("");
+          setContent("");
+          setAuthor("");
+          setImage("");
+          setTags("");
+          setReadTime("");
           setFeatured(false);
         }
         setTimeout(() => {
           onSubmit();
         }, 1500);
       } else {
-        throw new Error(data.message || 'Failed to save blog');
+        throw new Error(data.message || "Failed to save blog");
       }
     } catch (error) {
       console.error("Error submitting blog:", error);
@@ -81,7 +101,7 @@ const BlogForm = ({ blogToEdit, onSubmit, onCancel }) => {
   return (
     <div className="p-6 bg-white rounded-xl shadow-2xl border border-gray-200">
       <h3 className="text-xl font-semibold mb-4 text-gray-900">
-        {isEditMode ? 'Edit Blog Post' : 'Create New Blog Post'}
+        {isEditMode ? "Edit Blog Post" : "Create New Blog Post"}
       </h3>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -145,7 +165,9 @@ const BlogForm = ({ blogToEdit, onSubmit, onCancel }) => {
                 className="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6666CC] focus:border-transparent transition duration-150"
               />
             </div>
-            <p className="text-xs text-gray-500 mt-1">Separate tags with commas</p>
+            <p className="text-xs text-gray-500 mt-1">
+              Separate tags with commas
+            </p>
           </div>
 
           <div>
@@ -187,7 +209,10 @@ const BlogForm = ({ blogToEdit, onSubmit, onCancel }) => {
             onChange={(e) => setFeatured(e.target.checked)}
             className="w-4 h-4 text-[#6666CC] border-gray-300 rounded focus:ring-[#6666CC]"
           />
-          <label htmlFor="featured" className="flex items-center text-sm font-medium text-gray-700">
+          <label
+            htmlFor="featured"
+            className="flex items-center text-sm font-medium text-gray-700"
+          >
             <Star className="w-4 h-4 mr-2 text-yellow-500" />
             Mark as featured post
           </label>
@@ -213,12 +238,24 @@ const BlogForm = ({ blogToEdit, onSubmit, onCancel }) => {
             ) : (
               <PlusCircle className="w-5 h-5 mr-2" />
             )}
-            {isEditMode ? 'Update Blog' : 'Publish Blog'}
+            {isEditMode ? "Update Blog" : "Publish Blog"}
           </button>
         </div>
         {message && (
-          <p className={`mt-3 text-center p-3 rounded-lg ${message.includes('Error') ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700 flex items-center justify-center'}`}>
-            {message.includes('Error') ? message : <><CheckCircle className="w-4 h-4 mr-2"/> {message}</>}
+          <p
+            className={`mt-3 text-center p-3 rounded-lg ${
+              message.includes("Error")
+                ? "bg-red-100 text-red-700"
+                : "bg-green-100 text-green-700 flex items-center justify-center"
+            }`}
+          >
+            {message.includes("Error") ? (
+              message
+            ) : (
+              <>
+                <CheckCircle className="w-4 h-4 mr-2" /> {message}
+              </>
+            )}
           </p>
         )}
       </form>
@@ -229,7 +266,7 @@ const BlogForm = ({ blogToEdit, onSubmit, onCancel }) => {
 const BlogManager = ({ blogs, onBlogsUpdate }) => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [blogToEdit, setBlogToEdit] = useState(null);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const handleEdit = (blog) => {
     setBlogToEdit(blog);
@@ -239,7 +276,7 @@ const BlogManager = ({ blogs, onBlogsUpdate }) => {
   const handleCreateNew = () => {
     setBlogToEdit(null);
     setIsFormVisible(true);
-    setMessage('');
+    setMessage("");
   };
 
   const handleCancel = () => {
@@ -249,23 +286,24 @@ const BlogManager = ({ blogs, onBlogsUpdate }) => {
   };
 
   const handleDelete = async (blogId) => {
-    if (!window.confirm('Are you sure you want to delete this blog post?')) return;
+    if (!window.confirm("Are you sure you want to delete this blog post?"))
+      return;
 
     try {
-      const API_BASE_URL = 'http://localhost:5000';
+      const API_BASE_URL = `${API_BASE_URL1}`;
       const response = await fetch(`${API_BASE_URL}/api/blog/${blogId}`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+          Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
         },
       });
 
       if (response.ok) {
-        setMessage('Blog post deleted successfully!');
+        setMessage("Blog post deleted successfully!");
         onBlogsUpdate();
-        setTimeout(() => setMessage(''), 3000);
+        setTimeout(() => setMessage(""), 3000);
       } else {
-        throw new Error('Failed to delete blog');
+        throw new Error("Failed to delete blog");
       }
     } catch (error) {
       console.error("Error deleting blog:", error);
@@ -275,20 +313,27 @@ const BlogManager = ({ blogs, onBlogsUpdate }) => {
 
   const toggleFeatured = async (blogId, currentFeatured) => {
     try {
-      const API_BASE_URL = 'http://localhost:5000';
-      const response = await fetch(`${API_BASE_URL}/api/blog/${blogId}/featured`, {
-        method: 'PATCH',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
-        },
-      });
+      const API_BASE_URL = `${API_BASE_URL1}`;
+      const response = await fetch(
+        `${API_BASE_URL}/api/blog/${blogId}/featured`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
+          },
+        }
+      );
 
       if (response.ok) {
-        setMessage(`Blog ${!currentFeatured ? 'marked as featured' : 'removed from featured'}!`);
+        setMessage(
+          `Blog ${
+            !currentFeatured ? "marked as featured" : "removed from featured"
+          }!`
+        );
         onBlogsUpdate();
-        setTimeout(() => setMessage(''), 3000);
+        setTimeout(() => setMessage(""), 3000);
       } else {
-        throw new Error('Failed to update featured status');
+        throw new Error("Failed to update featured status");
       }
     } catch (error) {
       console.error("Error toggling featured:", error);
@@ -297,7 +342,13 @@ const BlogManager = ({ blogs, onBlogsUpdate }) => {
   };
 
   if (isFormVisible) {
-    return <BlogForm blogToEdit={blogToEdit} onSubmit={handleCancel} onCancel={handleCancel} />;
+    return (
+      <BlogForm
+        blogToEdit={blogToEdit}
+        onSubmit={handleCancel}
+        onCancel={handleCancel}
+      />
+    );
   }
 
   return (
@@ -315,19 +366,29 @@ const BlogManager = ({ blogs, onBlogsUpdate }) => {
           New Post
         </button>
       </div>
-      
+
       {message && (
-        <p className={`p-3 rounded-lg text-sm ${message.includes('Error') ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}>
+        <p
+          className={`p-3 rounded-lg text-sm ${
+            message.includes("Error")
+              ? "bg-red-100 text-red-700"
+              : "bg-green-100 text-green-700"
+          }`}
+        >
           {message}
         </p>
       )}
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {blogs.length === 0 ? (
           <div className="col-span-full text-center py-12">
             <BookOpen className="w-16 h-16 mx-auto mb-4 text-gray-400" />
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No blog posts yet</h3>
-            <p className="text-gray-600 mb-6">Get started by creating your first blog post!</p>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              No blog posts yet
+            </h3>
+            <p className="text-gray-600 mb-6">
+              Get started by creating your first blog post!
+            </p>
             <button
               onClick={handleCreateNew}
               className="px-6 py-3 bg-[#6666CC] text-white font-semibold rounded-lg hover:bg-[#1A173A] transition duration-200"
@@ -337,7 +398,10 @@ const BlogManager = ({ blogs, onBlogsUpdate }) => {
           </div>
         ) : (
           blogs.map((blog) => (
-            <div key={blog._id} className="bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-xl transition duration-300 overflow-hidden group">
+            <div
+              key={blog._id}
+              className="bg-white rounded-xl shadow-md border border-gray-200 hover:shadow-xl transition duration-300 overflow-hidden group"
+            >
               {/* Blog Image */}
               {blog.image && (
                 <div className="relative h-48 overflow-hidden">
@@ -346,7 +410,7 @@ const BlogManager = ({ blogs, onBlogsUpdate }) => {
                     alt={blog.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     onError={(e) => {
-                      e.target.style.display = 'none';
+                      e.target.style.display = "none";
                     }}
                   />
                   {blog.featured && (
@@ -356,15 +420,17 @@ const BlogManager = ({ blogs, onBlogsUpdate }) => {
                   )}
                 </div>
               )}
-              
+
               <div className="p-5">
                 <div className="flex items-center justify-between mb-3">
-                  <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                    blog.featured 
-                      ? 'bg-yellow-100 text-yellow-800' 
-                      : 'bg-gray-100 text-gray-600'
-                  }`}>
-                    {blog.featured ? 'Featured' : 'Standard'}
+                  <span
+                    className={`px-2 py-1 text-xs font-medium rounded-full ${
+                      blog.featured
+                        ? "bg-yellow-100 text-yellow-800"
+                        : "bg-gray-100 text-gray-600"
+                    }`}
+                  >
+                    {blog.featured ? "Featured" : "Standard"}
                   </span>
                   {blog.readTime && (
                     <span className="flex items-center text-sm text-gray-500">
@@ -377,16 +443,16 @@ const BlogManager = ({ blogs, onBlogsUpdate }) => {
                 <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-[#6666CC] transition-colors duration-200">
                   {blog.title}
                 </h3>
-                
+
                 <p className="text-sm text-[#6666CC] mb-3">by {blog.author}</p>
-                
+
                 <p className="text-gray-600 text-sm mb-4 line-clamp-3">
                   {blog.content}
                 </p>
 
                 {blog.tags && blog.tags.length > 0 && (
                   <div className="flex flex-wrap gap-1 mb-4">
-                    {blog.tags.slice(0, 3).map(tag => (
+                    {blog.tags.slice(0, 3).map((tag) => (
                       <span
                         key={tag}
                         className="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs"
@@ -398,9 +464,13 @@ const BlogManager = ({ blogs, onBlogsUpdate }) => {
                 )}
 
                 <div className="flex items-center justify-between text-xs text-gray-400 mb-4">
-                  <span>Created: {new Date(blog.createdAt).toLocaleDateString()}</span>
+                  <span>
+                    Created: {new Date(blog.createdAt).toLocaleDateString()}
+                  </span>
                   {blog.updatedAt !== blog.createdAt && (
-                    <span>Updated: {new Date(blog.updatedAt).toLocaleDateString()}</span>
+                    <span>
+                      Updated: {new Date(blog.updatedAt).toLocaleDateString()}
+                    </span>
                   )}
                 </div>
 
@@ -415,11 +485,15 @@ const BlogManager = ({ blogs, onBlogsUpdate }) => {
                     onClick={() => toggleFeatured(blog._id, blog.featured)}
                     className={`flex items-center justify-center p-2 text-sm rounded-lg transition duration-150 ${
                       blog.featured
-                        ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200'
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                        ? "bg-yellow-100 text-yellow-800 hover:bg-yellow-200"
+                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                     }`}
                   >
-                    <Star className={`w-4 h-4 ${blog.featured ? 'fill-current' : ''}`} />
+                    <Star
+                      className={`w-4 h-4 ${
+                        blog.featured ? "fill-current" : ""
+                      }`}
+                    />
                   </button>
                   <button
                     onClick={() => handleDelete(blog._id)}

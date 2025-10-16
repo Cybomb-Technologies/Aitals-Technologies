@@ -1,39 +1,43 @@
 // components/NewsletterManager.jsx
-import React, { useState, useEffect } from 'react';
-import { 
-  Download, 
-  Search, 
-  Filter, 
-  Mail, 
-  Users, 
-  TrendingUp, 
+import React, { useState, useEffect } from "react";
+import {
+  Download,
+  Search,
+  Filter,
+  Mail,
+  Users,
+  TrendingUp,
   UserCheck,
   UserX,
-  Calendar
-} from 'lucide-react';
+  Calendar,
+} from "lucide-react";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const NewsletterManager = () => {
   const [subscribers, setSubscribers] = useState([]);
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [statusFilter, setStatusFilter] = useState('all');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
   const fetchSubscribers = async (page = 1) => {
     try {
-      const token = localStorage.getItem('adminToken');
+      const token = localStorage.getItem("adminToken");
       const params = new URLSearchParams({
         page: page.toString(),
-        limit: '10',
+        limit: "10",
         ...(searchTerm && { search: searchTerm }),
-        ...(statusFilter !== 'all' && { status: statusFilter })
+        ...(statusFilter !== "all" && { status: statusFilter }),
       });
 
-      const response = await fetch(`http://localhost:5000/api/newsletter/subscribers?${params}`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
+      const response = await fetch(
+        `${API_BASE_URL}/api/newsletter/subscribers?${params}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
@@ -42,15 +46,15 @@ const NewsletterManager = () => {
         setCurrentPage(data.pagination.current);
       }
     } catch (error) {
-      console.error('Error fetching subscribers:', error);
+      console.error("Error fetching subscribers:", error);
     }
   };
 
   const fetchStats = async () => {
     try {
-      const token = localStorage.getItem('adminToken');
-      const response = await fetch('http://localhost:5000/api/newsletter/stats', {
-        headers: { 'Authorization': `Bearer ${token}` }
+      const token = localStorage.getItem("adminToken");
+      const response = await fetch(`${API_BASE_URL}/api/newsletter/stats`, {
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       if (response.ok) {
@@ -58,7 +62,7 @@ const NewsletterManager = () => {
         setStats(data.data);
       }
     } catch (error) {
-      console.error('Error fetching stats:', error);
+      console.error("Error fetching stats:", error);
     }
   };
 
@@ -77,32 +81,32 @@ const NewsletterManager = () => {
 
   const handleExport = async () => {
     try {
-      const token = localStorage.getItem('adminToken');
-      const response = await fetch('http://localhost:5000/api/newsletter/export', {
-        headers: { 'Authorization': `Bearer ${token}` }
+      const token = localStorage.getItem("adminToken");
+      const response = await fetch(`${API_BASE_URL}/api/newsletter/export`, {
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       if (response.ok) {
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
+        const a = document.createElement("a");
         a.href = url;
-        a.download = 'newsletter-subscribers.xlsx';
+        a.download = "newsletter-subscribers.xlsx";
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
       }
     } catch (error) {
-      console.error('Export error:', error);
+      console.error("Export error:", error);
     }
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
     });
   };
 
@@ -122,8 +126,12 @@ const NewsletterManager = () => {
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Subscribers</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">{stats.totalSubscribers}</p>
+                <p className="text-sm font-medium text-gray-600">
+                  Total Subscribers
+                </p>
+                <p className="text-2xl font-bold text-gray-900 mt-1">
+                  {stats.totalSubscribers}
+                </p>
               </div>
               <div className="p-3 bg-blue-100 rounded-xl">
                 <Users className="w-6 h-6 text-blue-600" />
@@ -134,8 +142,12 @@ const NewsletterManager = () => {
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Active Subscribers</p>
-                <p className="text-2xl font-bold text-green-600 mt-1">{stats.activeSubscribers}</p>
+                <p className="text-sm font-medium text-gray-600">
+                  Active Subscribers
+                </p>
+                <p className="text-2xl font-bold text-green-600 mt-1">
+                  {stats.activeSubscribers}
+                </p>
               </div>
               <div className="p-3 bg-green-100 rounded-xl">
                 <UserCheck className="w-6 h-6 text-green-600" />
@@ -147,7 +159,9 @@ const NewsletterManager = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">This Month</p>
-                <p className="text-2xl font-bold text-purple-600 mt-1">{stats.newSubscribersThisMonth}</p>
+                <p className="text-2xl font-bold text-purple-600 mt-1">
+                  {stats.newSubscribersThisMonth}
+                </p>
               </div>
               <div className="p-3 bg-purple-100 rounded-xl">
                 <TrendingUp className="w-6 h-6 text-purple-600" />
@@ -159,7 +173,9 @@ const NewsletterManager = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Inactive</p>
-                <p className="text-2xl font-bold text-red-600 mt-1">{stats.inactiveSubscribers}</p>
+                <p className="text-2xl font-bold text-red-600 mt-1">
+                  {stats.inactiveSubscribers}
+                </p>
               </div>
               <div className="p-3 bg-red-100 rounded-xl">
                 <UserX className="w-6 h-6 text-red-600" />
@@ -249,12 +265,14 @@ const NewsletterManager = () => {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                      subscriber.isActive
-                        ? 'bg-green-100 text-green-800'
-                        : 'bg-red-100 text-red-800'
-                    }`}>
-                      {subscriber.isActive ? 'Active' : 'Inactive'}
+                    <span
+                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                        subscriber.isActive
+                          ? "bg-green-100 text-green-800"
+                          : "bg-red-100 text-red-800"
+                      }`}
+                    >
+                      {subscriber.isActive ? "Active" : "Inactive"}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
