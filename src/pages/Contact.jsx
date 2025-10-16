@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet';
-import { motion } from 'framer-motion';
+import React, { useState } from "react";
+import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
 import {
   Mail,
   Phone,
@@ -10,73 +10,75 @@ import {
   Facebook,
   Instagram,
   Twitter,
-  Navigation
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/components/ui/use-toast';
+  Navigation,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Contact = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    service: '',
-    message: ''
+    name: "",
+    email: "",
+    service: "",
+    message: "",
   });
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  
-  try {
-    const response = await fetch('http://localhost:5000/api/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: formData.name,
-        email: formData.email,
-        message: `Service: ${formData.service}\n\nMessage: ${formData.message}`
-      }),
-    });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const data = await response.json();
-
-    if (response.ok) {
-      toast({
-        title: 'Message Sent! ✉️',
-        description: "Thank you for reaching out. We'll get back to you within 24 hours!"
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: `Service: ${formData.service}\n\nMessage: ${formData.message}`,
+        }),
       });
-      setFormData({ name: '', email: '', service: '', message: '' });
-    } else {
-      throw new Error(data.message || 'Failed to send message');
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "Message Sent! ✉️",
+          description:
+            "Thank you for reaching out. We'll get back to you within 24 hours!",
+        });
+        setFormData({ name: "", email: "", service: "", message: "" });
+      } else {
+        throw new Error(data.message || "Failed to send message");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
     }
-  } catch (error) {
-    console.error('Error submitting form:', error);
-    toast({
-      title: 'Error',
-      description: 'Failed to send message. Please try again.',
-      variant: 'destructive'
-    });
-  }
-};
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const services = [
-    'Web Development',
-    'Mobile App Development',
-    'UI/UX Design',
-    'E-commerce Solutions',
-    'Cloud Services',
-    'AI Integration',
-    'Other'
+    "Web Development",
+    "Mobile App Development",
+    "UI/UX Design",
+    "E-commerce Solutions",
+    "Cloud Services",
+    "AI Integration",
+    "Other",
   ];
 
   const openGoogleMaps = () => {
-    window.open('https://maps.google.com/?q=13.008408,80.201841', '_blank');
+    window.open("https://maps.google.com/?q=13.008408,80.201841", "_blank");
   };
 
   return (
@@ -90,7 +92,10 @@ const handleSubmit = async (e) => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 gradient-bg text-white" style={{background: 'linear-gradient(to right, #1A173A, #6666CC)'}}>
+      <section
+        className="pt-32 pb-20 gradient-bg text-white"
+        style={{ background: "linear-gradient(to right, #1A173A, #6666CC)" }}
+      >
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -98,7 +103,9 @@ const handleSubmit = async (e) => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">Get In Touch</h1>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              Get In Touch
+            </h1>
             <p className="text-xl text-gray-100">
               Ready to start your project? We'd love to hear from you. Let's
               discuss how we can help bring your vision to life.
@@ -191,7 +198,9 @@ const handleSubmit = async (e) => {
                   type="submit"
                   size="lg"
                   className="w-full text-white"
-                  style={{background: 'linear-gradient(to right, #1A173A, #6666CC)'}}
+                  style={{
+                    background: "linear-gradient(to right, #1A173A, #6666CC)",
+                  }}
                 >
                   <Send className="mr-2 w-5 h-5" />
                   Send Message
@@ -214,9 +223,12 @@ const handleSubmit = async (e) => {
                 <div className="space-y-6">
                   {/* Address */}
                   <div className="flex items-start space-x-4">
-                    <div 
+                    <div
                       className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{background: 'linear-gradient(to right, #1A173A, #6666CC)'}}
+                      style={{
+                        background:
+                          "linear-gradient(to right, #1A173A, #6666CC)",
+                      }}
                     >
                       <MapPin className="w-6 h-6 text-white" />
                     </div>
@@ -234,9 +246,12 @@ const handleSubmit = async (e) => {
 
                   {/* Email */}
                   <div className="flex items-start space-x-4">
-                    <div 
+                    <div
                       className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{background: 'linear-gradient(to right, #1A173A, #6666CC)'}}
+                      style={{
+                        background:
+                          "linear-gradient(to right, #1A173A, #6666CC)",
+                      }}
                     >
                       <Mail className="w-6 h-6 text-white" />
                     </div>
@@ -249,9 +264,12 @@ const handleSubmit = async (e) => {
 
                   {/* Phone */}
                   <div className="flex items-start space-x-4">
-                    <div 
+                    <div
                       className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
-                      style={{background: 'linear-gradient(to right, #1A173A, #6666CC)'}}
+                      style={{
+                        background:
+                          "linear-gradient(to right, #1A173A, #6666CC)",
+                      }}
                     >
                       <Phone className="w-6 h-6 text-white" />
                     </div>
@@ -275,7 +293,10 @@ const handleSubmit = async (e) => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-12 h-12 rounded-lg flex items-center justify-center hover:opacity-80 transition-opacity"
-                      style={{background: 'linear-gradient(to right, #1A173A, #6666CC)'}}
+                      style={{
+                        background:
+                          "linear-gradient(to right, #1A173A, #6666CC)",
+                      }}
                     >
                       <Icon className="w-6 h-6 text-white" />
                     </a>
@@ -284,9 +305,11 @@ const handleSubmit = async (e) => {
               </div>
 
               {/* Business Hours */}
-              <div 
+              <div
                 className="p-8 rounded-2xl"
-                style={{background: 'linear-gradient(135deg, #EFF6FF, #EDE9FE)'}}
+                style={{
+                  background: "linear-gradient(135deg, #EFF6FF, #EDE9FE)",
+                }}
               >
                 <h3 className="font-bold text-xl mb-4">Business Hours</h3>
                 <div className="space-y-2 text-gray-700">
@@ -317,20 +340,28 @@ const handleSubmit = async (e) => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="absolute inset-0 flex flex-col items-center justify-center"
-          style={{background: 'linear-gradient(135deg, #EFF6FF, #EDE9FE)'}}
+          style={{ background: "linear-gradient(135deg, #EFF6FF, #EDE9FE)" }}
         >
           <div className="text-center max-w-2xl mx-auto px-4">
-            <MapPin className="w-16 h-16 mb-4 mx-auto" style={{color: '#6666CC'}} />
-            <h3 className="text-3xl font-bold text-gray-800 mb-4">Visit Our Office</h3>
+            <MapPin
+              className="w-16 h-16 mb-4 mx-auto"
+              style={{ color: "#6666CC" }}
+            />
+            <h3 className="text-3xl font-bold text-gray-800 mb-4">
+              Visit Our Office
+            </h3>
             <p className="text-gray-600 mb-6 text-lg">
-              146, Sterling Rd, Nungambakkam<br />
+              146, Sterling Rd, Nungambakkam
+              <br />
               Chennai, Tamil Nadu 600034, India
             </p>
             <Button
               onClick={openGoogleMaps}
               size="lg"
               className="text-white px-8 py-3"
-              style={{background: 'linear-gradient(to right, #1A173A, #6666CC)'}}
+              style={{
+                background: "linear-gradient(to right, #1A173A, #6666CC)",
+              }}
             >
               <Navigation className="mr-2 w-5 h-5" />
               Open in Google Maps

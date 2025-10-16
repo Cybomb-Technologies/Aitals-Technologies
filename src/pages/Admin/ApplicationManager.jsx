@@ -1,21 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { Briefcase, Trash2, FileText, X, Loader, Search, Filter, ChevronDown, ChevronUp } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import {
+  Briefcase,
+  Trash2,
+  FileText,
+  X,
+  Loader,
+  Search,
+  Filter,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
+const API_BASE_URL1 = import.meta.env.VITE_API_BASE_URL;
 
 const DataTableView = ({ title, icon: Icon, data, headers, onDelete }) => {
   const [resumePopup, setResumePopup] = useState({
     isOpen: false,
     content: null,
-    fileName: '',
-    isLoading: false
+    fileName: "",
+    isLoading: false,
   });
 
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
   const [filteredData, setFilteredData] = useState(data);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [expandedRows, setExpandedRows] = useState(new Set());
 
-  const API_BASE_URL = 'http://localhost:5000';
+  const API_BASE_URL = `${API_BASE_URL1}`;
 
   // Handle responsive layout
   useEffect(() => {
@@ -23,8 +34,8 @@ const DataTableView = ({ title, icon: Icon, data, headers, onDelete }) => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // Filter and sort data
@@ -33,10 +44,10 @@ const DataTableView = ({ title, icon: Icon, data, headers, onDelete }) => {
 
     // Apply search filter
     if (searchTerm) {
-      result = result.filter(item => 
-        headers.some(header => {
-          const key = header.toLowerCase().replace(/\s/g, '');
-          const value = item[key]?.toString().toLowerCase() || '';
+      result = result.filter((item) =>
+        headers.some((header) => {
+          const key = header.toLowerCase().replace(/\s/g, "");
+          const value = item[key]?.toString().toLowerCase() || "";
           return value.includes(searchTerm.toLowerCase());
         })
       );
@@ -45,11 +56,11 @@ const DataTableView = ({ title, icon: Icon, data, headers, onDelete }) => {
     // Apply sorting
     if (sortConfig.key) {
       result.sort((a, b) => {
-        const aValue = a[sortConfig.key]?.toString().toLowerCase() || '';
-        const bValue = b[sortConfig.key]?.toString().toLowerCase() || '';
-        
-        if (aValue < bValue) return sortConfig.direction === 'asc' ? -1 : 1;
-        if (aValue > bValue) return sortConfig.direction === 'asc' ? 1 : -1;
+        const aValue = a[sortConfig.key]?.toString().toLowerCase() || "";
+        const bValue = b[sortConfig.key]?.toString().toLowerCase() || "";
+
+        if (aValue < bValue) return sortConfig.direction === "asc" ? -1 : 1;
+        if (aValue > bValue) return sortConfig.direction === "asc" ? 1 : -1;
         return 0;
       });
     }
@@ -58,14 +69,15 @@ const DataTableView = ({ title, icon: Icon, data, headers, onDelete }) => {
   }, [data, searchTerm, sortConfig, headers]);
 
   const handleSort = (key) => {
-    setSortConfig(current => ({
+    setSortConfig((current) => ({
       key,
-      direction: current.key === key && current.direction === 'asc' ? 'desc' : 'asc'
+      direction:
+        current.key === key && current.direction === "asc" ? "desc" : "asc",
     }));
   };
 
   const toggleRowExpand = (id) => {
-    setExpandedRows(prev => {
+    setExpandedRows((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(id)) {
         newSet.delete(id);
@@ -78,35 +90,38 @@ const DataTableView = ({ title, icon: Icon, data, headers, onDelete }) => {
 
   const handleViewResume = async (applicationId, fileName) => {
     try {
-      setResumePopup(prev => ({
+      setResumePopup((prev) => ({
         ...prev,
         isOpen: true,
         isLoading: true,
-        fileName
+        fileName,
       }));
 
-      const token = localStorage.getItem('adminToken');
-      const response = await fetch(`${API_BASE_URL}/api/application/${applicationId}/resume`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
+      const token = localStorage.getItem("adminToken");
+      const response = await fetch(
+        `${API_BASE_URL}/api/application/${applicationId}/resume`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      });
+      );
 
       if (response.ok) {
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
-        
-        setResumePopup(prev => ({
+
+        setResumePopup((prev) => ({
           ...prev,
           content: url,
-          isLoading: false
+          isLoading: false,
         }));
       } else {
-        throw new Error('Failed to fetch resume');
+        throw new Error("Failed to fetch resume");
       }
     } catch (error) {
-      console.error('Error viewing resume:', error);
-      alert('Error opening resume file');
+      console.error("Error viewing resume:", error);
+      alert("Error opening resume file");
       closeResumePopup();
     }
   };
@@ -115,12 +130,12 @@ const DataTableView = ({ title, icon: Icon, data, headers, onDelete }) => {
     if (resumePopup.content) {
       window.URL.revokeObjectURL(resumePopup.content);
     }
-    
+
     setResumePopup({
       isOpen: false,
       content: null,
-      fileName: '',
-      isLoading: false
+      fileName: "",
+      isLoading: false,
     });
   };
 
@@ -132,20 +147,20 @@ const DataTableView = ({ title, icon: Icon, data, headers, onDelete }) => {
 
   useEffect(() => {
     const handleEscapeKey = (e) => {
-      if (e.key === 'Escape' && resumePopup.isOpen) {
+      if (e.key === "Escape" && resumePopup.isOpen) {
         closeResumePopup();
       }
     };
 
-    document.addEventListener('keydown', handleEscapeKey);
-    return () => document.removeEventListener('keydown', handleEscapeKey);
+    document.addEventListener("keydown", handleEscapeKey);
+    return () => document.removeEventListener("keydown", handleEscapeKey);
   }, [resumePopup.isOpen]);
 
   const renderCellContent = (item, header) => {
-    const key = header.toLowerCase().replace(/\s/g, '');
-    let content = item[key] || 'N/A';
+    const key = header.toLowerCase().replace(/\s/g, "");
+    let content = item[key] || "N/A";
 
-    if (key === 'resume') {
+    if (key === "resume") {
       if (item.resume && item.resume.filename) {
         return (
           <button
@@ -164,19 +179,22 @@ const DataTableView = ({ title, icon: Icon, data, headers, onDelete }) => {
         );
       }
     }
-    
+
     if (content && content.length > 50 && !isMobile) {
-      content = content.substring(0, 47) + '...';
+      content = content.substring(0, 47) + "...";
     }
-    
+
     return content;
   };
 
   const renderMobileCard = (item, index) => (
-    <div key={item._id || index} className="bg-gray-50 rounded-lg p-4 mb-3 border border-gray-200">
+    <div
+      key={item._id || index}
+      className="bg-gray-50 rounded-lg p-4 mb-3 border border-gray-200"
+    >
       <div className="flex justify-between items-start mb-2">
         <h3 className="font-semibold text-gray-900 truncate flex-1 mr-2">
-          {item.name || 'N/A'}
+          {item.name || "N/A"}
         </h3>
         <div className="flex items-center space-x-2 flex-shrink-0">
           <button
@@ -189,40 +207,52 @@ const DataTableView = ({ title, icon: Icon, data, headers, onDelete }) => {
             onClick={() => toggleRowExpand(item._id)}
             className="text-gray-600 hover:text-gray-900 transition-colors duration-200 p-1"
           >
-            {expandedRows.has(item._id) ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            {expandedRows.has(item._id) ? (
+              <ChevronUp className="w-4 h-4" />
+            ) : (
+              <ChevronDown className="w-4 h-4" />
+            )}
           </button>
         </div>
       </div>
-      
+
       <div className="space-y-2">
         <div className="flex justify-between">
           <span className="text-sm text-gray-600 font-medium">Email:</span>
-          <span className="text-sm text-gray-900 truncate ml-2">{item.email || 'N/A'}</span>
+          <span className="text-sm text-gray-900 truncate ml-2">
+            {item.email || "N/A"}
+          </span>
         </div>
         <div className="flex justify-between">
           <span className="text-sm text-gray-600 font-medium">Role:</span>
-          <span className="text-sm text-gray-900">{item.role || 'N/A'}</span>
+          <span className="text-sm text-gray-900">{item.role || "N/A"}</span>
         </div>
         <div className="flex justify-between items-center">
           <span className="text-sm text-gray-600 font-medium">Resume:</span>
-          <div className="ml-2">
-            {renderCellContent(item, 'Resume')}
-          </div>
+          <div className="ml-2">{renderCellContent(item, "Resume")}</div>
         </div>
       </div>
 
       {expandedRows.has(item._id) && (
         <div className="mt-3 pt-3 border-t border-gray-200">
-          {headers.filter(header => !['Name', 'Email', 'Role', 'Resume'].includes(header)).map(header => {
-            const key = header.toLowerCase().replace(/\s/g, '');
-            const value = item[key] || 'N/A';
-            return (
-              <div key={header} className="flex justify-between mb-2">
-                <span className="text-sm text-gray-600 font-medium">{header}:</span>
-                <span className="text-sm text-gray-900 text-right ml-2">{value}</span>
-              </div>
-            );
-          })}
+          {headers
+            .filter(
+              (header) => !["Name", "Email", "Role", "Resume"].includes(header)
+            )
+            .map((header) => {
+              const key = header.toLowerCase().replace(/\s/g, "");
+              const value = item[key] || "N/A";
+              return (
+                <div key={header} className="flex justify-between mb-2">
+                  <span className="text-sm text-gray-600 font-medium">
+                    {header}:
+                  </span>
+                  <span className="text-sm text-gray-900 text-right ml-2">
+                    {value}
+                  </span>
+                </div>
+              );
+            })}
         </div>
       )}
     </div>
@@ -232,9 +262,11 @@ const DataTableView = ({ title, icon: Icon, data, headers, onDelete }) => {
     if (sortConfig.key !== columnKey) {
       return <ChevronDown className="w-4 h-4 opacity-30" />;
     }
-    return sortConfig.direction === 'asc' ? 
-      <ChevronUp className="w-4 h-4" /> : 
-      <ChevronDown className="w-4 h-4" />;
+    return sortConfig.direction === "asc" ? (
+      <ChevronUp className="w-4 h-4" />
+    ) : (
+      <ChevronDown className="w-4 h-4" />
+    );
   };
 
   return (
@@ -245,7 +277,7 @@ const DataTableView = ({ title, icon: Icon, data, headers, onDelete }) => {
           <Icon className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-[#6666CC]" />
           {title} Data ({filteredData.length})
         </h2>
-        
+
         {/* Search and Filter Section */}
         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
           <div className="relative flex-1 sm:flex-initial">
@@ -260,7 +292,7 @@ const DataTableView = ({ title, icon: Icon, data, headers, onDelete }) => {
           </div>
           {searchTerm && (
             <button
-              onClick={() => setSearchTerm('')}
+              onClick={() => setSearchTerm("")}
               className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors duration-200 whitespace-nowrap"
             >
               Clear
@@ -274,11 +306,13 @@ const DataTableView = ({ title, icon: Icon, data, headers, onDelete }) => {
         {filteredData.length === 0 ? (
           <div className="text-center py-8 border rounded-lg bg-gray-50">
             <p className="text-gray-500 italic">
-              {searchTerm ? `No ${title.toLowerCase()} records match your search.` : `No ${title.toLowerCase()} records found.`}
+              {searchTerm
+                ? `No ${title.toLowerCase()} records match your search.`
+                : `No ${title.toLowerCase()} records found.`}
             </p>
             {searchTerm && (
               <button
-                onClick={() => setSearchTerm('')}
+                onClick={() => setSearchTerm("")}
                 className="mt-2 px-4 py-2 bg-[#6666CC] text-white rounded-lg hover:bg-[#1A173A] transition-colors duration-200"
               >
                 Clear Search
@@ -296,7 +330,7 @@ const DataTableView = ({ title, icon: Icon, data, headers, onDelete }) => {
             <thead className="bg-gray-50">
               <tr>
                 {headers.map((header) => {
-                  const key = header.toLowerCase().replace(/\s/g, '');
+                  const key = header.toLowerCase().replace(/\s/g, "");
                   return (
                     <th
                       key={header}
@@ -317,7 +351,10 @@ const DataTableView = ({ title, icon: Icon, data, headers, onDelete }) => {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredData.map((item, index) => (
-                <tr key={item._id || index} className="hover:bg-gray-50 transition duration-150">
+                <tr
+                  key={item._id || index}
+                  className="hover:bg-gray-50 transition duration-150"
+                >
                   {headers.map((header) => (
                     <td
                       key={`${item._id}-${header}`}
@@ -344,7 +381,7 @@ const DataTableView = ({ title, icon: Icon, data, headers, onDelete }) => {
 
       {/* Resume Popup Modal */}
       {resumePopup.isOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4"
           onClick={handleBackdropClick}
         >
@@ -410,12 +447,12 @@ const DataTableView = ({ title, icon: Icon, data, headers, onDelete }) => {
 
 const ApplicationManager = ({ applications, onDelete }) => {
   return (
-    <DataTableView 
-      title="Application" 
-      icon={Briefcase} 
-      data={applications} 
-      headers={['Name', 'Email', 'Role', 'Resume']} 
-      onDelete={onDelete} 
+    <DataTableView
+      title="Application"
+      icon={Briefcase}
+      data={applications}
+      headers={["Name", "Email", "Role", "Resume"]}
+      onDelete={onDelete}
     />
   );
 };
