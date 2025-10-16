@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import logo from '../assets/logo.png';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -160,7 +160,7 @@ const Navbar = () => {
             className="flex items-center group transition-all duration-300"
           >
             <img
-              src="src\assets\logo.png"
+              src={logo}
               alt="Aitals Technologies Logo"
               className="h-12 lg:h-15 w-auto transition-opacity group-hover:opacity-90"
             />

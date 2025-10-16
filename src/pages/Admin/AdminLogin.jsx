@@ -96,11 +96,11 @@ const AdminLogin = () => {
         </form>
 
         {/* Debug info */}
-        <div className="mt-4 p-3 bg-gray-100 rounded text-xs text-gray-600">
+        {/* <div className="mt-4 p-3 bg-gray-100 rounded text-xs text-gray-600">
           <p>Default credentials:</p>
           <p>Email: admin@aitals.com</p>
           <p>Password: admin123</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );
