@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import logo from '../assets/logo.png';
 import {
   Code2,
   Mail,
@@ -19,7 +20,7 @@ const Footer = () => {
             <div className="flex items-center space-x-2 mb-4">
               <Link to="/">
                 <img
-                  src="src/assets/logo.png"
+                  src={logo}
                   alt="Aitals Technologies Logo"
                   className="h-8 w-auto object-contain"
                 />
