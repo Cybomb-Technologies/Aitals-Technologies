@@ -78,7 +78,25 @@ const Contact = () => {
   ];
 
   const openGoogleMaps = () => {
-    window.open("https://maps.google.com/?q=13.008408,80.201841", "_blank");
+    window.open(
+      "https://maps.google.com/?q=Prime+Plaza+No.54/1,+1st+street,+Sripuram+colony,+St.+Thomas+Mount,+Chennai,+Tamil+Nadu+600016,+India",
+      "_blank"
+    );
+  };
+
+  const openAddressInMaps = () => {
+    window.open(
+      "https://maps.google.com/?q=Prime+Plaza+No.54/1,+1st+street,+Sripuram+colony,+St.+Thomas+Mount,+Chennai,+Tamil+Nadu+600016,+India",
+      "_blank"
+    );
+  };
+
+  const openEmail = () => {
+    window.location.href = "mailto:support@aitals.com";
+  };
+
+  const openPhone = () => {
+    window.location.href = "tel:+919715092104";
   };
 
   return (
@@ -222,7 +240,10 @@ const Contact = () => {
 
                 <div className="space-y-6">
                   {/* Address */}
-                  <div className="flex items-start space-x-4">
+                  <div
+                    className="flex items-start space-x-4 cursor-pointer hover:bg-gray-50 p-3 rounded-lg transition-colors"
+                    onClick={openAddressInMaps}
+                  >
                     <div
                       className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
                       style={{
@@ -235,9 +256,9 @@ const Contact = () => {
                     <div>
                       <h3 className="font-bold text-lg mb-1">Office Address</h3>
                       <p className="text-gray-600">
-                        146, Sterling Rd, Nungambakkam
+                        Prime Plaza No.54/1, 1st street, Sripuram colony,
                         <br />
-                        Chennai, Tamil Nadu 600034
+                        St. Thomas Mount, Chennai, Tamil Nadu - 600 016,
                         <br />
                         India
                       </p>
@@ -245,7 +266,10 @@ const Contact = () => {
                   </div>
 
                   {/* Email */}
-                  <div className="flex items-start space-x-4">
+                  <div
+                    className="flex items-start space-x-4 cursor-pointer hover:bg-gray-50 p-3 rounded-lg transition-colors"
+                    onClick={openEmail}
+                  >
                     <div
                       className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
                       style={{
@@ -257,13 +281,15 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-bold text-lg mb-1">Email Us</h3>
-                      <p className="text-gray-600">info@aitals.com</p>
                       <p className="text-gray-600">support@aitals.com</p>
                     </div>
                   </div>
 
                   {/* Phone */}
-                  <div className="flex items-start space-x-4">
+                  <div
+                    className="flex items-start space-x-4 cursor-pointer hover:bg-gray-50 p-3 rounded-lg transition-colors"
+                    onClick={openPhone}
+                  >
                     <div
                       className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
                       style={{
@@ -276,7 +302,6 @@ const Contact = () => {
                     <div>
                       <h3 className="font-bold text-lg mb-1">Call Us</h3>
                       <p className="text-gray-600">+91 9715092104</p>
-                      {/* <p className="text-gray-600">+91 0987654321</p> */}
                     </div>
                   </div>
                 </div>
@@ -286,10 +311,18 @@ const Contact = () => {
               <div>
                 <h3 className="font-bold text-lg mb-4">Follow Us</h3>
                 <div className="flex space-x-4">
-                  {[Linkedin, Facebook, Instagram, Twitter].map((Icon, i) => (
+                  {[
+                    {
+                      Icon: Linkedin,
+                      url: "https://linkedin.com/company/aitals",
+                    },
+                    { Icon: Facebook, url: "https://facebook.com/aitals" },
+                    { Icon: Instagram, url: "https://instagram.com/aitals" },
+                    { Icon: Twitter, url: "https://twitter.com/aitals" },
+                  ].map(({ Icon, url }, i) => (
                     <a
                       key={i}
-                      href="#"
+                      href={url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-12 h-12 rounded-lg flex items-center justify-center hover:opacity-80 transition-opacity"
@@ -351,9 +384,9 @@ const Contact = () => {
               Visit Our Office
             </h3>
             <p className="text-gray-600 mb-6 text-lg">
-              146, Sterling Rd, Nungambakkam
+              Prime Plaza No.54/1, 1st street, Sripuram colony,
               <br />
-              Chennai, Tamil Nadu 600034, India
+              St. Thomas Mount, Chennai, Tamil Nadu - 600 016, India
             </p>
             <Button
               onClick={openGoogleMaps}

@@ -90,8 +90,8 @@ const Home = () => {
     },
     {
       icon: Shield,
-      title: "Quality Assurance",
-      desc: "Comprehensive testing & maintenance ensuring flawless performance",
+      title: "Software Testing",
+      desc: "Rigorous testing processes to ensure reliability, performance, and bug-free software delivery",
     },
   ];
 
@@ -115,28 +115,31 @@ const Home = () => {
 
   const projects = [
     {
-      title: "E-Commerce Platform",
+      title: "Fintech Platform",
       category: "Web Development",
       image:
-        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+        "https://st.depositphotos.com/1006472/3528/i/450/depositphotos_35289079-stock-photo-golden-coin-stack-on-dark.jpg",
+      link: "/portfolio/Fintech/index.html",
     },
     {
       title: "Healthcare App",
       category: "Mobile Development",
       image:
-        "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      link: "/portfolio/Healthcare/index.html",
     },
     {
-      title: "Finance Dashboard",
+      title: "E-Learning Platform",
       category: "UI/UX Design",
       image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf10vpJrsm7IbNaiXd5NOynH9nBjr5jsTU-g&s",
+      link: "/portfolio/E-Learning/index.html",
     },
     {
-      title: "AI Chatbot",
+      title: "Fitness Tracker",
       category: "AI Solutions",
-      image:
-        "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      image: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5",
+      link: "/portfolio/Fitness/index.html",
     },
   ];
 
@@ -179,6 +182,24 @@ const Home = () => {
         ease: "easeOut",
       },
     },
+  };
+
+  // Map services to their respective routes
+  const getServiceRoute = (title) => {
+    const routeMap = {
+      "Web Development": "/services/web-development",
+      "Mobile Apps": "/services/mobile-development",
+      "UI/UX Design": "/services/ui-ux-design",
+      "Cloud Integration": "/services/cloud-devops",
+      "AI Solutions": "/services/ai-automation",
+      "Software Testing": "/services/software-testing",
+    };
+    return routeMap[title] || "/services";
+  };
+
+  // Function to handle project click - opens in new tab for external HTML files
+  const handleProjectClick = (link) => {
+    window.open(link, "_blank");
   };
 
   return (
@@ -323,27 +344,53 @@ const Home = () => {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="bg-white p-10 rounded-2xl border border-gray-200 transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] relative overflow-hidden group flex flex-col h-full font-['Poppins']"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600"></div>
+            {services.map((service, index) => {
+              const serviceRoute = getServiceRoute(service.title);
 
-                <div className="w-20 h-20 bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 animate-pulse-glow">
-                  <service.icon size={24} color="white" />
-                </div>
+              return (
+                <Link to={serviceRoute} key={index}>
+                  <motion.div
+                    variants={itemVariants}
+                    className="bg-white p-10 rounded-2xl border border-gray-200 transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] relative overflow-hidden group flex flex-col h-full font-['Poppins'] cursor-pointer"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600"></div>
 
-                <h3 className="text-2xl font-bold text-gray-800 mb-4 font-['Poppins'] group-hover:text-[#4a7dff] transition-colors duration-300">
-                  {service.title}
-                </h3>
+                    <div className="flex justify-between items-start mb-6">
+                      <div className="w-20 h-20 bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 animate-pulse-glow">
+                        <service.icon size={24} color="white" />
+                      </div>
 
-                <p className="text-gray-600 leading-relaxed font-['Poppins']">
-                  {service.desc}
-                </p>
-              </motion.div>
-            ))}
+                      {/* Arrow Icon */}
+                      <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-[#4a7dff] group-hover:text-white transition-all duration-300">
+                        <ArrowRight
+                          size={16}
+                          className="group-hover:translate-x-0.5 transition-transform duration-300"
+                        />
+                      </div>
+                    </div>
+
+                    <h3 className="text-2xl font-bold text-gray-800 mb-4 font-['Poppins'] group-hover:text-[#4a7dff] transition-colors duration-300">
+                      {service.title}
+                    </h3>
+
+                    <p className="text-gray-600 leading-relaxed font-['Poppins'] flex-grow">
+                      {service.desc}
+                    </p>
+
+                    {/* Click hint text */}
+                    <div className="mt-4 pt-4 border-t border-gray-100">
+                      <p className="text-sm text-gray-500 font-medium group-hover:text-[#4a7dff] transition-colors duration-300 flex items-center gap-1">
+                        Learn more
+                        <ArrowRight
+                          size={14}
+                          className="group-hover:translate-x-1 transition-transform duration-300"
+                        />
+                      </p>
+                    </div>
+                  </motion.div>
+                </Link>
+              );
+            })}
           </motion.div>
         </div>
       </section>
@@ -435,7 +482,8 @@ const Home = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="relative overflow-hidden rounded-2xl shadow-2xl transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/40 aspect-[3/4] w-full group"
+                className="relative overflow-hidden rounded-2xl shadow-2xl transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/40 aspect-[3/4] w-full group cursor-pointer"
+                onClick={() => handleProjectClick(project.link)}
               >
                 <img
                   alt={project.title}
@@ -454,6 +502,12 @@ const Home = () => {
                   <h3 className="text-xl font-bold text-white leading-tight font-['Poppins'] opacity-100">
                     {project.title}
                   </h3>
+                  <div className="mt-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="text-white text-sm font-medium">
+                      View Project
+                    </span>
+                    <ArrowRight size={16} className="text-white" />
+                  </div>
                 </div>
               </motion.div>
             ))}

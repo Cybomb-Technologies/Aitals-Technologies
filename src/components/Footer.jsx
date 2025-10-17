@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from '../assets/logo.png';
+import logo from "../assets/logo.png";
 import {
   Code2,
   Mail,
@@ -75,7 +75,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   Home
                 </Link>
@@ -83,7 +83,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/about"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   About Us
                 </Link>
@@ -91,7 +91,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/services"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   Services
                 </Link>
@@ -99,7 +99,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/portfolio"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   Portfolio
                 </Link>
@@ -107,7 +107,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/career"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   Career
                 </Link>
@@ -121,7 +121,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/services/web-development"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   Web Development
                 </Link>
@@ -129,7 +129,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/services/mobile-development"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   Mobile App Development
                 </Link>
@@ -137,7 +137,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/services/ui-ux-design"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   UI/UX Design
                 </Link>
@@ -145,7 +145,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/services/ecommerce"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   Ecommerce
                 </Link>
@@ -153,7 +153,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/services/web-development"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   AI Integration
                 </Link>
@@ -168,23 +168,33 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start space-x-2">
                 <MapPin className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
-                <span className="text-gray-400">
-                  146, Sterling Rd, Nungambakkam, Chennai, Tamil Nadu, India -
-                  600034
-                </span>
+                <a
+                  href="https://maps.google.com/?q=Prime Plaza No.54/1, 1st street, Sripuram colony, St. Thomas Mount, Chennai, Tamil Nadu - 600 016, India"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-blue-400 transition-colors cursor-pointer"
+                >
+                  Prime Plaza No.54/1, 1st street, Sripuram colony, St. Thomas
+                  Mount, Chennai, Tamil Nadu - 600 016, India
+                </a>
               </li>
               <li className="flex items-center space-x-2">
                 <Mail className="w-5 h-5 text-blue-400 flex-shrink-0" />
                 <a
                   href="mailto:support@aitals.com"
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   support@aitals.com
                 </a>
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                <span className="text-gray-400">+91 9715092104</span>
+                <a
+                  href="tel:+919715092104"
+                  className="text-gray-400 hover:text-blue-400 transition-colors"
+                >
+                  +91 9715092104
+                </a>
               </li>
             </ul>
           </div>
@@ -197,25 +207,25 @@ const Footer = () => {
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">
             <Link
               to="/privacy-policy"
-              className="text-gray-400 hover:text-white transition-colors text-sm"
+              className="text-gray-400 hover:text-blue-400 transition-colors text-sm"
             >
               Privacy Policy
             </Link>
             <Link
               to="/terms-conditions"
-              className="text-gray-400 hover:text-white transition-colors text-sm"
+              className="text-gray-400 hover:text-blue-400 transition-colors text-sm"
             >
               Terms & Conditions
             </Link>
             <Link
               to="/refund-policy"
-              className="text-gray-400 hover:text-white transition-colors text-sm"
+              className="text-gray-400 hover:text-blue-400 transition-colors text-sm"
             >
               Refund Policy
             </Link>
             <Link
               to="/cookie-policy"
-              className="text-gray-400 hover:text-white transition-colors text-sm"
+              className="text-gray-400 hover:text-blue-400 transition-colors text-sm"
             >
               Cookie Policy
             </Link>

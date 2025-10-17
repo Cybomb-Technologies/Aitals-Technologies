@@ -765,7 +765,7 @@ const Blog = () => {
             No spam, unsubscribe at any time. Read our{" "}
             <a
               href="/privacy-policy"
-              className="text-indigo-300 hover:text-white underline"
+              className="text-indigo-300 hover:text-white"
             >
               Privacy Policy
             </a>

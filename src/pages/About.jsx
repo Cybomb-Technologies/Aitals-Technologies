@@ -31,29 +31,29 @@ const About = () => {
 
   const milestones = [
     {
-      year: "2018",
+      year: "2025",
       title: "Company Founded",
-      desc: "Started with a vision to innovate digital solutions",
-    },
-    {
-      year: "2019",
-      title: "First 100 Clients",
-      desc: "Reached our first major milestone with global clients",
-    },
-    {
-      year: "2021",
-      title: "Global Expansion",
-      desc: "Opened offices in 5 countries across continents",
-    },
-    {
-      year: "2023",
-      title: "AI Integration",
-      desc: "Launched cutting-edge AI-powered solutions",
+      desc: "Aitals Technologies was born with a vision to revolutionize digital solutions",
     },
     {
       year: "2025",
-      title: "Industry Leader",
-      desc: "500+ successful projects delivered worldwide",
+      title: "First Major Project",
+      desc: "Successfully delivered our first enterprise solution within months of inception",
+    },
+    {
+      year: "2025",
+      title: "Team Expansion",
+      desc: "Grew to a dedicated team of industry experts and innovators",
+    },
+    {
+      year: "2025",
+      title: "Technology Partnerships",
+      desc: "Established strategic partnerships with leading tech platforms",
+    },
+    {
+      year: "Present",
+      title: "Rapid Growth Phase",
+      desc: "Currently serving clients across multiple industries with cutting-edge solutions",
     },
   ];
 
@@ -247,10 +247,10 @@ const About = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            We are a global software development company committed to
-            transforming ideas into powerful digital solutions. With innovation
-            at our core, we deliver excellence across web, mobile, and cloud
-            technologies.
+            We are a forward-thinking software development company founded in
+            2025, committed to transforming ideas into powerful digital
+            solutions. With innovation at our core, we deliver excellence across
+            web, mobile, and cloud technologies.
           </motion.p>
         </div>
       </section>
@@ -398,7 +398,7 @@ const About = () => {
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              Milestones that shaped our success story
+              Our exciting beginning and rapid progress in 2025
             </p>
           </motion.div>
 
