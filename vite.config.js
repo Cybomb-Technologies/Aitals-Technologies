@@ -128,7 +128,7 @@ window.fetch = function(...args) {
 			return response;
 		})
 		.catch(error => {
-			if (!url.match(/\.html?$/i)) {
+			if (!url.match(/\\.html?$/i)) {
 				console.error(error);
 			}
 
@@ -200,6 +200,7 @@ logger.error = (msg, options) => {
 }
 
 export default defineConfig({
+  base: './',  // ✅ added for relative assets path (important for subfolders like /portfolio/)
   customLogger: logger,
   plugins: [
     ...(isDev ? [inlineEditPlugin(), editModeDevPlugin(), iframeRouteRestorationPlugin()] : []),

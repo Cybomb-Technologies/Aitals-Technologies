@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+
 const Portfolio = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -28,7 +29,7 @@ const Portfolio = () => {
       description:
         "Comprehensive financial analytics platform with real-time data visualization",
       image: "src/assets/Fintech.png",
-      portfolioLink: "portfolio/Fintech/index.html",
+      portfolioLink: "https://fintech.aitals.com/",
       tech: ["React", "Node.js", "MongoDB"],
       results: "40% increase in user engagement",
     },
@@ -37,7 +38,7 @@ const Portfolio = () => {
       category: "Mobile Apps",
       description: "Patient management and appointment booking application",
       image: "/src/assets/Healthcare.png",
-      portfolioLink: "portfolio/Healthcare/index.html",
+      portfolioLink: "https://healthcare.aitals.com/",
       tech: ["React Native", "Firebase", "Redux"],
       results: "50K+ downloads in 3 months",
     },
@@ -46,7 +47,7 @@ const Portfolio = () => {
       category: "Web Development",
       description: "Interactive online learning platform with video streaming",
       image: "/src/assets/E-Learning.png",
-      portfolioLink: "portfolio/E-Learning/index.html",
+      portfolioLink: "https://elearning.aitals.com/",
       tech: ["Next.js", "PostgreSQL", "AWS"],
       results: "10K+ active students",
     },
@@ -64,7 +65,7 @@ const Portfolio = () => {
       category: "Mobile Apps",
       description: "Comprehensive fitness and nutrition tracking application",
       image: "/src/assets/Fitness.png",
-      portfolioLink: "portfolio/Fitness/index.html",
+      portfolioLink: "https://fitness.aitals.com/",
       tech: ["Flutter", "Firebase", "ML Kit"],
       results: "4.8★ rating on stores",
     },
@@ -73,7 +74,7 @@ const Portfolio = () => {
       category: "Web Development",
       description: "Table reservation and menu management platform",
       image: "/src/assets/Restaurant.png",
-      portfolioLink: "portfolio/Restaurant/index.html",
+      portfolioLink: "https://restaurant.aitals.com/",
       tech: ["Vue.js", "Express", "MySQL"],
       results: "500+ restaurants onboarded",
     },
@@ -82,7 +83,7 @@ const Portfolio = () => {
       category: "UI/UX Design",
       description: "Complete UI/UX overhaul for Art Customization application",
       image: "/src/assets/Painting.png",
-      portfolioLink: "/portfolio/Painting/index.html",
+      portfolioLink: "https://travelapp.aitals.com/",
       tech: ["Figma", "Adobe XD", "Prototyping"],
       results: "100% user needs satisfied",
     },

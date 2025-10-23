@@ -16,6 +16,8 @@ import {
   Check,
 } from "lucide-react";
 
+const API_BASE_URL1 = import.meta.env.VITE_API_BASE_URL;
+
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
   const [filteredBlogs, setFilteredBlogs] = useState([]);
@@ -39,7 +41,7 @@ const Blog = () => {
     const fetchBlogs = async () => {
       try {
         setLoading(true);
-        const response = await fetch("/api/blog");
+        const response = await fetch(`${API_BASE_URL1}/api/blog`);
 
         if (!response.ok) {
           throw new Error("Failed to fetch blogs");
@@ -234,7 +236,7 @@ const Blog = () => {
     e.stopPropagation();
 
     try {
-      const response = await fetch(`/api/blog/${blogId}/like`, {
+      const response = await fetch(`${API_BASE_URL1}/api/blog/${blogId}/like`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

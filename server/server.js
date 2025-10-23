@@ -28,7 +28,7 @@ const app = express();
 // --- Middleware Setup ---
 // Allow requests only from your frontend
 app.use(cors({
-  origin: 'https://aitals.com', // your frontend URL
+  origin: ['https://aitals.com','http://localhost:3000'], // your frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // allowed HTTP methods
   credentials: true // allow cookies/auth headers if needed
 }));

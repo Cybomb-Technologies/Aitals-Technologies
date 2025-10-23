@@ -16,6 +16,13 @@ import {
 } from "lucide-react";
 
 const Home = () => {
+  const logos = [
+    "https://res.cloudinary.com/duomzq5mm/image/upload/v1761200939/microsoft-5_z1f1q9.svg",
+    "https://res.cloudinary.com/duomzq5mm/image/upload/v1761201009/Zoho-logo_ggtqnk.png",
+    "https://res.cloudinary.com/duomzq5mm/image/upload/v1761201062/aws-2_whii9k.svg",
+    "https://res.cloudinary.com/duomzq5mm/image/upload/v1761201134/djit-trading-DY90WfDK_kbwf1d.png",
+  ];
+
   const sectionRefs = useRef([]);
 
   useEffect(() => {
@@ -584,6 +591,34 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center mb-10">
+            <h2 className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block text-center">
+             Partners We Work With
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
+            </h2>
+          </div>
+
+          <div className="overflow-hidden relative pt-19">
+            {/* Animation Container */}
+            <div className="flex animate-scroll">
+              {[...logos, ...logos].map((logo, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 w-48 h-24 bg-white shadow-md rounded-2xl flex items-center justify-center mx-4"
+                >
+                  <img
+                    src={logo}
+                    alt="Partner Logo"
+                    className="w-32 h-auto object-contain transition duration-300"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section
@@ -678,6 +713,20 @@ const Home = () => {
             var(--tw-gradient-from) 0%,
             var(--tw-gradient-to) 70%
           );
+        }
+
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        .animate-scroll {
+          display: flex;
+          animation: scroll 15s linear infinite;
         }
       `}</style>
     </>
