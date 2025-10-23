@@ -6,6 +6,7 @@ import {
   Facebook, Twitter, Linkedin, Link2, Copy, Send, Check
 } from 'lucide-react';
 
+const API_BASE_URL1 = import.meta.env.VITE_API_BASE_URL;
 const BlogPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const BlogPost = () => {
     try {
       setLoading(true);
       setError('');
-      const response = await fetch(`/api/blog/${id}`);
+      const response = await fetch(`${API_BASE_URL1}/api/blog/${id}`);
 
       if (!response.ok) {
         throw new Error('Blog post not found');
@@ -55,7 +56,7 @@ const BlogPost = () => {
         setIsBookmarked(blogData.bookmarked);
 
         // Increment view count
-        await fetch(`/api/blog/${id}/view`, {
+        await fetch(`${API_BASE_URL1}/api/blog/${id}/view`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -77,7 +78,7 @@ const BlogPost = () => {
 
   const fetchRelatedBlogs = async (tags, currentBlogId) => {
     try {
-      const response = await fetch('/api/blog?limit=6');
+      const response = await fetch(`${API_BASE_URL1}/api/blog?limit=6`);
       if (response.ok) {
         const data = await response.json();
         if (data.success) {
@@ -208,7 +209,7 @@ const BlogPost = () => {
     }));
 
     try {
-      const response = await fetch(`/api/blog/${id}/like`, {
+      const response = await fetch(`${API_BASE_URL1}/api/blog/${id}/like`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -234,7 +235,7 @@ const BlogPost = () => {
   // Bookmark functionality
   const handleBookmark = async () => {
     try {
-      const response = await fetch(`/api/blog/${id}/bookmark`, {
+      const response = await fetch(`${API_BASE_URL1}/api/blog/${id}/bookmark`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -268,7 +269,7 @@ const BlogPost = () => {
     setSubscribeMessage('');
 
     try {
-      const response = await fetch('/api/newsletter/subscribe', {
+      const response = await fetch(`${API_BASE_URL1}/api/newsletter/subscribe`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import * as countryCodes from 'country-codes-list'; 
-
+import * as countryCodes from 'country-codes-list';
+ 
+const API_BASE_URL1 = import.meta.env.VITE_API_BASE_URL;
 
 // Fixed helper function to generate a clean, unique list of official dial codes
 const getCountryDialCodes = () => {
@@ -102,7 +103,7 @@ useEffect(() => {
       };
       
       // API call to your backend
-      const response = await fetch('/api/enquiry', {
+      const response = await fetch(`${API_BASE_URL1}/api/enquiry`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
