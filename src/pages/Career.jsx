@@ -25,6 +25,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Metatags from "../SEO/metatags";
 const API_BASE_URL1 = import.meta.env.VITE_API_BASE_URL;
 
 // Define API base URL (consistent with other files)
@@ -697,8 +698,19 @@ const Career = () => {
     setCurrentJobDetails(null);
   };
 
+  const metaPropsData = {
+    title: "Careers - Join Aitals Technologies | Current Job Openings",
+    description:
+      "Explore career opportunities at Aitals Technologies. Join our innovative team of developers, designers, and technology professionals. View current job openings and apply today.",
+    keyword:
+      "Aitals Careers, Job Openings, Tech Jobs, Software Developer Jobs, UI/UX Designer Jobs, IT Careers, Remote Jobs, Join Our Team",
+    url: "https://aitals.com/careers",
+    image: "https://aitals.com/assets/logo-B8Q2-6qZ.png",
+  };
+
   return (
     <>
+      <Metatags metaProps={metaPropsData} />
       {/* Application Modal */}
       <ApplicationModal
         isOpen={isModalOpen}

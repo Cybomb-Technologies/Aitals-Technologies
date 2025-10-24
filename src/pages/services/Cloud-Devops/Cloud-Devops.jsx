@@ -18,6 +18,7 @@ import {
   MessageCircle,
   Palette,
 } from "lucide-react";
+import Metatags from "../../../SEO/metatags";
 
 const CloudDevops = () => {
   const sectionRefs = useRef([]);
@@ -292,16 +293,21 @@ const CloudDevops = () => {
 
   const techCategories = Object.keys(technologies);
 
+  const metaPropsData = {
+    title:
+      "Cloud & DevOps Services | Scalable Infrastructure Solutions | Aitals Technologies",
+    description:
+      "Aitals Technologies provides comprehensive Cloud & DevOps services including cloud migration, container orchestration, CI/CD pipelines, and infrastructure automation for scalable applications.",
+    keyword:
+      "Cloud Services, DevOps Solutions, Cloud Migration, Kubernetes, Docker, CI/CD, Infrastructure as Code, AWS, Azure, Google Cloud, Container Orchestration",
+    url: "https://aitals.com/services/cloud-devops",
+    image: "https://aitals.com/assets/logo-B8Q2-6qZ.png",
+  };
+
   return (
     <>
+      <Metatags metaProps={metaPropsData} />
       <Helmet>
-        <title>
-          Cloud & DevOps Services | Scalable Infrastructure Solutions
-        </title>
-        <meta
-          name="description"
-          content="Professional Cloud and DevOps services. Scalable infrastructure, automated deployments, and secure cloud solutions for modern applications."
-        />
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"

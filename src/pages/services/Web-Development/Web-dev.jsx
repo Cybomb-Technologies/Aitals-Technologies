@@ -19,6 +19,7 @@ import {
   MessageCircle,
   Palette,
 } from "lucide-react";
+import Metatags from "../../../SEO/metatags";
 
 const WebDev = () => {
   const sectionRefs = useRef([]);
@@ -250,14 +251,21 @@ const WebDev = () => {
 
   const techCategories = Object.keys(technologies);
 
+  const metaPropsData = {
+    title:
+      "Web Development Services | Modern Web Solutions | Aitals Technologies",
+    description:
+      "Aitals Technologies provides professional web development services including React.js, Next.js, custom web applications, e-commerce solutions, and responsive website development.",
+    keyword:
+      "Web Development, React.js Development, Next.js, Custom Web Applications, E-commerce Development, Responsive Web Design, Frontend Development, Backend Development",
+    url: "https://aitals.com/services/web-development",
+    image: "https://aitals.com/assets/logo-B8Q2-6qZ.png",
+  };
+
   return (
     <>
+      <Metatags metaProps={metaPropsData} />
       <Helmet>
-        <title>Web Development Services | Modern Web Solutions</title>
-        <meta
-          name="description"
-          content="Professional web development services with cutting-edge technologies. Responsive, secure, and scalable web solutions for your business."
-        />
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"

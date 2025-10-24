@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import Metatags from "../SEO/metatags";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Contact = () => {
@@ -99,15 +100,27 @@ const Contact = () => {
     window.location.href = "tel:+919715092104";
   };
 
+  const metaPropsData = {
+    title:
+      "Contact Aitals Technologies | Get In Touch for Software Development",
+    description:
+      "Contact Aitals Technologies for your software development needs. Reach out for web development, mobile apps, UI/UX design, and custom software solutions. We're here to help transform your ideas into reality.",
+    keyword:
+      "Contact Aitals, Software Development Contact, Web Development Company, Mobile App Development, UI/UX Design Services, Get Quote, Project Inquiry",
+    url: "https://aitals.com/contact",
+    image: "https://aitals.com/assets/logo-B8Q2-6qZ.png",
+  };
+
   return (
     <>
-      <Helmet>
+      <Metatags metaProps={metaPropsData} />
+      {/* <Helmet>
         <title>Contact Us - Aitals Technologies | Get In Touch</title>
         <meta
           name="description"
           content="Contact Aitals Technologies for your software development needs. We're here to help transform your ideas into reality."
         />
-      </Helmet>
+      </Helmet> */}
 
       {/* Hero Section */}
       <section

@@ -8,18 +8,22 @@ import {
   AlertTriangle,
   ChevronRight,
 } from "lucide-react";
+import Metatags from "../SEO/metatags";
+
+const metaPropsData = {
+  title: "Cookie Policy - Aitals Technologies | Cookie Usage & Management",
+  description:
+    "Learn how Aitals Technologies uses cookies and similar technologies to enhance website functionality, analyze traffic, and improve user experience. Manage your cookie preferences.",
+  keyword:
+    "Aitals Cookie Policy, Website Cookies, Cookie Management, Privacy Settings, Web Analytics Cookies, Essential Cookies, Marketing Cookies, Cookie Preferences",
+  url: "https://aitals.com/cookie-policy",
+  image: "https://aitals.com/assets/logo-B8Q2-6qZ.png",
+};
 
 const CookiePolicy = () => {
   return (
     <>
-      <Helmet>
-        <title>Cookie Policy - Aitals Technologies</title>
-        <meta
-          name="description"
-          content="Learn about how Aitals Technologies uses cookies and similar technologies to enhance your browsing experience."
-        />
-      </Helmet>
-
+      <Metatags metaProps={metaPropsData} />
       {/* Hero Section */}
       <section className="relative min-h-[40vh] flex items-center justify-center bg-[#0d1933] pt-32 pb-20">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0d1933] to-[#1a2b4d]"></div>

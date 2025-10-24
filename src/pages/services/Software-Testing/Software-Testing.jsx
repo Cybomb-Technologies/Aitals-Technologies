@@ -20,6 +20,7 @@ import {
   MessageCircle,
   Palette,
 } from "lucide-react";
+import Metatags from "../../../SEO/metatags";
 
 const SoftwareTesting = () => {
   const sectionRefs = useRef([]);
@@ -250,16 +251,21 @@ const SoftwareTesting = () => {
 
   const techCategories = Object.keys(technologies);
 
+  const metaPropsData = {
+    title:
+      "Software Testing & Quality Assurance Services | Aitals Technologies",
+    description:
+      "Aitals Technologies provides comprehensive software testing services including quality assurance, performance testing, security testing, automation testing, and ongoing maintenance support.",
+    keyword:
+      "Software Testing, Quality Assurance, QA Services, Performance Testing, Security Testing, Automation Testing, Bug Detection, Test Automation",
+    url: "https://aitals.com/services/software-testing",
+    image: "https://aitals.com/assets/logo-B8Q2-6qZ.png",
+  };
+
   return (
     <>
+      <Metatags metaProps={metaPropsData} />
       <Helmet>
-        <title>
-          Software Testing & Maintenance Services | Quality Assurance Experts
-        </title>
-        <meta
-          name="description"
-          content="Comprehensive software testing and maintenance services. Quality assurance, performance testing, security testing, and ongoing support for your applications."
-        />
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"

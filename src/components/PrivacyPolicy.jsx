@@ -2,18 +2,21 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { Shield, Lock, Eye, Database, ChevronRight } from "lucide-react";
+import Metatags from "../SEO/metatags";
 
+const metaPropsData = {
+  title: "Privacy Policy - Aitals Technologies | Data Protection & Privacy",
+  description:
+    "Read Aitals Technologies' Privacy Policy to understand how we collect, use, and protect your personal information. Your privacy and data security are our top priorities.",
+  keyword:
+    "Aitals Privacy Policy, Data Protection, Privacy Policy, Data Security, Personal Information, GDPR Compliance, Data Collection, User Rights",
+  url: "https://aitals.com/privacy-policy",
+  image: "https://aitals.com/assets/logo-B8Q2-6qZ.png",
+};
 const PrivacyPolicy = () => {
   return (
     <>
-      <Helmet>
-        <title>Privacy Policy - Aitals Technologies</title>
-        <meta
-          name="description"
-          content="Learn how Aitals Technologies collects, uses, and protects your personal information. Your privacy is our priority."
-        />
-      </Helmet>
-
+      <Metatags metaProps={metaPropsData} />
       {/* Hero Section */}
       <section className="relative min-h-[40vh] flex items-center justify-center bg-[#0d1933] pt-32 pb-20">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0d1933] to-[#1a2b4d]"></div>
