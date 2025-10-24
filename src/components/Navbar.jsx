@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from '../assets/logo.png';
+import ChatWidget from "../ChatWidget/ChatWidget"
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -142,6 +143,7 @@ const Navbar = () => {
   const isServicesActive = location.pathname.startsWith("/services");
 
   return (
+    
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -287,7 +289,7 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-
+      <ChatWidget/>
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
@@ -403,10 +405,12 @@ const Navbar = () => {
                 </div>
               </div>
             </motion.div>
+            
           </>
         )}
       </AnimatePresence>
     </motion.nav>
+    
   );
 };
 
