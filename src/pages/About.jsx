@@ -19,6 +19,7 @@ import {
   Brain,
   Shield,
 } from "lucide-react";
+import Metatags from "../SEO/metatags";
 
 const About = () => {
   const sectionRefs = useRef([]);
@@ -189,14 +190,20 @@ const About = () => {
     },
   };
 
+  const metaPropsData = {
+    title: "About Aitals Technologies - Our Story, Team & Vision",
+    description:
+      "Learn about Aitals Technologies - our journey since 2025, talented team, core values, and vision to transform ideas into digital excellence through innovative solutions.",
+    keyword:
+      "Aitals Technologies About, Our Story, Company Team, Vision Mission, Software Development Company, Digital Solutions",
+    url: "https://aitals.com/about",
+    image: "https://aitals.com/assets/logo-B8Q2-6qZ.png",
+  };
+
   return (
     <>
+      <Metatags metaProps={metaPropsData} />
       <Helmet>
-        <title>About Us - Aitals Technologies | Our Story & Team</title>
-        <meta
-          name="description"
-          content="Learn about Aitals Technologies - our vision, mission, values, and the talented team driving digital innovation worldwide."
-        />
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"

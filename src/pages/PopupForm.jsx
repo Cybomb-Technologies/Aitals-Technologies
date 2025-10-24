@@ -1,95 +1,95 @@
-import React, { useState, useEffect } from 'react';
-import * as countryCodes from 'country-codes-list';
- 
+import React, { useState, useEffect } from "react";
+import * as countryCodes from "country-codes-list";
+
 const API_BASE_URL1 = import.meta.env.VITE_API_BASE_URL;
 
 // Fixed helper function to generate a clean, unique list of official dial codes
 const getCountryDialCodes = () => {
-    // Use a map to store unique codes, keying by the countryCallingCode
-    const uniqueCodes = {};
+  // Use a map to store unique codes, keying by the countryCallingCode
+  const uniqueCodes = {};
 
-    // Use the built-in all() method which provides an array of all country objects
-    countryCodes.all().forEach(country => {
-        const dialCode = country.countryCallingCode;
-        const countryName = country.countryNameEn;
+  // Use the built-in all() method which provides an array of all country objects
+  countryCodes.all().forEach((country) => {
+    const dialCode = country.countryCallingCode;
+    const countryName = country.countryNameEn;
 
-        // Skip entries without a dial code
-        if (!dialCode) {
-            return;
-        }
+    // Skip entries without a dial code
+    if (!dialCode) {
+      return;
+    }
 
-        // Ensure the dial code starts with '+' for consistency
-        const formattedDialCode = dialCode.startsWith('+') ? dialCode : `+${dialCode}`;
+    // Ensure the dial code starts with '+' for consistency
+    const formattedDialCode = dialCode.startsWith("+")
+      ? dialCode
+      : `+${dialCode}`;
 
-        // Only add if we haven't seen this exact dial code yet
-        if (!uniqueCodes[formattedDialCode]) {
-            // Construct a clear name: '+91 (India)'
-            const name = `${formattedDialCode} (${countryName})`;
+    // Only add if we haven't seen this exact dial code yet
+    if (!uniqueCodes[formattedDialCode]) {
+      // Construct a clear name: '+91 (India)'
+      const name = `${formattedDialCode} (${countryName})`;
 
-            uniqueCodes[formattedDialCode] = {
-                code: formattedDialCode,
-                name: name,
-            };
-        }
-    });
+      uniqueCodes[formattedDialCode] = {
+        code: formattedDialCode,
+        name: name,
+      };
+    }
+  });
 
-    // Convert the map values to an array
-    const codesArray = Object.values(uniqueCodes);
-    
-    // Sort with India (+91) first, then others numerically
-    return codesArray.sort((a, b) => {
-        // Always put India first
-        if (a.code === '+91') return -1;
-        if (b.code === '+91') return 1;
-        
-        // For other codes, sort numerically
-        const codeA = parseInt(a.code.replace('+', ''), 10);
-        const codeB = parseInt(b.code.replace('+', ''), 10);
-        return codeA - codeB;
-    });
+  // Convert the map values to an array
+  const codesArray = Object.values(uniqueCodes);
+
+  // Sort with India (+91) first, then others numerically
+  return codesArray.sort((a, b) => {
+    // Always put India first
+    if (a.code === "+91") return -1;
+    if (b.code === "+91") return 1;
+
+    // For other codes, sort numerically
+    const codeA = parseInt(a.code.replace("+", ""), 10);
+    const codeB = parseInt(b.code.replace("+", ""), 10);
+    return codeA - codeB;
+  });
 };
-
 
 const ContactPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const [countryCodeList, setCountryCodeList] = useState([]); 
+  const [countryCodeList, setCountryCodeList] = useState([]);
   const [formData, setFormData] = useState({
-    firstName: '',
-    email: '',
-    phone: '',
-    countryCode: '+91', // Default set to India
-    source: '',
-    message: ''
+    firstName: "",
+    email: "",
+    phone: "",
+    countryCode: "+91", // Default set to India
+    source: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState('');
+  const [submitMessage, setSubmitMessage] = useState("");
 
-// Simplified useEffect - just load the codes
-useEffect(() => {
-  const codes = getCountryDialCodes();
-  setCountryCodeList(codes);
+  // Simplified useEffect - just load the codes
+  useEffect(() => {
+    const codes = getCountryDialCodes();
+    setCountryCodeList(codes);
 
-  const timer = setTimeout(() => {
-    setIsOpen(true);
-  }, 10000);
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+    }, 10000);
 
-  return () => clearTimeout(timer);
-}, []);
-
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitMessage('');
+    setSubmitMessage("");
 
     try {
       // Prepare data for API call
@@ -99,14 +99,14 @@ useEffect(() => {
         // Use the selected country code in the message
         message: `Name: ${formData.firstName}\nPhone: ${formData.countryCode} ${formData.phone}\nSource: ${formData.source}\n\nMessage: ${formData.message}`,
         company: formData.firstName,
-        budget: ''
+        budget: "",
       };
-      
+
       // API call to your backend
       const response = await fetch(`${API_BASE_URL1}/api/enquiry`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(submissionData),
       });
@@ -114,24 +114,32 @@ useEffect(() => {
       const result = await response.json();
 
       if (result.success) {
-        setSubmitMessage('Thank you! Your enquiry has been submitted successfully.');
-        setFormData(prev => ({ // Keep default country code on successful reset
+        setSubmitMessage(
+          "Thank you! Your enquiry has been submitted successfully."
+        );
+        setFormData((prev) => ({
+          // Keep default country code on successful reset
           ...prev,
-          firstName: '',
-          email: '',
-          phone: '',
-          source: '',
-          message: ''
+          firstName: "",
+          email: "",
+          phone: "",
+          source: "",
+          message: "",
         }));
-        
+
         // Close popup after successful submission
         setTimeout(() => setIsOpen(false), 3000);
       } else {
-        setSubmitMessage(result.message || 'Sorry, there was an error submitting your enquiry. Please try again.');
+        setSubmitMessage(
+          result.message ||
+            "Sorry, there was an error submitting your enquiry. Please try again."
+        );
       }
     } catch (error) {
       console.error("Submission Error:", error);
-      setSubmitMessage('Network error. Please check your connection and try again.');
+      setSubmitMessage(
+        "Network error. Please check your connection and try again."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -152,28 +160,44 @@ useEffect(() => {
   if (!isOpen) return null;
 
   return (
-    <div 
+    <div
       className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black bg-opacity-70 animate-fadeIn font-sans"
       onClick={handleBackdropClick}
     >
-      <div 
+      <div
         className="relative w-full max-w-sm sm:max-w-md mx-auto bg-white rounded-xl shadow-2xl overflow-hidden transform transition-all duration-300 scale-100 ring-2 sm:ring-4 ring-purple-400/50 my-2 sm:my-4"
-        style={{ backgroundColor: '#ffffff', maxHeight: '90vh', overflowY: 'auto' }}
+        style={{
+          backgroundColor: "#ffffff",
+          maxHeight: "90vh",
+          overflowY: "auto",
+        }}
       >
         {/* Header Section (Dark Purple) */}
-        <div 
+        <div
           className="px-4 sm:px-6 py-4 sm:py-5 text-white shadow-lg sticky top-0 z-10"
-          style={{ backgroundColor: '#1A173A' }}
+          style={{ backgroundColor: "#1A173A" }}
         >
           <div className="flex justify-between items-center">
-            <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight">Let's Connect</h2>
-            <button 
+            <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight">
+              Let's Connect
+            </h2>
+            <button
               onClick={closePopup}
               className="text-white hover:text-purple-300 transition-colors p-1 rounded-full bg-white/10 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white"
               aria-label="Close popup"
             >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg
+                className="w-5 h-5 sm:w-6 sm:h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
@@ -185,11 +209,11 @@ useEffect(() => {
         {/* Form Body (White) */}
         <form onSubmit={handleSubmit} className="p-4 sm:p-6">
           {submitMessage && (
-            <div 
+            <div
               className={`mb-3 sm:mb-4 p-3 rounded-lg text-sm sm:text-base font-semibold ${
-                submitMessage.includes('Thank you') 
-                  ? 'bg-green-100 text-green-800 border border-green-300' 
-                  : 'bg-red-100 text-red-800 border border-red-300'
+                submitMessage.includes("Thank you")
+                  ? "bg-green-100 text-green-800 border border-green-300"
+                  : "bg-red-100 text-red-800 border border-red-300"
               }`}
             >
               {submitMessage}
@@ -199,7 +223,10 @@ useEffect(() => {
           <div className="space-y-3 sm:space-y-4">
             {/* First Name */}
             <div>
-              <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="firstName"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Your Name *
               </label>
               <input
@@ -216,7 +243,10 @@ useEffect(() => {
 
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Email Address *
               </label>
               <input
@@ -231,45 +261,50 @@ useEffect(() => {
               />
             </div>
 
-{/* Phone (Updated Alignment Fixed) */}
-<div>
-  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-    Phone Number (Optional)
-  </label>
-  <div className="flex">
-    {/* Country Code Select */}
-    <select
-      id="countryCode"
-      name="countryCode"
-      value={formData.countryCode}
-      onChange={handleInputChange}
-      className="px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-l-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow bg-gray-50"
-      style={{ width: '20%', minWidth: '80px' }}
-    >
-      {countryCodeList.map((country) => (
-        <option key={country.code} value={country.code}>
-          {country.name}
-        </option>
-      ))}
-    </select>
+            {/* Phone (Updated Alignment Fixed) */}
+            <div>
+              <label
+                htmlFor="phone"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Phone Number (Optional)
+              </label>
+              <div className="flex">
+                {/* Country Code Select */}
+                <select
+                  id="countryCode"
+                  name="countryCode"
+                  value={formData.countryCode}
+                  onChange={handleInputChange}
+                  className="px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-l-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow bg-gray-50"
+                  style={{ width: "20%", minWidth: "80px" }}
+                >
+                  {countryCodeList.map((country) => (
+                    <option key={country.code} value={country.code}>
+                      {country.name}
+                    </option>
+                  ))}
+                </select>
 
-    {/* Phone Number Input */}
-    <input
-      type="tel"
-      id="phone"
-      name="phone"
-      value={formData.phone}
-      onChange={handleInputChange}
-      className="flex-1 px-3 py-2 text-sm sm:text-base border-t border-b border-gray-300 rounded-r-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow"
-      placeholder="98765 43210"
-    />
-  </div>
-</div>
-
+                {/* Phone Number Input */}
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  className="flex-1 px-3 py-2 text-sm sm:text-base border-t border-b border-gray-300 rounded-r-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow"
+                  placeholder="98765 43210"
+                />
+              </div>
+            </div>
 
             {/* Source */}
             <div>
-              <label htmlFor="source" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="source"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 How did you hear about us?
               </label>
               <select
@@ -290,7 +325,10 @@ useEffect(() => {
 
             {/* Message */}
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="message"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Your Message *
               </label>
               <textarea
@@ -310,21 +348,39 @@ useEffect(() => {
               type="submit"
               disabled={isSubmitting}
               className={`w-full py-3 px-4 rounded-lg text-white font-bold text-base sm:text-lg transition-all duration-300 shadow-md ${
-                isSubmitting 
-                  ? 'bg-purple-300 cursor-not-allowed' 
-                  : 'bg-purple-600 hover:bg-purple-700 active:bg-purple-800 shadow-purple-500/50 hover:shadow-lg'
+                isSubmitting
+                  ? "bg-purple-300 cursor-not-allowed"
+                  : "bg-purple-600 hover:bg-purple-700 active:bg-purple-800 shadow-purple-500/50 hover:shadow-lg"
               } focus:outline-none focus:ring-4 focus:ring-purple-500/50`}
-              style={{ backgroundColor: isSubmitting ? '#A78BFA' : '#6666CC' }}
+              style={{ backgroundColor: isSubmitting ? "#A78BFA" : "#6666CC" }}
             >
               {isSubmitting ? (
                 <div className="flex items-center justify-center text-sm sm:text-base">
-                  <svg className="animate-spin -ml-1 mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  <svg
+                    className="animate-spin -ml-1 mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
                   </svg>
                   Sending...
                 </div>
-              ) : 'Send Message'}
+              ) : (
+                "Send Message"
+              )}
             </button>
           </div>
         </form>
@@ -333,19 +389,19 @@ useEffect(() => {
       {/* Add custom styles */}
       <style jsx>{`
         @keyframes fadeIn {
-          from { 
-            opacity: 0; 
-            transform: scale(0.95); 
+          from {
+            opacity: 0;
+            transform: scale(0.95);
           }
-          to { 
-            opacity: 1; 
-            transform: scale(1); 
+          to {
+            opacity: 1;
+            transform: scale(1);
           }
         }
         .animate-fadeIn {
           animation: fadeIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
-        
+
         /* Custom scrollbar for the popup */
         .overflow-auto::-webkit-scrollbar {
           width: 6px;

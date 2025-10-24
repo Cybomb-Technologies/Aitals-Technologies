@@ -23,6 +23,7 @@ import {
   HeadphonesIcon,
   ShieldCheck,
 } from "lucide-react";
+import Metatags from "../../../SEO/metatags";
 
 const Ecommerce = () => {
   const sectionRefs = useRef([]);
@@ -294,14 +295,21 @@ const Ecommerce = () => {
 
   const techCategories = Object.keys(technologies);
 
+  const metaPropsData = {
+    title:
+      "E-commerce Development Services | Online Store Solutions | Aitals Technologies",
+    description:
+      "Aitals Technologies provides comprehensive e-commerce development services including Shopify, WooCommerce, custom store development, payment integration, and inventory management solutions.",
+    keyword:
+      "E-commerce Development, Online Store Solutions, Shopify Development, WooCommerce, Payment Integration, Inventory Management, E-commerce Platforms, Multi-vendor Marketplace",
+    url: "https://aitals.com/services/ecommerce",
+    image: "https://aitals.com/assets/logo-B8Q2-6qZ.png",
+  };
+
   return (
     <>
+      <Metatags metaProps={metaPropsData} />
       <Helmet>
-        <title>E-commerce Development Services | Online Store Solutions</title>
-        <meta
-          name="description"
-          content="Professional e-commerce development services with secure payment integration, inventory management, and scalable online store solutions."
-        />
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"

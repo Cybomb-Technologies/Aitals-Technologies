@@ -22,6 +22,7 @@ import {
   Award,
   Clock,
 } from "lucide-react";
+import Metatags from "../../../SEO/metatags";
 
 const UiUx = () => {
   const sectionRefs = useRef([]);
@@ -214,14 +215,21 @@ const UiUx = () => {
 
   const techCategories = Object.keys(technologies);
 
+  const metaPropsData = {
+    title:
+      "UI/UX Design Services | Exceptional Digital Experiences | Aitals Technologies",
+    description:
+      "Aitals Technologies provides professional UI/UX design services including user research, wireframing, prototyping, visual design, and design systems for web and mobile applications.",
+    keyword:
+      "UI/UX Design, User Experience Design, User Interface Design, Wireframing, Prototyping, Design Systems, Visual Design, Mobile App Design, Web Design",
+    url: "https://aitals.com/services/ui-ux-design",
+    image: "https://aitals.com/assets/logo-B8Q2-6qZ.png",
+  };
+
   return (
     <>
+      <Metatags metaProps={metaPropsData} />
       <Helmet>
-        <title>UI/UX Design Services | Exceptional Digital Experiences</title>
-        <meta
-          name="description"
-          content="Professional UI/UX design services that create engaging, intuitive, and beautiful digital experiences for your users."
-        />
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"

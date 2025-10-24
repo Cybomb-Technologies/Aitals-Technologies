@@ -17,6 +17,7 @@ import {
   MessageCircle,
   Palette,
 } from "lucide-react";
+import Metatags from "../../../SEO/metatags";
 
 const MobileApp = () => {
   const sectionRefs = useRef([]);
@@ -271,16 +272,21 @@ const MobileApp = () => {
 
   const techCategories = Object.keys(technologies);
 
+  const metaPropsData = {
+    title:
+      "Mobile App Development Services | iOS & Android Apps | Aitals Technologies",
+    description:
+      "Aitals Technologies provides professional mobile app development services including cross-platform apps, native iOS/Android development, React Native, Flutter, and secure mobile solutions.",
+    keyword:
+      "Mobile App Development, iOS App Development, Android App Development, Cross-Platform Apps, React Native, Flutter, Mobile Applications, App Store Deployment",
+    url: "https://aitals.com/services/mobile-development",
+    image: "https://aitals.com/assets/logo-B8Q2-6qZ.png",
+  };
+
   return (
     <>
+      <Metatags metaProps={metaPropsData} />
       <Helmet>
-        <title>
-          Mobile App Development Services | Cross-Platform Solutions
-        </title>
-        <meta
-          name="description"
-          content="Professional mobile app development services for iOS and Android. Cross-platform and native apps with cutting-edge security and performance."
-        />
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"

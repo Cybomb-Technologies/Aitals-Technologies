@@ -8,18 +8,23 @@ import {
   Clock,
   ChevronRight,
 } from "lucide-react";
+import Metatags from "../SEO/metatags";
+
+const metaPropsData = {
+  title:
+    "Refund Policy - Aitals Technologies | Service Refunds & Cancellations",
+  description:
+    "Read Aitals Technologies' refund policy for software development services, project cancellations, maintenance plans, and consulting services. Understand our refund eligibility criteria.",
+  keyword:
+    "Aitals Refund Policy, Software Development Refunds, Project Cancellation, Service Refunds, Maintenance Plan Refunds, Consulting Service Refunds, Payment Refunds",
+  url: "https://aitals.com/refund-policy",
+  image: "https://aitals.com/assets/logo-B8Q2-6qZ.png",
+};
 
 const RefundPolicy = () => {
   return (
     <>
-      <Helmet>
-        <title>Refund Policy - Aitals Technologies</title>
-        <meta
-          name="description"
-          content="Learn about Aitals Technologies refund policy for services and projects."
-        />
-      </Helmet>
-
+      <Metatags metaProps={metaPropsData} />
       {/* Hero Section */}
       <section className="relative min-h-[40vh] flex items-center justify-center bg-[#0d1933] pt-32 pb-20">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0d1933] to-[#1a2b4d]"></div>

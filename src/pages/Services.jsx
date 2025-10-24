@@ -13,6 +13,7 @@ import {
   Brain,
   CheckCircle,
 } from "lucide-react";
+import Metatags from "../SEO/metatags";
 
 const Services = () => {
   const services = [
@@ -202,16 +203,20 @@ const Services = () => {
     preloadImages();
   }, []);
 
+  const metaPropsData = {
+    title: "Our Services - Web & Mobile App Development | Aitals Technologies",
+    description:
+      "Aitals Technologies offers comprehensive software services including custom web development, mobile apps, UI/UX design, e-commerce solutions, cloud services, and AI integration.",
+    keyword:
+      "Aitals Technologies Services, Web Development, Mobile App Development, UI UX Design, E-commerce Solutions, Cloud Services, AI Integration, Software Testing",
+    url: "https://aitals.com/services",
+    image: "https://aitals.com/assets/logo-B8Q2-6qZ.png",
+  };
+
   return (
     <>
+      <Metatags metaProps={metaPropsData} />
       <Helmet>
-        <title>
-          Our Services - Aitals Technologies | Web & Mobile Development
-        </title>
-        <meta
-          name="description"
-          content="Comprehensive software development services including web development, mobile apps, UI/UX design, cloud solutions, and AI integration."
-        />
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"

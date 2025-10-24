@@ -19,6 +19,7 @@ import {
   MessageCircle,
   Palette,
 } from "lucide-react";
+import Metatags from "../../../SEO/metatags";
 
 const AiAutomation = () => {
   const sectionRefs = useRef([]);
@@ -285,16 +286,20 @@ const AiAutomation = () => {
 
   const techCategories = Object.keys(technologies);
 
+  const metaPropsData = {
+    title: "AI & Automation Integration Services | Aitals Technologies",
+    description:
+      "Transform your business with Aitals Technologies' AI and automation solutions. Machine learning, intelligent automation, chatbots, and AI-powered business transformation.",
+    keyword:
+      "AI Integration, Automation Solutions, Machine Learning, Intelligent Chatbots, Business Automation, AI Development, Predictive Analytics, Computer Vision",
+    url: "https://aitals.com/services/ai-automation",
+    image: "https://aitals.com/assets/logo-B8Q2-6qZ.png",
+  };
+
   return (
     <>
+      <Metatags metaProps={metaPropsData} />
       <Helmet>
-        <title>
-          AI & Automation Integration Services | Intelligent Solutions
-        </title>
-        <meta
-          name="description"
-          content="Professional AI and automation integration services. Machine learning, intelligent automation, and AI-powered solutions for your business transformation."
-        />
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"

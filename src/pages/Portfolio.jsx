@@ -9,7 +9,7 @@ import {
   ShoppingCart,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import Metatags from "../SEO/metatags";
 
 const Portfolio = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -129,16 +129,19 @@ const Portfolio = () => {
       "https://images.unsplash.com/photo-1572177812156-58036aae439c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80";
   };
 
+  const metaPropsData = {
+    title: "Portfolio - Aitals Technologies | Our Work & Case Studies",
+    description:
+      "Explore Aitals Technologies' portfolio of successful projects including web applications, mobile apps, e-commerce solutions, and digital transformations delivered to clients worldwide.",
+    keyword:
+      "Aitals Portfolio, Web Development Projects, Mobile App Case Studies, E-commerce Solutions, UI/UX Design Work, Software Development Projects, Client Success Stories",
+    url: "https://aitals.com/portfolio",
+    image: "https://aitals.com/assets/logo-B8Q2-6qZ.png",
+  };
+
   return (
     <>
-      <Helmet>
-        <title>Portfolio - Aitals Technologies | Our Work & Case Studies</title>
-        <meta
-          name="description"
-          content="Explore our portfolio of successful projects including web applications, mobile apps, and digital solutions delivered to clients worldwide."
-        />
-      </Helmet>
-
+      <Metatags metaProps={metaPropsData} />
       <section className="pt-32 pb-20 gradient-bg text-white">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div

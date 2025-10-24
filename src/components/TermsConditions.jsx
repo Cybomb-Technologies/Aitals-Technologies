@@ -8,18 +8,22 @@ import {
   CheckCircle,
   ChevronRight,
 } from "lucide-react";
+import Metatags from "../SEO/metatags";
+
+const metaPropsData = {
+  title: "Terms & Conditions - Aitals Technologies | Service Agreement",
+  description:
+    "Read Aitals Technologies' Terms & Conditions governing software development services, project agreements, intellectual property rights, and client responsibilities.",
+  keyword:
+    "Aitals Terms Conditions, Service Agreement, Software Development Terms, Project Agreement, Intellectual Property, Client Responsibilities, Legal Terms",
+  url: "https://aitals.com/terms-conditions",
+  image: "https://aitals.com/assets/logo-B8Q2-6qZ.png",
+};
 
 const TermsConditions = () => {
   return (
     <>
-      <Helmet>
-        <title>Terms & Conditions - Aitals Technologies</title>
-        <meta
-          name="description"
-          content="Read the terms and conditions governing your use of Aitals Technologies services and website."
-        />
-      </Helmet>
-
+      <Metatags metaProps={metaPropsData} />
       {/* Hero Section */}
       <section className="relative min-h-[40vh] flex items-center justify-center bg-[#0d1933] pt-32 pb-20">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0d1933] to-[#1a2b4d]"></div>
