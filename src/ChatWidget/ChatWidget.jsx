@@ -4,7 +4,7 @@ import styles from "./ChatWidget.module.css";
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { sender: "bot", text: "Hello! How can I help you with Aitals Tech?" }
+    { sender: "bot", text: "Hello! How can I help you with Aitals Technologies?" }
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -78,7 +78,7 @@ export default function ChatWidget() {
                 <span className={styles.avatarText}><img src="src/assets/logo.png" alt="" style={{width:"40px"}}/></span>
               </div>
               <div className={styles.headerText}>
-                <div className={styles.companyName}>Aitals Tech</div>
+                <div className={styles.companyName}>Aitals Technologies</div>
                 <div className={styles.status}>
                   <span className={styles.statusIndicator}></span>
                   Online

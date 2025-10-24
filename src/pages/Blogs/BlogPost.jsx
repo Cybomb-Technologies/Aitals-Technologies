@@ -5,7 +5,7 @@ import {
   BookOpen, Tag, MessageCircle, Bookmark, ExternalLink,
   Facebook, Twitter, Linkedin, Link2, Copy, Send, Check
 } from 'lucide-react';
-
+import { marked } from "marked"; 
 const API_BASE_URL1 = import.meta.env.VITE_API_BASE_URL;
 const BlogPost = () => {
   const { id } = useParams();
@@ -573,10 +573,9 @@ const BlogPost = () => {
                 </div>
 
                 <div
-                  className="text-gray-700 leading-relaxed text-lg"
+                  className="prose prose-lg max-w-none text-gray-700"
                   dangerouslySetInnerHTML={{
-                    __html: blog.fullContent ||
-                    `<p>${blog.content}</p>`
+                    __html: marked.parse(blog.fullContent || blog.content || "")
                   }}
                 />
               </div>
