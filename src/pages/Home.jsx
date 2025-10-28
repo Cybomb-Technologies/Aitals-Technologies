@@ -260,7 +260,7 @@ const Home = () => {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `linear-gradient(rgba(13, 25, 51, 0.7), rgba(13, 25, 51, 0.92)), url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80")`,
+            backgroundImage: `url("https://res.cloudinary.com/dxw7zv8dr/image/upload/v1761638435/Desktop_-_14_wfb3pa.png")`,
           }}
         ></div>
 
@@ -272,9 +272,10 @@ const Home = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             Transform Your
-            <span className="block mt-6 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent bg-[length:200%_200%] animate-gradient-shift">
-              Digital Vision
-            </span>
+          <span className="block mt-6 bg-gradient-to-b from-[#6b4faf] to-[#ffffff] bg-clip-text text-transparent font-semibold">
+  Digital Vision
+</span>
+
           </motion.h1>
 
           <motion.p
@@ -319,7 +320,7 @@ const Home = () => {
           >
             <Link
               to="/contact"
-              className="relative bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] text-white text-lg px-10 py-5 rounded-xl font-semibold flex items-center gap-3 min-w-[220px] justify-center overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30 hover:scale-105 group"
+              className="relative bg-black border border-white text-white text-lg px-10 py-5 rounded-xl font-semibold flex items-center gap-3 min-w-[220px] justify-center overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-white/30 hover:scale-105 group"
             >
               <span className="relative z-10">Start Your Project</span>
               <Play size={20} className="relative z-10" />
@@ -328,10 +329,10 @@ const Home = () => {
 
             <Link
               to="/services"
-              className="relative bg-white/10 backdrop-blur-sm text-white text-lg px-10 py-5 rounded-xl font-semibold border border-white/20 flex items-center gap-3 min-w-[200px] justify-center overflow-hidden transition-all duration-300 hover:bg-white/20 hover:scale-105 group"
+              className="relative bg-black border border-white text-white text-lg px-10 py-5 rounded-xl font-semibold flex items-center gap-3 min-w-[200px] justify-center overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-white/30 hover:scale-105 group"
             >
               <span className="relative z-10">View Our Services</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
             </Link>
           </motion.div>
 
@@ -395,11 +396,12 @@ const Home = () => {
               Our Services
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              Comprehensive digital solutions tailored to your business needs.
-              From concept to deployment, we deliver excellence in every
-              project.
-            </p>
+          <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins'] font-extrabold">
+  Comprehensive digital solutions tailored to your business needs.
+  From concept to deployment, we deliver excellence in every
+  project.
+</p>
+
           </motion.div>
 
           <motion.div
