@@ -165,225 +165,268 @@ const ContactPopup = () => {
       onClick={handleBackdropClick}
     >
       <div
-        className="relative w-full max-w-sm sm:max-w-md mx-auto bg-white rounded-xl shadow-2xl overflow-hidden transform transition-all duration-300 scale-100 ring-2 sm:ring-4 ring-purple-400/50 my-2 sm:my-4"
+        className="relative w-full max-w-4xl mx-auto bg-white rounded-xl shadow-2xl overflow-hidden transform transition-all duration-300 scale-100 ring-2 sm:ring-4 ring-purple-400/50 my-2 sm:my-4"
         style={{
           backgroundColor: "#ffffff",
           maxHeight: "90vh",
           overflowY: "auto",
         }}
       >
-        {/* Header Section (Dark Purple) */}
-        <div
-          className="px-4 sm:px-6 py-4 sm:py-5 text-white shadow-lg sticky top-0 z-10"
-          style={{ backgroundColor: "#1A173A" }}
-        >
-          <div className="flex justify-between items-center">
-            <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight">
-              Let's Connect
-            </h2>
-            <button
-              onClick={closePopup}
-              className="text-white hover:text-purple-300 transition-colors p-1 rounded-full bg-white/10 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white"
-              aria-label="Close popup"
-            >
-              <svg
-                className="w-5 h-5 sm:w-6 sm:h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
+        <div className="flex flex-col md:flex-row h-full">
+          {/* Image Section - Left Side */}
+          <div className="hidden md:block md:w-1/2 relative overflow-hidden">
+            <div className="w-full h-full">
+              <img
+                src="/src/assets/popupform.png"
+                alt="Let's Connect"
+                className="w-full h-full object-cover rounded-l-xl"
+                style={{
+                  minHeight: "500px",
+                  display: "block",
+                  transform: "scale(1.1)", // Zoom in to hide borders
+                  objectPosition: "center center",
+                }}
+                onError={(e) => {
+                  e.target.style.display = "none";
+                  // Create fallback div if it doesn't exist
+                  if (!e.target.nextSibling) {
+                    const fallbackDiv = document.createElement("div");
+                    fallbackDiv.className =
+                      "w-full h-full bg-gradient-to-br from-purple-600 to-indigo-700 rounded-l-xl flex items-center justify-center text-white p-8 absolute inset-0";
+                    fallbackDiv.style.backgroundColor = "#1A173A";
+                    fallbackDiv.innerHTML = `
+                      <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-4">Let's Connect</h3>
+                        <p class="text-purple-200">We're here to help you with your digital needs</p>
+                      </div>
+                    `;
+                    e.target.parentNode.appendChild(fallbackDiv);
+                  }
+                }}
+              />
+            </div>
           </div>
-          <p className="mt-1 sm:mt-2 text-xs sm:text-sm font-light opacity-90">
-            Send us a message and we'll be in touch quickly!
-          </p>
-        </div>
 
-        {/* Form Body (White) */}
-        <form onSubmit={handleSubmit} className="p-4 sm:p-6">
-          {submitMessage && (
+          {/* Form Section - Right Side */}
+          <div className="w-full md:w-1/2 flex flex-col">
+            {/* Header Section (Dark Purple) */}
             <div
-              className={`mb-3 sm:mb-4 p-3 rounded-lg text-sm sm:text-base font-semibold ${
-                submitMessage.includes("Thank you")
-                  ? "bg-green-100 text-green-800 border border-green-300"
-                  : "bg-red-100 text-red-800 border border-red-300"
-              }`}
+              className="px-4 sm:px-6 py-4 sm:py-5 text-white shadow-lg sticky top-0 z-10 md:rounded-tr-xl"
+              style={{ backgroundColor: "#1A173A" }}
             >
-              {submitMessage}
-            </div>
-          )}
-
-          <div className="space-y-3 sm:space-y-4">
-            {/* First Name */}
-            <div>
-              <label
-                htmlFor="firstName"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Your Name *
-              </label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                required
-                value={formData.firstName}
-                onChange={handleInputChange}
-                className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow"
-                placeholder="e.g., Alex Johnson"
-              />
-            </div>
-
-            {/* Email */}
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Email Address *
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                value={formData.email}
-                onChange={handleInputChange}
-                className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow"
-                placeholder="you@example.com"
-              />
-            </div>
-
-            {/* Phone (Updated Alignment Fixed) */}
-            <div>
-              <label
-                htmlFor="phone"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Phone Number (Optional)
-              </label>
-              <div className="flex">
-                {/* Country Code Select */}
-                <select
-                  id="countryCode"
-                  name="countryCode"
-                  value={formData.countryCode}
-                  onChange={handleInputChange}
-                  className="px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-l-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow bg-gray-50"
-                  style={{ width: "20%", minWidth: "80px" }}
+              <div className="flex justify-between items-center">
+                <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight">
+                  Let's Connect
+                </h2>
+                <button
+                  onClick={closePopup}
+                  className="text-white hover:text-purple-300 transition-colors p-1 rounded-full bg-white/10 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white"
+                  aria-label="Close popup"
                 >
-                  {countryCodeList.map((country) => (
-                    <option key={country.code} value={country.code}>
-                      {country.name}
-                    </option>
-                  ))}
-                </select>
-
-                {/* Phone Number Input */}
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  className="flex-1 px-3 py-2 text-sm sm:text-base border-t border-b border-gray-300 rounded-r-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow"
-                  placeholder="98765 43210"
-                />
-              </div>
-            </div>
-
-            {/* Source */}
-            <div>
-              <label
-                htmlFor="source"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                How did you hear about us?
-              </label>
-              <select
-                id="source"
-                name="source"
-                value={formData.source}
-                onChange={handleInputChange}
-                className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow appearance-none bg-white pr-8"
-              >
-                <option value="">Select an option</option>
-                <option value="Google Search">Google Search</option>
-                <option value="Social Media">Social Media</option>
-                <option value="Friend Referral">Friend Referral</option>
-                <option value="Advertisement">Advertisement</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-
-            {/* Message */}
-            <div>
-              <label
-                htmlFor="message"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Your Message *
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows="3"
-                value={formData.message}
-                onChange={handleInputChange}
-                className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow resize-none"
-                placeholder="Tell us about your project or query..."
-              ></textarea>
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={`w-full py-3 px-4 rounded-lg text-white font-bold text-base sm:text-lg transition-all duration-300 shadow-md ${
-                isSubmitting
-                  ? "bg-purple-300 cursor-not-allowed"
-                  : "bg-purple-600 hover:bg-purple-700 active:bg-purple-800 shadow-purple-500/50 hover:shadow-lg"
-              } focus:outline-none focus:ring-4 focus:ring-purple-500/50`}
-              style={{ backgroundColor: isSubmitting ? "#A78BFA" : "#6666CC" }}
-            >
-              {isSubmitting ? (
-                <div className="flex items-center justify-center text-sm sm:text-base">
                   <svg
-                    className="animate-spin -ml-1 mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-5 h-5 sm:w-6 sm:h-6"
                     fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
                     <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
-                  Sending...
+                </button>
+              </div>
+              <p className="mt-1 sm:mt-2 text-xs sm:text-sm font-light opacity-90">
+                Send us a message and we'll be in touch quickly!
+              </p>
+            </div>
+
+            {/* Form Body (White) - Fixed overflow issue */}
+            <div className="flex-1 overflow-y-auto">
+              <form onSubmit={handleSubmit} className="p-4 sm:p-6">
+                {submitMessage && (
+                  <div
+                    className={`mb-3 sm:mb-4 p-3 rounded-lg text-sm sm:text-base font-semibold ${
+                      submitMessage.includes("Thank you")
+                        ? "bg-green-100 text-green-800 border border-green-300"
+                        : "bg-red-100 text-red-800 border border-red-300"
+                    }`}
+                  >
+                    {submitMessage}
+                  </div>
+                )}
+
+                <div className="space-y-3 sm:space-y-4">
+                  {/* First Name */}
+                  <div>
+                    <label
+                      htmlFor="firstName"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Your Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      required
+                      value={formData.firstName}
+                      onChange={handleInputChange}
+                      className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow"
+                      placeholder="e.g., Alex Johnson"
+                    />
+                  </div>
+
+                  {/* Email */}
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow"
+                      placeholder="you@example.com"
+                    />
+                  </div>
+
+                  {/* Phone - Fixed border issue */}
+                  <div>
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Phone Number (Optional)
+                    </label>
+                    <div className="flex">
+                      {/* Country Code Select */}
+                      <select
+                        id="countryCode"
+                        name="countryCode"
+                        value={formData.countryCode}
+                        onChange={handleInputChange}
+                        className="px-3 py-2 text-sm sm:text-base border border-r-0 border-gray-300 rounded-l-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow bg-gray-50"
+                        style={{ width: "20%", minWidth: "80px" }}
+                      >
+                        {countryCodeList.map((country) => (
+                          <option key={country.code} value={country.code}>
+                            {country.name}
+                          </option>
+                        ))}
+                      </select>
+
+                      {/* Phone Number Input - Fixed border */}
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        className="flex-1 px-3 py-2 text-sm sm:text-base border border-l-0 border-gray-300 rounded-r-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow"
+                        placeholder="98765 43210"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Source */}
+                  <div>
+                    <label
+                      htmlFor="source"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      How did you hear about us?
+                    </label>
+                    <select
+                      id="source"
+                      name="source"
+                      value={formData.source}
+                      onChange={handleInputChange}
+                      className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow appearance-none bg-white pr-8"
+                    >
+                      <option value="">Select an option</option>
+                      <option value="Google Search">Google Search</option>
+                      <option value="Social Media">Social Media</option>
+                      <option value="Friend Referral">Friend Referral</option>
+                      <option value="Advertisement">Advertisement</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+
+                  {/* Message */}
+                  <div>
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Your Message *
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      required
+                      rows="3"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-shadow resize-none"
+                      placeholder="Tell us about your project or query..."
+                    ></textarea>
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`w-full py-3 px-4 rounded-lg text-white font-bold text-base sm:text-lg transition-all duration-300 shadow-md ${
+                      isSubmitting
+                        ? "bg-purple-300 cursor-not-allowed"
+                        : "bg-purple-600 hover:bg-purple-700 active:bg-purple-800 shadow-purple-500/50 hover:shadow-lg"
+                    } focus:outline-none focus:ring-4 focus:ring-purple-500/50`}
+                    style={{
+                      backgroundColor: isSubmitting ? "#A78BFA" : "#6666CC",
+                    }}
+                  >
+                    {isSubmitting ? (
+                      <div className="flex items-center justify-center text-sm sm:text-base">
+                        <svg
+                          className="animate-spin -ml-1 mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5 text-white"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          ></path>
+                        </svg>
+                        Sending...
+                      </div>
+                    ) : (
+                      "Send Message"
+                    )}
+                  </button>
                 </div>
-              ) : (
-                "Send Message"
-              )}
-            </button>
+              </form>
+            </div>
           </div>
-        </form>
+        </div>
       </div>
 
       {/* Add custom styles */}
