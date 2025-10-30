@@ -464,28 +464,27 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Why Choose Us Section - FIXED */}
-      <section className="py-20 bg-white relative">
-        <div
-          ref={addToRefs}
-          className="opacity-0 translate-y-12 transition-all duration-700"
-        >
-          <div className="max-w-7xl mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#362B6A] via-[#5355A0] to-[#362B6A] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-                Why Choose Aitals
-                <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
-              </h2>
-              <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-                We combine technical expertise with business understanding to
-                deliver solutions that drive real results
-              </p>
-            </motion.div>
+      {/* Why Choose Us Section */}
+      <section
+        ref={addToRefs}
+        className="py-20 bg-white relative opacity-0 translate-y-12 transition-all duration-700"
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+              Why Choose Aitals
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
+              We combine technical expertise with business understanding to
+              deliver solutions that drive real results
+            </p>
+          </motion.div>
 
             <motion.div
               className="grid grid-cols-1 md:grid-cols-3 gap-8"
@@ -605,28 +604,27 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats Section - FIXED */}
-      <section className="py-20 bg-white relative">
-        <div
-          ref={addToRefs}
-          className="opacity-0 translate-y-12 transition-all duration-700"
-        >
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="text-4xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-[#362B6A] via-[#5355A0] to-[#362B6A] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-                  Trusted by Global Clients
-                  <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
-                </h2>
-                <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-16 leading-relaxed font-['Poppins']">
-                  We've delivered successful projects to clients across USA,
-                  Europe, Asia, and beyond. Our commitment to excellence has
-                  made us a preferred technology partner worldwide.
-                </p>
+      {/* Stats Section */}
+      <section
+        ref={addToRefs}
+        className="py-20 bg-white relative opacity-0 translate-y-12 transition-all duration-700"
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+                Trusted by Global Clients
+                <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-16 leading-relaxed font-['Poppins']">
+                We've delivered successful projects to clients across USA,
+                Europe, Asia, and beyond. Our commitment to excellence has made
+                us a preferred technology partner worldwide.
+              </p>
 
                 <motion.div
                   className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto"
@@ -664,7 +662,7 @@ const Home = () => {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-center mb-10">
-            <h2 className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-[#362B6A] via-[#5355A0] to-[#362B6A] bg-clip-text text-transparent font-['Poppins'] relative inline-block text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
               Partners We Work With
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
