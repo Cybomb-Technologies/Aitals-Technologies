@@ -14,8 +14,7 @@
 .heroBackground {
   position: absolute;
   inset: 0;
-  background-image: 
-    linear-gradient(
+  background-image: linear-gradient(
       rgba(13, 25, 51, 0.85),
       rgba(13, 25, 51, 0.95)
     ),
@@ -44,18 +43,13 @@
   margin-bottom: 2rem;
   line-height: 1.2;
   color: white;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .gradientText {
   display: block;
   margin-top: 1rem;
-  background: linear-gradient(
-    135deg,
-    #4a7dff 0%,
-    #3a6df0 50%,
-    #4a7dff 100%
-  );
+  background: linear-gradient(135deg, #4a7dff 0%, #3a6df0 50%, #4a7dff 100%);
   background-size: 200% 200%;
   background-clip: text;
   -webkit-background-clip: text;
@@ -64,7 +58,8 @@
 }
 
 @keyframes gradientShift {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {
@@ -81,7 +76,7 @@
   margin-right: auto;
   color: #e2e8f0;
   line-height: 1.6;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
 }
 
@@ -166,7 +161,7 @@
 }
 
 .primaryButton::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
@@ -294,16 +289,16 @@
     padding-top: 60px;
     min-height: 90vh;
   }
-  
+
   .heroContent {
     padding: 1rem;
   }
-  
+
   .featuresGrid {
     grid-template-columns: 1fr;
     gap: 0.75rem;
   }
-  
+
   .ctaContainer {
     flex-direction: column;
     width: 100%;
@@ -311,7 +306,7 @@
     margin-left: auto;
     margin-right: auto;
   }
-  
+
   .primaryButton,
   .secondaryButton {
     width: 100%;
@@ -323,11 +318,11 @@
   .heroTitle {
     font-size: 2rem;
   }
-  
+
   .heroDescription {
     font-size: 1rem;
   }
-  
+
   .statsGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;

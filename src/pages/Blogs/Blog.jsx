@@ -289,7 +289,7 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Header Section */}
-      <section className="relative bg-gradient-to-r from-gray-900 to-indigo-900 text-white py-24 overflow-hidden">
+      <section className="relative bg-gradient-to-r from-[#362B6A] to-[#5355A0] text-white py-24 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-indigo-600/20 to-purple-600/20"></div>
 

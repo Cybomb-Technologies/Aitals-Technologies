@@ -24,6 +24,8 @@ const Home = () => {
     "https://res.cloudinary.com/duomzq5mm/image/upload/v1761201062/aws-2_whii9k.svg",
     "https://res.cloudinary.com/duomzq5mm/image/upload/v1761201134/djit-trading-DY90WfDK_kbwf1d.png",
     "https://res.cloudinary.com/duomzq5mm/image/upload/v1761220634/cybomb_logo_cf2edt.jpg",
+    "https://res.cloudinary.com/dcfjt8shw/image/upload/v1761297491/j4q6qjzlm93uirax0l6f.png",
+    "https://res.cloudinary.com/dcfjt8shw/image/upload/v1761288318/wn8m8g8skdpl6iz2rwoa.svg",
   ];
 
   const sectionRefs = useRef([]);
@@ -272,10 +274,9 @@ const Home = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             Transform Your
-          <span className="block mt-6 bg-gradient-to-b from-[#6b4faf] to-[#ffffff] bg-clip-text text-transparent font-semibold">
-  Digital Vision
-</span>
-
+            <span className="block mt-6 bg-gradient-to-b from-[#6b4faf] to-[#ffffff] bg-clip-text text-transparent font-semibold">
+              Digital Vision
+            </span>
           </motion.h1>
 
           <motion.p
@@ -345,10 +346,10 @@ const Home = () => {
           >
             <div className="text-center group">
               <div className="text-3xl md:text-4xl font-bold text-white mb-3 group-hover:scale-110 transition-transform duration-300">
-                5+
+                100%
               </div>
               <div className="text-sm text-gray-300 group-hover:text-white transition-colors duration-300">
-                Years of Excellence
+                Modern Tech
               </div>
             </div>
             <div className="text-center group">
@@ -379,275 +380,282 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section
-        ref={addToRefs}
-        className="py-20 bg-[#0d1933] relative overflow-hidden opacity-0 translate-y-12 transition-all duration-700"
-      >
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Our Services
-              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
-            </h2>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins'] font-extrabold">
-  Comprehensive digital solutions tailored to your business needs.
-  From concept to deployment, we deliver excellence in every
-  project.
-</p>
-
-          </motion.div>
-
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {services.map((service, index) => {
-              const serviceRoute = getServiceRoute(service.title);
-
-              return (
-                <Link to={serviceRoute} key={index}>
-                  <motion.div
-                    variants={itemVariants}
-                    className="bg-white p-10 rounded-2xl border border-gray-200 transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] relative overflow-hidden group flex flex-col h-full font-['Poppins'] cursor-pointer"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600"></div>
-
-                    <div className="flex justify-between items-start mb-6">
-                      <div className="w-20 h-20 bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
-                        <service.icon size={24} color="white" />
-                      </div>
-
-                      {/* Arrow Icon */}
-                      <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-[#4a7dff] group-hover:text-white transition-all duration-300">
-                        <ArrowRight
-                          size={16}
-                          className="group-hover:translate-x-0.5 transition-transform duration-300"
-                        />
-                      </div>
-                    </div>
-
-                    <h3 className="text-2xl font-bold text-gray-800 mb-4 font-['Poppins'] group-hover:text-[#4a7dff] transition-colors duration-300">
-                      {service.title}
-                    </h3>
-
-                    <p className="text-gray-600 leading-relaxed font-['Poppins'] flex-grow">
-                      {service.desc}
-                    </p>
-
-                    {/* Click hint text */}
-                    <div className="mt-4 pt-4 border-t border-gray-100">
-                      <p className="text-sm text-gray-500 font-medium group-hover:text-[#4a7dff] transition-colors duration-300 flex items-center gap-1">
-                        Learn more
-                        <ArrowRight
-                          size={14}
-                          className="group-hover:translate-x-1 transition-transform duration-300"
-                        />
-                      </p>
-                    </div>
-                  </motion.div>
-                </Link>
-              );
-            })}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Why Choose Us Section */}
-      <section
-        ref={addToRefs}
-        className="py-20 bg-white relative opacity-0 translate-y-12 transition-all duration-700"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Why Choose Aitals
-              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              We combine technical expertise with business understanding to
-              deliver solutions that drive real results
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {whyChooseUs.map((item, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="bg-gradient-to-br from-[#1a2b4d] to-[#152547] p-12 rounded-2xl text-center shadow-xl transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] border border-[#2d3b5b] relative overflow-hidden group font-['Poppins']"
-              >
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left"></div>
-
-                <div className="w-20 h-20 bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] rounded-full flex items-center justify-center mb-6 mx-auto shadow-lg shadow-blue-500/30 group-hover:scale-110 group-hover:rotate-360 transition-all duration-300">
-                  <item.icon size={24} color="white" />
-                </div>
-
-                <h3 className="text-2xl font-bold text-gray-100 mb-4 font-['Poppins']">
-                  {item.title}
-                </h3>
-
-                <p className="text-gray-300 leading-relaxed font-['Poppins']">
-                  {item.desc}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section
-        ref={addToRefs}
-        className="py-20 bg-[#0d1933] relative opacity-0 translate-y-12 transition-all duration-700"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-              Featured Projects
-              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
-            </h2>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
-              Explore our portfolio of successful projects across various
-              industries and technologies
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {projects.map((project, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="relative overflow-hidden rounded-2xl shadow-2xl transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/40 aspect-[3/4] w-full group cursor-pointer"
-                onClick={() => handleProjectClick(project.link)}
-              >
-                <img
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-110"
-                  src={project.image}
-                  onError={(e) => {
-                    e.target.src =
-                      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80";
-                    e.target.alt = "Project placeholder image";
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0d1933]/95 to-transparent flex flex-col justify-end p-8 opacity-100 group-hover:from-[#0d1933]/98 group-hover:to-transparent group-hover:to-60%">
-                  <span className="text-[#4a7dff] text-sm font-semibold mb-2 uppercase tracking-wider font-['Poppins'] opacity-100">
-                    {project.category}
-                  </span>
-                  <h3 className="text-xl font-bold text-white leading-tight font-['Poppins'] opacity-100">
-                    {project.title}
-                  </h3>
-                  <div className="mt-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="text-white text-sm font-medium">
-                      View Project
-                    </span>
-                    <ArrowRight size={16} className="text-white" />
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            className="text-center mt-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-          >
-            <Link
-              to="/portfolio"
-              className="relative bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] text-white text-lg px-10 py-5 rounded-xl font-semibold inline-flex items-center gap-2 overflow-hidden transition-all duration-400 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/40 group font-['Poppins']"
-            >
-              <span className="relative z-10">View All Projects</span>
-              <ArrowRight size={20} className="relative z-10" />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section
-        ref={addToRefs}
-        className="py-20 bg-white relative opacity-0 translate-y-12 transition-all duration-700"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center">
+      {/* Services Section - FIXED */}
+      <section className="py-20 bg-[#100232] relative overflow-hidden">
+        <div
+          ref={addToRefs}
+          className="opacity-0 translate-y-12 transition-all duration-700"
+        >
+          <div className="max-w-7xl mx-auto px-4 relative z-10">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
-                Trusted by Global Clients
+              <h2 className="text-4xl md:text-6xl font-extrabold mb-4 text-white font-['Poppins'] relative inline-block">
+                Our Services
                 <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
               </h2>
-              <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-16 leading-relaxed font-['Poppins']">
-                We've delivered successful projects to clients across USA,
-                Europe, Asia, and beyond. Our commitment to excellence has made
-                us a preferred technology partner worldwide.
+              <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
+                Comprehensive digital solutions tailored to your business needs.
+                From concept to deployment, we deliver excellence in every
+                project.
               </p>
+            </motion.div>
 
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {services.map((service, index) => {
+                const serviceRoute = getServiceRoute(service.title);
+
+                return (
+                  <Link to={serviceRoute} key={index}>
+                    <motion.div
+                      variants={itemVariants}
+                      className="bg-white p-10 rounded-2xl border border-gray-200 transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#362B6A] relative overflow-hidden group flex flex-col h-full font-['Poppins'] cursor-pointer"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#362B6A]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600"></div>
+
+                      <div className="flex justify-between items-start mb-6">
+                        <div className="w-20 h-20 bg-gradient-to-br from-[#362B6A] to-[#5355A0] rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                          <service.icon size={24} color="white" />
+                        </div>
+
+                        {/* Arrow Icon */}
+                        <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-[#362B6A] group-hover:text-white transition-all duration-300">
+                          <ArrowRight
+                            size={16}
+                            className="group-hover:translate-x-0.5 transition-transform duration-300"
+                          />
+                        </div>
+                      </div>
+
+                      <h3 className="text-2xl font-bold text-gray-800 mb-4 font-['Poppins'] group-hover:text-[#362B6A] transition-colors duration-300">
+                        {service.title}
+                      </h3>
+
+                      <p className="text-gray-600 leading-relaxed font-['Poppins'] flex-grow">
+                        {service.desc}
+                      </p>
+
+                      {/* Click hint text */}
+                      <div className="mt-4 pt-4 border-t border-gray-100">
+                        <p className="text-sm text-gray-500 font-medium group-hover:text-[#362B6A] transition-colors duration-300 flex items-center gap-1">
+                          Learn more
+                          <ArrowRight
+                            size={14}
+                            className="group-hover:translate-x-1 transition-transform duration-300"
+                          />
+                        </p>
+                      </div>
+                    </motion.div>
+                  </Link>
+                );
+              })}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section - FIXED */}
+      <section className="py-20 bg-white relative">
+        <div
+          ref={addToRefs}
+          className="opacity-0 translate-y-12 transition-all duration-700"
+        >
+          <div className="max-w-7xl mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#362B6A] via-[#5355A0] to-[#362B6A] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
+                Why Choose Aitals
+                <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
+                We combine technical expertise with business understanding to
+                deliver solutions that drive real results
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-3 gap-8"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {whyChooseUs.map((item, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemVariants}
+                  className="bg-[#100232] p-12 rounded-2xl text-center shadow-xl transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] border border-[#2d3b5b] relative overflow-hidden group font-['Poppins']"
+                >
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left"></div>
+
+                  <div className="w-20 h-20 bg-gradient-to-br from-[#362B6A] to-[#5355A0] rounded-full flex items-center justify-center mb-6 mx-auto shadow-lg shadow-blue-500/30 group-hover:scale-110 group-hover:rotate-360 transition-all duration-300">
+                    <item.icon size={24} color="white" />
+                  </div>
+
+                  <h3 className="text-2xl font-bold text-gray-100 mb-4 font-['Poppins']">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-gray-300 leading-relaxed font-['Poppins']">
+                    {item.desc}
+                  </p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section - FIXED */}
+      <section className="py-20 bg-[#100232] relative">
+        <div
+          ref={addToRefs}
+          className="opacity-0 translate-y-12 transition-all duration-700"
+        >
+          <div className="max-w-7xl mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-4xl md:text-6xl font-extrabold mb-4 text-white font-['Poppins'] relative inline-block">
+                Featured Projects
+                <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
+              </h2>
+              <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
+                Explore our portfolio of successful projects across various
+                industries and technologies
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {projects.map((project, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemVariants}
+                  className="relative overflow-hidden rounded-2xl shadow-2xl transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/40 aspect-[3/4] w-full group cursor-pointer"
+                  onClick={() => handleProjectClick(project.link)}
+                >
+                  <img
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-110"
+                    src={project.image}
+                    onError={(e) => {
+                      e.target.src =
+                        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80";
+                      e.target.alt = "Project placeholder image";
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0d1933]/95 to-transparent flex flex-col justify-end p-8 opacity-100 group-hover:from-[#0d1933]/98 group-hover:to-transparent group-hover:to-60%">
+                    <span className="text-[#4a7dff] text-sm font-semibold mb-2 uppercase tracking-wider font-['Poppins'] opacity-100">
+                      {project.category}
+                    </span>
+                    <h3 className="text-xl font-bold text-white leading-tight font-['Poppins'] opacity-100">
+                      {project.title}
+                    </h3>
+                    <div className="mt-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="text-white text-sm font-medium">
+                        View Project
+                      </span>
+                      <ArrowRight size={16} className="text-white" />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            <motion.div
+              className="text-center mt-12"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+            >
+              <Link
+                to="/portfolio"
+                className="relative bg-black border border-white text-white text-lg px-10 py-5 rounded-xl font-semibold inline-flex items-center gap-2 overflow-hidden transition-all duration-400 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl hover:shadow-white/30 group font-['Poppins']"
+              >
+                <span className="relative z-10">View All Projects</span>
+                <ArrowRight size={20} className="relative z-10" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section - FIXED */}
+      <section className="py-20 bg-white relative">
+        <div
+          ref={addToRefs}
+          className="opacity-0 translate-y-12 transition-all duration-700"
+        >
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center">
               <motion.div
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto"
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                {stats.map((stat, index) => (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants}
-                    className="bg-white p-8 rounded-2xl border border-gray-100 shadow-xl transition-all duration-400 hover:-translate-y-2 hover:border-[#4a7dff] hover:shadow-2xl hover:shadow-blue-500/15 min-h-[180px] flex flex-col justify-center items-center relative overflow-hidden group font-['Poppins']"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#4a7dff]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+                <h2 className="text-4xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-[#362B6A] via-[#5355A0] to-[#362B6A] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
+                  Trusted by Global Clients
+                  <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
+                </h2>
+                <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-16 leading-relaxed font-['Poppins']">
+                  We've delivered successful projects to clients across USA,
+                  Europe, Asia, and beyond. Our commitment to excellence has
+                  made us a preferred technology partner worldwide.
+                </p>
 
-                    <div className="relative z-10 w-full text-center space-y-3">
-                      <span className="text-4xl md:text-5xl font-extrabold mb-2 bg-gradient-to-br from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] block leading-none group-hover:scale-110 transition-transform duration-300">
-                        {stat.number}
-                      </span>
-                      <span className="text-lg md:text-xl text-gray-600 font-semibold font-['Poppins'] block leading-tight group-hover:text-[#4a7dff] transition-colors duration-300 px-2 break-words">
-                        {stat.label}
-                      </span>
-                    </div>
-                  </motion.div>
-                ))}
+                <motion.div
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto"
+                  variants={containerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                >
+                  {stats.map((stat, index) => (
+                    <motion.div
+                      key={index}
+                      variants={itemVariants}
+                      className="bg-white p-8 rounded-2xl border border-gray-100 shadow-xl transition-all duration-400 hover:-translate-y-2 hover:border-[#4a7dff] hover:shadow-2xl hover:shadow-blue-500/15 min-h-[180px] flex flex-col justify-center items-center relative overflow-hidden group font-['Poppins']"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#4a7dff]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+
+                      <div className="relative z-10 w-full text-center space-y-3">
+                        <span className="text-4xl md:text-5xl font-extrabold mb-2 bg-gradient-to-br from-[#362B6A] via-[#5355A0] to-[#362B6A] bg-clip-text text-transparent font-['Poppins'] block leading-none group-hover:scale-110 transition-transform duration-300">
+                          {stat.number}
+                        </span>
+                        <span className="text-lg md:text-xl text-gray-600 font-semibold font-['Poppins'] block leading-tight group-hover:text-[#4a7dff] transition-colors duration-300 px-2 break-words">
+                          {stat.label}
+                        </span>
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
               </motion.div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -656,7 +664,7 @@ const Home = () => {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-center mb-10">
-            <h2 className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block text-center">
+            <h2 className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-[#362B6A] via-[#5355A0] to-[#362B6A] bg-clip-text text-transparent font-['Poppins'] relative inline-block text-center">
               Partners We Work With
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
@@ -673,6 +681,8 @@ const Home = () => {
                   if (logoUrl.includes("aws-2")) return "h-12"; // AWS - 48px
                   if (logoUrl.includes("djit-trading")) return "h-14"; // Djit Trading - 56px
                   if (logoUrl.includes("cybomb_logo")) return "h-16"; // Cybomb - 64px
+                  if (logoUrl.includes("j4q6qjzlm93uirax0l6f")) return "h-12"; // New logo 1
+                  if (logoUrl.includes("wn8m8g8skdpl6iz2rwoa")) return "h-14"; // New logo 2
                   return "h-12"; // Default height
                 };
 
@@ -696,35 +706,37 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section
-        ref={addToRefs}
-        className="py-20 bg-gradient-to-br from-[#0d1933] to-[#1a2b4d] relative overflow-hidden opacity-0 translate-y-12 transition-all duration-700"
-      >
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <h2 className="text-4xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] leading-tight">
-              Ready to Transform Your Idea Into Reality?
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed font-['Poppins']">
-              Let's collaborate and build something extraordinary together. Your
-              next big thing starts here with Aitals Technologies.
-            </p>
-            <Link
-              to="/contact"
-              className="relative bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] text-white text-lg px-10 py-6 rounded-xl font-bold inline-flex items-center gap-2 overflow-hidden transition-all duration-400 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/50 group font-['Poppins']"
+      {/* CTA Section - FIXED */}
+      <section className="py-20 bg-[#100232] relative overflow-hidden">
+        <div
+          ref={addToRefs}
+          className="opacity-0 translate-y-12 transition-all duration-700"
+        >
+          <div className="max-w-7xl mx-auto px-4 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center"
             >
-              <span className="relative z-10">Start Your Project Today</span>
-              <ArrowRight size={20} className="relative z-10" />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
-            </Link>
-          </motion.div>
+              <h2 className="text-4xl md:text-6xl font-extrabold mb-6 text-white font-['Poppins'] leading-tight">
+                Ready to Transform Your Idea Into Reality?
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed font-['Poppins']">
+                Let's collaborate and build something extraordinary together.
+                Your next big thing starts here with Aitals Technologies.
+              </p>
+              <Link
+                to="/contact"
+                className="relative bg-black border border-white text-white text-lg px-10 py-6 rounded-xl font-bold inline-flex items-center gap-2 overflow-hidden transition-all duration-400 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl hover:shadow-white/30 group font-['Poppins']"
+              >
+                <span className="relative z-10">Start Your Project Today</span>
+                <ArrowRight size={20} className="relative z-10" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
+              </Link>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -753,17 +765,11 @@ const Home = () => {
             transform: translateX(-50%);
           }
         }
-
-        .animate-gradient-shift {
-          animation: gradient-shift 3s ease-in-out infinite;
-        }
-
         .animate-scroll {
           animation: scroll 30s linear infinite;
         }
-
-        .animate-fade-in-up {
-          animation: fade-in-up 0.8s ease-out forwards;
+        .animate-scroll:hover {
+          animation-play-state: paused;
         }
       `}</style>
     </>
