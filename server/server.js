@@ -33,6 +33,7 @@ app.use(
       "https://aitals.com",
       "http://localhost:3000",
       "http://localhost:3001",
+      "http://localhost:5173",
     ], // your frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"], // allowed HTTP methods
     credentials: true, // allow cookies/auth headers if needed
