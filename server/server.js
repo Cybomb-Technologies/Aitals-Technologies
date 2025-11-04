@@ -34,6 +34,7 @@ app.use(
       "http://localhost:3000",
       "http://localhost:3001",
       "http://localhost:5173",
+      "https://admin.cybomb.com",
     ], // your frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"], // allowed HTTP methods
     credentials: true, // allow cookies/auth headers if needed

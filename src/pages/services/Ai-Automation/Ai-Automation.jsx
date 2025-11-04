@@ -372,7 +372,7 @@ const AiAutomation = () => {
       >
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#362B6A] via-[#5355A0] to-[#362B6A] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
               Why Choose Our AI Services
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
@@ -486,7 +486,7 @@ const AiAutomation = () => {
       >
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#362B6A] via-[#5355A0] to-[#362B6A] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
               Our AI Development Process
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
@@ -593,7 +593,7 @@ const AiAutomation = () => {
       >
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
-            <h2 className="text-4xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-[#362B6A] via-[#5355A0] to-[#362B6A] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
               Our AI Achievements
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
