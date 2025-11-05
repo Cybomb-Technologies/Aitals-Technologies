@@ -8,7 +8,7 @@ const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
 
 // ✅ Allowed domains (bypass token verification)
 const ALLOWED_DOMAINS = [
-  "https://admin.cybomb.com",
+  "https://cybombadmin.cybomb.com",
   "http://localhost:5173",
 ];
 
