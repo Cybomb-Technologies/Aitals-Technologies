@@ -34,7 +34,7 @@ app.use(
       "http://localhost:3000",
       "http://localhost:3001",
       "http://localhost:5173",
-      "https://admin.cybomb.com",
+      "https://cybombadmin.cybomb.com",
     ], // your frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"], // allowed HTTP methods
     credentials: true, // allow cookies/auth headers if needed
@@ -81,13 +81,13 @@ app.get("/", (req, res) => {
 });
 
 // 404 handler
-app.use("*", (req, res) => {
-  res.status(404).json({
-    success: false,
-    message: "Route not found",
-    requestedUrl: req.originalUrl,
-  });
-});
+// app.use("*", (req, res) => {
+//   res.status(404).json({
+//     success: false,
+//     message: "Route not found",
+//     requestedUrl: req.originalUrl,
+//   });
+// });
 
 // Error handling middleware
 app.use((error, req, res, next) => {
