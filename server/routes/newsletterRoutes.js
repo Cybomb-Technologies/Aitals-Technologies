@@ -7,6 +7,7 @@ import {
   getNewsletterStats,
   exportSubscribers,
   importSubscribers,
+  downloadTemplate,
 } from "../controllers/newsletterController.js";
 import { authMiddleware } from "./adminRoutes.js";
 import multer from "multer";
@@ -56,6 +57,7 @@ router.post("/unsubscribe", unsubscribeFromNewsletter);
 router.get("/subscribers", authMiddleware, getSubscribers);
 router.get("/stats", authMiddleware, getNewsletterStats);
 router.get("/export", authMiddleware, exportSubscribers);
+router.get("/template", authMiddleware, downloadTemplate);
 router.post(
   "/import",
   authMiddleware,

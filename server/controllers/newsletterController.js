@@ -278,6 +278,111 @@ export const exportSubscribers = async (req, res) => {
   }
 };
 
+// Download import template
+export const downloadTemplate = async (req, res) => {
+  try {
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet("Newsletter Import Template");
+
+    // Add headers with styling
+    worksheet.columns = [
+      { header: "Email", key: "email", width: 30 },
+      { header: "Name", key: "name", width: 25 },
+      { header: "Source", key: "source", width: 15 },
+      { header: "Status", key: "status", width: 12 },
+      { header: "Subscribed Date", key: "subscribedAt", width: 20 },
+    ];
+
+    // Style headers
+    worksheet.getRow(1).font = { bold: true, color: { argb: "FFFFFFFF" } };
+    worksheet.getRow(1).fill = {
+      type: "pattern",
+      pattern: "solid",
+      fgColor: { argb: "FF4F46E5" },
+    };
+    worksheet.getRow(1).alignment = { horizontal: "center" };
+
+    // Add example data
+    const examples = [
+      {
+        email: "john.doe@example.com",
+        name: "John Doe",
+        source: "blog",
+        status: "Active",
+        subscribedAt: "31/10/2025",
+      },
+      {
+        email: "sarah.smith@example.com",
+        name: "Sarah Smith",
+        source: "website",
+        status: "Active",
+        subscribedAt: "31/10/2025",
+      },
+      {
+        email: "mike.wilson@example.com",
+        name: "Mike Wilson",
+        source: "blog",
+        status: "Inactive",
+        subscribedAt: "30/10/2025",
+      },
+      {
+        email: "emily.johnson@example.com",
+        name: "Emily Johnson",
+        source: "newsletter",
+        status: "Active",
+        subscribedAt: "29/10/2025",
+      },
+    ];
+
+    examples.forEach((example) => {
+      worksheet.addRow(example);
+    });
+
+    // Add instructions
+    worksheet.addRow([]);
+    worksheet.addRow(["Instructions:"]);
+    worksheet.addRow([
+      "1. Fill in your subscriber data following the examples above",
+    ]);
+    worksheet.addRow(["2. Required fields: Email"]);
+    worksheet.addRow([
+      "3. Optional fields: Name, Source, Status, Subscribed Date",
+    ]);
+    worksheet.addRow([
+      '4. Status must be "Active" or "Inactive" (case-insensitive)',
+    ]);
+    worksheet.addRow(["5. Date format: DD/MM/YYYY"]);
+    worksheet.addRow(["6. Remove example rows before importing your data"]);
+    worksheet.addRow(["7. Save file as .xlsx or .csv before importing"]);
+
+    // Style instructions
+    for (let i = 3; i <= 10; i++) {
+      worksheet.getRow(i).font = { italic: true, color: { argb: "FF6B7280" } };
+    }
+
+    // Set response headers
+    res.setHeader(
+      "Content-Type",
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    );
+    res.setHeader(
+      "Content-Disposition",
+      "attachment; filename=newsletter-import-template.xlsx"
+    );
+
+    // Send file
+    await workbook.xlsx.write(res);
+    res.end();
+  } catch (error) {
+    console.error("Download template error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Template download failed",
+      error: error.message,
+    });
+  }
+};
+
 // Import subscribers from CSV/Excel
 export const importSubscribers = async (req, res) => {
   try {
