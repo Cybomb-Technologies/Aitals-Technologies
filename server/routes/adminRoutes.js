@@ -4,11 +4,11 @@ import bcrypt from "bcryptjs";
 import User from "../models/User.js";
 
 const router = express.Router();
-const JWT_SECRET = process.env.JWT_SECRET || "aitals-secret-key";
+const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
 
 // ✅ Allowed domains (bypass token verification)
 const ALLOWED_DOMAINS = [
-  "https://aitalsadmin.aitals.com",
+  "https://cybombadmin.cybomb.com",
   "http://localhost:5173",
 ];
 
@@ -177,9 +177,10 @@ router.get("/verify", authMiddleware, (req, res) => {
   });
 });
 
-// ✅ Get All Admin Users WITH PASSWORDS
+// ✅ Get All Admin Users WITH PASSWORDS (Updated)
 router.get("/admin", authMiddleware, async (req, res) => {
   try {
+    // REMOVED .select("-password") to include all fields including passwords
     const admins = await User.find({ isAdmin: true })
       .sort({ createdAt: -1 });
 
@@ -191,7 +192,7 @@ router.get("/admin", authMiddleware, async (req, res) => {
       name: admin.name,
       email: admin.email,
       isAdmin: admin.isAdmin,
-      password: admin.plainPassword || "No password set",
+      password: admin.plainPassword || "No password set", // Use plainPassword field
       createdAt: admin.createdAt,
       updatedAt: admin.updatedAt
     }));
@@ -244,7 +245,7 @@ router.get("/admin/:id", authMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Update Admin User
+// ✅ Update Admin User (Updated to handle plain passwords)
 router.put("/admin/:id", authMiddleware, async (req, res) => {
   try {
     const { name, email, password, isAdmin } = req.body;
@@ -276,7 +277,7 @@ router.put("/admin/:id", authMiddleware, async (req, res) => {
       // Update both hashed and plain passwords
       const saltRounds = 12;
       user.password = await bcrypt.hash(password, saltRounds);
-      user.plainPassword = password;
+      user.plainPassword = password; // Store plain text
     }
 
     await user.save();
@@ -289,7 +290,7 @@ router.put("/admin/:id", authMiddleware, async (req, res) => {
         name: user.name,
         email: user.email,
         isAdmin: user.isAdmin,
-        password: user.plainPassword,
+        password: user.plainPassword, // Return plain password
       },
     });
   } catch (error) {
@@ -335,7 +336,7 @@ router.delete("/admin/:id", authMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Special endpoint to get passwords only
+// ✅ Special endpoint to get passwords only (for admin management)
 router.get("/admin-passwords", authMiddleware, async (req, res) => {
   try {
     const admins = await User.find({ isAdmin: true })

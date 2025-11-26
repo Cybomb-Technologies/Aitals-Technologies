@@ -210,49 +210,34 @@ const About = () => {
         />
       </Helmet>
 
-      {/* Hero Section - Immediate display */}
-      <section className="relative min-h-[60vh] flex items-center justify-center bg-[#0d1933] pt-32 pb-14">
-        {/* Solid Background First */}
-        <div className="absolute inset-0 bg-[#0d1933]"></div>
-
-        {/* Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0d1933] to-[#1a2b4d]"></div>
-
-        {/* Background Image with Overlay */}
+      {/* Hero Section - Updated with Purple Effect */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0d1933] pt-16">
+        {/* Background Image with Purple Overlay */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `linear-gradient(rgba(13, 25, 51, 0.4), rgba(13, 25, 51, 0.95)), url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80")`,
+            backgroundImage: `linear-gradient(rgba(16, 2, 50, 0.9), rgba(16, 2, 50, 0.8)), url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80")`,
           }}
         ></div>
 
-        {/* Animated Gradient Overlays */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: `
-              radial-gradient(circle at 20% 80%, rgba(74, 125, 255, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(58, 109, 240, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 40% 40%, rgba(13, 25, 51, 0.2) 0%, transparent 50%)
-            `,
-          }}
-        ></div>
-
-        <div className="relative z-10 text-center w-full px-4">
+        <div className="relative z-10 text-center w-full px-4 max-w-7xl mx-auto py-20">
           <motion.h1
-            className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-white font-['Poppins'] drop-shadow-lg"
+            className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-8 leading-tight text-white font-['Poppins']"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            About Aitals Technologies
+            About Aitals
+            <span className="block mt-6 bg-gradient-to-b from-[#6b4faf] to-[#ffffff] bg-clip-text text-transparent font-semibold">
+              Technologies
+            </span>
           </motion.h1>
 
           <motion.p
-            className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto text-gray-200 leading-relaxed font-['Poppins'] font-light"
+            className="text-xl md:text-2xl mb-12 max-w-4xl mx-auto text-gray-200 leading-relaxed font-['Poppins'] font-light"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
             We are a forward-thinking software development company founded in
             2025, committed to transforming ideas into powerful digital
@@ -265,10 +250,8 @@ const About = () => {
       {/* Vision & Mission Section */}
       <section
         ref={addToRefs}
-        className="py-20 bg-[#0d1933] relative overflow-hidden"
+        className="py-20 bg-[#100232] relative overflow-hidden"
       >
-        <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-radial-gradient from-[#4a7dff]/3 to-transparent animate-spin-slow"></div>
-
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -276,7 +259,7 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
+            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 text-white font-['Poppins'] relative inline-block">
               Our Vision & Mission
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
@@ -290,15 +273,15 @@ const About = () => {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-white p-12 rounded-3xl shadow-xl transition-all duration-400 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/15 border border-gray-200 relative overflow-hidden group text-center"
+              className="bg-white p-12 rounded-2xl border border-gray-200 transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#362B6A] relative overflow-hidden group font-['Poppins']"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#362B6A]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600"></div>
 
-              <div className="w-20 h-20 bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-blue-500/30 mx-auto animate-pulse-glow">
+              <div className="w-20 h-20 bg-gradient-to-br from-[#362B6A] to-[#5355A0] rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-blue-500/30 mx-auto group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                 <Eye size={32} color="white" />
               </div>
 
-              <h2 className="text-3xl font-bold text-gray-800 mb-6 font-['Poppins']">
+              <h2 className="text-3xl font-bold text-gray-800 mb-6 font-['Poppins'] group-hover:text-[#362B6A] transition-colors duration-300">
                 Shaping the Future of Technology
               </h2>
 
@@ -313,15 +296,15 @@ const About = () => {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-white p-12 rounded-3xl shadow-xl transition-all duration-400 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/15 border border-gray-200 relative overflow-hidden group text-center"
+              className="bg-white p-12 rounded-2xl border border-gray-200 transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#362B6A] relative overflow-hidden group font-['Poppins']"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#362B6A]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600"></div>
 
-              <div className="w-20 h-20 bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-blue-500/30 mx-auto animate-pulse-glow">
+              <div className="w-20 h-20 bg-gradient-to-br from-[#362B6A] to-[#5355A0] rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-blue-500/30 mx-auto group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                 <Target size={32} color="white" />
               </div>
 
-              <h2 className="text-3xl font-bold text-gray-800 mb-6 font-['Poppins']">
+              <h2 className="text-3xl font-bold text-gray-800 mb-6 font-['Poppins'] group-hover:text-[#362B6A] transition-colors duration-300">
                 Delivering Excellence in Every Project
               </h2>
 
@@ -365,12 +348,12 @@ const About = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="bg-gradient-to-br from-[#1a2b4d] to-[#152547] p-8 rounded-2xl border border-[#2d3b5b] shadow-xl transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] relative overflow-hidden group text-center"
+                className="bg-[#100232] p-12 rounded-2xl text-center shadow-xl transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] border border-[#2d3b5b] relative overflow-hidden group font-['Poppins']"
               >
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left"></div>
 
-                <div className="w-16 h-16 bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30 mx-auto group-hover:scale-110 group-hover:rotate-5 transition-transform duration-300">
-                  <value.icon size={28} color="white" />
+                <div className="w-20 h-20 bg-gradient-to-br from-[#362B6A] to-[#5355A0] rounded-full flex items-center justify-center mb-6 mx-auto shadow-lg shadow-blue-500/30 group-hover:scale-110 group-hover:rotate-360 transition-all duration-300">
+                  <value.icon size={24} color="white" />
                 </div>
 
                 <h3 className="text-2xl font-bold text-gray-100 mb-4 font-['Poppins']">
@@ -389,10 +372,8 @@ const About = () => {
       {/* Journey Section */}
       <section
         ref={addToRefs}
-        className="py-20 bg-[#0d1933] relative overflow-hidden"
+        className="py-20 bg-[#100232] relative overflow-hidden"
       >
-        <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-radial-gradient from-[#4a7dff]/3 to-transparent animate-spin-slow"></div>
-
         <div className="max-w-4xl mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -400,7 +381,7 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
+            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 text-white font-['Poppins'] relative inline-block">
               Our Journey
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
@@ -423,15 +404,15 @@ const About = () => {
                   index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 } flex-col md:flex-row`}
               >
-                <div className="w-32 h-32 bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] rounded-full flex items-center justify-center text-white text-2xl font-bold font-['Poppins'] shadow-lg shadow-blue-500/30 relative z-10 mx-8 md:mx-4 mb-4 md:mb-0">
+                <div className="w-32 h-32 bg-gradient-to-br from-[#362B6A] to-[#5355A0] rounded-full flex items-center justify-center text-white text-2xl font-bold font-['Poppins'] shadow-lg shadow-blue-500/30 relative z-10 mx-8 md:mx-4 mb-4 md:mb-0">
                   {milestone.year}
                 </div>
 
-                <div className="flex-1 bg-gradient-to-br from-[#1a2b4d] to-[#152547] p-8 rounded-2xl border border-[#2d3b5b] shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/20 hover:border-[#4a7dff]">
-                  <h3 className="text-2xl font-bold text-gray-100 mb-3 font-['Poppins']">
+                <div className="flex-1 bg-white p-8 rounded-2xl border border-gray-200 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/20 hover:border-[#362B6A]">
+                  <h3 className="text-2xl font-bold text-gray-800 mb-3 font-['Poppins'] group-hover:text-[#362B6A] transition-colors duration-300">
                     {milestone.title}
                   </h3>
-                  <p className="text-gray-300 leading-relaxed font-['Poppins']">
+                  <p className="text-gray-600 leading-relaxed font-['Poppins']">
                     {milestone.desc}
                   </p>
                 </div>
@@ -470,11 +451,11 @@ const About = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="bg-gradient-to-br from-[#1a2b4d] to-[#152547] p-8 rounded-2xl border border-[#2d3b5b] shadow-xl transition-all duration-400 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] relative overflow-hidden group text-center"
+                className="bg-[#100232] p-8 rounded-2xl border border-[#2d3b5b] shadow-xl transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] relative overflow-hidden group text-center font-['Poppins']"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#362B6A]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600"></div>
 
-                <div className="w-16 h-16 bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30 mx-auto group-hover:scale-110 group-hover:rotate-5 transition-transform duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#362B6A] to-[#5355A0] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30 mx-auto group-hover:scale-110 group-hover:rotate-5 transition-transform duration-300">
                   <skill.icon size={28} color="white" />
                 </div>
 
@@ -494,10 +475,8 @@ const About = () => {
       {/* Team Section */}
       <section
         ref={addToRefs}
-        className="py-20 bg-[#0d1933] relative overflow-hidden"
+        className="py-20 bg-[#100232] relative overflow-hidden"
       >
-        <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-radial-gradient from-[#4a7dff]/3 to-transparent animate-spin-slow"></div>
-
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -505,7 +484,7 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#4a7dff] via-[#3a6df0] to-[#4a7dff] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
+            <h2 className="text-4xl md:text-6xl font-extrabold mb-4 text-white font-['Poppins'] relative inline-block">
               Meet Our Team
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
             </h2>
@@ -586,11 +565,11 @@ const About = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="bg-gradient-to-br from-[#1a2b4d] to-[#152547] p-8 rounded-2xl border border-[#2d3b5b] shadow-xl transition-all duration-400 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] relative overflow-hidden group text-center"
+                className="bg-[#100232] p-8 rounded-2xl border border-[#2d3b5b] shadow-xl transition-all duration-400 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] relative overflow-hidden group text-center font-['Poppins']"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#4a7dff]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#362B6A]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600"></div>
 
-                <div className="w-16 h-16 bg-gradient-to-br from-[#4a7dff] to-[#3a6df0] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30 mx-auto group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#362B6A] to-[#5355A0] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30 mx-auto group-hover:scale-110 transition-transform duration-300">
                   <item.icon size={28} color="white" />
                 </div>
 
@@ -635,7 +614,7 @@ const About = () => {
       {/* CTA Section */}
       <section
         ref={addToRefs}
-        className="py-24 bg-gradient-to-br from-[#0d1933] to-[#1a2b4d] relative overflow-hidden"
+        className="py-24 bg-[#100232] relative overflow-hidden"
       >
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
@@ -661,9 +640,10 @@ const About = () => {
             </p>
 
             <Link to="/contact">
-              <button className="bg-white text-[#4a7dff] text-lg px-10 py-6 rounded-full font-semibold transition-all duration-300 hover:bg-gray-100 hover:scale-105 hover:shadow-2xl hover:shadow-white/20 shadow-lg border border-transparent hover:border-white/20 font-['Poppins'] inline-flex items-center gap-3">
-                Get Started Today
-                <ArrowRight size={24} />
+              <button className="relative bg-black border border-white text-white text-lg px-10 py-6 rounded-xl font-semibold transition-all duration-300 hover:shadow-2xl hover:shadow-white/30 hover:scale-105 group font-['Poppins'] inline-flex items-center gap-3 overflow-hidden">
+                <span className="relative z-10">Get Started Today</span>
+                <ArrowRight size={24} className="relative z-10" />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
               </button>
             </Link>
           </motion.div>

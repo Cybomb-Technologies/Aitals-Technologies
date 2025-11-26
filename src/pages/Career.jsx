@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 import {
   Briefcase,
   MapPin,
@@ -58,8 +59,10 @@ const useMockToast = () => {
 
     return (
       <div className={`${baseClasses} ${colorClasses}`}>
-        <h3 className="font-bold text-lg mb-1">{toastState.title}</h3>
-        <p className="text-sm">{toastState.description}</p>
+        <h3 className="font-bold text-lg mb-1 font-['Poppins']">
+          {toastState.title}
+        </h3>
+        <p className="text-sm font-['Poppins']">{toastState.description}</p>
       </div>
     );
   };
@@ -86,7 +89,7 @@ const JobDetailsModal = ({ job, isOpen, onClose }) => {
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors p-2 rounded-full bg-white/50 z-10"
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors p-2 rounded-full bg-white/50 z-10 font-['Poppins']"
           aria-label="Close job details"
         >
           <X className="w-6 h-6" />
@@ -95,15 +98,15 @@ const JobDetailsModal = ({ job, isOpen, onClose }) => {
         <div className="p-6 md:p-8">
           <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-6">
             <div className="flex-1">
-              <h2 className="text-3xl font-bold text-gray-800 mb-2">
+              <h2 className="text-3xl font-bold text-gray-800 mb-2 font-['Poppins']">
                 {job.title}
               </h2>
               <div className="flex flex-wrap gap-2 mb-4">
-                <span className="inline-block px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
+                <span className="inline-block px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-medium font-['Poppins']">
                   {job.department}
                 </span>
                 {job.experienceLevel && (
-                  <span className="inline-block px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm font-medium">
+                  <span className="inline-block px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm font-medium font-['Poppins']">
                     {job.experienceLevel}
                   </span>
                 )}
@@ -112,18 +115,20 @@ const JobDetailsModal = ({ job, isOpen, onClose }) => {
             <Briefcase className="w-10 h-10 text-blue-600 mt-2 sm:mt-0 flex-shrink-0" />
           </div>
 
-          <p className="text-gray-600 text-lg mb-8">{job.description}</p>
+          <p className="text-gray-600 text-lg mb-8 font-['Poppins']">
+            {job.description}
+          </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-            <div className="flex items-center text-gray-700 bg-gray-50 p-3 rounded-lg">
+            <div className="flex items-center text-gray-700 bg-gray-50 p-3 rounded-lg font-['Poppins']">
               <MapPin className="w-5 h-5 mr-3 text-blue-600 flex-shrink-0" />
               <span className="text-sm font-medium">{job.location}</span>
             </div>
-            <div className="flex items-center text-gray-700 bg-gray-50 p-3 rounded-lg">
+            <div className="flex items-center text-gray-700 bg-gray-50 p-3 rounded-lg font-['Poppins']">
               <Clock className="w-5 h-5 mr-3 text-blue-600 flex-shrink-0" />
               <span className="text-sm font-medium">{job.type}</span>
             </div>
-            <div className="flex items-center text-gray-700 bg-gray-50 p-3 rounded-lg">
+            <div className="flex items-center text-gray-700 bg-gray-50 p-3 rounded-lg font-['Poppins']">
               <DollarSign className="w-5 h-5 mr-3 text-blue-600 flex-shrink-0" />
               <span className="text-sm font-medium">{job.salary}</span>
             </div>
@@ -133,13 +138,16 @@ const JobDetailsModal = ({ job, isOpen, onClose }) => {
             {/* Requirements */}
             {job.requirements && job.requirements.length > 0 && (
               <div>
-                <h4 className="font-bold text-xl mb-4 flex items-center text-gray-800">
+                <h4 className="font-bold text-xl mb-4 flex items-center text-gray-800 font-['Poppins']">
                   <List className="w-6 h-6 mr-3 text-blue-600" />
                   Requirements
                 </h4>
                 <ul className="space-y-3">
                   {job.requirements.map((req, index) => (
-                    <li key={index} className="flex items-start">
+                    <li
+                      key={index}
+                      className="flex items-start font-['Poppins']"
+                    >
                       <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
                       <span className="text-gray-600 text-base">{req}</span>
                     </li>
@@ -151,13 +159,16 @@ const JobDetailsModal = ({ job, isOpen, onClose }) => {
             {/* Responsibilities */}
             {job.responsibilities && job.responsibilities.length > 0 && (
               <div>
-                <h4 className="font-bold text-xl mb-4 flex items-center text-gray-800">
+                <h4 className="font-bold text-xl mb-4 flex items-center text-gray-800 font-['Poppins']">
                   <Briefcase className="w-6 h-6 mr-3 text-blue-600" />
                   Key Responsibilities
                 </h4>
                 <ul className="space-y-3">
                   {job.responsibilities.map((resp, index) => (
-                    <li key={index} className="flex items-start">
+                    <li
+                      key={index}
+                      className="flex items-start font-['Poppins']"
+                    >
                       <CheckCircle className="w-5 h-5 text-blue-500 mr-3 mt-0.5 flex-shrink-0" />
                       <span className="text-gray-600 text-base">{resp}</span>
                     </li>
@@ -169,13 +180,16 @@ const JobDetailsModal = ({ job, isOpen, onClose }) => {
             {/* Benefits */}
             {job.benefits && job.benefits.length > 0 && (
               <div>
-                <h4 className="font-bold text-xl mb-4 flex items-center text-gray-800">
+                <h4 className="font-bold text-xl mb-4 flex items-center text-gray-800 font-['Poppins']">
                   <Award className="w-6 h-6 mr-3 text-green-600" />
                   Benefits & Perks
                 </h4>
                 <ul className="space-y-3">
                   {job.benefits.map((benefit, index) => (
-                    <li key={index} className="flex items-start">
+                    <li
+                      key={index}
+                      className="flex items-start font-['Poppins']"
+                    >
                       <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
                       <span className="text-gray-600 text-base">{benefit}</span>
                     </li>
@@ -339,18 +353,18 @@ const ApplicationModal = ({ isOpen, onClose, jobTitle }) => {
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors p-2 rounded-full bg-white/50"
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors p-2 rounded-full bg-white/50 font-['Poppins']"
           aria-label="Close application form"
         >
           <X className="w-6 h-6" />
         </button>
 
         <div className="p-6 md:p-8 lg:p-10">
-          <h2 className="text-3xl font-bold mb-2 text-gray-800 flex items-center">
+          <h2 className="text-3xl font-bold mb-2 text-gray-800 flex items-center font-['Poppins']">
             <Briefcase className="w-7 h-7 mr-3 text-indigo-600" />
             Apply for {jobTitle}
           </h2>
-          <p className="text-gray-500 mb-8">
+          <p className="text-gray-500 mb-8 font-['Poppins']">
             Please fill out the form below to submit your application.
           </p>
 
@@ -358,7 +372,7 @@ const ApplicationModal = ({ isOpen, onClose, jobTitle }) => {
             {/* Personal Info */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center font-['Poppins']">
                   <User className="w-4 h-4 mr-2" /> Full Name *
                 </label>
                 <input
@@ -367,13 +381,13 @@ const ApplicationModal = ({ isOpen, onClose, jobTitle }) => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all font-['Poppins']"
                   placeholder="Jane Doe"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center font-['Poppins']">
                   <Mail className="w-4 h-4 mr-2" /> Email *
                 </label>
                 <input
@@ -382,7 +396,7 @@ const ApplicationModal = ({ isOpen, onClose, jobTitle }) => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all font-['Poppins']"
                   placeholder="jane.doe@example.com"
                 />
               </div>
@@ -391,7 +405,7 @@ const ApplicationModal = ({ isOpen, onClose, jobTitle }) => {
             {/* Phone and Role */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center font-['Poppins']">
                   <Phone className="w-4 h-4 mr-2" /> Phone Number
                 </label>
                 <input
@@ -399,13 +413,13 @@ const ApplicationModal = ({ isOpen, onClose, jobTitle }) => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all font-['Poppins']"
                   placeholder="Optional"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center font-['Poppins']">
                   <Code className="w-4 h-4 mr-2" /> Applying For *
                 </label>
                 <input
@@ -414,7 +428,7 @@ const ApplicationModal = ({ isOpen, onClose, jobTitle }) => {
                   value={formData.role}
                   readOnly
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed font-['Poppins']"
                 />
               </div>
             </div>
@@ -422,18 +436,20 @@ const ApplicationModal = ({ isOpen, onClose, jobTitle }) => {
             {/* Experience & Resume File Input */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center font-['Poppins']">
                   <Clock className="w-4 h-4 mr-2" /> Total Experience
                 </label>
                 <select
                   name="experience"
                   value={formData.experience}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all font-['Poppins']"
                 >
-                  <option value="">Select experience level</option>
+                  <option value="" className="font-['Poppins']">
+                    Select experience level
+                  </option>
                   {experienceOptions.map((opt) => (
-                    <option key={opt} value={opt}>
+                    <option key={opt} value={opt} className="font-['Poppins']">
                       {opt}
                     </option>
                   ))}
@@ -442,7 +458,7 @@ const ApplicationModal = ({ isOpen, onClose, jobTitle }) => {
 
               {/* Resume File Input */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center font-['Poppins']">
                   <Upload className="w-4 h-4 mr-2" /> Resume (PDF/Word) *
                 </label>
                 <div className="relative">
@@ -452,13 +468,13 @@ const ApplicationModal = ({ isOpen, onClose, jobTitle }) => {
                     onChange={handleFileChange}
                     accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 font-['Poppins']"
                   />
                 </div>
-                <p className="mt-1 text-xs text-gray-500">
+                <p className="mt-1 text-xs text-gray-500 font-['Poppins']">
                   Upload your resume (PDF or Word, max 5MB)
                   {fileName && (
-                    <span className="text-green-600 ml-2 flex items-center">
+                    <span className="text-green-600 ml-2 flex items-center font-['Poppins']">
                       <Check className="w-3 h-3 mr-1" /> {fileName}
                     </span>
                   )}
@@ -468,7 +484,7 @@ const ApplicationModal = ({ isOpen, onClose, jobTitle }) => {
 
             {/* Cover Letter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+              <label className="block text-sm font-medium text-gray-700 mb-1 flex items-center font-['Poppins']">
                 <FileText className="w-4 h-4 mr-2" /> Cover Letter / Message
               </label>
               <textarea
@@ -476,7 +492,7 @@ const ApplicationModal = ({ isOpen, onClose, jobTitle }) => {
                 value={formData.coverLetter}
                 onChange={handleChange}
                 rows="4"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all resize-none"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all resize-none font-['Poppins']"
                 placeholder="Tell us why you are a great fit for this role..."
               ></textarea>
             </div>
@@ -486,9 +502,9 @@ const ApplicationModal = ({ isOpen, onClose, jobTitle }) => {
               type="submit"
               size="lg"
               disabled={isLoading}
-              className="w-full text-white shadow-lg"
+              className="w-full text-white shadow-lg font-['Poppins']"
               style={{
-                background: "linear-gradient(to right, #1A173A, #6666CC)",
+                background: "linear-gradient(to right, #362B6A, #5355A0)",
               }}
             >
               {isLoading ? (
@@ -502,7 +518,7 @@ const ApplicationModal = ({ isOpen, onClose, jobTitle }) => {
                 </span>
               )}
             </Button>
-            <p className="text-xs text-center text-gray-400">
+            <p className="text-xs text-center text-gray-400 font-['Poppins']">
               * By clicking submit, you agree to the processing of your data for
               recruitment purposes.
             </p>
@@ -530,7 +546,7 @@ const Career = () => {
     fetchJobOpenings();
   }, []);
 
-  // Fetch job openings from API
+  // Fetch job openings from API - ONLY API, NO STATIC DATA
   const fetchJobOpenings = async () => {
     try {
       setLoading(true);
@@ -562,87 +578,17 @@ const Career = () => {
         setOpenings(activeOpenings);
       } else {
         console.error("Error fetching job openings:", data.message);
-        // Fallback to sample data if API fails
-        setOpenings(getSampleOpenings());
+        // No fallback to static data - just set empty array
+        setOpenings([]);
       }
     } catch (error) {
       console.error("Error fetching job openings:", error);
-      // Fallback to sample data
-      setOpenings(getSampleOpenings());
+      // No fallback to static data - just set empty array
+      setOpenings([]);
     } finally {
       setLoading(false);
     }
   };
-
-  // Enhanced sample data with full details
-  const getSampleOpenings = () => [
-    {
-      _id: "1",
-      title: "Senior Full Stack Developer",
-      department: "Engineering",
-      location: "Bangalore / Remote",
-      type: "Full-time",
-      salary: "₹15-25 LPA",
-      description:
-        "Looking for experienced developers with React, Node.js expertise to build scalable web applications.",
-      experienceLevel: "Senior",
-      requirements: [
-        "5+ years of experience in full-stack development",
-        "Strong proficiency in React.js and Node.js",
-        "Experience with databases (MongoDB, PostgreSQL)",
-        "Knowledge of cloud platforms (AWS, Azure)",
-        "Experience with RESTful APIs and microservices",
-      ],
-      responsibilities: [
-        "Design and develop scalable web applications",
-        "Collaborate with cross-functional teams",
-        "Write clean, maintainable code",
-        "Participate in code reviews",
-        "Mentor junior developers",
-      ],
-      benefits: [
-        "Flexible work hours",
-        "Remote work options",
-        "Health insurance",
-        "Learning and development budget",
-        "Annual performance bonuses",
-      ],
-      isActive: true,
-    },
-    {
-      _id: "2",
-      title: "UI/UX Designer",
-      department: "Design",
-      location: "Mumbai / Remote",
-      type: "Full-time",
-      salary: "₹10-18 LPA",
-      description:
-        "Creative designer with strong portfolio in web and mobile design to create intuitive user experiences.",
-      experienceLevel: "Mid",
-      requirements: [
-        "3+ years of UI/UX design experience",
-        "Proficiency in Figma, Adobe Creative Suite",
-        "Strong portfolio showcasing design process",
-        "Understanding of user-centered design principles",
-        "Experience with prototyping tools",
-      ],
-      responsibilities: [
-        "Create wireframes, prototypes, and high-fidelity designs",
-        "Conduct user research and usability testing",
-        "Collaborate with product and development teams",
-        "Maintain design systems and style guides",
-        "Stay updated with design trends and best practices",
-      ],
-      benefits: [
-        "Creative freedom and ownership",
-        "Latest design tools and software",
-        "Conference and workshop allowances",
-        "Flexible work arrangements",
-        "Comprehensive health coverage",
-      ],
-      isActive: true,
-    },
-  ];
 
   const benefits = [
     {
@@ -711,6 +657,13 @@ const Career = () => {
   return (
     <>
       <Metatags metaProps={metaPropsData} />
+      <Helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
+      </Helmet>
+
       {/* Application Modal */}
       <ApplicationModal
         isOpen={isModalOpen}
@@ -728,21 +681,30 @@ const Career = () => {
       {/* Toast Display */}
       <ToastDisplay />
 
-      <section
-        className="pt-32 pb-20 text-white"
-        style={{ background: "linear-gradient(to right, #1A173A, #6666CC)" }}
-      >
-        <div className="container mx-auto px-4">
+      {/* Hero Section - Updated with Purple Background Shading */}
+      <section className="pt-32 pb-20 text-white relative overflow-hidden bg-[#0d1933]">
+        {/* Background Image with Purple Overlay */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `linear-gradient(rgba(16, 2, 50, 0.9), rgba(16, 2, 50, 0.8)), url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80")`,
+          }}
+        ></div>
+
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Join Our Team
+            <h1 className="text-5xl md:text-6xl font-extrabold mb-6 font-['Poppins']">
+              Join Our
+              <span className="block mt-6 bg-gradient-to-b from-[#6b4faf] to-[#ffffff] bg-clip-text text-transparent font-semibold">
+                Team
+              </span>
             </h1>
-            <p className="text-xl text-gray-100">
+            <p className="text-xl md:text-2xl text-gray-100 leading-relaxed font-['Poppins']">
               Be part of a dynamic, innovative team that's shaping the future of
               technology. We're always looking for talented individuals who are
               passionate about making a difference.
@@ -751,7 +713,8 @@ const Career = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-white">
+      {/* Benefits Section */}
+      <section className="py-20 bg-[#100232]">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -759,10 +722,10 @@ const Career = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-white font-['Poppins']">
               Why Join Aitals?
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-300 font-['Poppins']">
               Benefits that make a difference
             </p>
           </motion.div>
@@ -775,31 +738,28 @@ const Career = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="p-8 rounded-2xl text-center card-hover"
-                style={{
-                  background: "linear-gradient(135deg, #EFF6FF, #EDE9FE)",
-                }}
+                className="p-8 rounded-2xl text-center card-hover bg-white font-['Poppins']"
               >
                 <div
                   className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
                   style={{
-                    background: "linear-gradient(to right, #1A173A, #6666CC)",
+                    background: "linear-gradient(to right, #362B6A, #5355A0)",
                   }}
                 >
                   <benefit.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.desc}</p>
+                <h3 className="text-xl font-bold mb-3 font-['Poppins']">
+                  {benefit.title}
+                </h3>
+                <p className="text-gray-600 font-['Poppins']">{benefit.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section
-        className="py-20"
-        style={{ background: "linear-gradient(135deg, #F9FAFB, #EFF6FF)" }}
-      >
+      {/* Openings Section */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -807,26 +767,28 @@ const Career = () => {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-4 bg-gradient-to-r from-[#362B6A] via-[#5355A0] to-[#362B6A] bg-clip-text text-transparent font-['Poppins']">
               Current Openings
             </h2>
-            <p className="text-xl text-gray-600 mb-8">Find your perfect role</p>
+            <p className="text-xl text-gray-600 mb-8 font-['Poppins']">
+              Find your perfect role
+            </p>
 
             <div className="flex flex-wrap justify-center gap-4">
               {departments.map((dept) => (
                 <button
                   key={dept}
                   onClick={() => setSelectedDepartment(dept)}
-                  className={`px-6 py-2 rounded-full font-medium transition-all ${
+                  className={`px-6 py-2 rounded-full font-medium transition-all font-['Poppins'] ${
                     selectedDepartment === dept
                       ? "text-white shadow-lg"
-                      : "bg-white text-gray-700 hover:shadow-md"
+                      : "bg-white text-gray-700 hover:shadow-md border border-gray-200"
                   }`}
                   style={
                     selectedDepartment === dept
                       ? {
                           background:
-                            "linear-gradient(to right, #1A173A, #6666CC)",
+                            "linear-gradient(to right, #362B6A, #5355A0)",
                         }
                       : {}
                   }
@@ -839,18 +801,18 @@ const Career = () => {
 
           {loading ? (
             <div className="flex justify-center items-center h-64">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
-              <span className="ml-3 text-lg text-gray-600">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#362B6A]"></div>
+              <span className="ml-3 text-lg text-gray-600 font-['Poppins']">
                 Loading job openings...
               </span>
             </div>
           ) : filteredOpenings.length === 0 ? (
             <div className="text-center py-12">
               <Briefcase className="w-16 h-16 mx-auto mb-4 text-gray-400" />
-              <h3 className="text-xl font-semibold text-gray-600 mb-2">
+              <h3 className="text-xl font-semibold text-gray-600 mb-2 font-['Poppins']">
                 No current openings
               </h3>
-              <p className="text-gray-500">
+              <p className="text-gray-500 font-['Poppins']">
                 Check back later for new opportunities.
               </p>
             </div>
@@ -863,19 +825,19 @@ const Career = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white p-6 rounded-2xl shadow-lg card-hover flex flex-col h-full"
+                  className="bg-white p-6 rounded-2xl shadow-lg card-hover flex flex-col h-full border border-gray-200 font-['Poppins']"
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold mb-2 text-gray-800 line-clamp-2">
+                      <h3 className="text-xl font-bold mb-2 text-gray-800 line-clamp-2 font-['Poppins']">
                         {job.title}
                       </h3>
                       <div className="flex flex-wrap gap-2 mb-3">
-                        <span className="inline-block px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
+                        <span className="inline-block px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-medium font-['Poppins']">
                           {job.department}
                         </span>
                         {job.experienceLevel && (
-                          <span className="inline-block px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm font-medium">
+                          <span className="inline-block px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm font-medium font-['Poppins']">
                             {job.experienceLevel}
                           </span>
                         )}
@@ -884,20 +846,20 @@ const Career = () => {
                     <Briefcase className="w-8 h-8 text-blue-600 mt-1 flex-shrink-0" />
                   </div>
 
-                  <p className="text-gray-600 mb-4 line-clamp-3 flex-1">
+                  <p className="text-gray-600 mb-4 line-clamp-3 flex-1 font-['Poppins']">
                     {job.description}
                   </p>
 
                   <div className="space-y-3 mb-6">
-                    <div className="flex items-center text-gray-700 text-sm">
+                    <div className="flex items-center text-gray-700 text-sm font-['Poppins']">
                       <MapPin className="w-4 h-4 mr-2 text-blue-600 flex-shrink-0" />
                       <span className="truncate">{job.location}</span>
                     </div>
-                    <div className="flex items-center text-gray-700 text-sm">
+                    <div className="flex items-center text-gray-700 text-sm font-['Poppins']">
                       <Clock className="w-4 h-4 mr-2 text-blue-600 flex-shrink-0" />
                       <span>{job.type}</span>
                     </div>
-                    <div className="flex items-center text-gray-700 text-sm">
+                    <div className="flex items-center text-gray-700 text-sm font-['Poppins']">
                       <DollarSign className="w-4 h-4 mr-2 text-blue-600 flex-shrink-0" />
                       <span>{job.salary}</span>
                     </div>
@@ -906,16 +868,16 @@ const Career = () => {
                   <div className="flex flex-col sm:flex-row gap-3 mt-auto">
                     <Button
                       variant="outline"
-                      className="flex-1 text-gray-700 border-gray-300 hover:bg-gray-50"
+                      className="flex-1 text-gray-700 border-gray-300 hover:bg-gray-50 font-['Poppins']"
                       onClick={() => handleViewDetails(job)}
                     >
                       View Details
                     </Button>
                     <Button
-                      className="flex-1 text-white"
+                      className="flex-1 text-white font-['Poppins']"
                       style={{
                         background:
-                          "linear-gradient(to right, #1A173A, #6666CC)",
+                          "linear-gradient(to right, #362B6A, #5355A0)",
                       }}
                       onClick={() => handleApply(job.title)}
                     >
@@ -929,100 +891,8 @@ const Career = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl font-bold mb-6 gradient-text">
-                Employee Testimonials
-              </h2>
-
-              <div className="space-y-6">
-                <div
-                  className="p-6 rounded-xl"
-                  style={{
-                    background: "linear-gradient(135deg, #EFF6FF, #EDE9FE)",
-                  }}
-                >
-                  <p className="text-gray-700 italic mb-4">
-                    "Working at Aitals has been transformative. The culture of
-                    innovation and the opportunity to work on cutting-edge
-                    projects has accelerated my career growth tremendously."
-                  </p>
-                  <div className="flex items-center">
-                    <div
-                      className="w-12 h-12 rounded-full mr-4"
-                      style={{
-                        background:
-                          "linear-gradient(to right, #1A173A, #6666CC)",
-                      }}
-                    ></div>
-                    <div>
-                      <div className="font-bold">Ananya Reddy</div>
-                      <div className="text-sm text-gray-600">
-                        Senior Developer
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  className="p-6 rounded-xl"
-                  style={{
-                    background: "linear-gradient(135deg, #EFF6FF, #EDE9FE)",
-                  }}
-                >
-                  <p className="text-gray-700 italic mb-4">
-                    "The work-life balance and flexible remote options make
-                    Aitals stand out. Plus, the team is incredibly supportive
-                    and collaborative."
-                  </p>
-                  <div className="flex items-center">
-                    <div
-                      className="w-12 h-12 rounded-full mr-4"
-                      style={{
-                        background:
-                          "linear-gradient(to right, #1A173A, #6666CC)",
-                      }}
-                    ></div>
-                    <div>
-                      <div className="font-bold">Michael Chen</div>
-                      <div className="text-sm text-gray-600">UX Designer</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <img
-                alt="Team collaboration"
-                className="w-full rounded-2xl shadow-2xl object-cover"
-                style={{ height: "25rem" }}
-                src="https://ilead.net.in/wp-content/uploads/2017/10/career.jpg"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src =
-                    "https://placehold.co/800x400/1A173A/FFFFFF?text=Image+Unavailable";
-                }}
-              />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      <section
-        className="py-20 text-white"
-        style={{ background: "linear-gradient(to right, #1A173A, #6666CC)" }}
-      >
+      {/* CTA Section */}
+      <section className="py-20 text-white bg-[#100232]">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -1030,16 +900,16 @@ const Career = () => {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-4xl font-bold mb-6">
+            <h2 className="text-4xl font-extrabold mb-6 font-['Poppins']">
               Can't Find Your Perfect Role?
             </h2>
-            <p className="text-xl mb-8 text-gray-100">
+            <p className="text-xl mb-8 text-gray-100 leading-relaxed font-['Poppins']">
               We're always interested in meeting talented people. Send us your
               resume and we'll contact you when a suitable position opens up.
             </p>
             <Button
               size="lg"
-              className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-3 text-lg font-medium"
+              className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-3 text-lg font-medium font-['Poppins']"
               onClick={() => handleApply("General Application")}
             >
               <Upload className="w-5 h-5 mr-2" />
