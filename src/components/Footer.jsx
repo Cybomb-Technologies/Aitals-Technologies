@@ -141,7 +141,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/services/web-development"
+                  to="/services/ai-automation"
                   className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   AI Integration

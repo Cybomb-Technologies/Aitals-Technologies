@@ -253,11 +253,11 @@ const WebDev = () => {
 
   const metaPropsData = {
     title:
-      "Web Development Services | Modern Web Solutions | Aitals Technologies",
+      "Web Design & Development Services in chennai | Aitals Tech",
     description:
-      "Aitals Technologies provides professional web development services including React.js, Next.js, custom web applications, e-commerce solutions, and responsive website development.",
+      "Aitals Technologies in chennai is a leading & best web development services including React.js, Next.js, custom web applications, e-commerce solutions, and responsive website.",
     keyword:
-      "Web Development, React.js Development, Next.js, Custom Web Applications, E-commerce Development, Responsive Web Design, Frontend Development, Backend Development",
+      "Web Development service in chennai, React.js Development, Next.js, Custom Web Applications, E-commerce Development, Responsive Web Design, Frontend Development, Backend Development",
     url: "https://aitals.com/services/web-development",
     image: "https://aitals.com/assets/logo-B8Q2-6qZ.png",
   };
