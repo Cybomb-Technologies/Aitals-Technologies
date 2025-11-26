@@ -286,11 +286,11 @@ const Ecommerce = () => {
 
   const metaPropsData = {
     title:
-      "E-commerce Development Services | Online Store Solutions | Aitals Technologies",
+      "E-commerce Development Services in chennai | Aitals Technologies",
     description:
-      "Aitals Technologies provides professional e-commerce development services including custom online stores, Shopify development, WooCommerce solutions, and mobile commerce applications.",
+      "Aitals Tech provides professional & Best e-commerce web design services including custom online stores, Shopify development, WooCommerce solutions, and mobile commerce applications.",
     keyword:
-      "E-commerce Development, Online Store Development, Shopify Development, WooCommerce, E-commerce Solutions, Mobile Commerce, Payment Gateway Integration, E-commerce Platforms",
+      "E-commerce Development in chennai, Online Store Development, Shopify Development, WooCommerce, E-commerce Solutions, Mobile Commerce, Payment Gateway Integration, E-commerce Platforms",
     url: "https://aitals.com/services/ecommerce-development",
     image: "https://aitals.com/assets/logo-B8Q2-6qZ.png",
   };
