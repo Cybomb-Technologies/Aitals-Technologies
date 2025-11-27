@@ -27,6 +27,8 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsConditions from "./components/TermsConditions";
 import RefundPolicy from "./components/RefundPolicy";
 import CookiePolicy from "./components/CookiePolicy";
+import PricingPage from "./pages/page-pricing/pricing/pricing";
+
 function App() {
   return (
     <AuthProvider>
@@ -50,6 +52,7 @@ function App() {
                       <Route path="/admin-login" element={<AdminLogin />} />
                       <Route path="/blog" element={<Blog />} />
                       <Route path="/blog/:id" element={<BlogPost />} />
+                      <Route path="/pricing" element={<PricingPage />} />
                       <Route
                         path="/services/web-development"
                         element={<WebDev />}
