@@ -76,6 +76,7 @@ app.get("/", (req, res) => {
       application: "/api/application",
       blog: "/api/blog",
       admin: "/api/admin/login",
+      adminregister:"/api/admin"
     },
   });
 });

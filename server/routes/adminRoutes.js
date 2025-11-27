@@ -12,6 +12,7 @@ const ALLOWED_DOMAINS = [
   "http://localhost:5173",
 ];
 
+
 // ✅ Auth Middleware (Modified)
 export const authMiddleware = async (req, res, next) => {
   const origin = req.headers.origin;
