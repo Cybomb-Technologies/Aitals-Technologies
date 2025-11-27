@@ -105,6 +105,7 @@ const Navbar = () => {
         },
       ],
     },
+    { name: "Pricing", path: "/pricing" },
     { name: "Portfolio", path: "/portfolio" },
     { name: "Career", path: "/career" },
     { name: "Blogs", path: "/blog" },

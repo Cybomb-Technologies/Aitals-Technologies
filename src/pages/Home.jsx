@@ -223,7 +223,7 @@ const Home = () => {
   };
 
   const metaPropsData = {
-    title: "Mobile App and Web Development in Chennai | Aitals Technologies",
+    title: "Aitals Technologies | Mobile App and Web Development in Chennai",
     description:
       "Aitals Technologies is a top IT company offering expert web development, mobile app development, UI/UX design, and digital solutions for startups and enterprises.",
     keyword:

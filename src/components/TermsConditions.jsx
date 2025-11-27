@@ -11,9 +11,9 @@ import {
 import Metatags from "../SEO/metatags";
 
 const metaPropsData = {
-  title: "Terms & Conditions - Aitals Technologies | Service Agreement",
+  title: "Terms & Conditions - Aitals Tech | Service Agreement",
   description:
-    "Read Aitals Technologies' Terms & Conditions governing software development services, project agreements, intellectual property rights, and client responsibilities.",
+    "Read Aitals Technologies Terms & Conditions governing software development services, project agreements, intellectual property rights, and client responsibilities.",
   keyword:
     "Aitals Terms Conditions, Service Agreement, Software Development Terms, Project Agreement, Intellectual Property, Client Responsibilities, Legal Terms",
   url: "https://aitals.com/terms-conditions",
