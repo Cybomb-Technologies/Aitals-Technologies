@@ -1,7 +1,8 @@
-const nodemailer = require('nodemailer');
-const { generateInvoicePDF } = require('./pdfInvoice');
+// utils/paymentMail.js
+import nodemailer from "nodemailer";
+import { generateInvoicePDF } from "./pdfInvoice.js";
 
-// ✅ Fixed: createTransport (not createTransporter)
+// ✅ Create Nodemailer transporter
 const createTransporter = () => {
   try {
     return nodemailer.createTransport({
@@ -13,22 +14,22 @@ const createTransporter = () => {
         pass: process.env.SMTP_PASS,
       },
       tls: {
-        rejectUnauthorized: false
-      }
+        rejectUnauthorized: false,
+      },
     });
   } catch (error) {
-    console.error('❌ Transporter creation failed:', error);
+    console.error("❌ Transporter creation failed:", error);
     throw error;
   }
 };
 
 // Generate email HTML template
 const generateInvoiceEmail = (orderData, customerDetails) => {
-  const { orderId, planName, amount, currency = 'INR' } = orderData;
+  const { orderId, planName, amount, currency = "INR" } = orderData;
   const subtotal = Math.round(amount / 1.18);
   const gstAmount = amount - subtotal;
-  const currencySymbol = currency === 'INR' ? '₹' : '$';
-  const formatPrice = (price) => price.toLocaleString('en-IN');
+  const currencySymbol = currency === "INR" ? "₹" : "$";
+  const formatPrice = (price) => price.toLocaleString("en-IN");
 
   return `
 <!DOCTYPE html>
@@ -87,7 +88,7 @@ const generateInvoiceEmail = (orderData, customerDetails) => {
                     </div>
                     <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                         <span><strong>Order Date:</strong></span>
-                        <span>${new Date().toLocaleDateString('en-IN')}</span>
+                        <span>${new Date().toLocaleDateString("en-IN")}</span>
                     </div>
                     <div style="display: flex; justify-content: space-between;">
                         <span><strong>Amount Paid:</strong></span>
@@ -174,9 +175,9 @@ const sendPaymentEmailWithPDF = async (orderData, customerDetails) => {
   try {
     // Generate PDF invoice
     const pdfBuffer = await generateInvoicePDF(orderData, customerDetails);
-    
+
     const transporter = createTransporter();
-    
+
     const mailOptions = {
       from: `"Cybomb Technologies" <${process.env.SMTP_USER}>`,
       to: customerDetails.email,
@@ -187,72 +188,80 @@ const sendPaymentEmailWithPDF = async (orderData, customerDetails) => {
         {
           filename: `Invoice_${orderData.orderId}.pdf`,
           content: pdfBuffer,
-          contentType: 'application/pdf'
-        }
-      ]
+          contentType: "application/pdf",
+        },
+      ],
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log('✅ Payment email with PDF sent successfully:', info.messageId);
+    console.log("✅ Payment email with PDF sent successfully:", info.messageId);
     return {
       success: true,
       messageId: info.messageId,
-      message: 'Email with PDF invoice sent successfully'
+      message: "Email with PDF invoice sent successfully",
     };
-    
   } catch (error) {
-    console.error('❌ Email sending error:', error);
+    console.error("❌ Email sending error:", error);
     return {
       success: false,
       error: error.message,
-      message: 'Failed to send email with PDF'
+      message: "Failed to send email with PDF",
     };
   }
 };
 
 // Validate email data
 const validateEmailData = (orderData, customerDetails) => {
-  const requiredOrderFields = ['orderId', 'planName', 'amount'];
-  const requiredCustomerFields = ['fullName', 'email', 'phone', 'address', 'city', 'pincode'];
-  
-  const missingOrderFields = requiredOrderFields.filter(field => !orderData[field]);
-  const missingCustomerFields = requiredCustomerFields.filter(field => !customerDetails[field]);
-  
+  const requiredOrderFields = ["orderId", "planName", "amount"];
+  const requiredCustomerFields = [
+    "fullName",
+    "email",
+    "phone",
+    "address",
+    "city",
+    "pincode",
+  ];
+
+  const missingOrderFields = requiredOrderFields.filter(
+    (field) => !orderData[field]
+  );
+  const missingCustomerFields = requiredCustomerFields.filter(
+    (field) => !customerDetails[field]
+  );
+
   if (missingOrderFields.length > 0 || missingCustomerFields.length > 0) {
-    const errorMessage = `Missing required fields: ${[...missingOrderFields, ...missingCustomerFields].join(', ')}`;
+    const errorMessage = `Missing required fields: ${[
+      ...missingOrderFields,
+      ...missingCustomerFields,
+    ].join(", ")}`;
     throw new Error(errorMessage);
   }
-  
+
   // Validate email format
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(customerDetails.email)) {
-    throw new Error('Invalid email format');
+    throw new Error("Invalid email format");
   }
-  
+
   return true;
 };
 
-// Main function to send payment confirmation email with PDF
-const sendPaymentConfirmation = async (orderData, customerDetails) => {
+// ✅ Main function to send payment confirmation email with PDF
+export const sendPaymentConfirmation = async (orderData, customerDetails) => {
   try {
     // Validate input data
     validateEmailData(orderData, customerDetails);
-    
+
     // Send email with PDF attachment
     const result = await sendPaymentEmailWithPDF(orderData, customerDetails);
-    
+
     return result;
-    
   } catch (error) {
-    console.error('❌ Payment confirmation error:', error);
+    console.error("❌ Payment confirmation error:", error);
     return {
       success: false,
       error: error.message,
-      message: 'Failed to send payment confirmation email with PDF'
+      message: "Failed to send payment confirmation email with PDF",
     };
   }
-};
-
-module.exports = {
-  sendPaymentConfirmation
 };

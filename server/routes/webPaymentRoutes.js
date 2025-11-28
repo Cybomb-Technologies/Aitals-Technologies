@@ -1,11 +1,13 @@
-const express = require("express");
-const router = express.Router();
-const {
+// routes/webPaymentRoutes.js
+import express from "express";
+import {
   createWebPackageOrder,
   verifyWebPackagePayment,
   getOrderDetails,
-  webPackageWebhook
-} = require("../controllers/webPaymentController");
+  webPackageWebhook,
+} from "../controllers/webPaymentController.js";
+
+const router = express.Router();
 
 // ✅ Web Package Payment Routes
 router.post("/create-web-order", createWebPackageOrder);
@@ -13,4 +15,4 @@ router.post("/verify-web-payment", verifyWebPackagePayment);
 router.get("/order/:orderId", getOrderDetails);
 router.post("/webhook", webPackageWebhook); // For Cashfree webhooks
 
-module.exports = router;
+export default router;

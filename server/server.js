@@ -1,3 +1,4 @@
+// server.js
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -16,6 +17,7 @@ import applicationManagerRoutes from "./routes/applicationManagerRoutes.js";
 import { setupOverviewRoutes } from "./routes/overviewRoutes.js";
 import newsletterRoutes from "./routes/newsletterRoutes.js";
 import webPaymentRoutes from "./routes/webPaymentRoutes.js";
+
 // Load environment variables from .env file
 dotenv.config();
 
@@ -26,7 +28,6 @@ connectDB();
 const app = express();
 
 // --- Middleware Setup ---
-// Allow requests only from your frontend
 app.use(
   cors({
     origin: [
@@ -35,9 +36,9 @@ app.use(
       "http://localhost:3001",
       "http://localhost:5173",
       "https://cybombadmin.cybomb.com",
-    ], // your frontend URL
-    methods: ["GET", "POST", "PUT", "DELETE"], // allowed HTTP methods
-    credentials: true, // allow cookies/auth headers if needed
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
   })
 );
 
@@ -64,7 +65,7 @@ app.use("/api/application", applicationRoutes);
 app.use("/api/blog", blogRoutes);
 app.use("/api/applications", applicationManagerRoutes);
 app.use("/api/newsletter", newsletterRoutes);
-app.use('/api/web-payment', webPaymentRoutes);
+app.use("/api/web-payment", webPaymentRoutes);
 
 // Root endpoint
 app.get("/", (req, res) => {
@@ -77,19 +78,10 @@ app.get("/", (req, res) => {
       application: "/api/application",
       blog: "/api/blog",
       admin: "/api/admin/login",
-      adminregister:"/api/admin"
+      adminregister: "/api/admin",
     },
   });
 });
-
-// 404 handler
-// app.use("*", (req, res) => {
-//   res.status(404).json({
-//     success: false,
-//     message: "Route not found",
-//     requestedUrl: req.originalUrl,
-//   });
-// });
 
 // Error handling middleware
 app.use((error, req, res, next) => {
