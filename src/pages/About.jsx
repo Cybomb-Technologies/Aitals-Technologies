@@ -228,7 +228,7 @@ const About = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             About Aitals
-            <span className="block mt-6 bg-gradient-to-b from-[#6b4faf] to-[#ffffff] bg-clip-text text-transparent font-semibold">
+            <span className="block mt-6 pb-2 bg-gradient-to-b from-[#6b4faf] to-[#ffffff] bg-clip-text text-transparent font-semibold">
               Technologies
             </span>
           </motion.h1>
