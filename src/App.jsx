@@ -27,8 +27,8 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsConditions from "./components/TermsConditions";
 import RefundPolicy from "./components/RefundPolicy";
 import CookiePolicy from "./components/CookiePolicy";
-import PricingPage from "./pages/page-pricing/pricing/pricing";
-
+import PricingPage from "./pages/pricing";
+import CheckoutPage from "./pages/checkoutpage";
 function App() {
   return (
     <AuthProvider>
@@ -53,6 +53,7 @@ function App() {
                       <Route path="/blog" element={<Blog />} />
                       <Route path="/blog/:id" element={<BlogPost />} />
                       <Route path="/pricing" element={<PricingPage />} />
+                      <Route path="/checkout" element={<CheckoutPage />} />
                       <Route
                         path="/services/web-development"
                         element={<WebDev />}

@@ -473,7 +473,7 @@ const About = () => {
       </section>
 
       {/* Team Section */}
-      <section
+      {/* <section
         ref={addToRefs}
         className="py-20 bg-[#100232] relative overflow-hidden"
       >
@@ -534,7 +534,7 @@ const About = () => {
             ))}
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Culture Section */}
       <section ref={addToRefs} className="py-20 bg-white relative">
