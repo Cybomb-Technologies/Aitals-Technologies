@@ -4,18 +4,13 @@ import PDFDocument from "pdfkit";
 /**
  * Generate invoice PDF as a Buffer
  * @param {Object} orderData - { orderId, planName, amount, currency }
- * @param {Object} customerDetails - { fullName, email, phone, address, city, pincode, ... }
+ * @param {Object} customerDetails - { fullName, email, phone, address, city, pincode, company? }
  * @returns {Promise<Buffer>}
  */
 export const generateInvoicePDF = (orderData, customerDetails) => {
   return new Promise((resolve, reject) => {
     try {
-      const {
-        orderId,
-        planName,
-        amount,
-        currency = "INR",
-      } = orderData;
+      const { orderId, planName, amount, currency = "INR" } = orderData;
 
       const {
         fullName,
@@ -27,9 +22,26 @@ export const generateInvoicePDF = (orderData, customerDetails) => {
         company = "",
       } = customerDetails;
 
-      const currencySymbol = currency === "INR" ? "₹" : "$";
+      // ---- Currency handling (avoid broken ₹ glyph) ----
+      // Helvetica in pdfkit doesn't support the rupee symbol properly.
+      // Use "Rs." so it renders clean everywhere.
+      const getCurrencySymbol = (c) => {
+        if (c === "INR") return "Rs.";
+        if (c === "USD") return "$";
+        return c + " "; // fallback
+      };
+      const currencySymbol = getCurrencySymbol(currency);
+
+      // GST breakdown
       const subtotal = Math.round(amount / 1.18);
       const gstAmount = amount - subtotal;
+      const currentDate = new Date().toLocaleDateString("en-IN");
+
+      // ---- Phone sanitization (avoid +91 +91...) ----
+      const normalizedPhone =
+        typeof phone === "string" && phone.trim().startsWith("+")
+          ? phone.trim()
+          : `+91 ${phone}`;
 
       const doc = new PDFDocument({ size: "A4", margin: 50 });
 
@@ -40,144 +52,226 @@ export const generateInvoicePDF = (orderData, customerDetails) => {
         resolve(pdfData);
       });
 
-      // ---------- HEADER ----------
+      // ---------- HEADER BACKGROUND ----------
       doc
-        .fontSize(22)
-        .fillColor("#111111")
-        .text("Cybomb Technologies", { align: "left" });
+        .fillColor("#6366f1")
+        .rect(0, 0, doc.page.width, 120)
+        .fill();
 
-      doc
-        .moveDown(0.3)
-        .fontSize(10)
-        .fillColor("#555555")
-        .text("Official Invoice", { align: "left" });
+      // ---------- HEADER TEXT ----------
+doc
+  .fillColor("white")
+  .fontSize(24)
+  .font("Helvetica-Bold")
+  .text("CYBOMB TECHNOLOGIES", 50, 40);
 
-      doc.moveDown(0.5);
-      doc
-        .fontSize(10)
-        .text(`Invoice No: ${orderId}`)
-        .text(`Invoice Date: ${new Date().toLocaleDateString("en-IN")}`)
-        .moveDown(1);
+doc
+  .fontSize(12)
+  .font("Helvetica")
+  .text("Web Development Services", 50, 70);
 
-      // ---------- BILL TO ----------
+doc.fontSize(10).text("Invoice", 50, 90);
+
+// Right side: invoice details
+doc
+  .fontSize(20)
+  .font("Helvetica-Bold")
+  .text("INVOICE", 400, 40);
+
+// Label
+doc
+  .fontSize(10)
+  .font("Helvetica")
+  .text("Invoice #:", 400, 70);
+
+// ---- SINGLE-LINE INVOICE ID (NO WRAP) ----
+doc.font("Helvetica");
+let idFontSize = 10;           // starting size
+const maxIdWidth = 170;        // how wide the ID area can be
+
+// shrink font until it fits in one line
+while (doc.widthOfString(orderId) > maxIdWidth && idFontSize > 6) {
+  idFontSize -= 1;
+  doc.fontSize(idFontSize);
+}
+
+// draw invoice id in one line, no wrapping
+doc.text(orderId, 400, 82, {
+  lineBreak: false,
+});
+
+// reset font size for next fields
+doc.fontSize(10);
+
+doc.text(`Date: ${currentDate}`, 400, 97);
+doc.text("Status: PAID", 400, 112);
+
+// switch back to black for body later
+doc.fillColor("black");
+
+
+      // ---------- FROM / BILL TO ----------
+      const fromX = 50;
+      const toX = 300;
+      const infoY = 150;
+
+      // From section
       doc
         .fontSize(12)
-        .fillColor("#111111")
-        .text("Bill To:", { underline: true });
+        .font("Helvetica-Bold")
+        .text("From:", fromX, infoY);
 
       doc
-        .moveDown(0.3)
+        .font("Helvetica")
         .fontSize(10)
-        .fillColor("#333333")
-        .text(fullName);
+        .text("Cybomb Technologies", fromX, infoY + 20)
+        .text("santhosh@cybomb.com", fromX, infoY + 35)
+        .text("+91 9876543210", fromX, infoY + 50)
+        .text("Chennai, Tamil Nadu", fromX, infoY + 65);
 
-      if (company) doc.text(company);
+      // Bill To section
+      doc
+        .font("Helvetica-Bold")
+        .text("Bill To:", toX, infoY);
 
       doc
-        .text(address)
-        .text(`${city} - ${pincode}`)
-        .text(`Phone: ${phone}`)
-        .text(`Email: ${email}`)
-        .moveDown(1);
-
-      // ---------- ORDER DETAILS ----------
-      doc
-        .fontSize(12)
-        .fillColor("#111111")
-        .text("Order Summary", { underline: true });
-
-      doc.moveDown(0.5);
-
-      const tableTop = doc.y;
-      const itemX = 50;
-      const amountX = 400;
-
-      doc
+        .font("Helvetica")
         .fontSize(10)
-        .fillColor("#555555")
-        .text("Description", itemX, tableTop)
-        .text("Amount", amountX, tableTop, { align: "right" });
+        .text(fullName, toX, infoY + 20)
+        .text(email, toX, infoY + 35)
+        .text(normalizedPhone, toX, infoY + 50);
 
-      doc.moveDown(0.5);
+      if (company) {
+        doc.text(company, toX, infoY + 65);
+      }
+
+      doc.text(`${address}, ${city} - ${pincode}`, toX, infoY + 80);
+
+      // ---------- SEPARATOR ----------
       doc
-        .moveTo(itemX, doc.y)
-        .lineTo(550, doc.y)
-        .strokeColor("#DDDDDD")
+        .moveTo(50, 250)
+        .lineTo(doc.page.width - 50, 250)
+        .strokeColor("#cccccc")
         .stroke();
 
-      doc.moveDown(0.5);
-
-      // Line item: Package
+      // ---------- TABLE HEADER ----------
+      const tableTop = 270;
       doc
-        .fillColor("#222222")
-        .text(`${planName} Package`, itemX, doc.y)
+        .font("Helvetica-Bold")
+        .fontSize(10)
+        .fillColor("black")
+        .text("Description", 50, tableTop)
+        .text("Amount", 400, tableTop, { align: "right" });
+
+      // ---------- TABLE CONTENT ----------
+      doc
+        .font("Helvetica")
+        .fontSize(10)
+        .text(`${planName} Web Development Package`, 50, tableTop + 25)
         .text(
           `${currencySymbol}${subtotal.toLocaleString("en-IN")}`,
-          amountX,
-          doc.y,
+          400,
+          tableTop + 25,
           { align: "right" }
         );
 
-      doc.moveDown(0.5);
-
-      // GST row
       doc
-        .fillColor("#555555")
-        .text("GST (18%)", itemX, doc.y)
+        .text("GST (18%)", 50, tableTop + 45)
         .text(
           `${currencySymbol}${gstAmount.toLocaleString("en-IN")}`,
-          amountX,
-          doc.y,
+          400,
+          tableTop + 45,
           { align: "right" }
         );
 
-      doc.moveDown(0.5);
-
-      // Separator
+      // Total separator
       doc
-        .moveTo(itemX, doc.y)
-        .lineTo(550, doc.y)
-        .strokeColor("#DDDDDD")
+        .moveTo(50, tableTop + 70)
+        .lineTo(doc.page.width - 50, tableTop + 70)
+        .strokeColor("#000000")
         .stroke();
 
-      doc.moveDown(0.5);
-
-      // Total
+      // TOTAL row
       doc
-        .fontSize(11)
-        .fillColor("#111111")
-        .text("Total", itemX, doc.y)
         .font("Helvetica-Bold")
+        .fontSize(11)
+        .text("TOTAL", 50, tableTop + 80)
         .text(
           `${currencySymbol}${amount.toLocaleString("en-IN")}`,
-          amountX,
-          doc.y,
+          400,
+          tableTop + 80,
           { align: "right" }
-        )
-        .font("Helvetica");
-
-      doc.moveDown(2);
-
-      // ---------- FOOTER ----------
-      doc
-        .fontSize(9)
-        .fillColor("#555555")
-        .text(
-          "Thank you for your business with Cybomb Technologies.",
-          { align: "center" }
         );
 
+      // ---------- PAYMENT STATUS ----------
       doc
-        .moveDown(0.3)
-        .fontSize(8)
+        .fillColor("#10b981")
+        .fontSize(10)
+        .text("PAYMENT SUCCESSFUL", 50, tableTop + 110);
+
+      doc
+        .fillColor("black")
+        .font("Helvetica")
+        .text(`Paid on: ${currentDate}`, 50, tableTop + 125);
+
+      // ---------- NOTES ----------
+      const notesY = tableTop + 160;
+      doc
+        .font("Helvetica-Bold")
+        .fontSize(11)
+        .text("Important Notes:", 50, notesY);
+
+      doc
+        .font("Helvetica")
+        .fontSize(9)
         .text(
-          "This is a system-generated invoice and does not require a physical signature.",
+          "• This is an official invoice for payment received.",
+          50,
+          notesY + 20
+        )
+        .text(
+          "• Please keep this invoice for your records.",
+          50,
+          notesY + 35
+        )
+        .text(
+          "• Your project timeline: 7-10 working days.",
+          50,
+          notesY + 50
+        )
+        .text(
+          "• Contact support@cybomb.com for any queries.",
+          50,
+          notesY + 65
+        );
+
+      // ---------- FOOTER ----------
+      const footerY = doc.page.height - 100;
+      doc
+        .fontSize(8)
+        .fillColor("#555555")
+        .text(
+          "Thank you for choosing Cybomb Technologies",
+          50,
+          footerY,
+          { align: "center" }
+        )
+        .text(
+          "support@cybomb.com | +91 9876543210 | www.cybomb.com",
+          50,
+          footerY + 15,
+          { align: "center" }
+        )
+        .text(
+          "This is a computer-generated invoice. No signature required.",
+          50,
+          footerY + 30,
           { align: "center" }
         );
 
       doc.end();
-    } catch (err) {
-      reject(err);
+    } catch (error) {
+      reject(error);
     }
   });
 };

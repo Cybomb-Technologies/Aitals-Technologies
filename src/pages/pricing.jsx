@@ -271,7 +271,7 @@ const Pricing = () => {
       <section
         id="plans"
         ref={addToRefs}
-        className="py-20 bg-[#f7f5ff] relative"
+        className="pb-10 pt-10 bg-[#f7f5ff] relative"
       >
         <div className="max-w-6xl mx-auto px-4">
           {/* Section Heading */}
@@ -455,7 +455,7 @@ const Pricing = () => {
       {/* WHY CHOOSE US */}
       <section
         ref={addToRefs}
-        className="py-20 bg-[#f6f6ff] relative overflow-hidden"
+        className="pb-10 bg-[#f6f6ff] relative overflow-hidden"
       >
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <motion.div
