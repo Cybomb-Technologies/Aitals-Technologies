@@ -199,7 +199,7 @@ const Blog = () => {
     setSubscribeMessage("");
 
     try {
-      const response = await fetch("/api/newsletter/subscribe", {
+      const response = await fetch(`${API_BASE_URL1}/api/newsletter/subscribe`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

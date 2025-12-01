@@ -17,6 +17,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import Metatags from "../SEO/metatags";
+import Newsletter from "../components/Newsletter";
 const Home = () => {
   const logos = [
     "https://res.cloudinary.com/duomzq5mm/image/upload/v1761200939/microsoft-5_z1f1q9.svg",
@@ -304,7 +305,7 @@ const Home = () => {
               >
                 <CheckCircle
                   size={18}
-                  className="text-[#4a7dff] flex-shrink-0 group-hover:scale-110 transition-transform duration-300"
+                  className="text-blue-300 flex-shrink-0 group-hover:scale-110 transition-transform duration-300"
                 />
                 <span className="text-base font-medium group-hover:text-white transition-colors duration-300">
                   {feature}
@@ -396,7 +397,7 @@ const Home = () => {
             >
               <h2 className="text-4xl md:text-6xl font-extrabold mb-4 text-white font-['Poppins'] relative inline-block">
                 Our Services
-                <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
+                <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-blue-300 to-blue-500 rounded-full"></div>
               </h2>
               <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
                 Comprehensive digital solutions tailored to your business needs.
@@ -479,7 +480,7 @@ const Home = () => {
             >
               <h2 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#362B6A] via-[#5355A0] to-[#362B6A] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
                 Why Choose Aitals
-                <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
+                <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-blue-300 to-blue-500 rounded-full"></div>
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-['Poppins']">
                 We combine technical expertise with business understanding to
@@ -498,9 +499,9 @@ const Home = () => {
                 <motion.div
                   key={index}
                   variants={itemVariants}
-                  className="bg-[#100232] p-12 rounded-2xl text-center shadow-xl transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-[#4a7dff] border border-[#2d3b5b] relative overflow-hidden group font-['Poppins']"
+                  className="bg-[#100232] p-12 rounded-2xl text-center shadow-xl transition-all duration-400 hover:-translate-y-3 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 hover:border-blue-300 border border-[#2d3b5b] relative overflow-hidden group font-['Poppins']"
                 >
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left"></div>
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-300 to-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left"></div>
 
                   <div className="w-20 h-20 bg-gradient-to-br from-[#362B6A] to-[#5355A0] rounded-full flex items-center justify-center mb-6 mx-auto shadow-lg shadow-blue-500/30 group-hover:scale-110 group-hover:rotate-360 transition-all duration-300">
                     <item.icon size={24} color="white" />
@@ -568,7 +569,7 @@ const Home = () => {
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0d1933]/95 to-transparent flex flex-col justify-end p-8 opacity-100 group-hover:from-[#0d1933]/98 group-hover:to-transparent group-hover:to-60%">
-                    <span className="text-[#4a7dff] text-sm font-semibold mb-2 uppercase tracking-wider font-['Poppins'] opacity-100">
+                    <span className="text-blue-50 text-sm font-semibold mb-2 uppercase tracking-wider font-['Poppins'] opacity-100">
                       {project.category}
                     </span>
                     <h3 className="text-xl font-bold text-white leading-tight font-['Poppins'] opacity-100">
@@ -620,7 +621,7 @@ const Home = () => {
               >
                 <h2 className="text-4xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-[#362B6A] via-[#5355A0] to-[#362B6A] bg-clip-text text-transparent font-['Poppins'] relative inline-block">
                   Trusted by Global Clients
-                  <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-[#4a7dff] to-[#3a6df0] rounded-full"></div>
+                  <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-blue-300 to-blue-500 rounded-full"></div>
                 </h2>
                 <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-16 leading-relaxed font-['Poppins']">
                   We've delivered successful projects to clients across USA,
@@ -639,15 +640,15 @@ const Home = () => {
                     <motion.div
                       key={index}
                       variants={itemVariants}
-                      className="bg-white p-8 rounded-2xl border border-gray-100 shadow-xl transition-all duration-400 hover:-translate-y-2 hover:border-[#4a7dff] hover:shadow-2xl hover:shadow-blue-500/15 min-h-[180px] flex flex-col justify-center items-center relative overflow-hidden group font-['Poppins']"
+                      className="bg-white p-8 rounded-2xl border border-gray-100 shadow-xl transition-all duration-400 hover:-translate-y-2 hover:border-blue-300 hover:shadow-2xl hover:shadow-blue-500/15 min-h-[180px] flex flex-col justify-center items-center relative overflow-hidden group font-['Poppins']"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#4a7dff]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-300/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
 
                       <div className="relative z-10 w-full text-center space-y-3">
                         <span className="text-4xl md:text-5xl font-extrabold mb-2 bg-gradient-to-br from-[#362B6A] via-[#5355A0] to-[#362B6A] bg-clip-text text-transparent font-['Poppins'] block leading-none group-hover:scale-110 transition-transform duration-300">
                           {stat.number}
                         </span>
-                        <span className="text-lg md:text-xl text-gray-600 font-semibold font-['Poppins'] block leading-tight group-hover:text-[#4a7dff] transition-colors duration-300 px-2 break-words">
+                        <span className="text-lg md:text-xl text-gray-600 font-semibold font-['Poppins'] block leading-tight group-hover:text-blue-300 transition-colors duration-300 px-2 break-words">
                           {stat.label}
                         </span>
                       </div>
@@ -659,7 +660,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-
+      <Newsletter />
       {/* Partners Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
