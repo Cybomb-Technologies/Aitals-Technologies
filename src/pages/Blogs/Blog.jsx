@@ -199,7 +199,7 @@ const Blog = () => {
     setSubscribeMessage("");
 
     try {
-      const response = await fetch("/api/newsletter/subscribe", {
+      const response = await fetch(`${API_BASE_URL1}/api/newsletter/subscribe`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -298,7 +298,7 @@ const Blog = () => {
             <div className="inline-flex items-center justify-center w-20 h-20 bg-white/10 rounded-2xl backdrop-blur-sm mb-8">
               <BookOpen className="w-10 h-10 text-white" />
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 pb-2 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               Aitals Blog
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">

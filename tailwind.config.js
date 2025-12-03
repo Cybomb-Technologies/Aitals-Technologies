@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors');
+
+/** @type {import('tailwindcss').Config} */
 module.exports = {
 	darkMode: ['class'],
 	content: [
@@ -49,6 +52,15 @@ module.exports = {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))',
+				},
+				blue: {
+					...colors.blue,
+					// Custom theme mapping (from light → dark):
+					50: '#FFFFFF',      // white
+					300: '#5355A0',     // medium
+					500: '#362B6A',     // darker
+					600: '#100232',
+					700: '#5355A0',     // primary (darkest)
 				},
 			},
 			borderRadius: {
