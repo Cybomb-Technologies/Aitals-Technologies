@@ -4,7 +4,9 @@ import csv from "csv-parser";
 import xlsx from "xlsx";
 import fs from "fs";
 import path from "path";
+import Notification from "../models/Notification.js";
 
+// Create new contact
 // Create new contact
 export const createContact = async (req, res) => {
   try {
@@ -17,6 +19,15 @@ export const createContact = async (req, res) => {
     });
 
     await contact.save();
+
+    // 🔥 CREATE NOTIFICATION
+    await Notification.create({
+      title: "New Contact Form Submitted",
+      message: `${name} has submitted a contact form.`,
+      type: "aitals-contact",
+      relatedId: contact._id,
+      isRead: false,
+    });
 
     res.status(201).json({
       success: true,
@@ -32,6 +43,7 @@ export const createContact = async (req, res) => {
     });
   }
 };
+
 
 // Get all contacts (Admin only)
 export const getContacts = async (req, res) => {

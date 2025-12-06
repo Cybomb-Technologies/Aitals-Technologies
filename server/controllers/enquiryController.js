@@ -4,6 +4,7 @@ import csv from "csv-parser";
 import xlsx from "xlsx";
 import fs from "fs";
 import path from "path";
+import Notification from "../models/Notification.js";
 
 // Create new enquiry
 export const createEnquiry = async (req, res) => {
@@ -20,6 +21,16 @@ export const createEnquiry = async (req, res) => {
 
     await enquiry.save();
 
+    // ===============================
+    // CREATE NOTIFICATION (ADMIN)
+    // ===============================
+    await Notification.create({
+      title: "New Contact Enquiry",
+      message: `New enquiry received from ${email}`,
+      type: "aitals-contact",
+      relatedId: enquiry._id
+    });
+
     res.status(201).json({
       success: true,
       message: "Enquiry submitted successfully",
@@ -34,6 +45,7 @@ export const createEnquiry = async (req, res) => {
     });
   }
 };
+
 
 // Get all enquiries (Admin only)
 export const getEnquiries = async (req, res) => {

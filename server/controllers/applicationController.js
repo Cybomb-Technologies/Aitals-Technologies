@@ -1,6 +1,7 @@
 import Application from '../models/Application.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import Notification from '../models/Notification.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -31,6 +32,7 @@ export const createApplication = async (req, res) => {
       };
     }
 
+    // Save application
     const application = new Application({
       name,
       email,
@@ -42,12 +44,23 @@ export const createApplication = async (req, res) => {
     });
 
     await application.save();
-    
+
+    // ===============================
+    //    CREATE NOTIFICATION (ADMIN)
+    // ===============================
+    await Notification.create({
+      title: "New Job Application",
+      message: `${name} applied for the role: ${role}`,
+      type: "aitals-application",
+      relatedId: application._id
+    });
+
     res.status(201).json({
       success: true,
       message: req.file ? 'Application submitted successfully with resume.' : 'Application submitted successfully.',
       data: application
     });
+
   } catch (error) {
     console.error('Application creation error:', error);
     res.status(500).json({

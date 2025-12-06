@@ -5,7 +5,9 @@ import csv from "csv-parser";
 import xlsx from "xlsx";
 import fs from "fs";
 import path from "path";
+import Notification from "../models/Notification.js";
 
+// Subscribe to newsletter
 // Subscribe to newsletter
 export const subscribeToNewsletter = async (req, res) => {
   try {
@@ -33,6 +35,14 @@ export const subscribeToNewsletter = async (req, res) => {
         existingSubscriber.name = name || existingSubscriber.name;
         await existingSubscriber.save();
 
+        // Create notification for re-subscription
+        await Notification.create({
+          title: "Newsletter Re-Subscribed",
+          message: `${email} has re-subscribed to the newsletter.`,
+          type: "cybomb-newsletter",
+          isRead: false,
+        });
+
         return res.json({
           success: true,
           message: "Successfully resubscribed to newsletter",
@@ -49,6 +59,14 @@ export const subscribeToNewsletter = async (req, res) => {
     });
 
     await subscriber.save();
+
+    // 🔥 CREATE NOTIFICATION HERE
+    await Notification.create({
+      title: "New Newsletter Subscription",
+      message: `${email} subscribed to the newsletter.`,
+      type: "aitals-newsletter",
+      isRead: false,
+    });
 
     res.status(201).json({
       success: true,
@@ -72,6 +90,7 @@ export const subscribeToNewsletter = async (req, res) => {
     });
   }
 };
+
 
 // Get all subscribers (Admin only)
 export const getSubscribers = async (req, res) => {
