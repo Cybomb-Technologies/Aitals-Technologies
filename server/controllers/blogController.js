@@ -1,4 +1,5 @@
 import Blog from '../models/Blog.js';
+import Notification from "../models/Notification.js";
 
 // Get all blogs (Public)
 export const getBlogs = async (req, res) => {
@@ -124,6 +125,7 @@ export const getBlogsByTag = async (req, res) => {
 };
 
 // Create new blog (Admin only)
+// Create new blog (Admin only)
 export const createBlog = async (req, res) => {
   try {
     const { title, content, author, tags, image, readTime, featured } = req.body;
@@ -136,7 +138,7 @@ export const createBlog = async (req, res) => {
       });
     }
     
-    // Calculate read time if not provided (approx 200 words per minute)
+    // Calculate read time if not provided
     let calculatedReadTime = readTime;
     if (!readTime) {
       const wordCount = content.split(/\s+/).length;
@@ -154,6 +156,15 @@ export const createBlog = async (req, res) => {
     });
 
     await blog.save();
+
+    // 🔥 CREATE NOTIFICATION HERE
+    await Notification.create({
+      title: "New Blog Created",
+      message: `A new blog titled "${blog.title}" has been created.`,
+      type: "aitals-blog",
+      relatedId: blog._id,
+      isRead: false
+    });
     
     res.status(201).json({
       success: true,
@@ -188,6 +199,7 @@ export const createBlog = async (req, res) => {
     });
   }
 };
+
 
 // Update blog (Admin only)
 export const updateBlog = async (req, res) => {

@@ -17,6 +17,7 @@ import applicationManagerRoutes from "./routes/applicationManagerRoutes.js";
 import { setupOverviewRoutes } from "./routes/overviewRoutes.js";
 import newsletterRoutes from "./routes/newsletterRoutes.js";
 import webPaymentRoutes from "./routes/webPaymentRoutes.js";
+import notificationRoutes from "./routes/notificationRoutes.js";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -66,6 +67,7 @@ app.use("/api/blog", blogRoutes);
 app.use("/api/applications", applicationManagerRoutes);
 app.use("/api/newsletter", newsletterRoutes);
 app.use("/api/web-payment", webPaymentRoutes);
+app.use("/api/notifications", notificationRoutes);
 
 // Root endpoint
 app.get("/", (req, res) => {
