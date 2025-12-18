@@ -645,9 +645,9 @@ const Career = () => {
   };
 
   const metaPropsData = {
-    title: "Careers - Join Aitals Technologies | Current Job Openings",
+    title: "Careers at Aitals Technologies | Explore Open Roles",
     description:
-      "Explore career opportunities at Aitals Technologies. Join our innovative team of developers, designers, and technology professionals. View current job openings and apply today.",
+      "Explore career paths at Aitals Technologies. Join our dynamic team of developers, designers, and tech professionals. See openings and apply today.",
     keyword:
       "Aitals Careers, Job Openings, Tech Jobs, Software Developer Jobs, UI/UX Designer Jobs, IT Careers, Remote Jobs, Join Our Team",
     url: "https://aitals.com/careers",

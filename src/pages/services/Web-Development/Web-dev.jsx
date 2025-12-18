@@ -253,9 +253,9 @@ const WebDev = () => {
 
   const metaPropsData = {
     title:
-      "Web Design & Development Services in chennai | Aitals Tech",
+      "Web Design & Development in Chennai | Aitals Tech",
     description:
-      "Aitals Technologies in chennai is a leading & best web development services including React.js, Next.js, custom web applications, e-commerce solutions, and responsive website.",
+      "Aitals Technologies in Chennai is a leading web development company, offering expert services in React.js, Next.js, custom web apps, e-commerce, and responsive websites.",
     keyword:
       "Web Development service in chennai, React.js Development, Next.js, Custom Web Applications, E-commerce Development, Responsive Web Design, Frontend Development, Backend Development",
     url: "https://aitals.com/services/web-development",

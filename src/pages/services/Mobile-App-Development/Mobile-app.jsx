@@ -274,9 +274,9 @@ const MobileApp = () => {
 
   const metaPropsData = {
     title:
-      "Mobile App Development in chennai | Aitals Technologies",
+      "Custom Mobile App Solutions in Chennai | Aitals Technologies",
     description:
-      "Aitals Technologies in chennai provides professional mobile app development services including cross-platform apps, native app development, React Native, Flutter, and secure mobile solutions.",
+      "Aitals Technologies in Chennai offers professional mobile app development services, including native and cross-platform apps, React Native, Flutter, and secure mobile solutions.",
     keyword:
       "Mobile App Development in chennai, iOS App Development, Android App Development, Cross-Platform Apps, React Native, Flutter, Mobile Applications, App Store Deployment",
     url: "https://aitals.com/services/mobile-development",

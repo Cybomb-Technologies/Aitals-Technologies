@@ -191,9 +191,9 @@ const About = () => {
   };
 
   const metaPropsData = {
-    title: "About Aitals Technologies - Our Story, Team & Vision",
+    title: "About Aitals Technologies - Our Vision, People & Journey",
     description:
-      "Learn about Aitals Technologies - our journey since 2025, talented team, core values, and vision to transform ideas into digital excellence through innovative solutions.",
+      "Discover Aitals Technologies: since 2025, a talented team turning ideas into digital excellence with innovation, strong values, and a bold vision.",
     keyword:
       "Aitals Technologies About, Our Story, Company Team, Vision Mission, Software Development Company, Digital Solutions",
     url: "https://aitals.com/about",
