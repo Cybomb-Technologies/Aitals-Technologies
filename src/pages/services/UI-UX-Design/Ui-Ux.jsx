@@ -217,9 +217,9 @@ const UiUx = () => {
 
   const metaPropsData = {
     title:
-      "UI/UX Design Services in chennai | Aitals Technologies",
+      "Intuitive UI/UX Design Solutions in Chennai | Aitals Technologies",
     description:
-      "Aitals Techn provides professional & Best UI/UX design services including user research, wireframing, prototyping, visual design, and design systems for web and mobile applications.",
+      "Aitals Technologies offers professional UI/UX design services, including user research, wireframing, prototyping, visual design, and design systems for web and mobile apps.",
     keyword:
       "UI/UX Design service in chennai, User Experience Design, User Interface Design, Wireframing, Prototyping, Design Systems, Visual Design, Mobile App Design, Web Design",
     url: "https://aitals.com/services/ui-ux-design",
