@@ -295,9 +295,9 @@ const CloudDevops = () => {
 
   const metaPropsData = {
     title:
-      "Cloud & DevOps Services in chennai | Aitals Technologies",
+      "Cloud & DevOps Services for Businesses | Aitals Technologies",
     description:
-      "Aitals Tech in chennai provides comprehensive Cloud & DevOps services including cloud migration, container orchestration, CI/CD pipelines, and infrastructure automation for scalable applications.",
+    "We provide comprehensive Cloud & DevOps services, including cloud migration, container orchestration, CI/CD pipelines, and infrastructure automation to build scalable, efficient applications.",
     keyword:
       "Cloud Services in chennai, DevOps Service in chennai, Cloud Migration, Kubernetes, Docker, CI/CD, Infrastructure as Code, AWS, Azure, Google Cloud, Container Orchestration",
     url: "https://aitals.com/services/cloud-devops",

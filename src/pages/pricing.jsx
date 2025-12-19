@@ -187,9 +187,9 @@ const Pricing = () => {
   ];
 
   const metaPropsData = {
-    title: "Web Development Packages - Transparent Pricing | Aitals Technologies",
+    title: "Web Development Packages - Clear Pricing | Aitals Technologies.",
     description:
-      "Explore Aitals Technologies web development packages with simple, transparent, and scalable pricing. From one-page sites to custom CMS solutions, choose a plan that fits your business.",
+      "Explore Aitals Technologies' web dev plans with clear, scalable pricing—ranging from single-page sites to custom CMS solutions tailored for your business.",
     keyword:
       "web development pricing, website packages, Aitals Technologies plans, custom CMS website cost, professional website cost",
     url: "https://aitals.com/pricing",

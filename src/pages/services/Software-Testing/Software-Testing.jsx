@@ -253,9 +253,9 @@ const SoftwareTesting = () => {
 
   const metaPropsData = {
     title:
-      "Software Testing & QA Service in chennai| Aitals Tech",
+      "Reliable Software QA & Testing Services | Aitals Tech",
     description:
-      "Aitals Tech in chennai provides comprehensive software testing services including quality assurance, performance testing, security testing, automation testing, and ongoing maintenance support.",
+      "We deliver end-to-end software testing services, including quality assurance, performance, security, and automation testing, along with ongoing maintenance support.",
     keyword:
       "Software Testing in chennai, Quality Assurance, QA Services, Performance Testing, Security Testing, Automation Testing, Bug Detection, Test Automation",
     url: "https://aitals.com/services/software-testing",

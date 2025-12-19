@@ -187,9 +187,9 @@ const Portfolio = () => {
   };
 
   const metaPropsData = {
-    title: "Portfolio - Aitals Technologies | Our Work & Case Studies",
+    title: "Portfolio - Aitals Technologies | Work & Success Stories.",
     description:
-      "Explore Aitals Technologies' portfolio of successful projects including web applications, mobile apps, e-commerce solutions, and digital transformations delivered to clients worldwide.",
+      "Join Aitals Technologies' innovative team of developers, designers, and tech experts. Explore current career opportunities and apply to shape the future today.",
     keyword:
       "Aitals Portfolio, Web Development Projects, Mobile App Case Studies, E-commerce Solutions, UI/UX Design Work, Software Development Projects, Client Success Stories",
     url: "https://aitals.com/portfolio",

@@ -287,9 +287,9 @@ const AiAutomation = () => {
   const techCategories = Object.keys(technologies);
 
   const metaPropsData = {
-    title: "AI Automation Services in chennai | Aitals Technologies",
+    title: "Intelligent AI Automation Solutions| Aitals Technologies",
     description:
-      "Transform your business with Aitals Tech in chennai' AI and automation solutions. Machine learning, intelligent automation, chatbots, and AI-powered business transformation.",
+      "Transform your business with AI and automation solutions, including machine learning, intelligent automation, chatbots, and AI-driven strategies for smarter growth and efficiency.",
     keyword:
       "AI Integration in chennai, Automation Solutions, Machine Learning, Intelligent Chatbots, Business Automation, AI Development, Predictive Analytics, Computer Vision",
     url: "https://aitals.com/services/ai-automation",
