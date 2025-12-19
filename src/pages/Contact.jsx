@@ -103,9 +103,9 @@ const Contact = () => {
 
   const metaPropsData = {
     title:
-      "Contact Aitals Technologies | Get In Touch for Software Development",
+      "Get in Touch | Aitals Technologies for Software Solutions",
     description:
-      "Contact Aitals Technologies for your software development needs. Reach out for web development, mobile apps, UI/UX design, and custom software solutions. We're here to help transform your ideas into reality.",
+      "Get in touch for all your software development needs. We offer web development, mobile apps, UI/UX design, and custom software solutions to turn your ideas into reality.",
     keyword:
       "Contact Aitals, Software Development Contact, Web Development Company, Mobile App Development, UI/UX Design Services, Get Quote, Project Inquiry",
     url: "https://aitals.com/contact",
