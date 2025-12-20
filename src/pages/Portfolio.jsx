@@ -30,17 +30,17 @@ const Portfolio = () => {
   ];
 
   const projects = [
-    {
-      title: "FinTech Dashboard",
-      category: "Web Development",
-      description:
-        "Comprehensive financial analytics platform with real-time data visualization",
-      image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
-      portfolioLink: "https://fintech.aitals.com/",
-      tech: ["React", "Node.js", "MongoDB"],
-      results: "40% increase in user engagement",
-    },
+    // {
+    //   title: "FinTech Dashboard",
+    //   category: "Web Development",
+    //   description:
+    //     "Comprehensive financial analytics platform with real-time data visualization",
+    //   image:
+    //     "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+    //   portfolioLink: "https://fintech.aitals.com/",
+    //   tech: ["React", "Node.js", "MongoDB"],
+    //   results: "40% increase in user engagement",
+    // },
     {
       title: "Healthcare Mobile App",
       category: "Mobile Apps",
@@ -100,8 +100,8 @@ const Portfolio = () => {
 
   // Fallback images for demo purposes
   const fallbackImages = {
-    "FinTech Dashboard":
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+    // "FinTech Dashboard":
+    //   "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
     "Healthcare Mobile App":
       "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
     "E-Learning Platform":
