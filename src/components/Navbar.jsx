@@ -71,6 +71,7 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
+    { name: "Products", path: "/products" },
     {
       name: "Services",
       path: "/services",
@@ -144,18 +145,17 @@ const Navbar = () => {
   const isServicesActive = location.pathname.startsWith("/services");
 
   return (
-    
+
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full`}
     >
       <div
-        className={`py-2 px-4 transition-all duration-300 ${
-          isScrolled
+        className={`py-2 px-4 transition-all duration-300 ${isScrolled
             ? "bg-white shadow-lg"
             : "bg-white shadow-lg backdrop-blur-sm"
-        }`}
+          }`}
       >
         <div className="flex items-center justify-between w-full px-4 md:px-8">
           <Link
@@ -182,19 +182,17 @@ const Navbar = () => {
                 {link.dropdown ? (
                   <div className="relative">
                     <button
-                      className={`font-medium transition-colors flex items-center ${
-                        isServicesActive
+                      className={`font-medium transition-colors flex items-center ${isServicesActive
                           ? "text-blue-600"
                           : isScrolled
-                          ? "text-gray-700 hover:text-blue-600"
-                          : "text-gray-700 hover:text-blue-600"
-                      }`}
+                            ? "text-gray-700 hover:text-blue-600"
+                            : "text-gray-700 hover:text-blue-600"
+                        }`}
                     >
                       {link.name}
                       <ChevronDown
-                        className={`ml-1 h-4 w-4 transition-transform ${
-                          isServicesDropdownOpen ? "rotate-180" : ""
-                        }`}
+                        className={`ml-1 h-4 w-4 transition-transform ${isServicesDropdownOpen ? "rotate-180" : ""
+                          }`}
                       />
                     </button>
 
@@ -244,13 +242,12 @@ const Navbar = () => {
                 ) : (
                   <Link
                     to={link.path}
-                    className={`font-medium transition-colors ${
-                      location.pathname === link.path
+                    className={`font-medium transition-colors ${location.pathname === link.path
                         ? "text-blue-600"
                         : isScrolled
-                        ? "text-gray-700 hover:text-blue-600"
-                        : "text-gray-700 hover:text-blue-600"
-                    }`}
+                          ? "text-gray-700 hover:text-blue-600"
+                          : "text-gray-700 hover:text-blue-600"
+                      }`}
                   >
                     {link.name}
                   </Link>
@@ -290,7 +287,7 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-      <ChatWidget/>
+      <ChatWidget />
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
@@ -328,17 +325,15 @@ const Navbar = () => {
                             onClick={() =>
                               setIsMobileServicesOpen(!isMobileServicesOpen)
                             }
-                            className={`flex items-center justify-between w-full text-left font-medium py-3 px-4 rounded-lg ${
-                              isServicesActive || isMobileServicesOpen
+                            className={`flex items-center justify-between w-full text-left font-medium py-3 px-4 rounded-lg ${isServicesActive || isMobileServicesOpen
                                 ? "text-blue-600 bg-blue-50"
                                 : "text-gray-700 hover:bg-gray-50"
-                            }`}
+                              }`}
                           >
                             {link.name}
                             <ChevronDown
-                              className={`h-4 w-4 transition-transform ${
-                                isMobileServicesOpen ? "rotate-180" : ""
-                              }`}
+                              className={`h-4 w-4 transition-transform ${isMobileServicesOpen ? "rotate-180" : ""
+                                }`}
                             />
                           </button>
 
@@ -355,11 +350,10 @@ const Navbar = () => {
                                     key={dropdownItem.path}
                                     to={dropdownItem.path}
                                     onClick={() => setIsMobileMenuOpen(false)}
-                                    className={`block py-2 px-4 rounded-lg font-medium ${
-                                      location.pathname === dropdownItem.path
+                                    className={`block py-2 px-4 rounded-lg font-medium ${location.pathname === dropdownItem.path
                                         ? "text-blue-600 bg-blue-50"
                                         : "text-gray-600 hover:text-blue-600 hover:bg-gray-50"
-                                    }`}
+                                      }`}
                                   >
                                     {dropdownItem.name}
                                   </Link>
@@ -372,11 +366,10 @@ const Navbar = () => {
                         <Link
                           to={link.path}
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className={`block py-3 px-4 rounded-lg font-medium ${
-                            location.pathname === link.path
+                          className={`block py-3 px-4 rounded-lg font-medium ${location.pathname === link.path
                               ? "text-blue-600 bg-blue-50"
                               : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
-                          }`}
+                            }`}
                         >
                           {link.name}
                         </Link>
@@ -406,12 +399,12 @@ const Navbar = () => {
                 </div>
               </div>
             </motion.div>
-            
+
           </>
         )}
       </AnimatePresence>
     </motion.nav>
-    
+
   );
 };
 

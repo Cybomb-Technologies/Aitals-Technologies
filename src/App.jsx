@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/Navbar";
@@ -29,87 +29,105 @@ import RefundPolicy from "./components/RefundPolicy";
 import CookiePolicy from "./components/CookiePolicy";
 import PricingPage from "./pages/pricing";
 import CheckoutPage from "./pages/checkoutpage";
+const Products = lazy(() => import("./pages/Products"));
+const PDFWorks = lazy(() => import("./pages/products/PDFWorks"));
+const Hralva = lazy(() => import("./pages/products/Hralva"));
+const AitalsCRM = lazy(() => import("./pages/products/AitalsCRM"));
+
+// Loading Component
+const PageLoader = () => (
+  <div className="flex items-center justify-center min-h-screen">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+  </div>
+);
+
 function App() {
   return (
     <AuthProvider>
       <Router>
         <div className="min-h-screen flex flex-col">
-          <Routes>
-            {/* Public routes with layout */}
-            <Route
-              path="/*"
-              element={
-                <>
-                  <Navbar />
-                  <main className="flex-grow">
-                    <Routes>
-                      <Route path="/" element={<Home />} />
-                      <Route path="/about" element={<About />} />
-                      <Route path="/services" element={<Services />} />
-                      <Route path="/career" element={<Career />} />
-                      <Route path="/contact" element={<Contact />} />
-                      <Route path="/portfolio" element={<Portfolio />} />
-                      <Route path="/admin-login" element={<AdminLogin />} />
-                      <Route path="/blog" element={<Blog />} />
-                      <Route path="/blog/:id" element={<BlogPost />} />
-                      <Route path="/pricing" element={<PricingPage />} />
-                      <Route path="/checkout" element={<CheckoutPage />} />
-                      <Route
-                        path="/services/web-development"
-                        element={<WebDev />}
-                      />
-                      <Route
-                        path="/services/mobile-development"
-                        element={<MobileApp />}
-                      />
-                      <Route path="/services/ui-ux-design" element={<UiUx />} />
-                      <Route
-                        path="/services/ecommerce"
-                        element={<Ecommerce />}
-                      />
-                      <Route
-                        path="/services/ai-automation"
-                        element={<AiAutomation />}
-                      />
-                      <Route
-                        path="/services/cloud-devops"
-                        element={<CloudDevops />}
-                      />
-                      <Route
-                        path="/services/software-testing"
-                        element={<SoftwareTesting />}
-                      />
-                      <Route
-                        path="/privacy-policy"
-                        element={<PrivacyPolicy />}
-                      />
-                      <Route
-                        path="/terms-conditions"
-                        element={<TermsConditions />}
-                      />
-                      <Route path="/refund-policy" element={<RefundPolicy />} />
-                      <Route path="/cookie-policy" element={<CookiePolicy />} />
-                    </Routes>
-                  </main>
-                  <ContactPopup />
-                  <Footer />
-                </>
-              }
-            />
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              {/* Public routes with layout */}
+              <Route
+                path="/*"
+                element={
+                  <>
+                    <Navbar />
+                    <main className="flex-grow">
+                      <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/services" element={<Services />} />
+                        <Route path="/career" element={<Career />} />
+                        <Route path="/contact" element={<Contact />} />
+                        <Route path="/portfolio" element={<Portfolio />} />
+                        <Route path="/admin-login" element={<AdminLogin />} />
+                        <Route path="/blog" element={<Blog />} />
+                        <Route path="/blog/:id" element={<BlogPost />} />
+                        <Route path="/pricing" element={<PricingPage />} />
+                        <Route path="/checkout" element={<CheckoutPage />} />
+                        <Route path="/products" element={<Products />} />
+                        <Route path="/products/pdfworks" element={<PDFWorks />} />
+                        <Route path="/products/hralva" element={<Hralva />} />
+                        <Route path="/products/aitals-crm" element={<AitalsCRM />} />
+                        <Route
+                          path="/services/web-development"
+                          element={<WebDev />}
+                        />
+                        <Route
+                          path="/services/mobile-development"
+                          element={<MobileApp />}
+                        />
+                        <Route path="/services/ui-ux-design" element={<UiUx />} />
+                        <Route
+                          path="/services/ecommerce"
+                          element={<Ecommerce />}
+                        />
+                        <Route
+                          path="/services/ai-automation"
+                          element={<AiAutomation />}
+                        />
+                        <Route
+                          path="/services/cloud-devops"
+                          element={<CloudDevops />}
+                        />
+                        <Route
+                          path="/services/software-testing"
+                          element={<SoftwareTesting />}
+                        />
+                        <Route
+                          path="/privacy-policy"
+                          element={<PrivacyPolicy />}
+                        />
+                        <Route
+                          path="/terms-conditions"
+                          element={<TermsConditions />}
+                        />
+                        <Route path="/refund-policy" element={<RefundPolicy />} />
+                        <Route path="/cookie-policy" element={<CookiePolicy />} />
+                      </Routes>
+                    </main>
+                    <ContactPopup />
+                    <Footer />
+                  </>
+                }
+              />
 
-            {/* Admin Login Route (without Navbar/Footer) */}
-            <Route path="/admin-login" element={<AdminLogin />} />
+              {/* Admin Login Route (without Navbar/Footer) */}
+              <Route path="/admin-login" element={<AdminLogin />} />
 
-            {/* Protected Admin Route (without Navbar/Footer) */}
-            <Route
-              path="/admin/*"
-              element={
-                <ProtectedRoute>
-                  <Admin />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
+              {/* Protected Admin Route (without Navbar/Footer) */}
+              <Route
+                path="/admin/*"
+                element={
+                  <ProtectedRoute>
+                    <Admin />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </Suspense>
           <Toaster />
         </div>
       </Router>
